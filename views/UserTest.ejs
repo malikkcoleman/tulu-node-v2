@@ -9,13 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link rel="stylesheet" href="styles/reset.css" />
-    <link rel="stylesheet" href="~/Scripts/Assets/Webfonts/styles/all.css" />
+    <link rel="stylesheet" href="Webfonts/styles/all.css" />
     <link rel="stylesheet" href="styles/dashboardNav.css" />
     <link rel="stylesheet" href="styles/dashboardUser.css" />
     <link rel="stylesheet" href="styles/footer.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="~/Scripts/Assets/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="jquery/dist/jquery.js"></script>
 </head>
 <body>
     <nav id="Nav">
@@ -114,15 +114,15 @@
         </div>
     </div>
 </body>
-<script src="~/Scripts/Assets/Js/sideMenu.js"></script>
-<script src="~/Scripts/Assets/Js/dashboardUser.js"></script>
-<script type="text/javascript" src="~/Scripts/Assets/Js/Helpers/DealerHelper.js"></script>
+<script src="Js/sideMenu.js"></script>
+<script src="Js/dashboardUser.js"></script>
+<script type="text/javascript" src="Js/Helpers/DealerHelper.js"></script>
 <script type="text/javascript">
     window.onload = function () {
         ListDealers();
     }
 </script>
-<script src="~/Scripts/Assets/Js/privileges.js"></script>
+<script src="Js/privileges.js"></script>
     </script>
 
     @if (User.Identity.IsAuthenticated) {
