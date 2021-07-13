@@ -1,0 +1,46 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <script type="text/javascript" src="jquery/dist/jquery.js"></script>
+
+    <div id="DealerList"></div>
+    <div id="DealerDiv">
+        Dealer Name: <input type="text" id="DealerName" value="" /><br />
+        DealerAccountId: <input type="text" id="DealerAccountId" /><br />
+        DealerLogo: <input type="text" id="DealerLogo" /><br />
+        DealerHours: <input type="text" id="DealerHours" /><br />
+        DealerWebsite: <input type="text" id="DealerWebsite" /><br />
+        AddressType: <input type="text" id="AddressType" /><br />
+        AddressName: <input type="text" id="AddressName" /><br />
+        AddressStreet: <input type="text" id="AddressStreet" /><br />
+        AddressCity: <input type="text" id="AddressCity" /><br />
+        AddressProvince: <input type="text" id="AddressProvince" /><br />
+        AddressPostal: <input type="text" id="AddressPostal" /><br />
+        AddressLatitude: <input type="text" id="AddressLatitude" value="0" /><br />
+        AddressLongitude: <input type="text" id="AddressLongitude" value="0" /><br />
+        <input type="button" value="Save Dealer" onclick="SaveDealer();" />
+        <div id="DealerUsers"></div>
+        
+        
+    </div>
+    
+</body>
+<script type="text/javascript" src="Js/Helpers/DealerHelper_TEST.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        ListDealers();
+    }
+
+
+
+
+
+</script>
+</html>
