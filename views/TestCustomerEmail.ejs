@@ -1,0 +1,99 @@
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="~/Scripts/Assets/Webfonts/styles/all.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/home.css" />
+    <link rel="stylesheet" href="styles/footer.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/Assets/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    </nav>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+
+
+    <div class="container body-content">
+        Id
+        <input class="Id" type="text">
+        Target Id
+        <input class="TargetId" type="text">
+        Tulu Id
+        <input class="TuluId" type="text">
+        Dealer Id
+        <input class="DealerId" type="text">
+        Vin
+        <input class="Vin" type="text">
+        Customer Email
+        <input class="CustomerEmail" type="text">
+        Tulu Email
+        <input class="TuluEmail" type="text">
+        Subject
+        <input class="Subject" type="text">
+        Message
+        <input class="Message" type="text">
+        Year
+        <input class="Year" type="text">
+        Make
+        <input class="Make" type="text">
+        Model        
+        <input class="Model" type="text">
+        Pref StartTime       
+        <input class="PrefStart" type="text">
+        Pref EndTime        
+        <input class="PrefEnd" type="text">
+        Alt StartTime       
+        <input class="AltStart" type="text">
+        Alt EndTime      
+        <input class="AltEnd" type="text">
+        Dealer Location        
+        <input class="DealerLoc" type="text">
+
+        <button onclick="CustomerEmail()">HARD CODE TEST</button>
+        <button onclick="TestSend()">TEST</button>
+    </div>
+    
+</body>
+<script src="~/Scripts/Assets/Js/sideMenu.js"></script>
+   
+<script src="~/Scripts/Assets/Js/privileges.js"></script>
+<script type="text/javascript" src="~/Scripts/Assets/Js/Helpers/TestDriveHelper.js"></script>
+<script>
+    function TestSend(){
+
+    }
+</script>
+
+    @if (User.Identity.IsAuthenticated) {
+        <Script>
+            GetUser();
+        </Script>      
+    }else{
+        <Script>
+            guestprivileges();
+        </Script> 
+    }
+</html>

@@ -1,0 +1,137 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="~/Scripts/Assets/Webfonts/styles/all.css" />
+    <link rel="stylesheet" href="styles/dashboardNav.css" />
+    <link rel="stylesheet" href="styles/dashboardUser.css" />
+    <link rel="stylesheet" href="styles/footer.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/Assets/jquery/dist/jquery.js"></script>
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    </nav>
+    <a href="~/Views/Shared/_Dashboard.vbhtml">~/Views/Shared/_Dashboard.vbhtml</a>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+
+    <div class="container body-content">
+        <div class="header">
+            <h1>Users</h1>
+        </div>
+        <div class="users">
+            <div id="DealerList"></div>
+            <div id="DealerDiv">
+            </div>
+
+            <div class="addUser">
+                <i class="fas fa-plus" onclick="NewDealer();"></i>
+            </div>
+        </div>
+
+        <div class="userOptionContainer">
+            <div class="addUserOption">
+                <button onclick="ShowAddNewUser()">ADD NEW USER</button>
+                <button onclick="ShowSearchUser()">ADD EXISTING USER</button>
+            </div>
+        </div>
+
+        <div class="addNewUser">
+            <div class="addNewUserForm" id="addNewUserForm">
+                <div class="addingUserContainer">
+                    Name: <input type="text" id="DealerName" value="" /><br/>
+                    AccountId: <input type="text" id="DealerAccountId" value="" /><br/>
+                    Logo: <input type="text" id="DealerLogo" value="" /><br/>
+                    Hours: <input type="text" id="DealerHours" value="" /><br/>
+                    Website: <input type="text" id="DealerWebsite" value="" /><br/>
+                    Add user by email: <input type="text" id="UserEmail" />
+                    <select id="UserRoleSelect">
+                        <option value="DealerAdmin">Dealer Admin</option>
+                        <option value="DealerUser">Dealer User</option>
+                    </select>
+                    <button class="addUserBtn" onclick="AddUser();">Add User</button>
+                </div>
+                <div class="addingUserInfoContainer">
+                    Address Name: <input type="text" id="AddressName" value="" /><br/>
+                    Address Street: <input type="text" id="AddressStreet" value="" /><br/>
+                    Address City: <input type="text" id="AddressCity" value="" /><br/>
+                    Address Province: <input type="text" id="AddressProvince" value="" /><br/>
+                    Address Postal: <input type="text" id="AddressPostal" value="" /><br/>
+                    Address Type: <input type="text" id="AddressType" value="" /><br/>
+                    <button class="addUserBtn" onclick="SaveDealer();">ADD USER</button>
+                    <button class="cancelBtn" onclick="HideAddNewUser()">CANCEL</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="searchUser">
+            <div class="addNewUserForm">
+                <label for="name">Email or Name</label>
+                <input type="text" name="name" id="searchInput">
+                <button class="addUserBtn" onclick="SearchUser();">SEARCH</button>
+                <button class="cancelBtn" onclick="HideSearchUser()">CANCEL</button>
+            </div>
+        </div>
+
+        <div class="userListContainer">
+            <ul class="userList">
+                <li>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="editUser">
+            <div class="editUserForm">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="editName">
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="editEmail">
+                <button onclick="SaveEdit()">SAVE EDIT</button>
+                <button class="cancelBtn" onclick="HideEditUser()">CANCEL</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="~/Scripts/Assets/Js/sideMenu.js"></script>
+<script src="~/Scripts/Assets/Js/dashboardUser.js"></script>
+<script type="text/javascript" src="~/Scripts/Assets/Js/Helpers/DealerHelper.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        ListDealers();
+    }
+</script>
+<script src="~/Scripts/Assets/Js/privileges.js"></script>
+    </script>
+
+    @if (User.Identity.IsAuthenticated) {
+        <Script>
+            GetUser();
+        </Script>      
+    }else{
+        <Script>
+            guestprivileges();
+        </Script> 
+    }
+</html>

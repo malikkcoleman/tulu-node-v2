@@ -1,0 +1,146 @@
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="~/Scripts/Assets/Webfonts/styles/all.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/viewTulu.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/Assets/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    </nav>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+
+    <div class="container body-content">
+        <div class="wrapper" id="wrapper">
+
+            <div class="banner">
+            </div>
+            <div class="userInfo">
+                <div class="userImage">
+                    <i class="fas fa-user fa-4x"></i>
+                </div>
+                <h3 class="userName">
+                </h3>
+                <p class="userRole">
+                </p>
+                <div class="userRating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <p class="carsSold">Cars sold:<span>0</span></p>
+                <p class="userBio">
+                    
+                </p>
+                <ul class="socialMediaAccounts">
+                    
+                </ul>
+                <div class="subInfo">
+                    @* <h4>
+                        Experience:
+                    </h4> 
+                    <p class="experience">
+                        
+                    </p> *@
+
+                    @* TO POPULATE THIS PAGE, UNCOMMENT LINE 63-67 in TuluViewHelper.js *@
+                    <h4>
+                        Specialty:
+                    </h4>
+                    <p class="specialty">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae eveniet illum adipisci aliquid? Iure, tenetur?
+                    </p>
+                    <h4>
+                    Favourite Car:
+                    </h4>
+                    <p class="favouriteCar">
+                        
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae eveniet illum adipisci aliquid? Iure, tenetur?
+                    </p>
+                    <h4>
+                    Current Car:
+                    </h4>
+                    <p class="currentCar">
+                        
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae eveniet illum adipisci aliquid? Iure, tenetur?
+                    </p>
+                    
+                    <h4>
+                        Location: 
+                    </h4>
+                    <p class="location">
+                        
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae eveniet illum adipisci aliquid? Iure, tenetur?
+                    </p>
+                </div>
+            </div>
+            <button class="sendMessage" onclick="sendTuluMessage()">Send Message</button>
+        </div>
+        
+    </div>
+
+</body>
+<script src="~/Scripts/Assets/Js/sideMenu.js"></script>
+<script type="text/javascript" src="~/Scripts/Assets/Js/Helpers/TuluViewHelper.js"></script>
+<script type="text/javascript">
+    var tuluId = null;
+    var tuluList = null;
+    window.onload = function () {
+        var hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf("?") + 1).split("&");
+        
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split("=");
+            if (hash[0] === "tuluId") {
+                tuluId = hash[1];
+            }
+        }
+
+        TestTuluList();
+        
+    }
+
+    function sendTuluMessage(){
+        window.location = "/home/Messages?TargetId=" + tuluId;
+    }
+
+</script>
+<script src="~/Scripts/Assets/Js/privileges.js"></script>
+    </script>
+
+    @if (User.Identity.IsAuthenticated) {
+        <Script>
+            GetUser();
+        </Script>      
+    }else{
+        <Script>
+            guestprivileges();
+        </Script> 
+    }
+</html>

@@ -1,0 +1,564 @@
+
+.header {
+    margin: 30px 0 0 0;
+    background-color: #79C6AC;
+    height: 20vh;
+    justify-content: center;
+    align-items: center;
+}
+
+    .header h1 {
+        color: white;
+    }
+
+.userInfo {
+    align-items: center;
+    position: relative;
+    top: -60px;
+}
+
+.userImage {
+    border: 4px solid white;
+    background: #8B9196;
+    border-radius: 50%;
+    overflow: hidden;
+    height: 100px;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+    .userImage i {
+        color: white;
+    }
+
+.userName {
+    margin: 10px 0;
+}
+
+.userActiveListingCount {
+    font-size: small;
+    color: #8b9196;
+    flex-direction: row;
+}
+
+    .userActiveListingCount span {
+        font-size: small;
+        color: #8b9196;
+    }
+
+/* Listing */
+.activeListingList {
+    flex-direction: column;
+    padding: 0 0 150px 0;
+}
+
+.activeListingListItem {
+    border-bottom: 1px solid #8b91964d;
+    padding: 15px;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.listingImage {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+}
+
+.listingInfo {
+    width: 250px;
+    padding: 0 20px;
+}
+
+    .listingInfo .listingPrice {
+        color: #79C6AC;
+    }
+
+    .listingInfo .listingViews {
+        color: #8b9196;
+        font-size: small;
+        margin: 10px 0 0 0;
+    }
+
+.activeListingListItem i {
+    color: #79C6AC;
+}
+
+#imageContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+    #imageContainer img {
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        border-radius: 10px;
+    }
+
+.thumbNail {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+}
+
+.uploadImageBtn {
+    margin: 10px 0 0 0 !important;
+}
+
+#thumbnailContainer {
+    margin: 10px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.carDetails p {
+    color: white;
+}
+
+/* ///////////////// */
+
+
+/* ADD POSTING */
+.addPostingContainer {
+    position: fixed;
+    bottom: 0px;
+    width: 100vw;
+    height: 10vh;
+    background: #79C6AC;
+    align-items: center;
+    /* z-index: 2; */
+}
+
+.addPostingBtn {
+    position: relative;
+    top: -20px;
+    border: 4px solid #79C6AC;
+    padding: 20px;
+    border-radius: 50%;
+    background: white;
+}
+
+
+    .addPostingBtn i {
+        color: #79C6AC;
+    }
+
+/* adding Form */
+.addVehicleContainer {
+    width: 100%;
+    align-items: center;
+}
+
+.addVehicleStepOne, .addVehicleStepTwo, .addVehicleStepThree, .addVehicleStepFour, .addVehicleStepFive, .addVehicleStepSix, .addVehicleStepSeven, .addVehicleStepEight, .addVehicleStepNine, .vehicleAdded {
+    display: none;
+    opacity: 0;
+}
+
+.addVehicleStepFive, .addVehicleStepSeven, .addVehicleStepEight, .addVehicleStepNine, .addVehicleStepFour {
+    justify-content: center;
+    align-items: center;
+}
+
+.addVehicleStepSix,.addVehicleStepSeven{
+    overflow: scroll;
+}
+
+.addVehicleStepEight h3 {
+    color: white;
+    flex-direction: row;
+}
+
+.addVehicleStepEight h3 i {
+    color: white;
+    margin: 0 0 0 10px;
+}
+
+.referralFee, .RetailPrice {
+    justify-content: center;
+    align-items: center;
+}
+
+.referralFee, .RetailPrice {
+    display: none;
+    opacity: 0;
+}
+
+.addVehicleStepOne {
+    display: Flex;
+    opacity: 1;
+}
+
+.initialInfo {
+    margin: 30px 0 40px 0;
+    color: white;
+    text-align: center;
+}
+
+.vehicleAdded {
+    justify-content: center;
+    align-items: center;
+}
+
+.vehicleAdded h3 {
+    color: white;
+    flex-direction: row;
+}
+
+.vehicleAdded h3 i {
+    color: white;
+    margin: 0 0 0 10px;
+}
+
+.addVehicleForm {
+    width: 80%;
+}
+
+.addVehicleForm label {
+    margin: 20px 0 10px 0;
+    color: white;
+}
+
+.addVehicleForm .inputContainer select {
+    width: 100%;
+    padding: 5px 10px;
+    border: none;
+    color: #79c6ac;
+}
+
+.addVehicleForm .inputContainer {
+    flex-direction: row;
+    align-items: center;
+    background: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+.addVehicleForm .inputContainer i {
+    color: #79c6ac;
+}
+
+.addVehicleForm.addVehicleStepThree {
+    justify-content: center;
+    align-items: center;
+}
+
+.inputContainer input {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    color: #79c6ac;
+}
+
+.inputContainer textarea {
+    width: 100%;
+    height: 100px;
+    padding: 5px;
+    border: none;
+    color: #79c6ac;
+    resize: none;
+}
+
+.addVehicleForm button, .vehicleAdded button {
+    padding: 20px;
+    border-radius: 10px;
+    font-family: ralewaySemiBold;
+    align-items: center;
+}
+
+.nextBtn {
+    margin: 30px 0 0 0;
+    background: #17242D;
+    color: white;
+    border: none;
+}
+
+.addImageBtn {
+    margin: 30px 0 0 0;
+    background: #17242D;
+    color: white;
+    border: none;
+}
+
+.submitBtn {
+    margin: 10px 0 0 0;
+    background: #17242D;
+    color: white;
+    border: none;
+}
+
+.doneBtn {
+    width: 300px;
+    margin: 30px 0 0 0;
+    background: #17242D;
+    color: white;
+    border: none;
+}
+
+.checkBoxContainer {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkBoxContainer input {
+    margin: 5px 10px 0 0;
+}
+
+.hide {
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.show {
+    opacity: 1;
+    transition: 0.5s;
+}
+
+#wholeSalePriceContainer {
+    background: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    flex-direction: row;
+}
+
+#wholeSalePriceContainer p {
+    color: #79c6ac;
+    margin: 0 10px 0 0;
+}
+
+#wholeSalePriceContainer input {
+    background: transparent;
+    border: none;
+    width: 100%;
+    color: #79c6ac;
+}
+
+.vinInfoList {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.vinInfoListItems {
+    width: 135px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: 5px;
+    position: relative;
+}
+
+.vinInfoListItems p {
+        color: white;
+        text-align: center;
+}
+
+.vinInfoListItems i {
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+#file-input {
+    display: none;
+}
+
+
+
+/* //////////// */
+
+.checkBoxContainer, #wholeSalePriceContainer {
+    display: none;
+}
+
+
+
+/* ///////////////// */
+
+
+
+
+.frontBumper, .rearBumper, .hood, .sideSkirt, .quarterPanel {
+    background: #79C6AC;
+    border: 2px solid white;
+    margin: 10px 0 0 0;
+    padding: 10px 15px;
+    border-radius: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.frontBumper p, .rearBumper p, .hood p, .sideSkirt p, .quarterPanel p, .frontBumper i, .rearBumper i, .hood i, .sideSkirt i, .quarterPanel i {
+    color: white;
+}
+
+.detailsContainer {
+    flex-direction: column;
+    overflow: hidden;
+    height: 0px;
+    padding: 0px 20px;
+    /* margin:0; */
+    border-left: 2px solid #ffffff00;
+    border-right: 2px solid #ffffff00;
+    border-bottom: 2px solid #ffffff00;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+
+.frontBumperContainerHide, .rearBumperContainerHide, .sideSkirtContainerHide, .hoodContainerHide, .quarterPanelContainerHide {
+    overflow: hidden;
+    height: 0px;
+    padding: 0px 20px;
+    /* margin:0; */
+    border-left: 2px solid #ffffff00;
+    border-right: 2px solid #ffffff00;
+    border-bottom: 2px solid #ffffff00;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: 0.5s;
+}
+
+.frontBumperContainerShow, .rearBumperContainerShow, .sideSkirtContainerShow, .hoodContainerShow, .quarterPanelContainerShow {
+    overflow: hidden;
+    height: 150px;
+    padding: 20px 20px;
+    margin-top: -10px;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: 0.5s;
+}
+
+.detailsContainer .description {
+    border: none;
+    background: white;
+    border-radius: 10px;
+    /* height:70px; */
+    padding: 10px;
+}
+
+.imageContainer {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+.addImage {
+    /* padding:50px; */
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white;
+}
+
+    .addImage i {
+        color: white;
+    }
+
+/* #frontBumperImageContainer{
+    display:none;
+} */
+
+.referralFee {
+    width: 100%;
+}
+
+    .referralFee .inputContainer {
+        flex-direction: row;
+        align-items: center;
+        background: white;
+        border: 1px solid white;
+        border-radius: 10px;
+        padding: 5px 10px;
+    }
+
+.Calculated, .calculatedReferralFee {
+    text-align: center;
+    color: white;
+    margin: 20px 0 0 0;
+}
+
+.editVehicleContainer{
+    display:none;
+    top:0;
+    position:absolute;
+    background:white;
+    width:100%;
+    height:100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.editVehicleContainer .wrapper{
+    width:80vmin;
+}
+
+.editVehicleContainer .wrapper input{
+    margin:5px 0 10px 0;
+    padding:15px 10px;
+    border:1px solid #79C6AC;
+    border-radius: 10px;
+    background:none;
+}
+
+.editVehicleContainer .wrapper button{
+    margin:10px 0  0;
+    padding:15px 10px;
+    border:none;
+    border-radius: 10px;
+    background:#79C6AC;
+    color:white;
+    align-items: center;
+}
+
+
+.editPriceVehicleContainer{
+    display:none;
+    top:0;
+    position:absolute;
+    background:white;
+    width:100%;
+    height:100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.editPriceVehicleContainer .wrapper{
+    width:80vmin;
+}
+
+.editPriceVehicleContainer .wrapper input{
+    margin:5px 0 10px 0;
+    padding:15px 10px;
+    border:1px solid #79C6AC;
+    border-radius: 10px;
+    background:none;
+}
+
+.editPriceVehicleContainer .wrapper button{
+    margin:10px 0  0;
+    padding:15px 10px;
+    border:none;
+    border-radius: 10px;
+    background:#79C6AC;
+    color:white;
+    align-items: center;
+}

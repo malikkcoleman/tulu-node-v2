@@ -1,0 +1,126 @@
+﻿@using Tulu.Objects.DataObjects
+@{
+    ViewBag.Title = "Clients";
+    var data = (Users)ViewData["User"];
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="~/Scripts/Assets/Webfonts/styles/all.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/clients.css" />
+    <link rel="stylesheet" href="styles/myAccountMenu.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/Assets/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <input type="hidden" id="TuluHiddenId" value="@data.id" />
+    <nav id="Nav">
+        <a href="/">
+            <img src="images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    </nav>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+
+
+    <div class="container body-content">
+        <div class="clientContainer">
+            <ul class="clientList" id="clientList"></ul>
+        </div>
+
+        <div class="addClient">
+            <i class="fas fa-plus"></i>
+        </div>
+
+        <div class="addClientContainer">
+            <div class="wrapper">
+
+            </div>
+        </div>
+
+        <div class="myAccountMenu" id="MyAccountMenu">
+            <ul class="accountMenuList">
+                <li class="accountMenuListItems">
+                    <a href="/Home/Tulu">
+                        <i class="far fa-user fa-2x accountMenuIcon"></i>
+                        Profile
+                    </a>
+                </li>
+                <!-- <li class="accountMenuListItems">
+                    <a href="/Home/Messages">
+                        <i class="far fa-envelope fa-2x accountMenuIcon"></i>
+                        Messages
+                    </a>
+                    <p id="messageCount" class="count"></p>
+                </li> -->
+                <li class="accountMenuListItems">
+                    <a href="/Home/appointment">
+                        <i class="far fa-calendar-alt fa-2x accountMenuIcon"></i>
+                        Appointments
+                    </a>
+                    <p id="appointmentCount" class="count"></p>
+                </li>
+
+                <li class="accountMenuListItems">
+                    <a href="/Home/clients">
+                        <i class="far fa-handshake fa-2x accountMenuIcon"></i>
+                        My Clients
+                    </a>
+                </li>
+
+
+                @*<li class="accountMenuListItems">
+                        <a href="/">
+                            <i class="far fa-credit-card fa-2x accountMenuIcon"></i>
+                            Coupons
+                        </a>
+                    </li>*@
+            </ul>
+        </div>
+    </div>
+
+</body>
+<script src="~/Scripts/Assets/Js/clients.js"></script>
+<script src="~/Scripts/Assets/Js/sideMenu.js"></script>
+<script type="text/javascript" src="~/Scripts/Assets/Js/Helpers/TuluHelper.js"></script>
+<script type="text/javascript" src="~/Scripts/Assets/Js/Helpers/ClientsHelper.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        TuluDashboardSummary();
+        //TuluList();
+        ClientList();
+        TestUserList();
+        TestTuluList();
+        //ShowList();
+        // GetCurrentUser();
+    }
+</script>
+<<script src="~/Scripts/Assets/Js/privileges.js"></script>
+    </script>
+
+    @if (User.Identity.IsAuthenticated) {
+        <Script>
+            GetUser();
+        </Script>      
+    }else{
+        <Script>
+            guestprivileges();
+        </Script> 
+    }
+</html>

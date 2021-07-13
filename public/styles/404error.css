@@ -1,0 +1,24 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    display:grid;
+    color:white;
+    list-style-type: none;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+}
+
+title{
+    visibility:hidden;
+}
+
+body{
+    background:linear-gradient(royalblue,rebeccapurple);
+}
+
+h1{
+    text-align:center;
+    margin-top:20%;
+    font-size:4em;
+}

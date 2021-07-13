@@ -1,0 +1,280 @@
+.appointmentContainer{
+    padding:50px 0 60px 0;
+    background:none ;
+}
+
+.header {
+    background: #79C6AC;
+    background:#49575f;
+    width:100%;
+    height:20vh;
+    justify-content:center;
+    align-items:center;
+}
+
+h3,h2{
+    color:white;
+}
+
+label{
+    margin:30px 0 5px 0;
+    color:white;
+}
+
+select {
+    margin: 5px 0 10px 0;
+    align-items: center;
+    padding: 10px 10px;
+    border: 1px solid white;
+    color: white;
+    border-radius: 10px;
+    font-size: medium
+}
+
+option{
+    text-align: center;
+    border:1px solid white;
+    color:#79C6AC ;
+    background:white;
+    padding:10px 10px;
+}
+
+input {
+    margin:5px 0 10px 0;
+    width: 300px;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: #79C6AC;
+    background: white;
+    padding: 10px 10px;
+    flex-direction:row;
+}
+
+button {
+    border-radius: 10px;
+    padding: 15px 0;
+    align-items: center;
+    border: none;
+    color: white;
+    background: #1A2A33;
+    margin: 20px 0 0 0;
+}
+
+.bookAppointmentContainer {
+    display:none;
+    padding: 80px 0 60px 0;
+    background: #79C6AC;
+    position: absolute;
+    align-items: center;
+    width: 100%;
+}
+
+.showAppointments {
+    text-align: center;
+    padding: 10px 0;
+    color: #79C6AC;
+    border-bottom: 1px solid #8b91964d;
+}
+
+.showAppointments a{
+    color: #79C6AC;
+}
+
+.bookAppointments {
+    text-align: center;
+    padding: 10px 0;
+    color: #79C6AC;
+    border-bottom: 1px solid #8b91964d;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+}
+
+.bookAppointments i {
+    color: #79C6AC;
+    margin:0 5px 0 0;
+}
+
+ul li {
+    padding: 25px 20px;
+    border: 1px solid #8b91964d;
+}
+
+li h4 {
+    color: #79C6AC;
+}
+
+li p{
+    font-size:smaller;
+}
+
+.appointmentDetails {
+    display:none;
+    position:absolute;
+    height:100vh;
+    width:100vw;
+    justify-content:center;
+    align-items:center;
+    background: #00000077;
+}
+
+.appointmentCard {
+    background: white;
+    border-radius:10px;
+    padding:50px 50px;
+    position:relative;
+}
+
+.appointmentCard i{
+    position:absolute;
+    top:10px;
+    right:10px;
+}
+
+.appointmentInfo p span {
+    color: #79C6AC;
+    margin:0 0 0 5px;
+}
+
+.appointmentInfo p{
+    margin:10px 0 0 0;
+    flex-direction: row;
+}
+
+.wrapper{
+    margin:60px 0 0 0;
+}
+
+.appointmentTabs ul{
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.appointmentTabs ul li{
+    padding:10px 0;
+    width:100%;
+    align-items: center;
+    border: 1px solid #8b919648;
+    color:#79C6AC;
+}
+
+.acceptTab{
+    background:#79C6AC;
+    color:white !important;
+}
+
+.TestDriveList{
+    /* margin:0;
+    padding:10px 0; */
+    /* display:flex; */
+    /* justify-content:center; */
+    /* align-items:center; */
+}
+
+.TestDriveList li{
+    flex-direction:row;
+    padding:15px 25px;
+    justify-content:space-between;
+    align-items: center;
+    border-bottom:1px solid #00000020;
+}
+
+#TestDriveListAccepted{
+    display:none;
+}
+
+.TestDriveList li i{
+    color:#79C6AC;
+}
+
+.listAllVehicleBtn{
+    width:300px;
+    padding:15px 0;
+    border-radius:10px;
+    align-self:center;
+    margin:20px 0 0 0;
+    align-items:center;
+    border:none;
+    background:#79C6AC;
+    color:white;
+}
+
+
+#TestDriveDiv{
+    padding:20px 25px;
+}
+
+#TestDriveDiv h2{
+    margin:20px 0;
+}
+
+#TestDriveDiv div p{
+    flex-direction:row;
+}
+
+#TestDriveDiv div p span{
+    color:#79C6AC;
+    margin:0 0 0 5px;
+}
+
+#TestDriveDiv .inputFieldDiv p{
+    margin: 10px 0 0 0;
+}
+
+#TestDriveDiv .inputFieldDiv input{
+    margin:5px 0 10px 0;
+    padding:5px 10px;
+    border:2px solid #79C6AC;
+    background:none;
+    border-radius:10px;
+}
+
+#TestDriveDiv .inputFieldDiv textarea#Notes{
+    margin:5px 0 10px 0;
+    padding:5px 10px;
+    border:2px solid #79C6AC;
+    background:none;
+    border-radius:10px;
+}
+
+#TestDriveDiv .inputFieldDiv select{
+    margin:5px 0 10px 0;
+    padding:5px 10px;
+    border:2px solid #79C6AC;
+    background:none;
+    border-radius:10px;
+}
+
+.saveTestDrive,.cancelTestDrive{
+    width:100%;
+    padding:15px 0;
+    border-radius:10px;
+    align-self:center;
+    margin:20px 0 0 0;
+    align-items:center;
+    border:none;
+    background:#79C6AC;
+    color:white;
+}
+
+.acceptBtn{
+    background:#79C6AC;
+    padding:10px 0;
+    width:150px;
+    margin:10px 0 0 0;
+}
+
+.viewBtn{
+    background:#79C6AC;
+    padding:10px 0;
+    width:150px;
+    margin:10px 0 0 0;
+}
+
+.controlContainer{
+    flex-direction: row;
+}
+
+.controlContainer i{
+    margin:0 10px;
+}

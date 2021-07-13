@@ -1,0 +1,538 @@
+*{
+    font-family: 'Raleway', sans-serif;
+    color:snow;
+    cursor:default;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body{
+    background:rgb(41, 41, 41);
+}
+
+/*@@@@@@@@@@@@@@@@ Font Awesome Icons @@@@@@@@@@@@@@@@@@@@@@*/
+
+
+main{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+section{
+    height:80vh;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+section{
+    padding:5vw 0 0 0;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+}
+
+.sectionHeading{
+    font-size:42px;
+    text-align:center;
+}
+
+/*@@@@@@@@@@@@@@@@ PROJECTS @@@@@@@@@@@@@@@@@@@@@@*/
+
+
+button{
+    width:200px;
+    height:60px;
+    font-size:14px;
+    border-radius: 10px;
+    border:2px solid white;
+    background:transparent;
+    font-weight: bold;
+    transition: 0.4s;
+    margin:2vw 2vw 2vw 0;
+}
+
+button:hover{
+    color:black;
+    background:white;
+    transition: 0.4s;
+}
+
+
+.TuluImage{
+    margin:0 0 0 150px !important;
+}
+
+
+/* --------------Planetarium---------------------- */
+
+section:nth-child(1){
+    background:rgb(41, 41, 41);
+    height:100%;
+    overflow: hidden;
+    position:relative;
+}
+
+.projectHeading{
+    color:white;
+}
+
+.projectHeading{
+    padding:10vw 5vw 0 5vw;
+    color:white;
+    text-shadow: 0 0 10px black;
+}
+
+.project{
+    width:100%;
+    height:100vh;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recentProject{
+    height:80vh;
+    flex-direction: row;
+}
+
+.recentProject img{
+    margin:0 150px 0 0 ;
+    width:50vw;
+}
+
+.covidProject{
+    margin:5vh 0;
+}
+
+.covidImage{
+    margin:150px 0;
+}
+
+.projectCovid{
+    padding:0 0 0 30px impo !important;
+}
+
+.projectPlanet{
+    background:url();
+    background-size:cover;
+    background-repeat:no-repeat;
+    margin:-15vw 0 10vw 0;
+}
+
+.projectInfo{
+    padding:5vw;
+    width:100%;
+    z-index:1;
+}
+
+.projectTulu{
+    padding:0;
+}
+
+.projectTitle{
+    font-size:32px;
+}
+
+.projectDescription{
+    font-size:24px;
+}
+
+.buttonContainer{
+    margin-top:2vh;
+    display:flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+}
+
+.projectPlanetEarth{
+    width:200px;
+    height:200px;
+    box-shadow: -20px -20px 50px 10px #000 inset,-5px -5px 50px 10px rgba(68, 68, 68, 0.8);
+    background:url('../images/Planet/earthsmall.jpg');
+    background-size:cover;
+    border-radius:50%;
+    position: absolute;
+    z-index:0;
+    left:60vw;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.projectImage{
+    width:60vmax;
+    height:60vmax;
+    box-shadow: -20px -20px 50px 10px #000 inset,-5px -5px 50px 10px rgba(0, 0, 0, 0.8);
+    background:url('../images/Planet/earth.jpg');
+    background-size:cover;
+    border-radius:50%;
+    position: absolute;
+    z-index:0;
+    left:60vw;
+    overflow: hidden;
+    animation:planetSpinCounterClockwise 45s linear infinite;
+}
+@keyframes planetSpinCounterClockwise{
+    100%{background-position: 100%;}
+}
+
+/* --------------other projects---------------------- */
+
+.otherProject{
+    background-size:cover;
+    background-repeat:no-repeat;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.projectImage2{
+    background:transparent;
+    padding:2vw 10vw 2vw 10vw;
+    z-index:1;
+    margin:-40vh 0 0 0;
+    width:120vw;
+    display:flex;
+    flex-wrap: wrap;
+    transform:rotate(-3deg) skew(30deg)  translateX(10vw);
+}
+
+.blank{
+    visibility: hidden;
+    opacity: 0;
+}
+
+.projectImage2 a {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+}
+
+
+.projectImage2 img{
+    margin:1vw;
+    width:33vmax;
+    height:unset;
+    border-radius:2vmax;
+    transition:0.4s;
+    box-shadow: -5px 5px 10px black;
+}
+
+.projectImage2 img:hover{
+    transform:translateY(0px) translateX(5vw) rotate(0deg) skew(-30deg);
+    transition:0.4s;
+}
+
+.projectCardImage2{z-index:12;}
+.projectCardImage3{z-index:11;}
+.projectCardImage4{z-index:10;}
+.projectCardImage5{z-index:9;}
+.projectCardImage6{z-index:8;}
+.projectCardImage7{z-index:7;}
+.projectCardImage8{z-index:6;}
+.projectCardImage9{z-index:5;}
+.projectCardImage10{z-index:4;}
+.projectCardImage11{z-index:3;}
+.projectCardImage12{z-index:2;}
+.projectCardImage13{z-index:1;}
+
+
+
+/* --------------illustratorSection---------------------- */
+
+
+.illustratorSection{
+    padding:50px 0 0 0;
+    background: #000000;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    margin-top:150px;
+}
+
+.characterContainer{
+    position: relative;
+    width:190px;
+    height:400px;
+}
+
+
+.torso{
+    transform: translateY(-150px) translateX(-60px) scale(0.5);
+    position:absolute;
+}
+
+.rightLeg{
+    transform: translateY(100px) translateX(5px) scale(0.5);
+    position:absolute;
+}
+
+.leftLeg{
+    transform: translateY(100px) translateX(65px) scale(0.5);
+    position:absolute;
+}
+
+.rightArm{
+    transform: translateY(5px) translateX(5px) scale(0.5);
+    position:absolute;
+}
+
+.leftArm{
+    transform: translateY(15px) translateX(85px) scale(0.5);
+    position:absolute;
+}
+
+.components{
+    background:white;
+    border-radius:10px;
+    padding:50px;
+    margin:50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start ;
+    align-items: flex-start;
+    position: relative;
+}
+
+.componentsTitle{
+    display: none;
+    /* margin:20px 0;
+    color:black; */
+}
+
+.components img {
+    height:200px;
+}
+
+/*@@@@@@@@@@@@@@@@ FOOTER @@@@@@@@@@@@@@@@@@@@@@*/
+
+footer{
+    background:black;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer ul {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+footer ul li {
+    margin:2vw 1vw 0vw 1vw;
+}
+
+
+footer p{
+    padding:2vh 0 2vh 0;
+}
+
+
+
+@media only screen and (max-width: 700px) {
+
+    section:nth-child(1){
+        background:black;
+        height:100%;
+        overflow: hidden;
+        position:relative;
+    }
+
+
+    section{
+        padding:5vw;
+        height:80vh;
+        width:100%;
+        display:flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: flex-start;
+    }
+    
+    .projectPlanet{
+        background:url();
+        background-size:cover;
+        background-repeat:no-repeat;
+        margin-bottom:10vw;
+        height:100%;
+    }
+    
+    .projectHeading{
+        padding:5vw;
+        color:white;
+        text-shadow: 0 0 10px black;
+        font-size:32px;
+    }
+
+    .recentProject{
+        flex-direction: column;
+        height:unset;
+    }
+
+    .TuluImage{
+        width:300px !important;
+        margin:0 !important;
+    }
+
+    .CovidImage{
+        width:300px !important;
+        margin:50px 0 0 0 !important;
+    }
+
+    .projectTulu{
+        padding:0 !important;
+        text-align: center;
+        width:300px !important;
+    }
+
+    .covidProject div{
+        order:2;
+    }
+
+    .covidProject img{
+        order:1;
+    }
+
+    .projectCovid{
+        padding:0 !important;
+        text-align: center;
+        width:300px !important;
+    }
+
+    .projectPlanetEarth{
+        visibility:visible;
+    }
+    
+    .projectImage{
+        visibility:hidden;
+    }
+
+    .projectImage2{
+        background:rgb(34, 34, 34);
+        z-index:1;
+        margin:0 0 0 0;
+        width:100vw;
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        transform:rotate(0deg) skew(0deg);
+        padding:50px 0;
+    }
+
+    button{
+        font-size:14px;
+        width:20vmax;
+        height:6vmax;
+        border:2px solid white;
+        background:transparent;
+        font-weight: normal;
+    }
+
+    .projectImage2 img{
+        width:85%;
+        height:50vw;
+        margin:3vw;
+    }
+
+    .projectImage2 a{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .projectTitle{
+        font-size:24px;
+    }
+
+    .projectDescription{
+        font-size:18px;
+    }
+
+
+   
+    .blank{
+        visibility: hidden;
+        position: absolute;
+    }
+
+    .projectImage2 img:hover{
+        transform:translateY(0px) translateX(0vw) rotate(0deg) skew(0deg);
+        transition:0.4s;
+    }
+    .projectInfo{
+        padding:10vw 5vw 3vw 5vw;
+        width:100%;
+        z-index:1;
+    }
+
+    .box {
+        margin-top:120px;
+    }
+
+    .components{
+        padding:0;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .componentsTitle{
+        margin:20px 0;
+        color:black;
+    }
+
+    .components img{
+        height:120px;
+    }
+
+     
+    footer{
+        background:black;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    footer ul {
+        width:100%;
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    footer ul li {
+        font-size: 12px;
+        margin:2vw 2.5vw 2vw 2.5vw;
+    }
+    
+    
+    footer p{
+        padding:2vw 0 30px 0;
+    }
+}

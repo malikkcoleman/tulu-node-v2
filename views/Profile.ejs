@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="~/Scripts/Assets/Webfonts/styles/all.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/profile.css" />
+    <link rel="stylesheet" href="styles/myAccountMenu.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/Assets/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    </nav>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+
+
+    <div class="container body-content">
+
+        <div class="header" id="Header">
+            <div class="banner">
+            </div>
+            <div class="userInfo">
+                <div class="userImage" id="userImage">
+                    <img src="images/jolo.jpeg" alt="" class="face">
+                </div>
+                <h3 class="userName">
+                    
+                </h3>
+                <p class="userBio">
+                     
+                </p>
+                
+                <ul class="socialMediaAccounts">
+                    <li>
+                        <a href="'+user.user.facebook+'" target="_blank">
+                            <i class="fab fa-facebook fa-2x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="'+user.user.instagram+'" target="_blank">
+                            <i class="fab fa-instagram fa-2x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="'+user.user.linkedIn+'" target="_blank">
+                            <i class="fab fa-linkedin-in fa-2x"></i>
+                        </a>
+                    </li>
+                </ul>
+                @* TO POPULATE THIS PAGE, UNCOMMENT LINE 63-67 in userDashboardHelper.js *@
+                <!-- <div class="subInfo">
+                    <h4>
+                        Experience:
+                    </h4> 
+                    <p class="experience">
+                        I have over 10 years in working within the Automotive industry. I was in different management roles from detailing to autobody. I helped run Prism, a service and paint automotive shop and worked with different dealerships in various capacities. I have experience at a high level in both small and large automotive operations and sales to round it off.
+                    </p>
+                    <h4>
+                        Specialty:
+                    </h4>
+                    <p class="specialty">
+                        Knowledgeable with Hondas and Toyotas and everything to know about auto detailing.
+                    </p>
+                    <h4>
+                    Favourite Car:
+                    </h4>
+                    <p class="favouriteCar">
+                        2002 Nissan Sylvia S15
+                    </p>
+                    <h4>
+                    Current Car:
+                    </h4>
+                    <p class="currentCar">
+                        2018 Toyota Camry SE
+                    </p>
+                    
+                    <h4>
+                        Location: 
+                    </h4>
+                    <p class="location">
+                        Calgary, AB
+                    </p>
+                </div> -->
+                <a href="/Account/EditProfile">
+                    <button class="editProfileBtn">
+                        Edit Profile
+                    </button>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- My Account -->
+        <div class="myAccountMenu" id="MyAccountMenu">
+
+            <!-- <ul class="accountMenuList">
+                <li class="accountMenuListItems">
+                    <a href="/Home/Profile">
+                        <i class="far fa-user fa-2x accountMenuIcon"></i>
+                        Profile
+                    </a>
+                </li>
+                <li class="accountMenuListItems">
+                    <a href="/Home/Messages">
+                        <i class="far fa-envelope fa-2x accountMenuIcon"></i>
+                        Messages
+                    </a>
+                    <p id="messagesCount" class="count"></p>
+                </li>
+                @*<li class="accountMenuListItems">
+                        <a href="/Home/Shop">
+                            <i class="fas fa-car fa-2x accountMenuIcon"></i>
+                            Vehicles
+                        </a>
+                    </li>*@
+                @*<li class="accountMenuListItems">
+                    <a href="/Home/Appointment">
+                        <i class="far fa-calendar-alt fa-2x accountMenuIcon"></i>
+                        Appointments
+                    </a>
+                </li>*@
+                @*<li class="accountMenuListItems">
+                        <a href="/Home/TuluList">
+                            <i class="far fa-handshake fa-2x accountMenuIcon"></i>
+                            My Influencer
+                        </a>
+                    </li>
+                    <li class="accountMenuListItems">
+                        <a href="/">
+                            <i class="far fa-credit-card fa-2x accountMenuIcon"></i>
+                            Coupons
+                        </a>
+                    </li>*@
+            </ul> -->
+
+        </div>
+
+
+    </div>
+
+</body>
+<script src="~/Scripts/Assets/Js/sideMenu.js"></script>
+<script type="text/javascript" src="~/Scripts/Assets/Js/Helpers/userDashboardHelper.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        UserDashboardSummary();
+        GetCurrentUser();
+    }
+</script>
+<script src="~/Scripts/Assets/Js/privileges.js"></script>
+    </script>
+
+    @if (User.Identity.IsAuthenticated) {
+        <Script>
+            GetUser();
+        </Script>      
+    }else{
+        <Script>
+            guestprivileges();
+        </Script> 
+    }
+</html>

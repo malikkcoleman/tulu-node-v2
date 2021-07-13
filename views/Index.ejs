@@ -1,0 +1,228 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="~/Scripts/Assets/Webfonts/styles/all.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/home.css" />
+    <link rel="stylesheet" href="styles/footer.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/Assets/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    </nav>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+
+
+    <div class="container body-content">
+        <div class="header">
+            <img src="images/banner.png" class="desktop" alt="">
+            <img src="images/bannerMobile.png" class="mobile" alt="">
+            <img src="images/bannerTesla.png" class="bannerTesla" alt="">
+        </div>
+
+         <!-- Search section  -->
+        <section class="searchSection">
+            <div class="wrapper">
+                <input type="text" value="search : year make model">
+                <button>Find</button>
+            </div>
+        </section>
+
+
+        <!-- First Section -->
+        <section class="firstSection">
+            <div class="getApproved">
+                <a href="/Home/Shop">
+                <img src="images/approve.jpg" alt="">
+                <h2>Get Approved Now!</h2>
+                </a>
+            </div>
+            <div class="browse">
+                <a href="/Home/Shop">
+                <img src="images/browse1.png" alt="">
+                <h2>Browse the inventory</h2>
+                </a>
+            </div>
+        </section>
+
+        <!-- Second Section -->
+        <section class="secondSection">
+            <h2 class="dealershipHeading">TOP DEALERSHIPS</h2>
+            
+            <ul class="partnerList">
+                <li class="partnerListItems">
+                    <img src="images/company logo/1.png" alt="">
+                </li>
+                <li class="partnerListItems">
+                    <img src="images/company logo/2.png" alt="">
+                </li>
+                <li class="partnerListItems">
+                    <img src="images/company logo/3.png" alt="">
+                </li>
+                <li class="partnerListItems">
+                    <img src="images/company logo/4.png" alt="">
+                </li>
+                <li class="partnerListItems">
+                    <img src="images/company logo/5.png" alt="">
+                </li> 
+                <li class="partnerListItems">
+                    <img src="images/company logo/6.png" alt="">
+                </li> 
+            </ul>
+
+        
+	
+        </section>
+
+        <!-- Third Section -->
+        <section class="thirdSection">
+            <h2 class="influencerHeading">TOP TULUS</h2>
+            <ul class="influencerList">
+                <li class="influencerListItems">
+                    <div class="influencerImage">
+                        <a href="home/profile">
+                            <img src="images/jolo.jpeg" alt="">
+                        </a>
+                    </div>
+                    <h3 class="influencerName">Tulu Jo</h3>
+                </li>
+                <li class="influencerListItems">
+                    <div class="influencerImage">
+                        <img src="images/shae.jpg" alt="">
+                    </div>
+                    <h3 class="influencerName">Tulu Shae</h3>
+                </li>
+                <li class="influencerListItems">
+                    <div class="influencerImage">
+                        <img src="images/donny.jpeg" alt="">
+                    </div>
+                    <h3 class="influencerName">Tulu Donny</h3>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Fourth Section -->
+        <section class="fourthSection">
+            <div class="videoContainer">
+                <h2>HOW DOES IT WORK?</h2>
+                 <video width="80%" controls preload="none" muted autoplay>
+                    <source src="~/Scripts/Assets/Videos/tulu_vid.mp4" type="video/mp4">
+                    Your browser does not support HTML video.
+                </video>
+            </div>
+        </section>
+
+
+    </div>
+    <footer>
+        <ul class="footerList">
+            <li class="footerListItem">
+                <a href="/Home/About">
+                    <h4>About</h4>
+                </a>
+            </li>
+            <li class="footerListItem">
+                <a href="/">
+                    <h4>Partners</h4>
+                </a>
+                <ul class="footerSubLinkList">
+                    <li class="SubLinkListItem">
+                        <a href="/Home/DealershipList">Dealerships</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="footerListItem">
+                <a href="/">
+                    <h4>Customer Support</h4>
+                </a>
+                <ul class="footerSubLinkList">
+                    <li class="SubLinkListItem">
+                        <a href="/">FAQ</a>
+                    </li>
+                    <li class="SubLinkListItem">
+                        <a href="/">Feedback and Comments</a>
+                    </li>
+                    <li class="SubLinkListItem">
+                        <a href="/Home/Contact">Contact Us</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </footer>
+    
+</body>
+<script src="~/Scripts/Assets/Js/sideMenu.js"></script>
+   
+<script src="~/Scripts/Assets/Js/privileges.js"></script>
+    @if (User.Identity.IsAuthenticated) {
+        <Script>
+            GetUser();
+        </Script>      
+    }else{
+        <Script>
+            guestprivileges();
+        </Script> 
+    }
+
+<script>
+    function TestTuluList() {
+        //FIXME: I think this needs to be deleted
+        $.ajax({
+            type: "PUT",
+            url: "/Users/ListTulus",
+            //data: obj,
+            cache: false,
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded",
+            success: function (results) {
+                console.log(results);
+                LoadTulus(results);
+            },
+            error: function (results) {
+                alert("Error");
+            },
+        });
+    }
+    TestTuluList();
+
+    function LoadTulus(tulu){
+        var html = "";
+        for(var x = 0; x!=tulu.length;x++){
+            
+            @* html+='<li class="influencerListItems">';
+            html+='    <div class="influencerImage">'+tulu[x].image+'</div>';
+            html+='    <h3 class="influencerName">Tulu' + tulu[x].firstName + '</h3>';
+            html+='    <p class="influencerDescription">';
+            html+=tulu[x].bio;
+            html+='    </p>';
+            html+='</li>'; *@
+        }
+        @* $('.influencerList').empty(); *@
+        @* $('.influencerList').append(html); *@
+    }
+</script>
+
+</html>

@@ -1,0 +1,66 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>QuaggaJS, an advanced barcode-reader written in JavaScript</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="robots" content="index,follow" />
+
+    <link rel="canonical" href="https://serratus.github.io/examples/live_w_locator.html" />
+    <link rel="stylesheet" href="https://serratus.github.io/quaggaJS/stylesheets/styles.css">
+    <link rel="stylesheet" href="https://serratus.github.io/quaggaJS/stylesheets/example.css">
+    <link rel="stylesheet" href="https://serratus.github.io/quaggaJS/stylesheets/pygment_trac.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- <script>
+        var host = "serratus.github.io";
+        if ((host == window.location.host) && (window.location.protocol != "https:")) {
+            window.location.protocol = "https";
+        }
+    </script> -->
+
+</head>
+
+<body>
+    <div class="wrapper">
+
+
+        <section id="container" class="container">
+
+            <div class="controls">
+                <fieldset class="input-group">
+                    <button class="stop">Stop</button>
+                </fieldset>
+
+            </div>
+            <div id="result_strip">
+                <ul class="thumbnails"></ul>
+            </div>
+            <div class="viewContainer">
+                <div id="interactive" class="viewport"></div>
+                <div class="codeContainer">123456789</div>
+            </div>
+            <button onclick="getBarcore()">Capture</button>
+            <button onclick="loadCamera()">START</button>
+        </section>
+
+
+
+    </div>
+    <script src="~/Scripts/Assets/Js/bc.js"></script>
+    <script src="https://serratus.github.io/quaggaJS/javascripts/scale.fix.js"></script>
+    <script>
+        function getBarcore() {
+            const code = document.querySelector('#result_strip .thumbnails .code').innerHTML;
+            console.log(code);
+        }
+    </script>
+
+    <script></script>
+</body>
+
+</html>

@@ -1,0 +1,254 @@
+﻿@using Tulu.Objects.DataObjects
+@{
+    ViewBag.Title = "Home Page";
+    //var user = (Users)ViewData["User"];
+    //var tuluId = ViewData["TuluId"].ToString();
+    //var dealerId = ViewData["DealerId"].ToString();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="~/Scripts/Assets/Webfonts/styles/all.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/filter.css" />
+    <link rel="stylesheet" href="styles/shop.css" />
+    <link rel="stylesheet" href="styles/footer.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/Assets/Js/Helpers/UploadHelper.js"></script>
+    <script type="text/javascript" src="~/Scripts/Assets/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    @*<input type="hidden" id="GlobalTuluId" value="@tuluId" />*@
+    @*<input type="hidden" id="GlobalDealerId" value="@dealerId" />*@
+    <nav id="Nav">
+        <a href="/">
+            <img src="images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    </nav>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+
+    <div class="container body-content">
+
+        <div id="Filter" class="filter">
+            <i class="fas fa-th-large gridDisplayBtn" onclick="vehicleDisplay()"></i>
+            @* <div class="searchBar" style="opacity:;">
+                <input type="text">
+                <i class="fas fa-search searchBtn"></i>
+            </div> *@
+            <i class="fas fa-search searchBtn" onclick="slideFilterMenu()"></i>
+        </div>
+        <aside id="FilterSettings" class="filterSettings">
+            <div class="filterSettingContainer">
+                <div class="ModelSearchContainer">
+                    <label for="ModelSearch" class="ModelSearchLabel">Model :</label>
+                    <input type="text" id="ModelSearch" />
+                </div>
+                <div class="MakeSearchContainer">
+                    <label for="MakeSearch" class="MakeSearchLabel">Make :</label>
+                    <input type="text" id="MakeSearch" />
+                </div>
+                <div class="YearMinContainer">
+                    <label for="YearMin" class="YearMinLabel">Year Min :</label>
+                    <input type="text" id="YearMinSearch" value="0" />
+                </div>
+                <div class="YearMaxContainer">
+                    <label for="YearMax" class="YearMaxLabel">Year Max :</label>
+                    <input type="text" id="YearMaxSearch" value="0" />
+                </div>
+                <div class="VehicleTypeContainer">
+                    <label for="VehicleType" class="VehicleTypeLabel">Vehicle Type :</label>
+                    <input type="text" id="VehicleTypeSearch" />
+                </div>
+                <div class="IsSoldContainer">
+                    <label for="IsSold" class="IsSoldLabel">Model :</label>
+                    <select id="IsSoldSelect"><option value="0">False</option><option value="1">True</option></select>
+                </div>
+                <div class="PriceMinContainer">
+                    <label for="PriceMin" class="PriceMinLabel">Price Min :</label>
+                    <input type="text" id="PriceMinSearch" value="0" />
+                </div>
+                <div class="PriceMaxContainer">
+                    <label for="PriceMax" class="PriceMaxLabel">Price Max :</label>
+                    <input type="text" id="PriceMaxSearch" value="0" />
+                </div>
+                <div class="PriceTypeContainer">
+                    <label for="PriceType" class="PriceTypeLabel">Price Type :</label>
+                    <select id="PriceTypeSearch">
+                        <option value=""></option>
+                        <option value="msrp">MSRP</option>
+                        <option value="wholeSalePrice">Whole Sale Price</option>
+                    </select>
+                </div>
+
+                <input type="button" value="Search" id="searchButton" onclick="SearchVehicles();" />
+            </div>
+
+        </aside>
+
+        <!-- VEHICLE LIST -->
+        <section class="vehicles">
+            <ul id="Vehicles" class="vehicleList">
+                
+            </ul>
+        </section>
+
+
+    </div>
+    <footer>
+        <ul class="footerList">
+            <li class="footerListItem">
+                <a href="/Home/About">
+                    <h4>About</h4>
+                </a>
+            </li>
+            <li class="footerListItem">
+                <a href="/">
+                    <h4>Partners</h4>
+                </a>
+                <ul class="footerSubLinkList">
+                    <li class="SubLinkListItem">
+                        <a href="/Home/DealershipList">Dealerships</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="footerListItem">
+                <a href="/">
+                    <h4>Customer Support</h4>
+                </a>
+                <ul class="footerSubLinkList">
+                    <li class="SubLinkListItem">
+                        <a href="/">FAQ</a>
+                    </li>
+                    <li class="SubLinkListItem">
+                        <a href="/">Feedback and Comments</a>
+                    </li>
+                    <li class="SubLinkListItem">
+                        <a href="/Home/Contact">Contact Us</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </footer>
+</body>
+<script src="~/Scripts/Assets/Js/sideMenu.js"></script>
+<script src="~/Scripts/Assets/Js/filter.js"></script>
+<script src="~/Scripts/Assets/Js/vehicleDisplay.js"></script>
+<script type="text/javascript">
+    var gDealerId = $("#GlobalDealerId").val();
+    var gTuluId = $("#GlobalTuluId").val();
+    var vin = null;
+    var listVehicles = null;
+
+    SearchVehicles();
+
+    function SearchVehicles() {
+        var obj = new Object();
+        obj.dealerId = gDealerId;
+        obj.model = $("#ModelSearch").val();
+        obj.make = $("#MakeSearch").val();
+        obj.yearMin = parseInt($("#YearMinSearch").val());
+        obj.yearMax = parseInt($("#YearMaxSearch").val());
+        obj.vehicleType = $("#VehicleTypeSearch").val();
+        obj.isSold = false;
+        obj.priceMin = parseFloat($("#PriceMinSearch").val());
+        obj.priceMax = parseFloat($("#PriceMaxSearch").val());
+        obj.priceType = $("#PriceTypeSearch option:selected").val();
+        obj.isSold = '';
+        if ($("#IsSoldSelect option:selected").val() === "1") { obj.isSold = 'true'; }
+        ListVehicles(obj).then(function (list) {
+            console.log(list)
+            listVehicles = list;
+            populateVehicle(list);
+        });
+    }
+
+    function populateVehicle(vehicles) {
+        var html = "";
+        for (var i = 0; i != vehicles.length; i++) {
+            if(vehicles[i].priceType == "wholesale"){
+                html += '<li class="vehicleListItems">';
+                var text = '';
+                if (vehicles[i].links !== undefined) {
+                    if (vehicles[i].links[0] !== undefined) {
+                        if (vehicles[i].links[0].url !== undefined) {
+                            text = vehicles[i].links[0].url;
+                        }
+                    }
+                }
+                html += '    <img src="' + text + '" class="carImage" alt="car-image">';
+                html += '   <div class="carDetails">';
+                html += '       <h2 class="carName">' + vehicles[i].year + ' ' + vehicles[i].make + ' ' + vehicles[i].model + '</h2>';
+                html += '       <p class="carPrice">$' + vehicles[i].maxPrice + '</p>';
+                html += '       <p class="carMileage">' + vehicles[i].mileage + ' Kms</p>';
+                html += '       <div class="additionalCarInfo" id="vehicle' + i + '">';
+                html += '           <p class="carTrim">' + vehicles[i].trim + '</p>';
+                html += '           <p class="carTransmission">' + vehicles[i].transmissionName + '</p>';
+                html += '       </div>';
+                html += '       <div class="moreInfoContainer">';
+                html += '           <button class="moreInfo moreInfoBtn" id="moreInfo' + i + '" onclick="const div = document.querySelector(`#vehicle' + i + '`);const moreInfoBtn = document.querySelector(`#moreInfo' + i + '`);  if(moreInfoBtn.innerHTML==`More Info`){div.style=`display:flex;`;moreInfoBtn.innerHTML=`Hide Info`;}else{div.style=`display:none;`;moreInfoBtn.innerHTML=`More Info`;}">More Info</button>';
+                html += '               <button class="moreInfo" onclick="carView(' + i + ')">View Vehicle</button>';
+                html += '       </div>';
+                html += '   </div>';
+                html += '</li>';
+            }
+        }
+
+        $("#Vehicles").empty();
+        $("#Vehicles").append(html);
+    }
+
+    function carView(index) {
+        //window.sessionStorage.setItem("vin", vin);
+        console.log(vin);
+        //LocationChange('carView');
+        if (gTuluId === "") {
+            window.location = "/Home/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
+        } else {
+            window.location = "/Home/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId + "&tuluId=" + gTuluId;
+        }
+
+    }
+
+    async function ListVehicles(obj) {
+
+        const results = await $.ajax({
+            type: "PUT",
+            url: "/Vehicle/List",
+            data: obj,
+            cache: false,
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded",
+            success: function (results) { },
+            error: function (results) { console.log(results.statusText); },
+        });
+        return results;
+    }
+</script>
+<script src="~/Scripts/Assets/Js/privileges.js"></script>
+    </script>
+
+    @if (User.Identity.IsAuthenticated) {
+        <Script>
+            GetUser();
+        </Script>      
+    }else{
+        <Script>
+            guestprivileges();
+        </Script> 
+    }
+</html>

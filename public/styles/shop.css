@@ -1,0 +1,242 @@
+
+/* Car Section */
+
+.vehicles{
+    padding:0 15px 15px 15px;
+}
+
+.helperInfo{
+    margin:10px 0 0 0;
+    padding:20px;
+    background:#79C6AC;
+}
+
+.helperInfo h3{
+    color:white;
+}
+
+.helperInfo button{
+    margin:10px 0 0 0;
+    width:150px;
+    padding:10px 0;
+    border-radius: 10px;
+    border:2px solid white;
+    background:none;
+    color:white;
+    align-items: center;
+}
+
+.vehicleList{
+    flex-direction: column;
+    align-items: center;
+}
+
+.vehicleListItems{
+    background:white;
+    filter: drop-shadow(0px 15px 5px #3333331e);
+    border-radius: 20px;
+    padding:25px 10px;
+    flex-direction: column;
+    align-items: center;
+    margin:10px 0;
+    width:300px;
+}
+
+.carDetails .buyNowBtn{
+    height:50px;
+    width:50px;
+    border-radius: 50%;
+    border:none;
+    background:#79C6AC;
+    color:white;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    bottom:150px;
+    right:0px;
+}
+
+.carImage{
+    width:300px;
+}
+
+.carDetails{
+    padding:10px 0;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width:100%;
+}
+
+.carDetails p,.additionalCarInfo p{
+    text-align: center;
+}
+
+
+.carName{
+    text-align: center;
+    width:150px;
+}
+
+.carPrice{
+    color:#79C6AC;
+}
+
+.carReferralFee{
+    color:#79C6AC;
+    padding:20px 0;
+}
+
+.additionalCarInfo{
+    display:none;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.carDetails button{
+    background:#79C6AC;
+    color:white;
+    border:none;
+    width:200px;
+    margin:20px 0 0 0;
+    padding:10px 20px;
+    border-radius:10px;
+    font-family: ralewaySemiBold;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.carDetails a button{
+    width:200px;
+}
+
+
+.vehicleListItemsSmallView{
+    flex-direction: row;
+    align-items: center;
+    padding:20px 0;
+    border-bottom: 1px solid #00000023;
+    position: relative;
+}
+
+.vehicleListItemsSmallView .carImage{
+    height:100px;
+    width:100px;
+}
+
+.vehicleListItemsSmallView .carDetails{
+    /* width:100%; */
+    padding:0;
+    margin:0 0 0 20px;
+    justify-content: unset;
+    align-items: unset;
+}
+
+.vehicleListItemsSmallView .carDetails h2{
+    text-align: left;
+    width:unset;
+    font-size: 18px;
+}
+
+.vehicleListItemsSmallView .carDetails .carPrice{
+    text-align: left;
+    width:unset;
+    font-size: 16px;
+}
+
+.vehicleListItemsSmallView .carDetails .carMileage{
+    text-align: left;
+    width:unset;
+    font-size: 14px;
+}
+
+.vehicleListItemsSmallView .carDetails button{
+    width:150px;
+    padding:5px 0;
+    margin:10px 0 0 0;
+}
+
+.vehicleListItemsSmallView .buyNowBtn{
+    height:50px;
+    width:50px !important;
+    border-radius: 50%;
+    border:none;
+    background:#79C6AC;
+    color:white;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    top:0px;
+    right:0px;
+}
+.breadCrumbs{
+    flex-direction: row;
+    padding:0px 15px 5px 15px;
+}
+
+.breadCrumbs p{
+    flex-direction: row;
+    font-size: smaller;
+    color:#79C6AC;
+    margin:0 15px 0 0;
+}
+
+.breadCrumbs p span{
+    color:#707070;
+    margin: 0 0 0 5px;
+}
+
+.sortBreadCrumbs{
+    flex-direction: row;
+    /* font-size: smaller; */
+    /* color:#79C6AC; */
+    margin:0 15px 0 0;
+}
+
+.sortBreadCrumbs span{
+    margin:0 0 0 15px;
+    color:white;
+}
+
+@media screen and (min-width: 720px) {
+
+    .helperInfo{
+        justify-content: center;
+        align-items: center;
+    }
+
+    .vehicleList{
+        flex-direction: column;
+        align-items: center;
+    }
+    .vehicleListItems{
+        background:white;
+        filter: drop-shadow(0px 15px 5px #3333331e);
+        border-radius: 20px;
+        padding:25px;
+        flex-direction: row;
+        /* align-items: center; */
+        margin:10px 0;
+        width:800px;
+    }
+    .carName{
+        text-align: left;
+        width:100%;
+    }
+    .carDetails{
+        padding:10px 20px;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .additionalCarInfo{
+        display:flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .moreInfoBtn{
+        display:none;
+    }
+}

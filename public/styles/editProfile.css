@@ -1,0 +1,200 @@
+/* Header */
+.header{
+    align-items: center;
+}
+
+.header .banner{
+    background:#79C6AC ;
+    width:100%;
+    height:25vh;
+}
+
+
+.userInfo{
+    align-items: center;
+    position: relative;
+    top:-60px;
+    width:300px;
+}
+
+.userImage{
+    border:4px solid white;
+    background:#8B9196;
+    border-radius: 50%;
+    overflow: hidden;
+    height:100px;
+    width:100px;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+}
+
+.userImage i{
+    background:#79c6ac55;
+    height:100%;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+}
+
+.userImage #userIcon{
+    color: white;
+}
+
+    .userImage i:nth-child(2) {
+        background: #ffffff63;
+        position: absolute;
+        height: 30px;
+        bottom: 0;
+    }
+
+.editForm label{
+    margin:20px 0 0 0;
+}
+
+#upload-photos{
+    display:none;
+}
+
+.addressContainer{
+    flex-direction: row;
+    border:1px solid #79c6ac;
+    border-radius:10px;
+    padding:10px;
+    position:relative;
+    justify-content: space-between;
+    margin:10px 0 15px 0;
+}
+
+.addressContainer p,.addressContainer i{
+    color:#79c6ac;
+    font-size: small;
+}
+
+
+
+.inputContainer{
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border:1px solid #79c6ac;
+    border-radius: 10px;
+    padding:5px 10px;
+}
+
+.addAddress{
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    border:1px solid #79c6ac;
+    border-radius: 10px;
+    padding:5px 10px 20px 10px;
+}
+
+.addPhone{
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    border:1px solid #79c6ac;
+    border-radius: 10px;
+    padding:5px 10px 20px 10px;
+}
+
+.addressContainer div{
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border:1px solid #79c6ac;
+    border-radius: 10px;
+    padding:10px 15px; 
+    margin:0 0 10px 0;
+}
+.phoneContainer div{
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border:1px solid #79c6ac;
+    border-radius: 10px;
+    padding:10px 15px; 
+    margin:0 0 10px 0;
+}
+
+.phoneContainer{
+    flex-direction: column;
+}
+
+.phoneContainer p,.phoneContainer i{
+    color:#79c6ac;
+    font-size: small;
+}
+
+.addPhone label{
+    font-size: small;
+}
+
+.addPhone input{
+    font-size: small;
+}
+
+.addAddress i{
+    color: #79c6ac;
+}
+
+.addAddress label{
+    font-size: small;
+}
+
+.addAddress input{
+    font-size: small;
+}
+
+.phoneContainer{
+    justify-content: space-between;
+}
+
+
+.editForm{
+    width:70vmin;
+}
+
+.editForm input{
+    width:100%;
+    padding:5px;
+    border:none;
+    color:#79c6ac;
+}
+
+.editForm textarea{
+    width:100%;
+    height:100px;
+    padding:5px;
+    border:none;
+    color:#79c6ac;
+    resize: none;
+}
+
+.saveEditBtn{
+    margin:30px 0 0 0;
+    /* width:300px; */
+    padding:20px 0;
+    border:none;
+    align-items: center;
+    background:#17242D;
+    border-radius: 10px;
+    color:white;
+}
+
+.cancelEditBtn{
+    margin:20px 0 0 0;
+    /* width:300px; */
+    padding:20px 0;
+    border:1px solid #17242D;
+    align-items: center;
+    background:transparent;
+    border-radius: 10px;
+    color:#17242D;
+}
+
+

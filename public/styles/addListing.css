@@ -1,0 +1,430 @@
+/* ADD POSTING */
+.addPostingContainer{
+    position: fixed;
+    bottom:30px;
+    width:100vw;
+    height:10vh;
+    background:#79C6AC ;
+    align-items: center;
+    /* z-index: 2; */
+}
+
+.addPostingBtn{
+    position: relative;
+    top:-20px;
+    border:4px solid #79C6AC ;
+    padding:20px;
+    border-radius: 50%;
+    background:white;
+}
+
+
+.addPostingBtn i{
+    color:#79C6AC;
+}
+
+/* adding Form */
+.addVehicleContainer{
+    width:100%;
+    align-items: center;
+    overflow: scroll;
+}
+
+.addVehicleStepOne,.addVehicleStepTwo,.addVehicleStepThree,.addVehicleStepFour,.addVehicleStepFive,.addVehicleStepSix,.addVehicleStepSeven,.addVehicleStepEight,.addVehicleStepNine,.addVehicleStepTen,.vehicleAdded{
+    display:none;
+    opacity: 0;
+}
+
+.addVehicleStepFour,.addVehicleStepFive,.addVehicleStepSix,.addVehicleStepEight,.addVehicleStepNine,.addVehicleStepTen{
+    justify-content: center;
+    align-items: center;
+}
+
+.addVehicleStepSix,.addVehicleStepSeven{
+    padding:50px 0;
+}
+
+.addVehicleStepEight div{
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin:50px 0 0 0;
+}
+
+.addVehicleStepEight div label{
+    margin: 0 !important;
+}
+
+.addVehicleStepEight div input{
+    height:20px;
+    width:20px;
+    margin:0 10px 0 0;
+}
+
+.addVehicleStepNine h3{
+    color:white;
+    flex-direction: row;
+}
+
+.addVehicleStepNine h3 i{
+    color:white;
+    margin:0 0 0 10px;
+}
+
+.referralFee,.RetailPrice{
+    justify-content: center;
+    align-items: center;
+}
+
+.referralFee,.RetailPrice{
+    display:none;
+    opacity: 0;
+}
+
+.addVehicleStepOne{
+    display:Flex;
+    opacity: 1;
+}
+
+.initialInfo{
+    margin:30px 0 40px 0;
+    color:white;
+    text-align: center;
+}
+
+.vehicleAdded{
+    justify-content: center;
+    align-items: center;
+}
+
+
+.vehicleAdded h3{
+    color:white;
+    flex-direction: row;
+}
+
+.vehicleAdded h3 i{
+    color:white;
+    margin:0 0 0 10px;
+}
+
+.addVehicleForm{
+    width:80%;
+    /* overflow: scroll; */
+}
+
+.addVehicleForm label{
+    margin:20px 0 10px 0;
+    color:white;
+}
+
+.addVehicleForm .inputContainer  select{
+    width:100%;
+    padding:5px 10px;
+    border:none;
+    color:#79c6ac;
+}
+
+.addVehicleForm .inputContainer{
+    flex-direction: row;
+    align-items: center;
+    background:white;
+    border:1px solid white;
+    border-radius: 10px;
+    padding:5px 10px;
+}
+
+
+.addVehicleForm .inputContainer i{
+    color:#79c6ac;
+}
+
+.addVehicleForm.addVehicleStepThree{
+    justify-content: center;
+    align-items: center;
+}
+
+.inputContainer input{
+    width:100%;
+    padding:5px;
+    border:none;
+    color:#79c6ac;
+}
+
+.inputContainer textarea{
+    width:100%;
+    height:100px;
+    padding:5px;
+    border:none;
+    color:#79c6ac;
+    resize: none;
+}
+
+.addVehicleForm button,.vehicleAdded button{
+    padding:20px;
+    border-radius:10px;
+    font-family: ralewaySemiBold;
+    align-items: center;
+}
+
+.nextBtn{
+    margin:30px 0 0 0;
+    background:#17242D;
+    color:white;
+    border:none;
+}
+
+.addImageBtn{
+    margin:30px 0 0 0;
+    background:#17242D;
+    color:white;
+    border:none;
+}
+
+.submitBtn{
+    margin:10px 0 0 0;
+    background:#17242D;
+    color:white;
+    border:none;
+}
+
+.doneBtn{
+    width:300px;
+    margin:30px 0 0 0;
+    background:#17242D;
+    color:white;
+    border:none;
+}
+
+.backBtn {
+    width: 300px;
+    margin: 30px 0 0 0;
+    background: #17242D;
+    color: white;
+    border: none;
+}
+
+.checkBoxContainer{
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkBoxContainer input{
+    margin:5px 10px 0 0;
+}
+
+
+
+.hide{
+    opacity: 0;
+    transition:0.5s;
+}
+
+.show{
+    opacity: 1;
+    transition:0.5s;
+}
+
+#wholeSalePriceContainer{
+    background:white;
+    border:none;
+    border-radius: 10px;
+    padding:10px 15px;
+    flex-direction: row;
+}
+
+#wholeSalePriceContainer p{
+    color:#79c6ac;
+    margin:0 10px 0 0;
+}
+
+#wholeSalePriceContainer input{
+    background:transparent;
+    border:none;
+    width:100%;
+    color:#79c6ac;
+}
+
+.vinInfoList{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.vinInfoListItems{
+    width:135px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding:5px;
+    border:1px solid white;
+    border-radius:10px;
+    margin:5px;
+    position:relative;
+}
+
+.vinInfoListItems p{
+    color:white;
+    text-align: center;
+}
+
+.vinInfoListItems i{
+    color:white;
+    position: absolute;
+    top:5px;
+    right:5px;
+}
+
+#file-input{
+    display:none;
+}
+
+
+
+/* //////////// */
+
+.checkBoxContainer,#wholeSalePriceContainer{
+    display:none;
+}
+
+
+
+/* ///////////////// */
+
+
+
+
+.frontBumper,.rearBumper,.hood,.sideSkirt,.quarterPanel{
+    background:#79C6AC;
+    border:2px solid white;
+    margin:10px 0 0 0;
+    padding:10px 15px;
+    border-radius: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.frontBumper p,.rearBumper p,.hood p,.sideSkirt p,.quarterPanel p,.frontBumper i,.rearBumper i,.hood i,.sideSkirt i,.quarterPanel i{
+    color:white;
+}
+
+.detailsContainer{
+    flex-direction: column;
+    overflow: hidden;
+    height:0px;
+    padding:0px 20px;
+    /* margin:0; */
+    border-left: 2px solid #ffffff00;
+    border-right: 2px solid #ffffff00;
+    border-bottom: 2px solid #ffffff00;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+
+.frontBumperContainerHide,.rearBumperContainerHide,.sideSkirtContainerHide,.hoodContainerHide,.quarterPanelContainerHide{
+    overflow: hidden;
+    height:0px;
+    padding:0px 20px;
+    /* margin:0; */
+    border-left: 2px solid #ffffff00;
+    border-right: 2px solid #ffffff00;
+    border-bottom: 2px solid #ffffff00;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: 0.5s;
+}
+
+.frontBumperContainerShow,.rearBumperContainerShow,.sideSkirtContainerShow,.hoodContainerShow,.quarterPanelContainerShow{
+    overflow: hidden;
+    height:150px;
+    padding:20px 20px;
+    margin-top:-10px;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: 0.5s;
+}
+
+.detailsContainer .description{
+    border:none;
+    background:white;
+    border-radius: 10px;
+    /* height:70px; */
+    padding:10px;
+}
+
+#addVehicleStepSeven #imageContainer{
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin:20px 0;
+    /*height:200px;*/
+}
+
+
+.addImage{
+    /* padding:50px; */
+    height:50px;
+    width:50px;
+    justify-content: center;
+    align-items: center;
+    border:2px solid white;
+    flex-direction:row;
+}
+
+.imageContainer {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+.imageContainer img{
+    margin:0 10px;
+}
+
+.addImage i {
+    color: white;
+}
+
+/* #frontBumperImageContainer{
+    display:none;
+} */
+
+.referralFee{
+    width:100%;
+}
+
+.referralFee .inputContainer{
+    flex-direction: row;
+    align-items: center;
+    background:white;
+    border:1px solid white;
+    border-radius: 10px;
+    padding:5px 10px;
+}
+
+.Calculated,.calculatedReferralFee{
+    text-align: center;
+    color:white;
+    margin:20px 0 0 0;
+}
+
+#captureBtn{
+    padding:20px 0;
+    margin:0 0 20px 0;
+    background:#1A2A33;
+    border-radius: 10px;
+    border:none;
+    color:white;
+    width:80%;
+    transform: translateY(-150px);
+    justify-content: center;
+    align-items: center;
+}
+
+

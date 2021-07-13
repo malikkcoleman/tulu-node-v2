@@ -1,0 +1,66 @@
+.messages{
+    margin:50px 0 0 0;
+    padding:50px 0 0 0 ;
+    align-self: center;
+}
+
+h2{
+    margin: 0 0 0 20px;
+}
+
+label{
+    margin:15px 0 5px 0;
+}
+
+select,input,textarea{
+    /* margin:0 0 10px 0; */
+    padding:10px 10px;
+    border:1px solid #79c6ac;
+    border-radius:10px;
+    resize: none;
+}
+
+select{
+    margin:0 0 20px 0;
+}
+
+button{
+    margin:30px 0 0 0;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#79c6ac;
+    color:white;
+    align-items: center;
+}
+
+.newMessage {
+    /* position: fixed; */
+    width: 100%;
+    /* bottom: 0; */
+    text-align: center;
+    padding: 20px 0;
+    background: #79c6ac;
+    color:white;
+    z-index:1;
+}
+
+
+.newMessageContainer{
+    /* display:none; */
+    /* position:fixed; */
+    /* height:100vh; */
+    width:100%;
+    background:white;
+    z-index:2;
+    top:0;
+}
+
+.newMessageContainer .wrapper{
+    padding:0 20px;
+    width:80vmin;
+    /* height:100vh; */
+}
+
+
+

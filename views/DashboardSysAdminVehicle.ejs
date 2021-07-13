@@ -1,0 +1,1257 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="styles/reset.css" />
+    <!-- <script>
+        var host = "serratus.github.io";
+        if ((host == window.location.host) && (window.location.protocol != "https:")) {
+            window.location.protocol = "https";
+        }
+    </script> -->
+    <link rel="stylesheet" href="~/Scripts/Assets/Webfonts/styles/all.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/vendor.css" />
+    <link rel="stylesheet" href="styles/addListing.css">
+    <link rel="stylesheet" href="styles/barcode.css">
+    <link rel="stylesheet" href="styles/listingSettings.css">
+    <link rel="stylesheet" href="styles/myAccountMenu.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/Assets/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Assets/Js/Helpers/UploadHelper.js"></script>
+
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    </nav>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+        </ul>
+    </div>
+
+    <div class="container body-content">
+        <div class="header" id="VendorHeader">
+            <div class="banner"></div>
+            <div class="userInfo">
+                <div class="userImage">
+                    <i class="fas fa-user fa-4x"></i>
+                </div>
+                <h3 class="userName">' + gUser.name + '</h3>
+                <p class="userActiveListingCount"><span></span>&nbsp Active Listing</p>
+            </div>
+        </div>
+
+        <div class="loading">        
+            <p>Fetching Data.</p>
+        </div>
+
+        <!-- Listing -->
+        <div class="activeListing">
+            <ul id="ActiveListing" class="activeListingList"></ul>
+        </div>
+
+        <div class="searchDiv" style="display:none;">
+            Model: <input type="text" id="ModelSearch" />
+            Make:  <input type="text" id="MakeSearch" />
+            Year Min: <input type="text" id="YearMinSearch" value="0" />
+            Year Max: <input type="text" id="YearMaxSearch" value="0" />
+            Vehicle Type: <input type="text" id="VehicleTypeSearch" />
+            Is Sold: <select id="IsSoldSelect"><option value="0">False</option><option value="1">True</option></select>
+            Price Min: <input type="text" id="PriceMinSearch" value="0" />
+            Price Max: <input type="text" id="PriceMaxSearch" value="0" />
+            Price Type: <select id="PriceTypeSearch">
+                <option value=""></option>
+                <option value="msrp">MSRP</option>
+                <option value="wholeSalePrice">Whole Sale Price</option>
+            </select>
+            <input type="button" value="Search" onclick="SearchVehicles();" />
+            <div id="VehicleDiv"></div>
+        </div>
+
+        <!-- ADD POSTING -->
+        <div id="AddPostingContainer" class="addPostingContainer">
+            <div class="addPostingBtn" onclick="AddListingMenu()">
+                <i class="fas fa-plus"></i>
+            </div>
+            <div class="addVehicleContainer">
+                <div class="addVehicleForm addVehicleStepOne">
+                    <label for="vinNum">VIN # :</label>
+                    <div class="inputContainer">
+                        <input type="text" id="vinNum" class="vinNum" name="vinNum" value=""><br>
+                        <i class="fas fa-camera" onclick="barCodeScanner();"></i>
+                    </div>
+
+                    <button type="button" class="nextBtn" onclick="MakeNewVehicle()">ENTER VIN</button>
+                </div>
+                <div class="addVehicleForm addVehicleStepTwo" id="addVehicleStepTwo">
+                    <h3 class="initialInfo">'+results.year +'&nbsp'+ results.make +'&nbsp'+ results.model +'&nbsp'+ results.trim+'</h3>
+                    <button type="button" class="nextBtn" onclick="AddVehicleStep()">CONTINUE WITH THIS VEHICLE?</button>
+                    <button type="button" class="nextBtn" onclick="goToStepOne()">ENTER ANOTHER VIN</button>
+                </div>
+                <div class="addVehicleForm addVehicleStepThree" id="addVehicleStepThree">
+                    <section class="vinInfo">
+                        <ul class="vinInfoList">
+                            <li class="vinInfoListItems">
+                                <p>Year</p>
+                                <p>' + results.year + '</p>
+                                <i class="fas fa-times"></i>
+                            </li>
+                            <li class="vinInfoListItems">
+                                <p>Make</p>
+                                <p>' + results.make + '</p>
+                                <i class="fas fa-times"></i>
+                            </li>
+                            <li class="vinInfoListItems">
+                                <p>Model</p>
+                                <p>' + results.model + '</p>
+                                <i class="fas fa-times"></i>
+                            </li>
+                            <li class="vinInfoListItems">
+                                <p>Color</p>
+                                <p>' + results.colorName + '</p>
+                                <i class="fas fa-times"></i>
+                            </li>
+                            <li class="vinInfoListItems">
+                                <p>Body Type</p>
+                                <p>' + results.bodyType + '</p>
+                                <i class="fas fa-times"></i>
+                            </li>
+                            <li class="vinInfoListItems">
+                                <p>Engine</p>
+                                <p>' + results.engineName + '</p>
+                                <i class="fas fa-times"></i>
+                            </li>
+                            <li class="vinInfoListItems">
+                                <p>DriveTrain</p>
+                                <p>' + results.driveType + '</p>
+                                <i class="fas fa-times"></i>
+                            </li>
+                            <li class="vinInfoListItems">
+                                <p>Transmission</p>
+                                <p>' + results.transmissionName + '</p>
+                                <i class="fas fa-times"></i>
+                            </li>
+                            <li class="vinInfoListItems">
+                                <p>Fuel Type</p>
+                                <p>' + results.fuelType + '</p>
+                                <i class="fas fa-times"></i>
+                            </li>
+                            <li class="vinInfoListItems">
+                                <p>Trim</p>
+                                <p>' + results.trim + '</p>
+                                <i class="fas fa-times"></i>
+                            </li>
+                        </ul>
+                        <button type="button" class="nextBtn" onclick="AddVehicleStep()">NEXT</button>
+                    </section>
+                </div>
+                <div class="addVehicleForm addVehicleStepFour" id="addVehicleStepFour">
+                    <label for="color">Enter Car's Color :</label>
+                    <div class="inputContainer">
+                        <input type="text" id="color" class="color" name="color" value="">
+                    </div>
+                    <label for="mileage">Enter Car's Mileage :</label>
+                    <div class="inputContainer">
+                        <input type="text" id="mileage" class="mileage" name="mileage" value="">
+                    </div>
+                    <button type="button" class="doneBtn" onclick="AddVehicleStep()">NEXT</button>
+                    <button type="button" class="backBtn" onclick="goBack()">BACK</button>
+                </div>
+                <div class="addVehicleForm addVehicleStepFive" id="addVehicleStepFive">
+                    <label for="">Upload Vehicle Display Photo</label>
+                    <div id="dpImageContainer">
+                    </div>
+                    <div class="form-group" style="display:none;">
+                        <label for="dp-photos-input">Load Image</label>
+                        <input id="dp-photos-input" type="file" onchange="UploadFile('dp-photos-input');" accept="image/*" id="afterDisplayImage" disabled style="opacity:50%;"/>
+                    </div>
+                    <div id="thumbnailDpContainer" onclick="addDpImage()">
+                    </div>
+                    <input type="hidden" name="csrf_token" value="just_a_text_field" />
+
+
+                    <button type="button" class="doneBtn" onclick="addDpImage()">ADD PHOTO</button>
+                    <button type="button" class="doneBtn" onclick="AddVehicleStep()">NEXT</button>
+                    <button type="button" class="backBtn" onclick="goBack()">BACK</button>
+                </div>
+                <div class="addVehicleForm addVehicleStepSix" id="addVehicleStepSix">
+                    <div class="carDetails">
+                        <p>Car Details :</p>
+                        <p style="font-size:x-small;">ex. car damages, special packages etc</p>
+                        <div class="frontBumper">
+                            <p>Front</p>
+                            <i class="fas fa-angle-down" onclick="showFrontBumperContainer()"></i>
+                        </div>
+                        <div class="detailsContainer frontBumperContainerHide" id="frontBumperContainer">
+                            <label>
+                                Front:
+                            </label>
+                            <input type="textarea" class="description" id="frontBumperDescription" />
+                            <div class="imageContainer" id="frontBumperImageContainer">
+                                <div class="addImage" onclick="addFrontBumperImage()">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                            <div class="form-group" style="display:none;">
+                                <label for="frontBumper-photos-input">Load Image</label>
+                                <input id="frontBumper-photos-input" type="file" onchange="UploadFile('frontBumper-photos-input');" multiple="multiple" accept="image/*"/>
+                            </div>
+                            <input type="hidden" name="csrf_token" value="just_a_text_field" />
+                        </div>
+                        <div class="rearBumper">
+                            <p>Rear</p>
+                            <i class="fas fa-angle-down" onclick="showRearBumperContainer()"></i>
+                        </div>
+                        <div class="detailsContainer rearBumperContainerHide" id="rearBumperContainer">
+                            <label>
+                                Rear:
+                            </label>
+                            <input type="textarea" class="description" id="rearBumperDescription" />
+                            <div class="imageContainer" id="rearBumperImageContainer">
+                                <div class="addImage" onclick="addRearBumperImage()">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                            <div class="form-group" style="display:none;">
+                                <label for="rearBumper-photos-input">Load Image</label>
+                                <input id="rearBumper-photos-input" type="file" onchange="UploadFile('rearBumper-photos-input');" multiple="multiple" accept="image/*"/>
+                            </div>
+                            <input type="hidden" name="csrf_token" value="just_a_text_field" />
+                        </div>
+                        <div class="hood">
+                            <p>Passenger</p>
+                            <i class="fas fa-angle-down" onclick="showHoodContainer()"></i>
+                        </div>
+                        <div class="detailsContainer hoodContainerHide" id="hoodContainer">
+                            <label>
+                                Passenger:
+                            </label>
+                            <input type="textarea" class="description" id="hoodDescription" />
+                            <div class="imageContainer" id="hoodImageContainer">
+                                <div class="addImage" onclick="addHoodImage()">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="display:none;">
+                                <label for="hood-photos-input">Load Image</label>
+                                <input id="hood-photos-input" type="file" onchange="UploadFile('hood-photos-input');" multiple="multiple" accept="image/*"/>
+                            </div>
+                            <input type="hidden" name="csrf_token" value="just_a_text_field" />
+
+                        </div>
+                        <div class="sideSkirt">
+                            <p>Driver</p>
+                            <i class="fas fa-angle-down" onclick="showSideSkirtContainer()"></i>
+                        </div>
+                        <div class="detailsContainer sideSkirtContainerHide" id="sideSkirtContainer">
+                            <label>
+                                Driver:
+                            </label>
+                            <input type="textarea" class="description" id="sideSkirtDescription" />
+                            <div class="imageContainer" id="sideSkirtImageContainer">
+                                <div class="addImage" onclick="addSideSkirtImage()">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="display:none;">
+                                <label for="sideSkirt-photos-input">Load Image</label>
+                                <input id="sideSkirt-photos-input" type="file" onchange="UploadFile('sideSkirt-photos-input');" multiple="multiple" accept="image/*"/>
+
+                            </div>
+                            <input type="hidden" name="csrf_token" value="just_a_text_field" />
+
+                        </div>
+                        <div class="quarterPanel">
+                            <p>Interior and others</p>
+                            <i class="fas fa-angle-down" onclick="showQuarterPanelContainer()"></i>
+                        </div>
+                        <div class="detailsContainer quarterPanelContainerHide" id="quarterPanelContainer">
+                            <label>
+                                Interior and others:
+                            </label>
+                            <input type="textarea" class="description" id="quarterPanelDescription" />
+                            <div class="imageContainer" id="quarterPanelImageContainer">
+                                <div class="addImage" onclick="addQuarterPanelImage()">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="display:none;">
+                                <label for="quarterPanel-photos-input">Load Image</label>
+                                <input id="quarterPanel-photos-input" type="file" onchange="UploadFile('quarterPanel-photos-input');" multiple="multiple" accept="image/*"/>
+                            </div>
+                            <input type="hidden" name="csrf_token" value="just_a_text_field" />
+
+                        </div>
+                        <button type="button" class="doneBtn" onclick="AddVehicleStep()">NEXT</button>
+                        <button type="button" class="backBtn" onclick="goBack()">BACK</button>
+                    </div>
+                </div>
+                <div class="addVehicleForm addVehicleStepSeven" id="addVehicleStepSeven">
+                    <label for="carDescription">Additional Description :</label>
+                    <div class="inputContainer">
+                        <textarea type="text" id="carDescription" class="carDescription" name="carDescription"></textarea>
+                    </div>
+                    <div id="imageContainer">
+                    </div>
+
+                    <div class="form-group" style="display:none;">
+                        <label for="photos-input">Load Image</label>
+                        <input id="photos-input" type="file" onchange="UploadFile('photos-input');" accept="image/*" multiple="multiple"/>
+                        <input id="photos-inputAgain" type="file" onchange="UploadFile('photos-inputAgain');" accept="image/*" multiple="multiple"/>
+                    </div>
+                    <div id="thumbnailContainer">
+                    </div>
+                    <input type="hidden" name="csrf_token" value="just_a_text_field" />
+                    <button type="button" class="addImageBtn" onclick="addImage()">ADD PHOTOS</button>
+
+
+                    @* if we cant get it right, we'll do a quick dirty fix *@
+                    @* <button type="button" class="addImageBtn" onclick="addAnotherImage()">ADD PHOTOS</button> *@
+
+                    <button type="button" class="submitBtn" onclick="AddVehicleStep()">SUBMIT</button>
+                    <button type="button" class="submitBtn" onclick="goBack()">BACK</button>
+                </div>
+                 <div class="addVehicleForm addVehicleStepEight" id="addVehicleStepEight">
+                    <div>
+                        <input type="checkbox" name="" id="">
+                        <label>
+                            Allow Buy Now Option
+                        </label>
+                    </div>
+
+                    <button type="button" class="doneBtn" onclick="AddVehicleStep()">NEXT</button>
+                    <button type="button" class="backBtn" onclick="goBack()">BACK</button>
+                </div>
+                <div class="addVehicleForm addVehicleStepNine" id="addVehicleStepNine">
+                    <h3>Vehicle Info Saved <i class="fas fa-check"></i></h3>
+                    <button type="button" class="doneBtn" onclick="AddVehicleStep()">CONTINUE</button>
+                    <button type="button" class="backBtn" onclick="goBack()">BACK</button>
+                </div>
+                <div class="addVehicleForm addVehicleStepTen" id="addVehicleStepTen">
+                    <button type="button" class="doneBtn" onclick="EnterRetailPrice()">ENTER RETAIL PRICE</button>
+                    <!-- <button type="button" class="doneBtn" onclick="StartSaving()">EXIT & SAVE</button>
+                    <button type="button" class="backBtn" onclick="goBack()">BACK</button> -->
+                </div>
+                <div class="addVehicleForm RetailPrice">
+                    <div id="maxPriceContainer" class="maxPriceContainer">
+                        <label for="maxPrice">Max Price:</label>
+                        <div class="inputContainer">
+                            <i class="fas fa-dollar-sign"></i>
+                            <input type="number" name="maxPrice" class="maxPrice" id="maxPrice" onchange="verifyPrice()">
+                        </div>
+                    </div>
+                    <div id="minPriceContainer" class="minPriceContainer">
+                        <label for="minPrice">Min Price:</label>
+                        <div class="inputContainer">
+                            <i class="fas fa-dollar-sign"></i>
+                            <input type="number" name="minPrice" class="minPrice" id="minPrice" onchange="verifyPrice()">
+                        </div>
+                    </div>
+
+                    <input style="margin:10px 0;" id="rangeSlider" step="5" type="range" min="25" max="35" value="30" onchange="rangeSlider()">
+                    <p style="color:white;" class="refFeeValue">Referral Fee Percentage : 0.30</p>
+                    <p class="errorMessage"></p>
+                    <button type="button" class="doneBtn" id="submitPrice" style="opacity:0.5;" onclick="referralFeeSlide()" disabled>DONE</button>
+                    <button type="button" class="backBtn" onclick="goBack()">BACK</button>
+                </div>
+                <div class="addVehicleForm referralFee">
+                    <div id="referralFeeContainer" class="referralFeeContainer">
+                        <h1 class="calculatedReferralFee"></h1>
+                        <h3 class="Calculated">Automated Referral Fee</h3>
+                    </div>
+                    <button type="button" class="doneBtn" onclick="manualOption()">Enter Referral Fee Manually</button>
+                    <button type="button" class="doneBtn" onclick="StartSaving()">DONE</button>
+                </div>
+                <div class="addVehicleForm vehicleAdded">
+                    <div id="imageContainer">
+                    </div>
+                    <h3>Vehicle Added <i class="fas fa-check"></i></h3>
+                    <button type="button" class="doneBtn" onclick="AddVehicleStep()">DONE</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div id="barCodeScannerContainer" class="barCodeScannerContainer">
+            <section id="container" class="container">
+
+                <div class="controls">
+                    <fieldset class="input-group">
+                        <button class="stop">Stop</button>
+                    </fieldset>
+
+                </div>
+                <div id="result_strip">
+                    <ul class="thumbnails"></ul>
+                </div>
+                <div class="viewContainer">
+                    <div id="interactive" class="viewport">
+                        <div id="codeContainer"></div>
+                    </div>
+                </div>
+                <button class="barcodeScannerBtn GetBarCode" onclick="getBarcode()">CAPTURE VIN</button>
+                <button class="barcodeScannerBtn" onclick="enterCode()">ENTER CODE MANUALLY</button>
+            </section>
+        </div>
+
+
+
+
+        <!-- My Account -->
+        <div id="MyAccountMenu" class="myAccountMenu">
+            <ul class="accountMenuList">
+                <li class="accountMenuListItems">
+                    <a href="/Home/Profile">
+                        <i class="far fa-user fa-2x accountMenuIcon"></i>
+                        Profile
+                    </a>
+                </li>
+                <li class="accountMenuListItems">
+                    <a href="/Dashboard">
+                        <i class="fas fa-columns fa-2x accountMenuIcon"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="accountMenuListItems">
+                    <a href="/Home/Schedule">
+                        <i class="far fa-calendar-alt fa-2x accountMenuIcon"></i>
+                        Schedule
+                    </a>
+                </li>
+                <li class="accountMenuListItems">
+                    <a href="/Home/Contact">
+                        <i class="fas fa-phone fa-2x accountMenuIcon"></i>
+                        Contact Us
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- ListingSettings -->
+        <div id="ListingSettingsContainer" class="listingSettingsContainer">
+            <ul class="listingSettingsList">
+                
+            </ul>
+        </div>
+    </div>
+    </div>
+    <div class="editVehicleContainer" id="editVehicleContainer">
+        <div class="wrapper">
+            <!-- <label for="">Vin:</label> -->
+            <input type="text" class="editVin" style="display:none !important;">
+            <label for="">Mileage:</label>
+            <input type="number" class="editMileage">
+            <label for="">Notes:</label>
+            <input type="text" class="editNotes">
+            <!-- <label for="">Min Price:</label>
+            <input type="number" class="editMinPrice">
+            <label for="">Max Price:</label>
+            <input type="number" class="editMaxPrice"> -->
+            <button onclick="SaveEdit()">Save Edit</button>
+            <button onclick='document.querySelector(".editVehicleContainer").style = "display:none !important;";'>Cancel</button>
+        </div>
+    </div>
+    <div class="editPriceVehicleContainer" id="editPriceVehicleContainer">
+        <div class="wrapper">
+            <!-- <label for="">Vin:</label> -->
+            <!-- <input type="text" class="editVin" style="display:none !important;"> -->
+            <!-- <label for="">Mileage:</label> -->
+            <!-- <input type="number" class="editMileage"> -->
+            <!-- <label for="">Notes:</label> -->
+            <!-- <input type="text" class="editNotes"> -->
+            <label for="">Min Price:</label>
+            <input type="number" class="editMinPrice">
+            <label for="">Max Price:</label>
+            <input type="number" class="editMaxPrice">
+            <label for="">Referral Fee:</label>
+            <input type="number" class="editReferralFee">
+            <button onclick="SaveEditPricing()">Save Prices</button>
+            <button onclick='document.querySelector(".editPriceVehicleContainer").style = "display:none !important;";'>Cancel</button>
+        </div>
+    </div> 
+</body>
+<script src="~/Scripts/Assets/Js/addListingMenu.js"></script>
+<script src="~/Scripts/Assets/Js/AddingVehicle.js"></script>
+<script src="~/Scripts/Assets/Js/sideMenu.js"></script>
+<script src="~/Scripts/Assets/Js/bc.js"></script>
+<script src="~/Scripts/Assets/Js/loading.js"></script>
+
+<script src="https://serratus.github.io/quaggaJS/javascripts/scale.fix.js"></script>
+<script>
+    function getBarcode() {
+        const code = document.querySelector('#result_strip .thumbnails .code').innerHTML;
+        document.querySelector('#vinNum').value = code;
+        document.querySelector('#barCodeScannerContainer').style = "display:none;";
+    }
+
+    function enterCode() {
+        document.querySelector('#vinNum').value = "";
+        document.querySelector('#barCodeScannerContainer').style = "display:none;";
+    }
+</script>
+<script src="~/Scripts/Assets/Js/listingSettings.js"></script>
+<script type="text/javascript">
+    var gUserTest = null;
+    var gDealerId = '';
+    var gVehicleTest = null;
+    var currentVehicle = null;
+    var referralFeeValue = 0;
+    var newValue = 0;
+    window.onload = function () {
+        GetCurrentUser();
+        alert(gDealerId);
+    }
+
+    function ExitAndSave() {
+        //addVehicleStepSeven
+        $('#addVehicleStepSeven').style = "opacity:0; transition:0.5s;";
+        setTimeout(function () {
+            $('#addVehicleStepSeven').style = "display:none;";
+            StartSaving();
+        }, 1000);
+
+    }
+
+    function DeleteLink(index) {
+        var obj = new Object();
+        obj.json_string = JSON.stringify(gVehicleTest.links[index]);
+        $.ajax({
+            type: "PUT",
+            url: "/Vehicle/DeleteLink",
+            data: obj,
+            cache: false,
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded",
+            success: function (results) {
+                TestGetVehicle();
+            },
+            error: function (results) {
+                alert("Error");
+            },
+        });
+    }
+
+    function resetField(){
+        $('#vinNum').empty();
+        $('#color').empty();
+        $('#mileage').empty();
+        $('#dpImageContainer').empty();
+        $('#thumbnailDpContainer').empty();
+        $('#carDescription').empty();
+        $('#imageContainer').empty();
+        $('#thumbnailContainer').empty();
+        $('#maxPrice').empty();
+        $('#minPrice').empty();
+        // $().empty();
+        // $().empty();
+    }
+
+
+    function SaveLink(vl) {
+        var obj = new Object();
+        obj.json_string = JSON.stringify(vl);
+        console.log(vl);
+        $.ajax({
+            type: "PUT",
+            url: "/Vehicle/SaveLink",
+            data: obj,
+            cache: false,
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded",
+            success: function (results) {
+                console.log(results)
+            },
+            error: function (results) {
+                alert("Error");
+            },
+        });
+    }
+
+    GetCurrentUser();
+    function GetCurrentUser() {
+        //FIXME: I think this needs to be deleted
+        $.ajax({
+            type: "PUT",
+            url: "/Users/Current",
+            cache: false,
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded",
+            success: function (results) {
+                gUserTest = results;
+                for (var i = 0; i < results.roles.length; i++) {
+                    if (results.roles[i].role === 'DealerAdmin' || results.roles[i].role === 'DealerUser') {
+                        if (gDealerId === '') {
+                            gDealerId = results.roles[i].targetId;
+                        }
+                    }
+                }
+            },
+            error: function (results) {
+                alert("Error");
+            },
+        });
+    }
+
+
+
+    async function NewVehicle(vin, dealerId) {
+        var obj = new Object();
+        obj.vin = vin;
+        obj.dealerId = dealerId;
+        const results = await $.ajax({
+            type: "PUT",
+            url: "/Vehicle/New",
+            data: obj,
+            cache: false,
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded",
+            success: function (results) {
+                // alert(JSON.stringify(results));
+                console.log(results);
+                //console.log(results.year);
+                // LoadVehicleInfo(results)
+            },
+            error: function (results) { console.log(results.statusText); },
+        });
+        return results;
+    }
+
+    function MakeNewVehicle() {
+        //var vin = '1G1FA1RX1H0123856';
+        var vin = $("#vinNum").val();
+        //var dealerId = 'fb2a156c-b2e8-4174-84cd-61869996a34a';
+        var dealerId = gDealerId;
+        console.log(dealerId);
+        NewVehicle(vin, dealerId).then(function (vehicle) {
+            gVehicleTest = vehicle;
+            alert(JSON.stringify(vehicle));
+            TestGetVehicle();
+        });
+    }
+
+    function carView(index) {
+        console.log(listVehicles[index].vin);
+        window.location = "/Home/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
+    }
+
+    function TestGetVehicle() {
+        //var vin = '1G1FA1RX1H0123856';
+        var vin = $("#vinNum").val();
+        //var dealerId = 'fb2a156c-b2e8-4174-84cd-61869996a34a';
+        var dealerId = gDealerId;
+        GetVehicle(vin, dealerId).then(function (vehicle) {
+            gVehicleTest = vehicle;
+            DisplayVehicle(vehicle);
+            AddVehicleStep();
+            currentVehicle = vehicle;
+        });
+    }
+
+    async function GetVehicle(vin, dealerId) {
+        var obj = new Object();
+        obj.vin = vin;
+        obj.dealerId = dealerId;
+        const results = await $.ajax({
+            type: "PUT",
+            url: "/Vehicle/Get",
+            data: obj,
+            cache: false,
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded",
+            success: function (results) { },
+            error: function (results) { console.log(results.statusText); },
+        });
+        return results;
+    }
+
+    function rangeSlider() {
+        const value = document.querySelector("#rangeSlider").value * 0.01;
+        console.log(value);
+
+        if(value == 0.35000000000000003){
+            newValue = 0.35;
+        }else{
+            newValue = value;
+        }
+
+        $(".refFeeValue").empty();
+        $(".refFeeValue").append("Referral Fee Percentage : " + newValue);
+    }
+
+    var vYear = "";
+    var vMake = "";
+    var vModel = "";
+    var vColorName = "";
+    var vBodyType = "";
+    var vEngineName = "";
+    var vDriveType = "";
+    var vTransmissionName = "";
+    var vFuelType = "";
+    var vTrim = "";
+
+    function DisplayVehicle(vehicle) {
+        var html="";
+
+        html += '<h3 class="initialInfo">' + vehicle.year + '&nbsp' + vehicle.make + '&nbsp' + vehicle.model + '&nbsp' + vehicle.trim + '</h3>';
+        html += '<button type="button" class="nextBtn" onclick="AddVehicleStep()">CONTINUE WITH THIS VEHICLE?</button>';
+        html += '<button type="button" class="nextBtn" onclick="goToStepOne()">ENTER ANOTHER VIN</button>';
+
+        $("#addVehicleStepTwo").empty();
+        $("#addVehicleStepTwo").append(html);
+
+        html = "";
+
+        html += '<section class="vinInfo">';
+        html += '    <ul class="vinInfoList">';
+        if(vehicle.year != ""){
+            var infoContainer = "yearInfo";
+            html += '        <li class="vinInfoListItems" id="yearInfo">';
+            html += '            <p>Year</p>';
+            html += '            <p>' + vehicle.year + '</p>';
+            html += '            <i class="fas fa-times" onclick="deleteInfo('+infoContainer+')"></i>';
+            html += '        </li>';
+            vYear = vehicle.year;
+        }
+        if(vehicle.make != ""){
+            var infoContainer = "makeInfo";
+            html += '        <li class="vinInfoListItems" id="makeInfo">';
+            html += '            <p>Make</p>';
+            html += '            <p>' + vehicle.make + '</p>';
+            html += '            <i class="fas fa-times" onclick="deleteInfo('+infoContainer+')"></i>';
+            html += '        </li>';
+            vMake = vehicle.make;
+        }
+        if(vehicle.model != ""){
+            var infoContainer = "modelInfo";
+            html += '        <li class="vinInfoListItems" id="modelInfo">';
+            html += '            <p>Model</p>';
+            html += '            <p>' + vehicle.model + '</p>';
+            html += '            <i class="fas fa-times" onclick="deleteInfo('+infoContainer+')"></i>';
+            html += '        </li>';
+            vModel = vehicle.model;
+        }
+        if(vehicle.colorName != ""){
+            var infoContainer = "colorNameInfo";
+            html += '        <li class="vinInfoListItems" id="colorNameInfo">';
+            html += '            <p>Color</p>';
+            html += '            <p>' + vehicle.colorName + '</p>';
+            html += '            <i class="fas fa-times" onclick="deleteInfo('+infoContainer+')"></i>';
+            html += '        </li>';
+            vColorName = vehicle.colorName;
+        }
+        if(vehicle.bodyType != ""){
+            var infoContainer = "bodyTypeInfo";
+            html += '        <li class="vinInfoListItems" id="bodyTypeInfo">';
+            html += '            <p>Body Type</p>';
+            html += '            <p>' + vehicle.bodyType + '</p>';
+            html += '            <i class="fas fa-times" onclick="deleteInfo('+infoContainer+')"></i>';
+            html += '        </li>';
+            vBodyType = vehicle.bodyType;
+        }
+        if(vehicle.engineName != ""){
+            var infoContainer = "engineNameInfo";
+            html += '        <li class="vinInfoListItems" id="engineNameInfo">';
+            html += '            <p>Engine</p>';
+            html += '            <p>' + vehicle.engineName + '</p>';
+            html += '            <i class="fas fa-times" onclick="deleteInfo('+infoContainer+')"></i>';
+            html += '        </li>';
+            vEngineName = vehicle.engineName;
+        }
+        if(vehicle.driveType != ""){
+            var infoContainer = "driveTypeInfo";
+            html += '        <li class="vinInfoListItems" id="driveTypeInfo">';
+            html += '            <p>DriveTrain</p>';
+            html += '            <p>' + vehicle.driveType + '</p>';
+            html += '            <i class="fas fa-times" onclick="deleteInfo('+infoContainer+')"></i>';
+            html += '        </li>';
+            vDriveType = vehicle.driveType;
+        }
+        if(vehicle.transmissionName != ""){
+            var infoContainer = "transmissionNameInfo";
+            html += '        <li class="vinInfoListItems" id="transmissionNameInfo">';
+            html += '            <p>Transmission</p>';
+            html += '            <p>' + vehicle.transmissionName + '</p>';
+            html += '            <i class="fas fa-times" onclick="deleteInfo('+infoContainer+')"></i>';
+            html += '        </li>';
+            vTransmissionName = vehicle.transmissionName;
+        }
+        if(vehicle.fuelType != ""){
+            var infoContainer = "fuelTypeInfo";
+            html += '        <li class="vinInfoListItems" id="fuelTypeInfo">';
+            html += '            <p>Fuel Type</p>';
+            html += '            <p>' + vehicle.fuelType + '</p>';
+            html += '            <i class="fas fa-times" onclick="deleteInfo('+infoContainer+')"></i>';
+            html += '        </li>';
+            vFuelType = vehicle.fuelType;
+        }
+        if(vehicle.trim != ""){
+            var infoContainer = "trimInfo";
+            html += '        <li class="vinInfoListItems" id="trimInfo">';
+            html += '            <p>Trim</p>';
+            html += '            <p>' + vehicle.trim + '</p>';
+            html += '            <i class="fas fa-times" onclick="deleteInfo('+infoContainer+')"></i>';
+            html += '        </li>';
+            vTrim = vehicle.trim;
+        }
+        html += '    </ul>';
+        html += '    <button type="button" class="nextBtn" onclick="AddVehicleStep()">NEXT</button>';
+        html += '</section>';
+
+        $("#addVehicleStepThree").empty();
+        $("#addVehicleStepThree").append(html);
+    }
+
+    function deleteInfo(info){
+        document.querySelector('#'+info.id).style = "display:none;";
+    }
+
+    var referralOption = 1;
+
+    function manualOption() {
+        var html = "";
+        if (referralOption == 1) {
+            html += '<label for="referralFee">Enter Referral Fee:</label>';
+            html += '<div class="inputContainer">';
+            html += '    <i class="fas fa-dollar-sign"></i>';
+            html += '    <input type="number" name="referralFee" class="referralFee" id="referralFee">';
+            html += '</div>';
+            referralOption++;
+            $(".referralFeeContainer").empty();
+            $(".referralFeeContainer").append(html);
+            const referralFee = document.querySelector('#referralFee');
+            referralFee.style = "display:Flex;opacity:1;";
+        } else {
+            var minPrice = Number($("#minPrice").val());
+            var maxPrice = Number($("#maxPrice").val());
+            var referralFee = (maxPrice - minPrice) * newValue;
+            if (referralFee < 1) {
+                referralFee = 0;
+                html = html + '             <h1 class="calculatedReferralFee">$ ' + referralFee + '</h1>';
+                html = html + '             <h3 class="Calculated">Automated Referral Fee</h3>';
+            } else {
+                html = html + '             <h1 class="calculatedReferralFee">$ ' + referralFee + '</h1>';
+                html = html + '             <h3 class="Calculated">Automated Referral Fee</h3>';
+            }
+            referralOption = 1;
+            $(".referralFeeContainer").empty();
+            $(".referralFeeContainer").append(html);
+        }
+    }
+
+    function verifyPrice() {
+        var minPrice = Number($("#minPrice").val());
+        var maxPrice = Number($("#maxPrice").val());
+        if (minPrice == maxPrice) {
+            console.log("Cant be the same")
+            $(".errorMessage").html("Max price and min price cannot be the same.");
+        } else if (maxPrice < minPrice) {
+            console.log("min should be lower than max");
+            $(".errorMessage").html("Max price is lower than min price.");
+        } else if (maxPrice == "" || maxPrice == null || maxPrice == 0) {
+            console.log("Max price Empty");
+            $(".errorMessage").html("Make sure all input fields are populated");
+        } else if (minPrice == "" || minPrice == null || minPrice == 0) {
+            console.log("Min price Empty");
+            $(".errorMessage").html("Make sure all input fields are populated");
+        } else {
+            $(".errorMessage").empty();
+            $("#submitPrice").prop('disabled', false);
+            document.querySelector("#submitPrice").style = "opacity:1 !important;"
+        }
+    }
+
+
+    async function SaveVehicle(vehicle) {
+        var obj = new Object();
+        obj.json_string = JSON.stringify(vehicle);
+        const result = await $.ajax({
+            type: "PUT",
+            url: "/Vehicle/Save",
+            data: obj,
+            cache: false,
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded",
+            success: function (results) {
+                console.log(results);
+            },
+            error: function (results) { console.log(results.statusText); },
+        });
+        return result;
+    }
+
+    function StartSaving() {
+        gVehicleTest = currentVehicle;
+        gVehicleTest.year = vYear;
+        gVehicleTest.make = vMake;
+        gVehicleTest.model = vModel;
+        gVehicleTest.colorName = vColorName;
+        gVehicleTest.bodyType = vBodyType;
+        gVehicleTest.engineName = vEngineName;
+        gVehicleTest.driveType = vDriveType;
+        gVehicleTest.transmissionName = vTransmissionName;
+        gVehicleTest.fuelType = vFuelType;
+        gVehicleTest.trim = vTrim;
+        gVehicleTest.colorName = $("#color").val();
+        gVehicleTest.mileage = $("#mileage").val();
+        gVehicleTest.notes = $("#carDescription").val();
+        gVehicleTest.maxPrice  = $("#maxPrice").val();
+        gVehicleTest.minPrice  = $("#minPrice").val();
+        gVehicleTest.priceType = "retail";
+
+
+        if(referralOption ==2){
+            gVehicleTest.refferalFee = $('#referralFee').val();
+        }else{
+            var minPrice = Number($("#minPrice").val());
+            var maxPrice = Number($("#maxPrice").val());
+            gVehicleTest.refferalFee =  (maxPrice - minPrice) * newValue;
+        }
+
+        console.log(gVehicleTest.referralFee);
+
+        SaveVehicle(gVehicleTest).then(function (result) {
+            gVehicleTest = result;
+            //DisplayVehicle(result);
+            console.log(result);
+            SearchVehicles();
+            AfterReferralFee();
+        });
+    }
+
+    SearchVehicles()
+    function SearchVehicles() {
+        var obj = new Object();
+        // obj.dealerId = gDealerId;
+        obj.model = $("#ModelSearch").val();
+        obj.make = $("#MakeSearch").val();
+        obj.yearMin = parseInt($("#YearMinSearch").val());
+        obj.yearMax = parseInt($("#YearMaxSearch").val());
+        obj.vehicleType = $("#VehicleTypeSearch").val();
+        obj.isSold = false;
+        obj.priceMin = parseFloat($("#PriceMinSearch").val());
+        obj.priceMax = parseFloat($("#PriceMaxSearch").val());
+        obj.priceType = $("#PriceTypeSearch option:selected").val();
+        obj.city = '';
+        obj.province = '';
+        obj.isSold = '';
+        if ($("#IsSoldSelect option:selected").val() === "1") { obj.isSold = 'true'; }
+        ListVehicles(obj).then(function (list) {
+            console.log(list);
+            LoadVehicles(list)
+            GetCurrentUser();
+        });
+    }
+
+    async function ListVehicles(obj) {
+
+        const results = await $.ajax({
+            type: "PUT",
+            url: "/Vehicle/List",
+            data: obj,
+            cache: false,
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded",
+            success: function (results) { },
+            error: function (results) { console.log(results.statusText); },
+        });
+        return results;
+    }
+
+    function LoadVehicles(vehicles) {
+        var html = '';
+        var carCountValue = 0;
+        for (var i = 0; i != vehicles.length; i++) {
+            html = html + '<li class="activeListingListItem" id="' + vehicles[i].vin + '" >';
+            var text = '';
+            if (vehicles[i].links !== undefined) {
+                // console.log("1");
+                if (vehicles[i].links[0] !== undefined) {
+                    // console.log("2");
+                    for(var v=0; v != vehicles[i].links.length; v++){
+                        // console.log("*");
+                        if(vehicles[i].links[v].type == "Main Photo"){
+                            text = vehicles[i].links[v].url;
+                            // console.log(text);
+                        }
+                    }
+                }
+            }
+            html = html + '    <img src="' + text + '" alt="" class="listingImage" onclick="ViewVehicle(\'' + vehicles[i].vin + '\',\'' + vehicles[i].dealerId + '\');">';
+            html = html + '    <div class="listingInfo" onclick="ViewVehicle(\'' + vehicles[i].vin + '\',\'' + vehicles[i].dealerId + '\');">';
+            html = html + '        <h4 class="listingName">' + vehicles[i].year + ' ' + vehicles[i].make + ' ' + vehicles[i].model + '</h4>';
+            html = html + '        <p class="listingPrice">$' + vehicles[i].maxPrice + '</p>';
+            html = html + '        <p class="listingReferralFee">Referral Fee: $' + vehicles[i].refferalFee + '</p>';
+            html = html + '        <p  class="listingViews">4420 views</p>';
+            html = html + '    </div>';
+            html = html + '    <i class="fas fa-ellipsis-h" class="listingsettingBtn" onclick="listingSettings('+i+')"></i>';
+            html = html + '</li>';
+        }
+
+        document.querySelector('.loading').style = "display:none;"
+
+        $(".userActiveListingCount span").empty();
+        $(".userActiveListingCount span").append(carCountValue);
+
+        $(".userName").empty();
+        $(".userName").append(gUserTest.firstName);
+
+        $("#ActiveListing").empty();
+        $("#ActiveListing").append(html);
+    }
+
+    function GetViewListing(i) {
+        var obj = new Object();
+        // obj.dealerId = gDealerId;
+        obj.model = $("#ModelSearch").val();
+        obj.make = $("#MakeSearch").val();
+        obj.yearMin = parseInt($("#YearMinSearch").val());
+        obj.yearMax = parseInt($("#YearMaxSearch").val());
+        obj.vehicleType = $("#VehicleTypeSearch").val();
+        obj.isSold = false;
+        obj.priceMin = parseFloat($("#PriceMinSearch").val());
+        obj.priceMax = parseFloat($("#PriceMaxSearch").val());
+        obj.priceType = $("#PriceTypeSearch option:selected").val();
+        obj.city = '';
+        obj.province = '';
+        obj.isSold = '';
+        if ($("#IsSoldSelect option:selected").val() === "1") { obj.isSold = 'true'; }
+        var index = i;
+        console.log(index);
+        ListVehicles(obj).then(function (list) {
+            console.log(list);
+            ViewVehicle(list,index);
+        })
+    }
+
+    function ViewVehicle(vehicles,index){
+        window.location = "/Home/CarView?vin=" + vehicles[index].vin + "&dealerId=" + vehicles[index].dealerId;
+    }
+
+
+    function GetDeleteVehicle(i) {
+        var obj = new Object();
+        // obj.dealerId = gDealerId;
+        obj.model = $("#ModelSearch").val();
+        obj.make = $("#MakeSearch").val();
+        obj.yearMin = parseInt($("#YearMinSearch").val());
+        obj.yearMax = parseInt($("#YearMaxSearch").val());
+        obj.vehicleType = $("#VehicleTypeSearch").val();
+        obj.isSold = false;
+        obj.priceMin = parseFloat($("#PriceMinSearch").val());
+        obj.priceMax = parseFloat($("#PriceMaxSearch").val());
+        obj.priceType = $("#PriceTypeSearch option:selected").val();
+        obj.city = '';
+        obj.province = '';
+        obj.isSold = '';
+        if ($("#IsSoldSelect option:selected").val() === "1") { obj.isSold = 'true'; }
+        var index = i;
+        console.log(index);
+        ListVehicles(obj).then(function (list) {
+            console.log(list);
+            console.log(list[i]);
+            console.log(index);
+            LoadVehicles(list,index);
+            var selectedVin = list[i].vin;
+            var dealerId = list[i].dealerId;
+            DeleteVehicle(selectedVin,dealerId);
+        });
+    }
+
+    function DeleteVehicle(vin, dealerId){
+    var obj = new Object();
+    obj.vin=vin;
+    obj.dealerId=dealerId;
+        $.ajax({
+            type: "PUT",
+            url: "/Vehicle/Delete",
+            data: obj,
+            cache: false,
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded",
+            success: function (results) {
+                GetCurrentUser();
+                location.reload();
+            },
+            error: function (results) {
+                alert("Error");
+            },
+        });
+    }
+
+
+    function GetEditVehicle(i) {
+        var obj = new Object();
+        // obj.dealerId = gDealerId;
+        obj.model = $("#ModelSearch").val();
+        obj.make = $("#MakeSearch").val();
+        obj.yearMin = parseInt($("#YearMinSearch").val());
+        obj.yearMax = parseInt($("#YearMaxSearch").val());
+        obj.vehicleType = $("#VehicleTypeSearch").val();
+        obj.isSold = false;
+        obj.priceMin = parseFloat($("#PriceMinSearch").val());
+        obj.priceMax = parseFloat($("#PriceMaxSearch").val());
+        obj.priceType = $("#PriceTypeSearch option:selected").val();
+        obj.city = '';
+        obj.province = '';
+        obj.isSold = '';
+        if ($("#IsSoldSelect option:selected").val() === "1") { obj.isSold = 'true'; }
+        var index = i;
+        console.log(index);
+        document.querySelector(".editVehicleContainer").style = "display:flex !important;";
+        ListVehicles(obj).then(function (list) {
+            console.log(list);
+            console.log(index);
+            console.log(list[i].vin);
+            LoadVehicles(list,index);
+            currentVehicle = list[i];
+            console.log(currentVehicle);
+            $(".editVin").val(currentVehicle.vin);
+            $(".editMileage").val(currentVehicle.mileage);
+            $(".editNotes").val(currentVehicle.notes);
+            $(".editMinPrice").val(currentVehicle.minPrice);
+            $(".editMaxPrice").val(currentVehicle.maxPrice);
+
+        });
+    }
+
+    function GetEditPriceVehicle(i) {
+        var obj = new Object();
+        // obj.dealerId = gDealerId;
+        obj.model = $("#ModelSearch").val();
+        obj.make = $("#MakeSearch").val();
+        obj.yearMin = parseInt($("#YearMinSearch").val());
+        obj.yearMax = parseInt($("#YearMaxSearch").val());
+        obj.vehicleType = $("#VehicleTypeSearch").val();
+        obj.isSold = false;
+        obj.priceMin = parseFloat($("#PriceMinSearch").val());
+        obj.priceMax = parseFloat($("#PriceMaxSearch").val());
+        obj.priceType = $("#PriceTypeSearch option:selected").val();
+        obj.city = '';
+        obj.province = '';
+        obj.isSold = '';
+        if ($("#IsSoldSelect option:selected").val() === "1") { obj.isSold = 'true'; }
+        var index = i;
+        console.log(index);
+        document.querySelector(".editPriceVehicleContainer").style = "display:flex !important;";
+        ListVehicles(obj).then(function (list) {
+            console.log(list);
+            console.log(index);
+            console.log(list[i].vin);
+            LoadVehicles(list,index);
+            currentVehicle = list[i];
+            console.log(currentVehicle);
+            $(".editVin").val(currentVehicle.vin);
+            $(".editMileage").val(currentVehicle.mileage);
+            $(".editNotes").val(currentVehicle.notes);
+            $(".editMinPrice").val(currentVehicle.minPrice);
+            $(".editMaxPrice").val(currentVehicle.maxPrice);
+            $(".editReferralFee").val(currentVehicle.refferalFee);
+
+        });
+    }
+
+    function SaveEdit() {
+        gVehicleTest = currentVehicle;
+        gVehicleTest.vin = $(".editVin").val();
+        gVehicleTest.mileage = $(".editMileage").val();
+        gVehicleTest.notes = $(".editNotes").val();
+        // gVehicleTest.priceMin = $(".editMinPrice").val();
+        // gVehicleTest.priceMax = $(".editMaxPrice").val();
+
+
+        document.querySelector(".editVehicleContainer").style = "display:none !important;";
+        $(".editVehicleContainer").style = "display:none;";
+        SaveVehicle(gVehicleTest).then(function (result) {
+            gVehicleTest = result;
+            //DisplayVehicle(result);
+            console.log(result);
+            SearchVehicles();
+
+            location.reload();
+        });
+    }
+
+    function SaveEditPricing() {
+        gVehicleTest = currentVehicle;
+        // gVehicleTest.vin = $(".editVin").val();
+        // gVehicleTest.mileage = $(".editMileage").val();
+        // gVehicleTest.notes = $(".editNotes").val();
+        gVehicleTest.minPrice = $(".editMinPrice").val();
+        gVehicleTest.maxPrice = $(".editMaxPrice").val();
+        gVehicleTest.refferalFee = $(".editReferralFee").val();
+
+
+        document.querySelector(".editPriceVehicleContainer").style = "display:none !important;";
+        $(".editPriceVehicleContainer").style = "display:none;";
+        SaveVehicle(gVehicleTest).then(function (result) {
+            gVehicleTest = result;
+            //DisplayVehicle(result);
+            console.log(result);
+            SearchVehicles();
+
+            location.reload();
+        });
+    }
+
+
+
+function loadScanner() {
+
+}
+
+function barCodeScanner() {
+    @* var w = window.innerWidth-100; *@
+    loadCamera();
+    @* var w = window.innerWidth; *@
+    @* document.querySelector("video").style = "width:"+w+"px !important;"; *@
+    document.querySelector("#barCodeScannerContainer").style = "display:flex;";
+
+}
+
+function showEnterVin() {
+
+}
+
+function capture() {
+
+}
+
+</script>
+<script src="~/Scripts/Assets/Js/privileges.js"></script>
+    </script>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <Script>
+        GetUser();
+    </Script>
+
+}
+else
+{
+    <Script>
+        guestprivileges();
+    </Script>
+
+}
+</html>

@@ -1,0 +1,184 @@
+/* Header */
+.wrapper{
+    align-items: center;
+    padding:0 0 100px 0;
+}
+
+.wrapper .banner{
+    background:#79C6AC ;
+    width:100%;
+    height:25vh;
+}
+
+.userInfo{
+    align-items: center;
+    position: relative;
+    top:-60px;
+    width:80vmin;
+}
+
+.userImage{
+    border:4px solid white;
+    background:#8B9196;
+    border-radius: 50%;
+    overflow: hidden;
+    height:100px;
+    width:100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.userImage i{
+    color: white;
+}
+
+.userName{
+    margin:10px 0;
+}
+
+.userRole{
+    color:#79C6AC;
+}
+
+.userRating{
+    flex-direction: row;
+    margin:10px 0;
+}
+
+.userRating i{
+    color:goldenrod;
+}
+
+.carsSold{
+    font-size: small;
+    margin:0 0 20px 0;
+    color:#8b9196;
+    flex-direction: row;
+}
+
+.carsSold span{
+    font-size: small;
+    margin:0 0 0 5px;
+    color:#8b9196;
+}
+
+.userBio{
+    font-size: small;
+    color:#8b9196;
+    text-align: center;
+}
+
+
+.subInfo{
+    margin:0 0 20px 0;
+}
+
+.subInfo h4{
+    margin:15px 0 5px 0;
+    color:#79C6AC ;
+}
+
+.subInfo p{
+    font-size: small;
+}
+
+.socialMediaAccounts{
+    flex-direction: row;
+    margin:30px 0 0 0;
+}
+
+.socialMediaAccounts li{
+    margin:10px;
+}
+
+.socialMediaAccounts li i{
+    color:#79C6AC ;
+}
+
+.editProfileBtn{
+    margin:10px 0 0 0;
+    width:300px;
+    padding:15px 0;
+    border:none;
+    align-items: center;
+    background:#17242D;
+    border-radius: 10px;
+    color:white;
+}
+
+
+.accountMenuListItems{
+    position:relative;
+}
+
+.count{
+    position:absolute;
+    top:0;
+    right:0;
+    height:15px;
+    width:15px;
+    justify-content:center;
+    align-items:center;
+    background:white;
+    color:#808080;
+    border-radius:20px;
+    font-size:10px;
+}
+
+.cardContainer{
+    margin:50px 0 0 0;
+}
+
+.cardContainer li{
+    filter: drop-shadow(0px 15px 10px #00000023);
+    border-radius: 10px;
+    background:white;
+    padding:20px 20px 20px 100px;
+    margin:0 0 50px 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position:relative;
+}
+
+.icon{
+    
+    filter: drop-shadow(0px 15px 10px #0000001e);
+    background:#79C6AC;
+    border-radius: 10px;
+    left:-20px;
+    width:100px;
+    height:100px;
+    justify-content: center;
+    align-items: center;
+    position:absolute;
+}
+
+.icon i{
+    color:white;
+}
+
+.info a{
+    font-size: small;
+    flex-direction: row;
+    
+    color:#8b9196;
+    padding:10px 0 0 0;
+}
+
+.info h3{
+    flex-direction: row;
+}
+
+.info h3 span{
+    margin:0 0 0 5px;
+    
+    color:#79C6AC ;
+}
+
+
+.info a i{
+    margin:0 5px 0 0;
+    
+    color:#8b9196;
+}

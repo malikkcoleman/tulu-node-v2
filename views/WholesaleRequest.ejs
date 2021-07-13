@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="~/Scripts/Assets/Webfonts/styles/all.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/wholesaleRequest.css" />
+    <link rel="stylesheet" href="styles/myAccountMenu.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/Assets/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    </nav>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+
+
+    <div class="container body-content">
+        <div class="requestContainer">
+            <ul class="requestList" id="requestList">
+                <li class="requestListItem">
+                	<div class="requestImage">
+                		<img src="" alt="">
+                	</div>
+                	<div class="requestInfo">
+                		<h4 class="requestCarName">Car Name</h4>
+                		<p class="requestCarPrice">$42069</p>
+                	</div>
+                    <div class="requestStatus">
+                        Pending
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="MyAccountMenu" class="myAccountMenu">
+        <ul class="accountMenuList">
+            <li class="accountMenuListItems">
+                <a href="/Home/wholesalerequest">
+                    <i class="far fa-user fa-2x accountMenuIcon"></i>
+                    Request
+                </a>
+            </li>
+            <li class="accountMenuListItems">
+                <a href="/Home/wholesaledealer">
+                    <i class="fas fa-columns fa-2x accountMenuIcon"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li class="accountMenuListItems">
+                <a href="/Home/Schedule">
+                    <i class="far fa-calendar-alt fa-2x accountMenuIcon"></i>
+                    Schedule
+                </a>
+            </li>
+            <li class="accountMenuListItems">
+                <a href="/Home/Contact">
+                    <i class="fas fa-phone fa-2x accountMenuIcon"></i>
+                    Contact Us
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</body>
+<script src="~/Scripts/Assets/Js/sideMenu.js"></script>
+<script src="~/Scripts/Assets/Js/privileges.js"></script>
+    </script>
+
+    @if (User.Identity.IsAuthenticated) {
+        <Script>
+            GetUser();
+        </Script>      
+    }else{
+        <Script>
+            guestprivileges();
+        </Script> 
+    }
+</html>

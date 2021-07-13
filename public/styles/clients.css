@@ -1,0 +1,121 @@
+.clientContainer {
+    margin: 60px 0 0 0;
+}
+
+.clientListItem {
+    border-bottom: 1px solid #8b91964b;
+    padding: 15px;
+    flex-direction: row;
+}
+
+.clientImage {
+    /* background:#79C6AC; */
+    border: 4px solid #79C6AC;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 70px;
+    height: 70px;
+}
+
+.clientInfo {
+    margin: 0 0 0 20px;
+    justify-content: center;
+}
+
+.clientName {
+    color: #79C6AC;
+}
+
+.clientInfo h3 {
+    color: #79C6AC;
+}
+
+.clientInfo p {
+    color: #8b9196;
+}
+
+.clientInfo .phoneNumber, .clientrInfo .hours, .clientInfo .listing {
+    font-size: small;
+}
+
+
+.accountMenuListItems {
+    position: relative;
+}
+
+.count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 15px;
+    width: 15px;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    color: #808080;
+    border-radius: 20px;
+    font-size: 10px;
+}
+
+.cardContainer {
+    margin: 50px 0 0 0;
+}
+
+    .cardContainer li {
+        filter: drop-shadow(0px 15px 10px #00000023);
+        border-radius: 10px;
+        background: white;
+        padding: 20px 20px 20px 100px;
+        margin: 0 0 50px 0;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+    }
+
+.icon {
+    filter: drop-shadow(0px 15px 10px #0000001e);
+    background: #79C6AC;
+    border-radius: 10px;
+    left: -20px;
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+    .icon i {
+        color: white;
+    }
+
+.info a {
+    font-size: small;
+    flex-direction: row;
+    color: #8b9196;
+    padding: 10px 0 0 0;
+}
+
+.info h3 {
+    flex-direction: row;
+}
+
+    .info h3 span {
+        margin: 0 0 0 5px;
+        color: #79C6AC;
+    }
+
+
+.info a i {
+    margin: 0 5px 0 0;
+    color: #8b9196;
+}
+
+.addClient{
+    align-items: center;
+    padding:20px 0;
+}
+
+.addClient i{
+    color:#79C6AC;
+}

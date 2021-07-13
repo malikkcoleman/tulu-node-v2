@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="~/Scripts/Assets/Webfonts/styles/all.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/about.css" />
+    <link rel="stylesheet" href="styles/footer.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    
+    <script type="text/javascript" src="~/Scripts/Assets/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    </nav>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+
+    <div class="container body-content">
+
+        <div class="header">
+            <h1>About us</h1>
+        </div>
+
+        <div class="vision">
+            <h2>Vision</h2>
+            <img src="images/vision.jpg" alt="">
+            <p>
+                We are building a social marketplace and system where the process is transparent, our customers are working with people they trust and continue to innovate the consumer rewards space.
+                </br></br>
+                We foster transparency, positive customer experience and opportunity
+            </p>
+        </div>
+
+        <div class="values">
+            <h2>Values</h2>
+            <ul>
+                <li>
+                    <img src="images/trust398.jpg" alt="">
+                    <h4>Integrity and Trust</h4>
+                    <p>As our most important value, we never compromise on integrity and trust. We collaborate with our customers to achieve their goals and ambitions. We respect and work together with local communities. And at the heart of it all, we always take care of the people that make up Tulu and the values Tulu stands for.</p>
+                </li>
+                <li>
+                    <img src="images/suv-inov398.jpg" alt="">
+                    <h4>Innovate for a better future</h4>
+                    <p>Our future is full of opportunities. Just as the consumer landscape and technology space is changing, we too adapt and innovate, to enrich the quality of life of future generations.</p>
+                </li>
+                <li>
+                    <img src="images/quality.jpg" alt="">
+                    <h4>Commit to the highest quality standards</h4>
+                    <p>Quality always comes first. No exceptions. We will commit to this promise with confidence and conviction.</p>
+                </li>
+            </ul>
+        </div>
+
+
+
+    </div>
+    <footer>
+        <ul class="footerList">
+            <li class="footerListItem">
+                <a href="/Home/About">
+                    <h4>About</h4>
+                </a>
+            </li>
+            <li class="footerListItem">
+                <a href="/">
+                    <h4>Partners</h4>
+                </a>
+                <ul class="footerSubLinkList">
+                    <li class="SubLinkListItem">
+                        <a href="/Home/DealershipList">Dealerships</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="footerListItem">
+                <a href="/">
+                    <h4>Customer Support</h4>
+                </a>
+                <ul class="footerSubLinkList">
+                    <li class="SubLinkListItem">
+                        <a href="/">FAQ</a>
+                    </li>
+                    <li class="SubLinkListItem">
+                        <a href="/">Feedback and Comments</a>
+                    </li>
+                    <li class="SubLinkListItem">
+                        <a href="/Home/Contact">Contact Us</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </footer>
+</body>
+<script src="~/Scripts/Assets/Js/sideMenu.js"></script>
+<script src="~/Scripts/Assets/Js/privileges.js"></script>
+    </script>
+
+    @if (User.Identity.IsAuthenticated) {
+        <Script>
+            GetUser();
+        </Script>      
+    }else{
+        <Script>
+            guestprivileges();
+        </Script> 
+    }
+</html>
+

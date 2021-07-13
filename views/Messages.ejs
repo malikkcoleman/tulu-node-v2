@@ -1,0 +1,172 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="~/Scripts/Assets/Webfonts/styles/all.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/messages.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/Assets/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    </nav>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+
+    <div class="questions">
+        <h2>Questions?</h2>
+        <p>Email us now at 
+        <a href="mailto: info.tulucanada.com">info.tulucanada.com</a>
+        !
+        </p>
+    </div>
+
+<!-- THIS NEEDS FIXING -->
+    <div class="container body-content messages" style="margin:50px 0 0 0;">
+        <h2>Messages</h2>
+        <!-- <button class="fix" stlye=""></button> -->
+        <div class="messageContainer">
+            <ul id="MessagesList">
+            </ul>
+        </div>
+        <div id="MessagesDiv">
+        </div>
+        <div class="messageThread">
+            <div class="boxContainer">
+                <div class="inbox" onclick="showInbox()">
+                    Inbox
+                </div>
+                <div class="outbox" onclick="showOutbox()">
+                    Outbox
+                </div>
+            </div>
+            <ul class="messageThreadContainer" id="messageInboxThreadContainer">
+            </ul>
+            <ul class="messageThreadContainer" id="messageOutboxThreadContainer" style="display:none;">
+            </ul>
+        </div>
+
+        <div class="newMessageContainer">
+            <div class="wrapper">
+            <div id="DealerList" style="visibility: hidden"></div>
+            <div id="DealerVehicles" style="visibility: hidden"></div>
+            <div id="DealerUsers" style="visibility: hidden"></div>
+            <div id="TuluList" style="visibility: hidden"></div>
+                <input type="hidden" id="ThreadValueId" value="" />
+                <label>Subject:</label>
+                <input type="text" id="SubjectText" value="" />
+                <label>Body:</label>
+                <input type="text" id="BodyText" value="" />
+                <label>Is Read:</label>
+                <select id="IsReadSelect" disabled>
+                    <option value="0">False</option>
+                    <option value="1">True</option>
+                </select>
+                <button onclick="NewMessage();">Send Message</button>
+            </div>
+        </div>
+        <div class="replyMessageContainer">
+            <div class="wrapper">
+            <div id="DealerList" style="visibility: hidden"></div>
+            <div id="DealerVehicles" style="visibility: hidden"></div>
+            <div id="DealerUsers" style="visibility: hidden"></div>
+            <div id="TuluList" style="visibility: hidden"></div>
+                <input type="hidden" id="ReaplyThreadValueId" value="" />
+                <label>Subject:</label>
+                <input type="text" id="ReplySubjectText" value="" disabled/>
+                <label>Body:</label>
+                <input type="text" id="ReplyBodyText" value="" />
+                <label>Is Read:</label>
+                <select id="IsReadSelect">
+                    <option value="0">False</option>
+                    <option value="1">True</option>
+                </select>
+                <button onclick="replyMessage();">Send Message</button>
+            </div>
+        </div>
+        <div onclick="showNewMessage();" class="newMessage">
+            New Message
+        </div>
+        <div onclick="showReplyMessage();" class="replyMessage">
+            Send Reply
+        </div>
+    </div>
+
+</body>
+<script src="~/Scripts/Assets/Js/sideMenu.js"></script>
+<script type="text/javascript" src="~/Scripts/Assets/Js/Helpers/MessagesHelper.js"></script>
+<script src="~/Scripts/Assets/Js/privileges.js"></script>
+<script>
+    window.onload = function () {
+        ListDealers().then(function (results) {
+            var html = '<label>Dealers:</label> <select id="DealerSelect" onchange="GetDealerValues();"><option value=""></option>';
+            for (var i = 0; i < results.length; i++) {
+                html += '<option value="' + results[i].id + '">' + results[i].name + '</option>';
+            }
+            html += '</select>';
+            $("#DealerList").empty();
+            $("#DealerList").append(html);
+            GetCurrentUser();
+            
+            if (userRole === "Tulu") {
+                document.getElementById("DealerList").style.visibility = "visible";
+                document.getElementById("DealerVehicles").style.visibility = "visible";
+                document.getElementById("DealerUsers").style.visibility = "visible";
+                console.log("user is a tulu!!!");
+            }else {
+                document.getElementById("TuluList").style.visibility = "visible";
+                console.log("user is not a tulu!!")
+            }
+        });
+        var hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf("?") + 1).split("&");
+        
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split("=");
+            if (hash[0] === "TargetId") {
+                selectedTuluId = hash[1];
+                document.querySelector('.newMessageContainer').style = 'display:flex;';
+                SelectedTulu();
+            }else{
+                TestTuluList();
+            }
+        }
+    }
+</script>
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    <Script>
+        GetUser();
+    </Script>
+
+}
+else
+{
+    <Script>
+        guestprivileges();
+    </Script>
+
+}
+</html>

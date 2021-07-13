@@ -1,0 +1,323 @@
+﻿/* Header */
+.header {
+    margin: 50px 0 0 0;
+    background-color: #83dabd;
+    background:linear-gradient(#83dabd,white);
+    height: 80vh;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.header img{
+    height:400px;
+    margin:20px 0;
+}
+
+.header .mobile{
+    display:none;
+}
+
+.header .desktop{
+    display:flex;
+}
+
+.header .bannerTesla{
+    filter: drop-shadow(0 10px 10px #00000079); 
+    opacity: 1;
+    height:500px;
+}
+
+.header h1 {
+    color: white;
+    font-size: 3em;
+}
+
+.header h3, .header p {
+    color: white;
+    text-align: center;
+}
+
+.searchSection{
+    padding:20px 280px;
+}
+
+.searchSection .wrapper{
+    flex-direction: row;
+    align-items: center;
+}
+
+.searchSection label{
+    margin:0 0 0 20px;
+    color:#83dabd;
+    font-size: x-large;
+}
+
+.searchSection input{
+    margin:0 0 0 10px;
+    width:600px;
+    padding:10px;
+    border-radius: 10px;
+    border:2px solid #83dabd;
+    color:#83dabd;
+}
+
+.searchSection button{
+    background:#83dabd;
+    border:2px solid #83dabd;
+    color:white;
+    width:150px;
+    margin:0 0 0 10px;
+    padding:10px;
+    border-radius: 10px;
+    font-size: 14px;
+    align-items: center;
+}
+
+
+
+/* 1st Section */
+/* Get Approved & Cars Worth */
+.firstSection {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.firstSection div {
+    width: 500px;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.firstSection div a {
+    justify-content: center;
+    align-items: center;
+}
+
+.getApproved a img{
+    filter: drop-shadow(0 10px 10px #0000001a);
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.getApproved a img,.browse a img{
+    width:350px;
+}
+
+.getApproved a h2,.browse a h2{
+    color:#83dabd;
+    margin:20px 0 0 0;
+}
+
+
+/* 2nd Section */
+/* Partners */
+.secondSection {
+    flex-direction: column;
+    align-items: center;
+    background:#79C6AC;
+    padding:50px 0;
+}
+
+.partnerList {
+    width:unset;
+    flex-direction: row;
+    align-items: center;
+    padding: 30px 0;
+}
+
+.partnerListItems {
+    margin: 10px 20px;
+}
+
+.dealershipHeading {
+    color: white;
+    padding: 20px 0;
+}
+
+
+.partnerListItems img{
+    width:250px;
+}
+
+/* 3rd Section */
+/* Influencers */
+.thirdSection {
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.influencerHeading {
+    padding: 20px 0;
+}
+
+.influencerList {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.influencerListItems {
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+}
+
+.influencerImage {
+    margin: 20px 0 0 0;
+    border: 4px solid #79C6AC;
+    background:#79C6AC;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    display:flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.influencerImage img{
+    width: 150px;
+}
+
+.influencerDescription, .influencerName {
+    text-align: center;
+    padding: 5px 0;
+}
+
+.influencerName {
+    margin:10px 0 0 0;
+}
+
+
+.influencerName {
+    color: #79C6AC;
+}
+
+/* 4th Section */
+/* PopularCars */
+.fourthSection {
+    padding: 30px 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.videoContainer {
+    justify-content: center;
+    align-items: center; 
+}
+
+.videoContainer h2 {
+    text-align: center;
+}
+
+
+.videoContainer video{
+    margin:20px 0;
+}
+
+
+@media screen and (max-width: 600px) {
+    .header {
+        flex-direction: column-reverse;
+        z-index: -3;
+        height:60vh;
+        overflow: hidden;
+    }
+
+    .header img{
+        height:250px;
+        margin:0px 0;
+        z-index: -1;
+    }
+
+    .header .mobile{
+        display:flex;
+    }
+    
+    .header .desktop{
+        display:none;
+    }
+
+    .header .bannerTesla{
+        filter: drop-shadow(0 10px 10px #00000079); 
+        position: absolute;
+        z-index: -2;
+        opacity: 0.2;
+        height:250px;
+    }
+
+    .searchSection{
+        padding:20px 15px;
+    }
+
+    .searchSection .wrapper{
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .searchSection label{
+        margin:0 0 0 20px;
+        color:#83dabd;
+        font-size: x-large;
+    }
+
+    .searchSection input{
+        margin:0 0 0 10px;
+        width:600px;
+        padding:10px;
+        border-radius: 10px;
+        border:2px solid #83dabd;
+        color:#83dabd;
+    }
+
+    .searchSection button{
+        background:#83dabd;
+        border:2px solid #83dabd;
+        color:white;
+        width:150px;
+        margin:0 0 0 10px;
+        padding:10px;
+        border-radius: 10px;
+        font-size: 14px;
+        align-items: center;
+    }
+
+    .secondSection {
+        flex-direction: column;
+        align-items: center;
+        background:#79C6AC;
+        padding:50px 0;
+    }
+    
+    .partnerList {
+        width:unset;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 50px 0;
+    }
+    
+    .partnerListItems {
+        margin: 10px 20px;
+    }
+    
+    .dealershipHeading {
+        color: white;
+        padding: 20px 0;
+    }
+    
+    .partnerListItems img{
+        width:150px;
+    }
+}

@@ -1,0 +1,278 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="~/Scripts/Assets/Webfonts/styles/all.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/dealerListing.css" />
+    <link rel="stylesheet" href="styles/footer.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/Assets/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    </nav>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+
+
+    <div class="container body-content">
+        <div class="heading">
+
+        </div>
+
+        <div class="loading">        
+            <p>Fetching Data.</p>
+        </div>
+
+        <div class="dealershipContainer">
+            <ul class="dealershipList" id="dealershipList">
+                
+            </ul>
+        </div>
+    </div>
+    <footer>
+        <ul class="footerList">
+            <li class="footerListItem">
+                <a href="/Home/About">
+                    <h4>About</h4>
+                </a>
+            </li>
+            <li class="footerListItem">
+                <a href="/">
+                    <h4>Partners</h4>
+                </a>
+                <ul class="footerSubLinkList">
+                    <li class="SubLinkListItem">
+                        <a href="/Home/DealershipList">Dealerships</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="footerListItem">
+                <a href="/">
+                    <h4>Customer Support</h4>
+                </a>
+                <ul class="footerSubLinkList">
+                    <li class="SubLinkListItem">
+                        <a href="/">FAQ</a>
+                    </li>
+                    <li class="SubLinkListItem">
+                        <a href="/">Feedback and Comments</a>
+                    </li>
+                    <li class="SubLinkListItem">
+                        <a href="/Home/Contact">Contact Us</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </footer>
+
+        <aside id="FilterSettings" class="filterSettings" style="display:none;">
+            <div class="filterSettingContainer">
+                <div class="ModelSearchContainer">
+                    <label for="ModelSearch" class="ModelSearchLabel">Model :</label>
+                    <input type="text" id="ModelSearch" />
+                </div>
+                <div class="MakeSearchContainer">
+                    <label for="MakeSearch" class="MakeSearchLabel">Make :</label>
+                    <input type="text" id="MakeSearch" />
+                </div>
+                <div class="YearMinContainer">
+                    <label for="YearMin" class="YearMinLabel">Year Min :</label>
+                    <input type="text" id="YearMinSearch" value="0" />
+                </div>
+                <div class="YearMaxContainer">
+                    <label for="YearMax" class="YearMaxLabel">Year Max :</label>
+                    <input type="text" id="YearMaxSearch" value="0" />
+                </div>
+                <div class="VehicleTypeContainer">
+                    <label for="VehicleType" class="VehicleTypeLabel">Vehicle Type :</label>
+                    <input type="text" id="VehicleTypeSearch" />
+                </div>
+                <div class="IsSoldContainer">
+                    <label for="IsSold" class="IsSoldLabel">Model :</label>
+                    <select id="IsSoldSelect"><option value="0">False</option><option value="1">True</option></select>
+                </div>
+                <div class="PriceMinContainer">
+                    <label for="PriceMin" class="PriceMinLabel">Price Min :</label>
+                    <input type="text" id="PriceMinSearch" value="0" />
+                </div>
+                <div class="PriceMaxContainer">
+                    <label for="PriceMax" class="PriceMaxLabel">Price Max :</label>
+                    <input type="text" id="PriceMaxSearch" value="0" />
+                </div>
+                <div class="PriceTypeContainer">
+                    <label for="PriceType" class="PriceTypeLabel">Price Type :</label>
+                    <select id="PriceTypeSearch">
+                        <option value=""></option>
+                        <option value="msrp">MSRP</option>
+                        <option value="wholeSalePrice">Whole Sale Price</option>
+                    </select>
+                </div>
+
+                <input type="button" value="Search" id="searchButton" onclick="SearchVehicles();" />
+            </div>
+        </aside>
+</body>
+<script src="~/Scripts/Assets/Js/sideMenu.js"></script>
+<script type="text/javascript" src="~/Scripts/Assets/Js/Helpers/DealerHelper.js"></script>
+<script src="~/Scripts/Assets/Js/loading.js"></script>
+<script>
+    var gDealerId = "";
+    var listVehicle = null;
+
+    window.onload = function () {
+
+        var hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf("?") + 1).split("&");
+        
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split("=");
+            if (hash[0] === "dealerId") {
+                gDealerId = hash[1];
+            }
+        }
+        SearchVehicles(gDealerId);
+        console.log(gDealerId);
+        ListDealers();
+    }
+
+
+    function ListDealers() {
+        $.ajax({
+            type: "PUT",
+            url: "/Dealer/ListNames",
+            cache: false,
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded",
+            success: function (results) {
+                console.log(results);
+                populateHeading(results);
+            },
+            error: function (results) {
+                alert("Error");
+            },
+        });
+    }
+
+
+    function populateHeading(dealership){
+        var html = "";
+        for(var i = 0; i!= dealership.length;i++){
+            if(gDealerId == dealership[i].id){
+                html+='<h2>'+dealership[i].name+'</h2>';
+                html+='<p>'+dealership[i].notes+'</p>';
+                $('.heading').empty();
+                $('.heading').append(html);
+            }
+        }
+    }
+
+
+    function SearchVehicles(gDealerId) {
+        var obj = new Object();
+        obj.dealerId = gDealerId;
+        obj.model = $("#ModelSearch").val();
+        obj.make = $("#MakeSearch").val();
+        obj.yearMin = parseInt($("#YearMinSearch").val());
+        obj.yearMax = parseInt($("#YearMaxSearch").val());
+        obj.vehicleType = $("#VehicleTypeSearch").val();
+        obj.isSold = false;
+        obj.priceMin = parseFloat($("#PriceMinSearch").val());
+        obj.priceMax = parseFloat($("#PriceMaxSearch").val());
+        obj.priceType = $("#PriceTypeSearch option:selected").val();
+        obj.isSold = '';
+        if ($("#IsSoldSelect option:selected").val() === "1") { obj.isSold = 'true'; }
+        ListVehicles(obj).then(function (list) {
+            console.log(list)
+            populateVehicle(list);
+        });
+    }
+
+    function populateVehicle(list){
+        var html ="";
+        for(var i=0;i!=list.length;i++){
+            html+='<li>';
+            var imageUrl = "";
+            if(list[i].links.length != 0){
+                imageUrl=list[i].links[0].url;
+            }
+            //console.log(list[i].links[0].url);
+            for(var x=0;x!=list[i].links.length;x++){
+                if(list[i].links[x].type == "Main Photo"){
+                    imageUrl = list[i].links[x].url;
+                }
+            }
+            html+='    <img src="'+imageUrl+'">';
+            html+='    <div class="info">';
+            html+='        <p class="title">'+list[i].year+' '+list[i].make+' '+list[i].model+'</p>';
+            html+='        <p class="mileage">'+list[i].mileage+'kms</p>';
+            html+='        <p class="price">$'+list[i].maxPrice+'</p>';
+            html+='        <button onclick="viewVehicle('+i+')">View Vehicle</button>';
+            html+='    </div>';
+            html+='</li>';
+        }
+
+        document.querySelector('.loading').style = "display:none;"
+        $('#dealershipList').empty();
+        $('#dealershipList').append(html);
+    }
+
+    async function ListVehicles(obj) {
+
+        const results = await $.ajax({
+            type: "PUT",
+            url: "/Vehicle/List",
+            data: obj,
+            cache: false,
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded",
+            success: function (results) { 
+                listVehicle = results;
+            },
+            error: function (results) { console.log(results.statusText); },
+        });
+        return results;
+    }
+
+    
+    
+    function viewVehicle(index){
+        console.log(index);
+        console.log(listVehicle[index].vin);
+        window.location = "/Home/CarView?vin=" + listVehicle[index].vin + "&dealerId=" + gDealerId;
+    }
+</script>
+<script src="~/Scripts/Assets/Js/privileges.js"></script>
+
+    @if (User.Identity.IsAuthenticated) {
+        <Script>
+            GetUser();
+        </Script>      
+    }else{
+        <Script>
+            guestprivileges();
+        </Script> 
+    }
+
+</html>

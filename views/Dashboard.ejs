@@ -1,0 +1,334 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="~/Scripts/Assets/Webfonts/styles/all.css" />
+    <link rel="stylesheet" href="styles/dashboardNav.css" />
+    <link rel="stylesheet" href="styles/dashboard.css" />
+    <link rel="stylesheet" href="styles/footer.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="~/Scripts/Assets/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    </nav>
+    <a href="~/Views/Shared/_Dashboard.vbhtml">~/Views/Shared/_Dashboard.vbhtml</a>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+
+    <div class="container body-content">
+        <div class="header">
+            <h1>Dashboard</h1>
+        </div>
+
+        <div class="addImage" onclick="addDealerImage()"></div>
+@* <input id="dealer-photos-input" type="file" onchange="UploadFile('dealer-photos-input');" multiple="multiple" accept="image/*"/> *@
+
+
+        <div class="wrapper">
+            <div class="cardContainer">
+                <div class="card carsUploaded">
+                    <div class="icon">
+                        <i class="far fa-copy fa-4x"></i>
+                    </div>
+                    <div class="info">
+                        <p>Cars Uploaded</p>
+                        <p class="uploadCount">
+                        </p>
+                    </div>
+                    <div class="viewCars">
+                        <i class="fas fa-list"></i>
+                        
+                    </div>
+                </div>
+
+                <div class="card carsSold">
+                    <div class="icon">
+                        <i class="fas fa-file-invoice-dollar fa-4x"></i>
+                    </div>
+                    <div class="info">
+                        <p>Total Sales</p>
+                        <p class="dailySalesCount">
+                        </p>
+                    </div>
+                    <div class="lastUpdate">
+                        <i class="far fa-clock"></i>
+                        <p>Last 24 Hours</p>
+                    </div>
+                </div>
+                <div class="card testDriveAppointments">
+                    <div class="icon">
+                        <i class="far fa-calendar-alt fa-4x"></i>
+                    </div>
+                    <div class="info">
+                        <p>New Test Drive Appointments</p>
+                        <p class="testDriveCount">
+                        </p>
+                    </div>
+                    <div class="appointmentUpdate">
+                        <div>
+                            <i class="far fa-calendar-alt"></i>
+                            <a href="/test/testdrive">
+                                Show Appointments
+                            </a>
+                        </div>
+                        <div>
+                            <i class="far fa-calendar-alt"></i>
+                            <a href="/test/testdrive">
+                                View Calendar
+                            </a> 
+                        </div>  
+                    </div>
+                </div>
+            </div>
+            <div class="tabContainer">
+                <div class="tab">
+                    <div class="tabIcon">
+                        <i class="fas fa-user fa-2x"></i>
+                    </div>
+                    <div class="info">
+                        <p>User</p>
+                        <p>Add / Edit Users</p>
+                    </div>
+                </div>
+                <div class="tab">
+                    <div class="tabIcon">
+                        <i class="fas fa-car fa-2x"></i>
+                    </div>
+                    <div class="info">
+                        <p>Inventory</p>
+                        <p>Edit / Delete Vehicles</p>
+                    </div>
+                </div>  
+
+                 <div class="kpiContainer">
+                    <h3>Key Performance Indicators</h3>
+                    <div class="tab">
+                        <div class="tabIcon">
+                            <i class="fas fa-dollar-sign fa-2x"></i>
+                        </div>
+                        <div class="info">
+                            <p>Cars sold</p>
+                            <p>0</p>
+                        </div>
+                    </div>
+                    <div class="tab">
+                        <div class="tabIcon">
+                            <i class="fas fa-share-square fa-2x"></i>
+                        </div>
+                        <div class="info">
+                            <p>Cars shared</p>
+                            <p>0</p>
+                        </div>
+                    </div> 
+                    <div class="tab">
+                        <div class="tabIcon">
+                            <i class="far fa-eye fa-2x"></i>
+                        </div>
+                        <div class="info">
+                            <p>Cars viewed</p>
+                            <p>0</p>
+                        </div>
+                    </div> 
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+    <footer>
+        <ul class="footerList">
+            <li class="footerListItem">
+                <a href="/Home/About">
+                    <h4>About</h4>
+                </a>
+            </li>
+            <li class="footerListItem">
+                <a href="/">
+                    <h4>Partners</h4>
+                </a>
+                <ul class="footerSubLinkList">
+                    <li class="SubLinkListItem">
+                        <a href="/Home/DealershipList">Dealerships</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="footerListItem">
+                <a href="/">
+                    <h4>Customer Support</h4>
+                </a>
+                <ul class="footerSubLinkList">
+                    <li class="SubLinkListItem">
+                        <a href="/">FAQ</a>
+                    </li>
+                    <li class="SubLinkListItem">
+                        <a href="/">Feedback and Comments</a>
+                    </li>
+                    <li class="SubLinkListItem">
+                        <a href="/Home/Contact">Contact Us</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </footer>
+</body>
+<script src="~/Scripts/Assets/Js/sideMenu.js"></script>
+<script type="text/javascript" src="~/Scripts/Assets/Js/Helpers/UploadHelper.js"></script>
+<script type="text/javascript" src="~/Scripts/Assets/Js/Helpers/DealerHelper.js"></script>
+<script type="text/javascript">
+
+    var dealerId = '';
+    window.onload = function () {
+        DealerId();       
+        GetCurrentUser();
+    }
+
+function DealerId() {
+    var obj = new Object();
+    $.ajax({
+        type: "PUT",
+        url: "/Dealer/DashboardSummary",
+        data: obj,
+        cache: false,
+        dataType: "json",
+        contentType: "application/x-www-form-urlencoded",
+        success: function (results) {
+            console.log(results);
+            dealerId = results.id;
+            $(".viewCars").append(`<a href="/home/DealerListing?dealerId=`+dealerId+`"><p>View Cars</p></a>`); 
+        },
+        error: function (results) {
+            alert("Error");
+        },
+    });
+}
+
+</script>
+<script src="~/Scripts/Assets/Js/privileges.js"></script>
+    </script>
+
+    @if (User.Identity.IsAuthenticated) {
+        <Script>
+            GetUser();
+        </Script>      
+    }else{
+        <Script>
+            guestprivileges();
+        </Script> 
+    }
+
+<script>
+    function SaveLink(vl) {
+        var obj = new Object();
+        obj.json_string = JSON.stringify(vl);
+        console.log(vl);
+        $.ajax({
+            type: "PUT",
+            url: "/Vehicle/SaveLink",
+            data: obj,
+            cache: false,
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded",
+            success: function (results) {
+                console.log(results)
+            },
+            error: function (results) {
+                alert("Error");
+            },
+        });
+    }
+
+function UploadFile(inputId) {
+    DoUploadFile(inputId, function (result) {
+
+    });
+}
+function doThis(index, fileData) {
+    $.ajax({
+        url: '/Images/Upload',
+        type: "POST",
+        contentType: false, // Not to set any content header
+        processData: false, // Not to process data
+        data: fileData,
+        success: function (result) {
+            console.log("HELLO");
+            console.log(result);
+
+
+            result.dealerId = dealerId;
+            result.sequence = index;
+
+            var html = "";
+
+            if (inputIdVal === 'dealer-photos-input') {
+                result.type = 'Dealer Photo';
+                result.description = 'displayPhoto';
+
+                
+                SaveLink(result);
+            }
+
+        },
+        error: function (err) {
+            alert(err.statusText);
+        }
+    });
+}
+
+function DoUploadFile(inputId, callback) {
+    inputIdVal = inputId;
+    if (window.FormData !== undefined) {
+
+        var fileUpload = $("#" + inputId).get(0);
+        console.log(fileUpload);
+        var files = fileUpload.files;
+        console.log(files);
+
+        var fileData = new FormData();
+
+        for (var i = 0; i != files.length; i++) {
+            fileData = new FormData();
+            fileData.append(files[i].name, files[i]);
+
+            console.log(files[i].name);
+            console.log(files[i]);
+            var num = i;
+            console.log(i);
+            console.log(num);
+
+            doThis(i, fileData);
+        }
+
+    } else {
+        alert("FormData is not supported.");
+    }
+}
+const addDealerImage = () =>{
+    const fileBtn = document.querySelector(`#dealer-photos-input`);
+    fileBtn.click();
+    
+}
+
+
+</script>
+</html>

@@ -1,0 +1,264 @@
+*{
+    font-family: 'Raleway', sans-serif;
+    color:white;
+    cursor:default;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body{
+    /* background:linear-gradient(dodgerblue, rebeccapurple);
+    background-attachment: fixed; */
+}
+/*@@@@@@@@@@@@@@@@ MAIN @@@@@@@@@@@@@@@@@@@@@@*/
+
+main{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+section{
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sectionHeading{
+    font-size:4vmax;
+    text-align:center;
+    margin-bottom:5vmin;
+}
+
+/*@@@@@@@@@@@@@@@@ CONTACT @@@@@@@@@@@@@@@@@@@@@@*/
+
+
+#contact{
+    padding:5vw 15vw 10vw 15vw;
+}
+
+.contactHeading{
+    margin:0 0 15vw 0;
+    font-size:4vmax;
+    color:#1d1d1d;
+    text-align:center;
+}
+
+.formCharacter{
+    z-index: -1;
+    position:absolute;
+}
+
+.head{
+    width:15vw;
+    top:15vw;
+    left:40vw;
+}
+
+.eyes{
+    width:3vw;
+    height:3vw;
+    top:20vw;
+    left:49.5vw;
+}
+
+
+.rightHand{
+    width:7vw;
+    top: 22.6vw;
+    left:35vw;
+    z-index: 1;
+}
+
+.leftHand{
+    width:7vw;
+    top: 22.6vw;
+    left:55vw;
+    z-index: 1;
+}
+
+form{
+    z-index: 0;
+    /* background:linear-gradient(dodgerblue, rebeccapurple); */
+    background:white;
+    background-attachment: fixed;
+    border-radius:20px;
+    box-shadow: 30px 20px 30px rgba(0, 0, 0, 0.3);
+    padding:4vmax 2vmax 5vmax 2vmax;
+    display:flex;
+    flex-direction: column;
+    position:relative;
+    overflow: hidden;
+}
+
+
+input,label,textarea,button{
+    border-radius: 10px;
+    color:#1d1d1d;
+    resize:none;
+    margin:1vw 2vw;
+    font-size:1.5vmax;
+}
+
+
+input{
+    border:2px solid lightgray;
+    width:30vmax;
+    padding:.5vw;
+}
+
+textarea{
+    border:2px solid lightgray;
+    width:30vmax;
+    height:20vw;
+    padding:.5vw;
+}
+
+button{
+    background:transparent;
+    border:2px solid lightgray;
+    padding:1vw 0;
+    color:#1d1d1d;
+    transition:0.4s;
+}
+
+button:hover{
+    border:2px solid #1d1d1d;
+    color:#1d1d1d;
+    padding:1vw 0;
+    transition:0.4s;
+}
+
+
+/*@@@@@@@@@@@@@@@@ FOOTER @@@@@@@@@@@@@@@@@@@@@@*/
+
+footer{
+    background:black;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer ul {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+footer ul li {
+    margin:2vw 1vw 0vw 1vw;
+}
+
+
+footer p{
+    padding:2vh 0 2vh 0;
+}
+
+@media only screen and (max-width: 600px) {  
+    #contact{
+        padding:0;
+        height:100vh;
+    }
+
+    .contactHeading{
+        margin:0 0 5vh 0;
+        font-size:4vmax;
+        color:#1d1d1d;
+        text-align:center;
+    }
+
+    .contactHeading{
+        margin:0 0 5vh 0;
+        font-size:4vmax;
+        color:#1d1d1d;
+        text-align:center;
+    }
+
+    .formCharacter{
+        visibility: hidden;
+        transition: 0s;
+    }
+
+    form{
+        background:transparent;
+        border-radius:20px;
+        box-shadow:unset;
+        padding:0;
+        display:flex;
+        flex-direction: column;
+    }
+
+    input,label,textarea,button{
+        border-radius: 10px;
+        color:#1d1d1d;
+        resize:none;
+        margin:1vh 2vw;
+        font-size:2vmax;
+    }
+
+    input{
+        border:2px solid lightgray;
+        width:70vw;
+        padding:1.5vw .5vw;
+        color:black;
+    }
+
+    textarea{
+        border:2px solid lightgray;
+        width:70vw;
+        height:30vh;
+        padding:1.5vw .5vw;
+        color:black;
+    }
+
+    button{
+        background:transparent;
+        border:2px solid lightgray;
+        padding:2vh 0;
+        color:#1d1d1d;
+        font-weight: bold;
+        transition:0.4s;
+    }
+
+    button:hover{
+        border:2px solid #1d1d1d;
+        color:#1d1d1d;
+        font-weight: bold;
+        transition:0.4s;
+        padding:2vh 0;
+    }
+
+     
+    footer{
+        padding:1vw 0;
+        background:black;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    footer ul {
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+     
+    footer ul li {
+        font-size: 12px;
+        margin:2vw 2.5vw 2vw 2.5vw;
+    }
+    
+    
+    footer p{
+        padding:2vw 0 30px 0;
+    }
+}

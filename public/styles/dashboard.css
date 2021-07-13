@@ -1,0 +1,220 @@
+﻿
+
+.header {
+    margin: 30px 0 0 0;
+    background-color: #79C6AC;
+    height: 20vh;
+    justify-content: center;
+    align-items: center;
+}
+
+    .header h1 {
+        color: white;
+    }
+
+.wrapper{
+    flex-direction: row;
+    justify-content: center;
+}
+
+.cardContainer {
+    padding: 50px 0 20px 0;
+    flex-direction: column;
+}
+
+.card {
+    position: relative;
+    flex-direction: row;
+    border-radius: 10px;
+    height: 150px;
+    width: 250px;
+    margin-bottom: 50px;
+    padding: 0 30px;
+    box-shadow: 0px 5px 25px #00000042;
+}
+
+.carsUploaded .icon {
+    background: #78afcf;
+}
+
+.carsSold .icon {
+    background: #69cf90;
+}
+
+.testDriveAppointments .icon {
+    background: #78afcf;
+}
+
+.unreadMessages .icon {
+    background: #69cf90;
+}
+
+.icon {
+    height: 100px;
+    width: 100px;
+    position: relative;
+    top: -20px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 2px 15px #00000042;
+}
+
+    .icon i {
+        color: white;
+    }
+
+.card .info {
+    padding: 10px;
+}
+
+    .card .info p {
+        color: #a0a0a0;
+        font-size: small;
+    }
+
+
+
+    .card .info .uploadCount {
+        color: #78afcf;
+        font-size: xx-large;
+    }
+
+    .card .info .dailySalesCount {
+        color: #79C6AC;
+        font-size: xx-large;
+    }
+    
+    .card .info .monthlySalesCount {
+        color: #79C6AC;
+        font-size: xx-large;
+    }
+
+    .card .info .testDriveCount {
+        color: #79C6AC;
+        font-size: xx-large;
+    }
+    .card .info .unreadMessageCount {
+        color: #79C6AC;
+        font-size: xx-large;
+    }
+
+
+.lastUpdate,.appointmentUpdate, .viewCars {
+    border-top: 1px solid #00000028;
+    position: absolute;
+    flex-direction: row;
+    bottom: 0;
+    width: 250px;
+    left: 0;
+    padding: 10px 30px;
+}
+
+.appointmentUpdate{
+    
+    flex-direction: column;
+}
+
+.appointmentUpdate div{
+    flex-direction: row;
+}
+
+.appointmentUpdate div:nth-child(1){
+    margin:0 0 5px 0;
+}
+
+    .appointmentUpdate i, .viewCars i {
+        margin: 0 5px 0 0;
+        color: #a8a8a8;
+    }
+
+    .appointmentUpdate p,.appointmentUpdate a, .viewCars p {
+        color: #a8a8a8;
+        font-size: small;
+    }
+
+    .lastUpdate i, .viewCars i {
+        margin: 0 5px 0 0;
+        color: #a8a8a8;
+    }
+
+    .lastUpdate p,.lastUpdate a, .viewCars p {
+        color: #a8a8a8;
+        font-size: small;
+    }
+
+.tabContainer{
+    /* justify-content: center; */
+    align-items: center;
+    padding: 50px 0 20px 0;
+}
+
+.tabContainer .tab{
+    flex-direction: row;
+    box-shadow: 0px 2px 15px #00000042;
+    border-radius: 10px;
+    overflow: hidden;
+    margin:0 0 20px 50px;
+}
+
+.tabContainer .tab .tabIcon{
+    background:#69cf90;
+    height:60px;
+    width:60px;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabContainer .tab:nth-child(2) .tabIcon{
+    background:#78afcf;
+}
+
+.tabContainer .tab .tabIcon i{
+    color:white;
+}
+
+.tabContainer .tab .info{
+    justify-content: center;
+    padding:0 0 0 20px;
+    width: 400px;
+    flex-direction: column;
+}
+
+.tabContainer .tab .info p{
+    color: #a0a0a0;
+    font-size: small;
+}
+
+.tabContainer .tab .info p:nth-child(2){
+    color: #69cf90;
+}
+
+.kpiContainer{
+    margin:30px 0 0 0;
+}
+
+.kpiContainer h3{
+    padding:0 0 20px 50px;
+}
+
+@media screen and (max-width: 600px) {
+
+    .wrapper{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .tabContainer{
+        padding: 0;
+        margin:0 0 30px 0;
+    }
+
+    .tabContainer .tab .info{
+        width: 250px;
+    }
+
+    .tabContainer .tab{
+        margin:0 0 20px 0;
+    }
+}

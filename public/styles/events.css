@@ -1,0 +1,42 @@
+
+.header{
+    margin:50px 0 0 0;
+    background-color:#79C6AC;
+    height:20vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.header h1{
+    color:white;
+}
+
+
+.events{
+    justify-content: center;
+    align-items: center;
+    margin:40px 0 60px 0;
+}
+
+.events li{
+    width:80vmin;
+    margin:20px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    filter: drop-shadow( 0 10px 10px #00000027);
+    background:white;
+}
+
+.events li .eventInfo{
+    padding:20px;
+}
+
+.events li .eventInfo h3{
+    margin:0 0 10px 0;
+    color:#83dabd;
+}
+
+.events li .eventInfo .eventDate{
+    font-size: small;
+    margin:20px 0 0 0;
+}

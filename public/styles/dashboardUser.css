@@ -1,0 +1,196 @@
+
+
+.header{
+    margin:30px 0 0 0;
+    background-color:#79C6AC;
+    height:20vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.header h1{
+    color:white;
+}
+
+
+.userContainer li{
+    padding:15px 20px;
+    flex-direction: row;
+    position: relative;
+    /* justify-content:space-between; */
+    align-items: center;
+    border-bottom:1px solid #0000002d;
+}
+
+.userContainer li {
+    padding: 15px 20px;
+    flex-direction: row;
+    position: relative;
+     justify-content:space-between; 
+    align-items: center;
+    border-bottom: 1px solid #0000002d;
+}
+
+.image{
+    border:3px solid #79C6AC;
+    height:50px;
+    width:50px;
+}
+
+.userInfo{
+    padding:0 0 0 15px;
+}
+
+.userInfo p{
+    font-size: small;
+    /* width:230px; */
+}
+
+.control{
+    position: absolute;
+    right:20px;
+    flex-direction: row;
+}
+
+.control i{
+    margin:0 0 0 15px;
+}
+
+.addUser{
+    /* border-bottom:1px solid #0000002d; */
+    padding:55px 0 15px 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.addUser i{
+    color:#79C6AC;;
+}
+
+.addNewUser{
+    display:none;
+    height:100vh;
+    width:100vw;
+    position: fixed;
+    background:white;
+    padding:50px 0 0 0;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.userOptionContainer{
+    display:none;
+    height:80vh;
+    width:100vw;
+    position: fixed;
+    background:white;
+    justify-content: center;
+    align-items: center;
+}
+
+.addUserOption{
+    width:80vmin;
+}
+
+.addNewUserForm{
+    width:80vmin;
+    padding:15px 20px;
+}
+
+.searchUser{
+    display:none;
+    height:80vh;
+    width:100vw;
+    position: fixed;
+    background:white;
+    justify-content: center;
+    align-items: center;
+}
+
+.userListContainer{
+    padding:55px 0 0 0;
+    display:none;
+    height:80vh;
+    width:100vw;
+    position: fixed;
+    background:white;
+}
+
+.userList li{
+    border-bottom:1px solid #2e2e2e28;
+    padding:15px 25px;
+}
+
+.userList li:active{
+    background: #a4ddca;
+}
+
+.userList li p:nth-child(1){
+    color:#79C6AC;
+}
+
+label{
+    margin:15px 0 5px 0;
+}
+
+input{
+    border:2px solid #79C6AC;
+    padding:10px 15px;
+    border-radius: 10px;
+}
+
+select{
+    border:2px solid #79C6AC;
+    padding:10px 15px;
+    border-radius: 10px;
+}
+
+button{
+    background: #79C6AC;
+    color:white;
+    border:none;
+    margin-top:30px;
+    padding:15px 20px;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.cancelBtn{
+    margin-top:10px;
+}
+
+.editUser{
+    display:none;
+    height:100vh;
+    width:100vw;
+    position: fixed;
+    background:white;
+    padding:60px 0 0 0;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.editUserForm{
+    width:80vmin;
+    padding:15px 20px;
+}
+
+label{
+    margin:15px 0 5px 0;
+}
+
+.addingUserContainer {
+    display: flex;
+}
+
+
+.addingUserAddressContainer {
+    display: none;
+}
+
+.userContainerControls{
+    flex-direction:row;
+}
+.userContainerControls input{
+    margin:0 0 0 10px;
+}

@@ -1,0 +1,71 @@
+
+
+.heading{
+    margin:80px 10px 0 10px;
+    background:#79C6AC;
+    padding:40px 20px;
+}
+
+.heading h2,.heading p{
+    color:white;
+}
+
+.heading p{
+    margin:5px 0 0 0;
+}
+
+.dealershipContainer{
+    margin:20px 0;
+}
+
+.dealershipList{
+    
+}
+
+.dealershipListItem{
+    border-bottom:1px solid #8b91964b;
+    padding:15px;
+    flex-direction: row;
+}
+
+.dealershipList li{
+    border:1px solid #8b91964b;
+    padding:10px 15px;
+}
+
+.dealershipList li p:nth-child(1){
+    color:#79C6AC;
+}
+
+.dealershipList li p:nth-child(2){
+    font-size: small;
+}
+
+.dealerImage{
+    background:#79C6AC;
+    border-radius: 10px;
+    overflow: hidden;
+    width:100px;
+    height:100px;
+}
+
+.dealerInfo{
+    margin:0 0 0 10px;
+    justify-content: center;
+}
+
+.dealerName{
+    color:#79C6AC;
+}
+
+.dealerInfo h3{
+    color:#79C6AC;
+}
+
+.dealerInfo p{
+    color:#8b9196;
+}
+
+.dealerInfo .phoneNumber,.dealerInfo .hours,.dealerInfo .listing{
+    font-size: small;
+}
