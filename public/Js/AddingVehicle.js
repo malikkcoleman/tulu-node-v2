@@ -19,114 +19,30 @@ var gUserTest = null;
     }
 
     function DeleteLink(index) {
-        var obj = new Object();
-        obj.json_string = JSON.stringify(gVehicleTest.links[index]);
-        $.ajax({
-            type: "PUT",
-            url: "/Vehicle/DeleteLink",
-            data: obj,
-            cache: false,
-            dataType: "json",
-            contentType: "application/x-www-form-urlencoded",
-            success: function (results) {
                 TestGetVehicle();
-            },
-            error: function (results) {
-                alert("Error");
-            },
-        });
     }
 
     function SaveLink(vl) {
-        var obj = new Object();
-        obj.json_string = JSON.stringify(vl);
-        console.log(vl);
-        $.ajax({
-            type: "PUT",
-            url: "/Vehicle/SaveLink",
-            data: obj,
-            cache: false,
-            dataType: "json",
-            contentType: "application/x-www-form-urlencoded",
-            success: function (results) {
-                console.log(results)
-            },
-            error: function (results) {
-                alert("Error");
-            },
-        });
     }
 
     GetCurrentUser();
-function GetCurrentUser() {
-        //FIXME: I think this needs to be deleted
-        $.ajax({
-            type: "PUT",
-            url: "/Users/Current",
-            cache: false,
-            dataType: "json",
-            contentType: "application/x-www-form-urlencoded",
-            success: function (results) {
-                gUserTest = results;
-                for (var i = 0; i < results.roles.length; i++) {
-                    if (results.roles[i].role === 'DealerAdmin' || results.roles[i].role === 'DealerUser') {
-                        if (gDealerId === '') {
-                            gDealerId = results.roles[i].targetId;
-                        }
-                    }
-                }
-            },
-            error: function (results) {
-                alert("Error");
-            },
-        });
+    function GetCurrentUser() {
     }
 
 
 
     async function NewVehicle(vin, dealerId) {
-        var obj = new Object();
-        obj.vin = vin;
-        obj.dealerId = dealerId;
-        const results = await $.ajax({
-            type: "PUT",
-            url: "/Vehicle/New",
-            data: obj,
-            cache: false,
-            dataType: "json",
-            contentType: "application/x-www-form-urlencoded",
-            success: function (results) {
-                // alert(JSON.stringify(results));
-                console.log(results);
-                //console.log(results.year);
-                // LoadVehicleInfo(results)
-            },
-            error: function (results) { console.log(results.statusText); },
-        });
-        return results;
     }
 
     function MakeNewVehicle() {
-        //var vin = '1G1FA1RX1H0123856';
-        var vin = $("#vinNum").val();
-        //var dealerId = 'fb2a156c-b2e8-4174-84cd-61869996a34a';
-        var dealerId = gDealerId;
-
         play();
-        console.log(dealerId);
         NewVehicle(vin, dealerId).then(function (vehicle) {
-            gVehicleTest = vehicle;
-            //alert(JSON.stringify(vehicle));
             TestGetVehicle();
             document.querySelector('.loading').style = "display:none;";
         });
     }
 
     function TestGetVehicle() {
-        //var vin = '1G1FA1RX1H0123856';
-        var vin = $("#vinNum").val();
-        //var dealerId = 'fb2a156c-b2e8-4174-84cd-61869996a34a';
-        var dealerId = gDealerId;
         GetVehicle(vin, dealerId).then(function (vehicle) {
             gVehicleTest = vehicle;
             DisplayVehicle(vehicle);
@@ -136,20 +52,6 @@ function GetCurrentUser() {
     }
 
     async function GetVehicle(vin, dealerId) {
-        var obj = new Object();
-        obj.vin = vin;
-        obj.dealerId = dealerId;
-        const results = await $.ajax({
-            type: "PUT",
-            url: "/Vehicle/Get",
-            data: obj,
-            cache: false,
-            dataType: "json",
-            contentType: "application/x-www-form-urlencoded",
-            success: function (results) { },
-            error: function (results) { console.log(results.statusText); },
-        });
-        return results;
     }
 
     function rangeSlider() {
@@ -365,21 +267,7 @@ function GetCurrentUser() {
 
 
     async function SaveVehicle(vehicle) {
-        var obj = new Object();
-        obj.json_string = JSON.stringify(vehicle);
-        const result = await $.ajax({
-            type: "PUT",
-            url: "/Vehicle/Save",
-            data: obj,
-            cache: false,
-            dataType: "json",
-            contentType: "application/x-www-form-urlencoded",
-            success: function (results) {
-                console.log(results);
-            },
-            error: function (results) { console.log(results.statusText); },
-        });
-        return result;
+
     }
 
     function StartSaving() {
@@ -453,18 +341,6 @@ function GetCurrentUser() {
     }
 
     async function ListVehicles(obj) {
-
-        const results = await $.ajax({
-            type: "PUT",
-            url: "/Vehicle/List",
-            data: obj,
-            cache: false,
-            dataType: "json",
-            contentType: "application/x-www-form-urlencoded",
-            success: function (results) { },
-            error: function (results) { console.log(results.statusText); },
-        });
-        return results;
     }
 
     function LoadVehicles(vehicles) {
