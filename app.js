@@ -1,8 +1,19 @@
 const express = require('express');
 const path = require('path');
 const ejs = require('ejs');
+require('dotenv').config();
+const mongoose = require('mongoose');
 const app = express();
 const fs = require('fs');
+
+mongoose.connect(process.env.DB_CONNECTION, { useUnifiedTopology: true,useNewUrlParser: true });
+
+const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('DB Connected!!!');
+});
 
 
 app.use(function(req,res,next){

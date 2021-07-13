@@ -4,8 +4,10 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "ejs": "^2.7.1",
     "express": "^4.17.1",
+    "mongoose": "^5.13.2",
     "nodemon": "^1.19.4",
     "serve-favicon": "^2.5.0"
   },
