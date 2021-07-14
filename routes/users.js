@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
 // User Model
-const User = require('../models/User');
+const User = require('../models/userSchema');
 
 // Login Page
 router.get('/login',(rerq,res)=>res.render('login'));
@@ -17,12 +17,12 @@ router.get('/register',(rerq,res)=>res.render('register'));
 router.post('/register',(req,res)=>{
     console.log(req.body);
     // res.send('hello');
-    const { name, email, password, password2} = req.body;
+    const { email,fName,lName,password,password2,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,image,phoneNumber} = req.body;
 
     let errors = [];
 
     // Check required fields
-    if(!name || !email || !password || !password2){
+    if(!email||!fName||!lName||!password||!password2||!linkedin||!instagram||!facebook||!bio||!experience||!specialty||!favoriteCar||!currentCar||!phoneNumber){
         errors.push({msg:'Please fill in all fields'});
     }
 
@@ -38,7 +38,7 @@ router.post('/register',(req,res)=>{
 
     if(errors.length > 0){
         res.render('register',{
-            errors,name,email,password,password2
+            errors,image,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
         });
     }else{
         // res.send('Pass');
@@ -50,11 +50,11 @@ router.post('/register',(req,res)=>{
                 // user Exist
                 errors.push({msg:'Email already Exist'})
                 res.render('register',{
-                    errors,name,email,password,password2
+                    errors,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
                 })
             }else{
                 const newUser = new User({
-                    name,email,password
+                    fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
                 });
 
 

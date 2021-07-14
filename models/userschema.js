@@ -37,7 +37,7 @@ const userschema = new mongoose.Schema(
       type: String,
       required: false
     },
-    speciality: {
+    specialty: {
       type: String,
       required: false
     },
@@ -59,7 +59,12 @@ const userschema = new mongoose.Schema(
     },
     role: {
       type: String,
-      required: true
+      required: true,
+      default:'user'
+    },
+    date:{
+      type:Date,
+      default: Date.now
     }
   }
 );

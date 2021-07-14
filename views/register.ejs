@@ -1,32 +1,117 @@
-<div class="row mt-5">
-  <div class="col-md-6 m-auto">
-    <div class="card card-body">
-      <h1 class="text-center mb-3">
-        <i class="fas fa-user-plus"></i> Register
-      </h1>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulu Canada</title>
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/css/all.css" />
+    <link rel="stylesheet" href="../styles/nav.css" />
+    <link rel="stylesheet" href="../styles/register.css" />
+    <link rel="stylesheet" href="../styles/footer.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="../images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    </nav>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+      <div class="container">
       <%- include partials/messages %>
       <form action="/users/register" method="POST">
+
         <div class="form-group">
-          <label for="name">Name</label>
+          <label for="fName">Firstame</label>
           <input
             type="name"
-            id="name"
-            name="name"
+            id="fName"
+            name="fName"
             class="form-control"
-            placeholder="Enter Name"
-            value="<%= typeof name != 'undefined' ? name : '' %>"
+            placeholder="Enter Firstname"
+            value=""
+          />
+        </div>
+        <div class="form-group">
+          <label for="name">Lastame</label>
+          <input
+            type="name"
+            id="lName"
+            name="lName"
+            class="form-control"
+            placeholder="Enter Lastname"
+            value=""
           />
         </div>
         <div class="form-group">
           <label for="email">Email</label>
           <input
-            type="email"
+            type="text"
             id="email"
             name="email"
             class="form-control"
             placeholder="Enter Email"
-            value="<%= typeof email != 'undefined' ? email : '' %>"
+            value=""
           />
+        </div>
+        <div class="form-group">
+          <label for="bio">Bio</label>
+          <input
+            type="text"
+            id="bio"
+            name="bio"
+            class="form-control"
+            placeholder="Enter Bio"
+            value=""
+          />
+        </div>
+        <div class="form-group">
+          <label for="experience">Experience</label>
+          <input type="text" id="experience" name="experience" class="form-control" placeholder="Enter experience" value=""/>
+        </div>
+        <div class="form-group">
+          <label for="specialty">Specialty</label>
+          <input type="text" id="specialty" name="specialty" class="form-control" placeholder="Enter specialty" value=""/>
+        </div>
+        <div class="form-group">
+          <label for="favoriteCar">Favorite Car</label>
+          <input type="text" id="favoriteCar" name="favoriteCar" class="form-control" placeholder="Enter Favorite Car" value=""/>
+        </div>
+        <div class="form-group">
+          <label for="currentCar">Current Car</label>
+          <input type="text" id="currentCar" name="currentCar" class="form-control" placeholder="Enter Current Car" value=""/>
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Enter Phone Number" value=""/>
+        </div>
+        <div class="form-group">
+          <label for="linkedin">Linkedin</label>
+          <input type="text" id="linkedin" name="linkedin" class="form-control" placeholder="Enter Linkedin" value=""/>
+        </div>
+        <div class="form-group">
+          <label for="instagram">Instagram</label>
+          <input type="text" id="instagram" name="instagram" class="form-control" placeholder="Enter Instagram" value=""/>
+        </div>
+        <div class="form-group">
+          <label for="facebook">Facebook</label>
+          <input type="text" id="facebook" name="facebook" class="form-control" placeholder="Enter Facebook" value=""/>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
@@ -56,5 +141,5 @@
       </form>
       <p class="lead mt-4">Have An Account? <a href="/users/login">Login</a></p>
     </div>
-  </div>
-</div>
+    </body>
+</html>

@@ -1,54 +1,37 @@
-.loginContainer{
-    height:75vh;
+.container{
     margin:60px 0 0 0;
     padding:20px;
-    justify-content: flex-end;
-    align-items: center;
 }
 
-.loginContainer label{
-    margin:20px 0 10px 0;
+.form-group{
+    margin:0 0 20px 0;
 }
 
+label{
+    margin:0 0 5px 0;
+}
 
-.inputContainer{
-    flex-direction: row;
-    align-items: center;
-    border:1px solid #79c6ac;
+input{
+    padding:10px 15px;
+    border:2px solid #79C6AC;
     border-radius: 10px;
-    padding:5px 10px;
-    
 }
 
-.loginForm{
-    width:70vmin;
-}
-
-.loginForm input{
-    width:100%;
-    padding:5px;
-    border:none;
-    color:#79c6ac;
-}
-
-.loginForm button{
-    width:70vmin;
-    padding:20px;
-    border-radius:10px;
-    font-family: ralewaySemiBold;
+button{
+    justify-content: center;
     align-items: center;
-}
-
-
-.loginBtn{
-    margin:30px 0 0 0;
+    padding:15px 0;
+    border-radius: 10px;
+    border: none;
     background:#79C6AC;
     color:white;
-    border:none;
+    margin:0 0 20px 0;
 }
-.registerBtn{
-    margin:10px 0 0 0;
-    background:transparent;
+
+.lead{
+    text-align: center;
+}
+
+.lead a{
     color:#79C6AC;
-    border:1px solid #79C6AC;
 }
