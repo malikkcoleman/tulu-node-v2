@@ -26,13 +26,9 @@ app.set('view engine','ejs'); // allows us to exclude the file extension
 // Read HTTP POST data
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/', function(request, response){
-  response.render('index');
-})
-
-app.get('/:page', function(request, response){
-  response.render(request.params.page);
-})
+// ----------------------routes
+app.use(require('./routes/index'));
+// ---------------------------------
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'assets')));
