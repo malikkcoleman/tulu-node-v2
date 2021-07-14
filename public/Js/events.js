@@ -62,8 +62,8 @@ function loadEvents(){
 
 
 function viewEvents(index){
-    window.location = "/Home/ViewEvents?id="+index;
-    // window.location = "/Home/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
+    window.location = "/ViewEvents?id="+index;
+    // window.location = "/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
 }
 
 function loadAEven(){

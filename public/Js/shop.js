@@ -269,9 +269,9 @@ function GetCurrentUser() {
     function carView(index) {
         console.log(listVehicles[index].vin);
         if (gTuluId === "") {
-            window.location = "/Home/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
+            window.location = "/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
         } else {
-            window.location = "/Home/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
+            window.location = "/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
         }
 
     }

@@ -158,9 +158,9 @@ var gMessage = null;
             dataType: "json",
             contentType: "application/x-www-form-urlencoded",
             success: function (results) {
-                // location.href = '/home/messages';
+                // location.href = '/messages';
                 console.log(results);
-                window.location = "/Home/CarView?vin=" + vin + "&dealerId=" + dealerId;
+                window.location = "/CarView?vin=" + vin + "&dealerId=" + dealerId;
             },
             error: function (results) {
                 alert("Error");

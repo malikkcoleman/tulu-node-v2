@@ -78,7 +78,7 @@
                     <div class="BookContainer">
                         <p>Book an appointment?</p>
                         <div class="signInBtn">
-                            <a href="/home/dashboard">Sign In!</a>
+                            <a href="/dashboard">Sign In!</a>
                         </div>
                     </div>
                 }
@@ -141,7 +141,7 @@
     <footer>
         <ul class="footerList">
             <li class="footerListItem">
-                <a href="/Home/About">
+                <a href="/About">
                     <h4>About</h4>
                 </a>
             </li>
@@ -151,7 +151,7 @@
                 </a>
                 <ul class="footerSubLinkList">
                     <li class="SubLinkListItem">
-                        <a href="/Home/DealershipList">Dealerships</a>
+                        <a href="/DealershipList">Dealerships</a>
                     </li>
                 </ul>
             </li>
@@ -167,7 +167,7 @@
                         <a href="/">Feedback and Comments</a>
                     </li>
                     <li class="SubLinkListItem">
-                        <a href="/Home/Contact">Contact Us</a>
+                        <a href="/Contact">Contact Us</a>
                     </li>
                 </ul>
             </li>
@@ -297,11 +297,11 @@
 
 
     function buyNow(){
-        window.location = "/Home/BuyNow?dealership=" + dealership+"&price=" + price+"&vehicle=" + currVehicle+"&address=" + address;
+        window.location = "/BuyNow?dealership=" + dealership+"&price=" + price+"&vehicle=" + currVehicle+"&address=" + address;
     }
 
     function connectWithTulu(selectedTuluId){
-        window.location = "/Home/Connect?dealerId=" + dealerId+"&vin=" + vin+"&tuluId=" + selectedTuluId;
+        window.location = "/Connect?dealerId=" + dealerId+"&vin=" + vin+"&tuluId=" + selectedTuluId;
     }
     
     function SearchVehicles(gDealerId) {
@@ -391,10 +391,10 @@ function addDealerInfo(dealerInfo){
         console.log(vin);
         //LocationChange('carView');
         if (dealerId === "") {
-            //window.location = "/Home/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
+            //window.location = "/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
             alert("error");
         } else {
-            window.location = "/Home/DealerListing?dealerId=" + dealerId;
+            window.location = "/DealerListing?dealerId=" + dealerId;
         }
     }
 
@@ -500,7 +500,7 @@ function addDealerInfo(dealerInfo){
 
     function bookAppointment(tuluId) {
         @* console.log(tuluId) *@
-        window.location = "/Home/booking?vin=" + vin + "&dealerId=" + dealerId + "&tuluId=" + tuluId + "&dealerAddress=" + address ;
+        window.location = "/booking?vin=" + vin + "&dealerId=" + dealerId + "&tuluId=" + tuluId + "&dealerAddress=" + address ;
     }
 
 

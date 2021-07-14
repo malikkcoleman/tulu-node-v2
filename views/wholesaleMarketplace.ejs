@@ -113,7 +113,7 @@
     <footer>
         <ul class="footerList">
             <li class="footerListItem">
-                <a href="/Home/About">
+                <a href="/About">
                     <h4>About</h4>
                 </a>
             </li>
@@ -123,7 +123,7 @@
                 </a>
                 <ul class="footerSubLinkList">
                     <li class="SubLinkListItem">
-                        <a href="/Home/DealershipList">Dealerships</a>
+                        <a href="/DealershipList">Dealerships</a>
                     </li>
                 </ul>
             </li>
@@ -139,7 +139,7 @@
                         <a href="/">Feedback and Comments</a>
                     </li>
                     <li class="SubLinkListItem">
-                        <a href="/Home/Contact">Contact Us</a>
+                        <a href="/Contact">Contact Us</a>
                     </li>
                 </ul>
             </li>
@@ -218,9 +218,9 @@
         console.log(vin);
         //LocationChange('carView');
         if (gTuluId === "") {
-            window.location = "/Home/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
+            window.location = "/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
         } else {
-            window.location = "/Home/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId + "&tuluId=" + gTuluId;
+            window.location = "/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId + "&tuluId=" + gTuluId;
         }
 
     }

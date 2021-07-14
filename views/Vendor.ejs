@@ -368,7 +368,7 @@
         <div id="MyAccountMenu" class="myAccountMenu">
             <ul class="accountMenuList">
                 <li class="accountMenuListItems">
-                    <a href="/Home/Profile">
+                    <a href="/Profile">
                         <i class="far fa-user fa-2x accountMenuIcon"></i>
                         Profile
                     </a>
@@ -380,13 +380,13 @@
                     </a>
                 </li>
                 <li class="accountMenuListItems">
-                    <a href="/Home/Schedule">
+                    <a href="/Schedule">
                         <i class="far fa-calendar-alt fa-2x accountMenuIcon"></i>
                         Schedule
                     </a>
                 </li>
                 <li class="accountMenuListItems">
-                    <a href="/Home/Contact">
+                    <a href="/Contact">
                         <i class="fas fa-phone fa-2x accountMenuIcon"></i>
                         Contact Us
                     </a>
@@ -980,7 +980,7 @@
 
     function carView(index) {
         console.log(listVehicles[index].vin);
-        window.location = "/Home/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
+        window.location = "/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
     }
 
 
@@ -1009,7 +1009,7 @@
     }
 
     function ViewVehicle(vehicles,index){
-        window.location = "/Home/CarView?vin=" + vehicles[index].vin + "&dealerId=" + vehicles[index].dealerId;
+        window.location = "/CarView?vin=" + vehicles[index].vin + "&dealerId=" + vehicles[index].dealerId;
     }
 
     function GetDeleteVehicle(i) {

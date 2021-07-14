@@ -200,7 +200,7 @@ function SaveMessage() {
             if(selectedTuluId==null){
                 location.reload();
             }else{
-                location.href = '/home/messages';
+                location.href = '/messages';
             }
         },
         error: function (results) {
@@ -400,7 +400,7 @@ function getFucked(messages){
         if(messages.messages[i].senderId == userId){
             outboxHtml+='<li>';
             outboxHtml+='<h3 class="subject">Subject: '+messages.messages[i].subject+'</h3>';
-            outboxHtml+='<h3 class="vehicle">Vehicle: <a href="/Home/CarView?vin='+messages.messages[i].vin+'&dealerId=' + messages.messages[i].dealerId+'">'+" "+messages.messages[i].year+' '+messages.messages[i].make+' '+messages.messages[i].model+'</a></h3>';
+            outboxHtml+='<h3 class="vehicle">Vehicle: <a href="/CarView?vin='+messages.messages[i].vin+'&dealerId=' + messages.messages[i].dealerId+'">'+" "+messages.messages[i].year+' '+messages.messages[i].make+' '+messages.messages[i].model+'</a></h3>';
             outboxHtml+='<p class="from">From: '+messages.messages[i].senderName+'</p>';
             outboxHtml+='<p class="when">Time: '+messages.messages[i].timestamp+'</p>';
             outboxHtml+='<p class="mensahe">'+messages.messages[i].message+'</p>';
@@ -409,7 +409,7 @@ function getFucked(messages){
         else{
             inboxHtml+='<li>';
             inboxHtml+='<h3 class="subject">Subject: '+messages.messages[i].subject+'</h3>';
-            outboxHtml+='<h3 class="vehicle">Vehicle: <a href="/Home/CarView?vin='+messages.messages[i].vin+'&dealerId=' + messages.messages[i].dealerId+'">'+messages.messages[i].year+' '+messages.messages[i].make+' '+messages.messages[i].model+'</a></h3>';
+            outboxHtml+='<h3 class="vehicle">Vehicle: <a href="/CarView?vin='+messages.messages[i].vin+'&dealerId=' + messages.messages[i].dealerId+'">'+messages.messages[i].year+' '+messages.messages[i].make+' '+messages.messages[i].model+'</a></h3>';
             inboxHtml+='<p class="from">From: '+messages.messages[i].senderName+'</p>';
             inboxHtml+='<p class="when">Time: '+messages.messages[i].timestamp+'</p>';
             inboxHtml+='<p class="mensahe">'+messages.messages[i].message+'</p>';

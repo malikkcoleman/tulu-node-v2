@@ -391,7 +391,7 @@ var gUserTest = null;
 
     function carView(index) {
         console.log(listVehicles[index].vin);
-        window.location = "/Home/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
+        window.location = "/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
     }
 
 
@@ -420,7 +420,7 @@ var gUserTest = null;
     }
 
     function ViewVehicle(vehicles,index){
-        window.location = "/Home/CarView?vin=" + vehicles[index].vin + "&dealerId=" + vehicles[index].dealerId;
+        window.location = "/CarView?vin=" + vehicles[index].vin + "&dealerId=" + vehicles[index].dealerId;
     }
 
     function GetDeleteVehicle(i) {

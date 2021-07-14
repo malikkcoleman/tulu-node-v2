@@ -21,5 +21,5 @@ function LoadTulus(tulu) {
 }
 
 function ViewTulu(tuluId){
-	window.location = "/home/viewTulu?tuluId=" + tuluList[tuluId].id;
+	window.location = "/viewTulu?tuluId=" + tuluList[tuluId].id;
 }

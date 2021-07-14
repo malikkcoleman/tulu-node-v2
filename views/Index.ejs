@@ -54,13 +54,13 @@
         <!-- First Section -->
         <section class="firstSection">
             <div class="getApproved">
-                <a href="/Home/Shop">
+                <a href="/Shop">
                 <img src="images/approve.jpg" alt="">
                 <h2>Get Approved Now!</h2>
                 </a>
             </div>
             <div class="browse">
-                <a href="/Home/Shop">
+                <a href="/Shop">
                 <img src="images/browse1.png" alt="">
                 <h2>Browse the inventory</h2>
                 </a>
@@ -139,7 +139,7 @@
     <footer>
         <ul class="footerList">
             <li class="footerListItem">
-                <a href="/Home/About">
+                <a href="/About">
                     <h4>About</h4>
                 </a>
             </li>
@@ -149,7 +149,7 @@
                 </a>
                 <ul class="footerSubLinkList">
                     <li class="SubLinkListItem">
-                        <a href="/Home/DealershipList">Dealerships</a>
+                        <a href="/DealershipList">Dealerships</a>
                     </li>
                 </ul>
             </li>
@@ -165,7 +165,7 @@
                         <a href="/">Feedback and Comments</a>
                     </li>
                     <li class="SubLinkListItem">
-                        <a href="/Home/Contact">Contact Us</a>
+                        <a href="/Contact">Contact Us</a>
                     </li>
                 </ul>
             </li>
@@ -174,54 +174,18 @@
     
 </body>
 <script src="Js/sideMenu.js"></script>
-   
 <script src="Js/privileges.js"></script>
-    @if (User.Identity.IsAuthenticated) {
         <Script>
             GetUser();
-        </Script>      
-    }else{
-        <Script>
             guestprivileges();
         </Script> 
-    }
 
 <script>
     function TestTuluList() {
-        //FIXME: I think this needs to be deleted
-        $.ajax({
-            type: "PUT",
-            url: "/Users/ListTulus",
-            //data: obj,
-            cache: false,
-            dataType: "json",
-            contentType: "application/x-www-form-urlencoded",
-            success: function (results) {
-                console.log(results);
-                LoadTulus(results);
-            },
-            error: function (results) {
-                alert("Error");
-            },
-        });
+                // console.log(results);
+                // LoadTulus(results);
     }
     TestTuluList();
-
-    function LoadTulus(tulu){
-        var html = "";
-        for(var x = 0; x!=tulu.length;x++){
-            
-            @* html+='<li class="influencerListItems">';
-            html+='    <div class="influencerImage">'+tulu[x].image+'</div>';
-            html+='    <h3 class="influencerName">Tulu' + tulu[x].firstName + '</h3>';
-            html+='    <p class="influencerDescription">';
-            html+=tulu[x].bio;
-            html+='    </p>';
-            html+='</li>'; *@
-        }
-        @* $('.influencerList').empty(); *@
-        @* $('.influencerList').append(html); *@
-    }
 </script>
 
 </html>
