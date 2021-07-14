@@ -1,5 +1,6 @@
 const https = require("https");
-const querystring = require("querystring");
+const querystring = require("query-string");
+const VIN = "";
 
 // Replace these values with your VIN Decoder API credentials
 const access_key_id = "PnuvF35in4";
@@ -18,8 +19,8 @@ const decoder_query = {
       standard_generic_equipment: "on",
       oem_options: "on",
       optional_generic_equipment: "on",
-      colors: "on",
-      warranties: "on",
+      colors: "off",
+      warranties: "off",
       fuel_efficiency: "on",
       green_scores: "on",
       crash_test: "on",
@@ -105,7 +106,11 @@ const req = https.request(options, (res) => {
 
   res.on("end", function () {
     response_json = JSON.parse(response_string);
-    console.log(response_json);
+    console.log(
+      response_json.query_responses.NodeJS_Sample.us_market_data.common_us_data
+        .basic_data
+    );
+    console.log("test");
   });
 });
 
