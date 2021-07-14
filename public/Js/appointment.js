@@ -4,17 +4,17 @@
     var gUserId = "";
 
     window.onload = function () {
-        ListDealers().then(function (results) {
-            var html = 'Dealers: <select id="DealerSelect" onchange="GetDealerValues();"><option value=""></option>';
-            for (var i = 0; i < results.length; i++) {
-                html += '<option value="' + results[i].id + '">' + results[i].name + '</option>';
-            }
-            html += '</select>';
-            $("#DealerList").empty();
-            $("#DealerList").append(html);
-            GetCurrentUser();
-            GetCurrentUserRole();
-        });
+        // ListDealers().then(function (results) {
+        //     var html = 'Dealers: <select id="DealerSelect" onchange="GetDealerValues();"><option value=""></option>';
+        //     for (var i = 0; i < results.length; i++) {
+        //         html += '<option value="' + results[i].id + '">' + results[i].name + '</option>';
+        //     }
+        //     html += '</select>';
+        //     $("#DealerList").empty();
+        //     $("#DealerList").append(html);
+        //     GetCurrentUser();
+        //     GetCurrentUserRole();
+        // });
     }
 
 function GetCurrentUserRole() {

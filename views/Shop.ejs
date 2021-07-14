@@ -1,10 +1,4 @@
-﻿@using Tulu.Objects.DataObjects
-@{
-    ViewBag.Title = "Home Page";
-    //var user = (Users)ViewData["User"];
-    ////var tuluId = ViewData["TuluId"].ToString();
-    //var dealerId = ViewData["DealerId"].ToString();
-}
+﻿
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,8 +18,6 @@
     <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
 </head>
 <body>
-    @*<input type="hidden" id="GlobalTuluId" value="@tuluId" />*@
-    @*<input type="hidden" id="GlobalDealerId" value="@dealerId" />*@
     <nav id="Nav">
         <a href="/">
             <img src="images/tulu-logo_white.png" alt="">
@@ -64,7 +56,7 @@
                 </div>
                 <div class="MakeSearchContainer">
                     <label for="MakeSearch" class="MakeSearchLabel">Make :</label>
-                    @* <input type="text" id="MakeSearch" /> *@
+
                     <select name="MakeSearch" id="MakeSearch">
                         <option value=""></option>
                         <option value="Ford">Ford</option>
@@ -114,7 +106,7 @@
                 </div>
                 <div class="VehicleTypeContainer">
                     <label for="VehicleType" class="VehicleTypeLabel">Vehicle Type :</label>
-                    @* <input type="text" id="VehicleTypeSearch" /> *@
+
                     <select name="VehicleTypeSearch" id="VehicleTypeSearch">
                         <option value=""></option>
                         <option value="Car">Car</option>
@@ -231,13 +223,10 @@
 
 <script src="Js/privileges.js"></script>
 
-    @if (User.Identity.IsAuthenticated) {
-        <Script>
+    <!-- <Script>
             GetUser();
-        </Script>      
-    }else{
+        </Script>   -->
         <Script>
             guestprivileges();
         </Script> 
-    }
 </html>

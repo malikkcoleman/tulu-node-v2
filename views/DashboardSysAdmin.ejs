@@ -53,13 +53,10 @@
 <script src="Js/privileges.js"></script>
     </script>
 
-    @if (User.Identity.IsAuthenticated) {
-        <Script>
+    <!-- <Script>
             GetUser();
-        </Script>      
-    }else{
+        </Script>   -->
         <Script>
             guestprivileges();
         </Script> 
-    }
 </html>

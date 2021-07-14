@@ -92,7 +92,7 @@
 <script src="Js/dealership.js"></script>
 <script src="Js/privileges.js"></script>
 
-<script>
+<!-- <script>
     function ListDealers() {
     $.ajax({
         type: "PUT",
@@ -110,29 +110,29 @@
 }
 
 ListDealers();
-</script>
+</script> -->
 
 
 
 
 <script>
-    function ListDealers() {
-        $.ajax({
-            type: "PUT",
-            url: "/Dealer/ListNames",
-            cache: false,
-            dataType: "json",
-            contentType: "application/x-www-form-urlencoded",
-            success: function (results) {
-                console.log(results);
-                populatePage(results);
-            },
-            error: function (results) {
-                alert("Error");
-            },
-        });
-    }
-    ListDealers();
+    // function ListDealers() {
+    //     $.ajax({
+    //         type: "PUT",
+    //         url: "/Dealer/ListNames",
+    //         cache: false,
+    //         dataType: "json",
+    //         contentType: "application/x-www-form-urlencoded",
+    //         success: function (results) {
+    //             console.log(results);
+    //             populatePage(results);
+    //         },
+    //         error: function (results) {
+    //             alert("Error");
+    //         },
+    //     });
+    // }
+    // ListDealers();
 
     function populatePage(dealerList){
         var html = "";
@@ -159,13 +159,10 @@ ListDealers();
     }
 </script>
 
-    @if (User.Identity.IsAuthenticated) {
-        <Script>
+    <!-- <Script>
             GetUser();
-        </Script>      
-    }else{
+        </Script>   -->
         <Script>
             guestprivileges();
         </Script> 
-    }
 </html>

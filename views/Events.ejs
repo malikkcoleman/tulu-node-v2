@@ -1,7 +1,4 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-
+﻿
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,15 +83,12 @@
 <script src="Js/privileges.js"></script>
 <script src="Js/events.js"></script>
 
-    @if (User.Identity.IsAuthenticated) {
-        <Script>
+    <!-- <Script>
             GetUser();
-        </Script>      
-    }else{
+        </Script>   -->
         <Script>
             guestprivileges();
         </Script> 
-    }
 
 <script>
     window.onload = function () {
