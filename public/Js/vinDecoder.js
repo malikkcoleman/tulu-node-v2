@@ -1,6 +1,6 @@
 const https = require("https");
 const querystring = require("query-string");
-const VIN = "";
+//const VIN = "";
 
 // Replace these values with your VIN Decoder API credentials
 const access_key_id = "PnuvF35in4";
@@ -38,7 +38,7 @@ const decoder_query = {
   },
   query_requests: {
     NodeJS_Sample: {
-      vin: "SAJD81FV0LCK64102",
+      vin: "2GKFLXE32F6244024",
       year: "",
       make: "",
       model: "",
