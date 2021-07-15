@@ -70,6 +70,7 @@ app.use((req,res,next) => {
 // ----------------------routes
 app.use('/',require('./routes/index'));
 app.use('/users',require('./routes/users'));
+app.use('/vehicles',require('./routes/vehicles'));
 // ---------------------------------
 
 app.use(express.static(__dirname + '/public'));
