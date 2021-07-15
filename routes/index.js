@@ -3,6 +3,7 @@ const pgroutr = express.Router();
 const {ensureAuthenticated} = require('../config/auth');
 
 const Vehicle = require('../models/vehicleSchema');
+const User = require('../models/userSchema');
 
 pgroutr.get('/',(req,res)=>
     res.render('index',{
@@ -70,6 +71,18 @@ pgroutr.get('/shop',(req,res)=>{
     Vehicle.find({}).then((vehicles)=>{
         res.render('shop',{
             vehicles:vehicles,
+            role:''
+        })
+    }).catch((err)=>{
+        res.status(500).send(error);
+    })
+})
+
+
+pgroutr.get('/tululist',(req,res)=>{
+    User.find({role:'tulu'}).then((tulu)=>{
+        res.render('tululist',{
+            tulu:tulu,
             role:''
         })
     }).catch((err)=>{

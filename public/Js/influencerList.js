@@ -9,7 +9,7 @@ function LoadTulus(tulu) {
 		html = html + '		<img src="" alt="">';
 		html = html + '	</div>';
 		html = html + '	<div class="influencerInfo">';
-		html = html + '		<h4 class="influencerName">' + tulu[i].firstName +" "+ tulu[i].lastName + '</h4>';
+		html = html + '		<h4 class="influencerName">' + tulu[i].fName +" "+ tulu[i].lName + '</h4>';
 		// html = html + '		<p class="influencerPhoneNumber">' + tulu[i]. + '</p>';
 		//html = html + '		<p class="influencerEmail">' + tulu[i].email + '</p>';
 		// html = html + '<a href="mailto: '+tulu[i].email+'"><button>Contact Tulu</button></a>';

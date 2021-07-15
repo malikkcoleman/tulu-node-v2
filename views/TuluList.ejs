@@ -42,15 +42,14 @@
             <p>Each Tulu is here to help you through the process of purchasing a new vehicle.</p>
         </div>
         <div class="influencerContainer">
-            <ul class="influencerList" id="influencerList"></ul>
+            <ul class="influencerList" id="influencerList">
+
+            </ul>
         </div>
     </div>
 
     <footer>
         <ul class="footerList">
-            <li class="footerListItem">
-                <a href="/About">About Us</a>
-            </li>
             <li class="footerListItem">
                 <a href="/">
                     <h4>Partners</h4>
@@ -83,36 +82,11 @@
 </body>
 <script src="Js/influencerList.js"></script>
 <script src="Js/sideMenu.js"></script>
-<!-- <script>
-
-    function TestTuluList() {
-        //FIXME: I think this needs to be deleted
-        $.ajax({
-            type: "PUT",
-            url: "/Users/ListTulus",
-            //data: obj,
-            cache: false,
-            dataType: "json",
-            contentType: "application/x-www-form-urlencoded",
-            success: function (results) {
-                console.log(results);
-                LoadTulus(results);
-            },
-            error: function (results) {
-                alert("Error");
-            },
-        });
-    }
-    TestTuluList();
-
-
-
-</script> -->
 <script src="Js/privileges.js"></script>
-    <!-- <Script>
-            GetUser();
-        </Script>   -->
+
         <Script>
-            // guestprivileges();
+            var tuluList = <%-JSON.stringify(tulu)%>;
+            console.log(tuluList);
+            LoadTulus(tuluList);
         </Script> 
 </html>

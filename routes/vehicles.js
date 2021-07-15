@@ -3,17 +3,17 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
-// User Model
+// Vehicle Model
 const Vehicle = require('../models/vehicleSchema');
 
 
 
-// Register Page
+// addvehicle Page
 router.get('/addvehicle',(req,res)=>{
     res.render('addvehicle');
 });
 
-// Register Handle
+// addvehicle Handle
 router.post('/addvehicle',(req,res)=>{
     console.log(req.body);
     // res.send('hello');
@@ -35,10 +35,11 @@ router.post('/addvehicle',(req,res)=>{
         // res.send('Pass');
 
         // Validation Passed
+        //make sure if the vehicle is existing or not
         Vehicle.findOne({vin:vin})
         .then(vehicle=>{
             if(vehicle){
-                // user Exist
+                // vehicle Exist
                 errors.push({msg:'Vehicle already Exist'})
                 res.render('addvehicle',{
                     errors,vin,year,make,model,vehicleType,trim,dealerId,isSold,doors,modelNumber,driveType,msrp,minPrice,maxPrice,refFee,engineName,engineBrand,engineID,fuelType,iceMaxHp,iceMaxTorque,maxPayLoad,transmissionName,colorName,colorHex,baseTowingCapacity,grossWeight,fuelTankCapacity,notes
