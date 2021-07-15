@@ -44,8 +44,10 @@
                     <i class="fas fa-user fa-4x"></i>
                 </div>
                 <h3 class="userName">
+                    <%= fName%> <%= lName%>
                 </h3>
                 <p class="userRole">
+                    <%= role%>
                 </p>
                 <div class="userRating">
                     <i class="fas fa-star"></i>
@@ -56,45 +58,58 @@
                 </div>
                 <p class="carsSold">Cars sold:<span>0</span></p>
                 <p class="userBio">
-                    
+                    <%= bio%>
                 </p>
                 <ul class="socialMediaAccounts">
-                    
+                    <li>
+                        <a href="<%= facebook%>" target="_blank">
+                            <i class="fab fa-facebook fa-2x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<%= instagram%>" target="_blank">
+                            <i class="fab fa-instagram fa-2x"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<%= linkedin%>" target="_blank">
+                            <i class="fab fa-linkedin-in fa-2x"></i>
+                        </a>
+                    </li>
                 </ul>
 
 
-@* TO POPULATE THIS PAGE, UNCOMMENT LINE 63-67 in TuluHelper.js *@
                 <div class="subInfo">
                     <h4>
                         Experience:
                     </h4> 
                     <p class="experience">
-                        I have over 10 years in working within the Automotive industry. I was in different management roles from detailing to autobody. I helped run Prism, a service and paint automotive shop and worked with different dealerships in various capacities. I have experience at a high level in both small and large automotive operations and sales to round it off.
+                        <%= experience%>    
                     </p>
                     <h4>
                         Specialty:
                     </h4>
                     <p class="specialty">
-                        Knowledgeable with Hondas and Toyotas and everything to know about auto detailing.
+                        <%= specialty%>    
                     </p>
                     <h4>
                     Favourite Car:
                     </h4>
                     <p class="favouriteCar">
-                        2002 Nissan Sylvia S15
+                        <%= favoriteCar%>
                     </p>
                     <h4>
                     Current Car:
                     </h4>
                     <p class="currentCar">
-                        2018 Toyota Camry SE
+                        <%= currentCar%>
                     </p>
                     
                     <h4>
                         Location: 
                     </h4>
                     <p class="location">
-                        Calgary, AB
+                        <%= role%>
                     </p>
                 </div>
                 <a href="/Account/EditProfile">
@@ -193,9 +208,7 @@
 <script type="text/javascript" src="Js/Helpers/TuluHelper.js"></script>
 <script type="text/javascript">
     window.onload = function () {
-        TuluDashboardSummary();
-        TuluList();
-        GetCurrentUser();
+        
     }
 </script>
 <script src="Js/privileges.js"></script>

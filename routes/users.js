@@ -87,10 +87,11 @@ router.post(
     }), (req, res) => {
         console.log(req.user.toObject().role)
         if (req.user.toObject().role === "user") {
-            res.redirect('/asss');
+            res.redirect('/profile');
+            
         }
         if (req.user.toObject().role === "tulu") {
-            res.redirect('/tits');
+            res.redirect('/tulu');        
         }
         if (req.user.toObject().role === "dealeradmin") {
             res.redirect('/dashboard');
