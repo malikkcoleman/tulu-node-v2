@@ -6,8 +6,12 @@ const passport = require('passport');
 // User Model
 const Vehicle = require('../models/vehicleSchema');
 
+
+
 // Register Page
-router.get('/addvehicle',(rerq,res)=>res.render('addvehicle'));
+router.get('/addvehicle',(req,res)=>{
+    res.render('addvehicle');
+});
 
 // Register Handle
 router.post('/addvehicle',(req,res)=>{
@@ -56,7 +60,10 @@ router.post('/addvehicle',(req,res)=>{
                 // res.send('hello');
             }
         });
+        
     }
+    
+
 });
 
 module.exports = router;

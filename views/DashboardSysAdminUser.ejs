@@ -1,7 +1,4 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-
+﻿
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,10 +25,11 @@
             <i class="fas fa-times fa-2x closeMenuBtn"></i>
         </div>
     </nav>
-    <a href="~/Views/Shared/_Dashboard.vbhtml">~/Views/Shared/_Dashboard.vbhtml</a>
+    <a href="~/Views/Shared/_Dashboard.vbhtml"></a>
 
     <div id="SideMenu" class="sideMenu">
         <ul class="menu">
+            <%- include partials/sidemenu %>
             
         </ul>
         <p class="loggedInAs"></p>
@@ -164,6 +162,6 @@
             GetUser();
         </Script>   -->
         <Script>
-            guestprivileges();
+            // guestprivileges();
         </Script> 
 </html>

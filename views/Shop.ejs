@@ -31,6 +31,7 @@
 
     <div id="SideMenu" class="sideMenu">
         <ul class="menu">
+            <%- include partials/sidemenu %>
             
         </ul>
         <p class="loggedInAs"></p>
@@ -223,10 +224,10 @@
 
 <script src="Js/privileges.js"></script>
 
-    <!-- <Script>
-            GetUser();
-        </Script>   -->
-        <Script>
-            guestprivileges();
-        </Script> 
+<script>
+    var vehicleList = <%-JSON.stringify(vehicles)%>;
+    console.log(vehicleList);
+    populateVehicle(vehicleList);
+</script>
+
 </html>

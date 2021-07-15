@@ -96,6 +96,9 @@ router.post(
         if (req.user.toObject().role === "dealeradmin") {
             res.redirect('/dashboard');
         }
+        if (req.user.toObject().role === "sysadmin") {
+            res.redirect('/dashboardSysAdmin');
+        }
     });
 
 // Logout Handle

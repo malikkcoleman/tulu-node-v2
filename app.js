@@ -34,6 +34,8 @@ db.once("open", function () {
   console.log("DB Connected!!!");
 });
 
+
+
 app.use(function (req, res, next) {
   res.locals.customerInfo = null;
   next();

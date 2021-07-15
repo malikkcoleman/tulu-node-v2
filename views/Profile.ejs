@@ -29,6 +29,7 @@
 
     <div id="SideMenu" class="sideMenu">
         <ul class="menu">
+            <%- include partials/sidemenu %>
             
         </ul>
         <p class="loggedInAs"></p>
@@ -150,8 +151,8 @@
 <script type="text/javascript" src="Js/Helpers/userDashboardHelper.js"></script>
 <script type="text/javascript">
     window.onload = function () {
-        UserDashboardSummary();
-        GetCurrentUser();
+        // UserDashboardSummary();
+        // GetCurrentUser();
     }
 </script>
 <script src="Js/privileges.js"></script>
@@ -161,6 +162,6 @@
             GetUser();
         </Script>   -->
         <Script>
-            guestprivileges();
+            // // guestprivileges();
         </Script> 
 </html>
