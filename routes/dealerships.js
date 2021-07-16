@@ -2,9 +2,14 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const {v4: uuidv4} = require('uuid');
+
+var uuid = uuidv4();
+var targetId = uuid;
 
 // Dealer Model
 const Dealer = require('../models/dealershipschema');
+const Address = require('../models/addressschema');
 
 // Add Dealership Page
 router.get('/dashboardSysAdminDealership',(req,res)=>
@@ -16,19 +21,19 @@ router.get('/dashboardSysAdminDealership',(req,res)=>
 router.post('/dashboardSysAdminDealership',(req,res)=>{
     console.log(req.body);
     // res.send('hello');
-    const { name,logo,website} = req.body;
+    const { name,logo,website,street,city,province,postal} = req.body;
 
     let errors = [];
 
     // Check required fields
-    if(!name||!logo||!website){
+    if(!name||!logo||!website||!street||!city||!province||!postal){
         errors.push({msg:'Please fill in all fields'});
     }
 
 
     if(errors.length > 0){
         res.render('dashboardSysAdminDealership',{
-            errors,name,logo,website
+            errors,name,logo,website,street,city,province,postal
         });
     }else{
         // res.send('Pass');
@@ -40,17 +45,24 @@ router.post('/dashboardSysAdminDealership',(req,res)=>{
                 // dealerExist Exist
                 errors.push({msg:'Email already Exist'})
                 res.render('dashboardSysAdminDealership',{
-                    errors,name,logo,website
+                    errors,name,logo,website,street,city,province,postal
                 })
             }else{
                 const newDealer = new Dealer({
-                    errors,name,logo,website
+                    errors,uuid,name,logo,website
                 });
-
+                const newAddress = new Address({
+                    errors,targetId,street,city,province,postal
+                });
+                
                 newDealer.save()
                 .then(dealer => {
-                    req.flash('Adding New Dealer Success!');
-                    res.redirect('/dealerships/dashboardSysAdminDealership')
+                    newAddress.save()
+                    .then(address=>{
+                        req.flash('Adding New Dealer Success!');
+                        res.redirect('/dealerships/dashboardSysAdminDealership')
+                    })
+                    .catch(err => console.log(err));
                 })
                 .catch(err => console.log(err));
                 // console.log(newUser)
