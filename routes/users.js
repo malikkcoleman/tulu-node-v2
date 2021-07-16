@@ -9,8 +9,16 @@ const User = require('../models/userSchema');
 // Login Page
 router.get('/login',(req,res)=>
     res.render('login',{
-        user:req.user
+        user: req.user
 }));
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+       req.isLogged = true
+       return next();
+    }
+    res.redirect('/');
+}
 
 
 // Register Page
@@ -99,10 +107,10 @@ router.post(
             res.redirect('/tulu')   
         }
         if (req.user.toObject().role === "dealeradmin") {
-            res.redirect('/dealeradmin')
+            res.redirect('/dashboard')
         }
         if (req.user.toObject().role === "sysadmin") {
-            res.redirect('/sysadmin')
+            res.redirect('/dashboardsysadmin')
         }
     });
 

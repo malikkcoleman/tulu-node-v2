@@ -8,34 +8,42 @@ const User = require("../models/userSchema");
 
 pgroutr.get('/',(req,res)=>
     res.render('index',{
-    user:req.user
+        user: req.user
 }));
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+       req.isLogged = true
+       return next();
+    }
+    res.redirect('/');
+}
 
 pgroutr.get('/dashboard',ensureAuthenticated,(req,res)=>
     res.render('dashboard',{
-    user:req.user.toObject()
+    user:req.user
 }));
 
 pgroutr.get('/tulu',ensureAuthenticated, authRole(ROLE.TULU),(req,res)=>
     res.render('tulu',{
-    user:req.user.toObject()
+    user:req.user
 }));
 
 pgroutr.get('/profile',ensureAuthenticated, authRole(ROLE.USER),(req,res)=>
     res.render('profile',{
-        user:req.user.toObject()
+        user:req.user
 }));
 
 pgroutr.get('/dashboardsysadmin',ensureAuthenticated, authRole(ROLE.SYSADMIN),(req,res)=>
     res.render('dashboardsysadmin',{
-        user:req.user.toObject()
+        user:req.user
 }));
 
 pgroutr.get('/shop',(req,res)=>{
     Vehicle.find({}).then((vehicles)=>{
         res.render('shop',{
             vehicles:vehicles,
-            user:req.user.toObject()
+            user:req.user
         })
     }).catch((err)=>{
         res.status(500).send(error);
@@ -45,7 +53,7 @@ pgroutr.get('/carview',(req,res)=>{
     Vehicle.find({}).then((vehicles)=>{
         res.render('carview',{
             vehicles:vehicles,
-            user:req.user.toObject()
+            user:req.user
         })
     }).catch((err)=>{
         res.status(500).send(error);
@@ -60,7 +68,7 @@ pgroutr.get('/tululist',(req,res)=>{
     User.find({role:'tulu'}).then((tulu)=>{
         res.render('tululist',{
             tulu:tulu,
-            user:req.user.toObject()
+            user:req.user
         })
     }).catch((err)=>{
         res.status(500).send(error);
@@ -72,7 +80,7 @@ pgroutr.get('/tululist',(req,res)=>{
 
 pgroutr.get('/:page', function(req, res){
     res.render(req.params.page,{
-        user:req.user.toObject()
+        user:req.user
 })});
 
 module.exports = pgroutr;
