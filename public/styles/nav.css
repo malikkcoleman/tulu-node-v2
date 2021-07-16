@@ -89,7 +89,7 @@ nav {
 }
 
 .shopSubMenuList, .accountSubMenuList {
-    width: 100px;
+    /* width: 100px; */
     padding: 0px 10px;
     display:none;
     height:1px;

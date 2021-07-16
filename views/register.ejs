@@ -39,7 +39,7 @@
       <form action="/users/register" method="POST">
 
         <div class="form-group">
-          <label for="fName">Firstame</label>
+          <label for="fName">Firstname</label>
           <input
             type="name"
             id="fName"
@@ -50,7 +50,7 @@
           />
         </div>
         <div class="form-group">
-          <label for="name">Lastame</label>
+          <label for="name">Lastname</label>
           <input
             type="name"
             id="lName"
@@ -136,8 +136,8 @@
             value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
           />
         </div>
-        <button type="submit" class="btn btn-primary btn-block">
-          Login
+        <button type="submit">
+          Register
         </button>
       </form>
       <p class="lead mt-4">Have An Account? <a href="/users/login">Login</a></p>
