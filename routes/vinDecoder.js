@@ -216,10 +216,10 @@ function decoder(VIN) {
       transmissionName =
         response_json.query_responses.NodeJS_Sample.us_market_data
           .common_us_data.transmissions[0].name;
-      maxTowingCapacity =
+      /*       maxTowingCapacity =
         response_json.query_responses.NodeJS_Sample.us_market_data
           .common_us_data.standard_specifications[1].specification_values[5]
-          .specification_value;
+          .specification_value; */
       grossWeight =
         response_json.query_responses.NodeJS_Sample.us_market_data
           .common_us_data.standard_specifications[1].specification_values[0]
@@ -246,7 +246,7 @@ function decoder(VIN) {
       console.log(engineMaxPayLoad);
       console.log(engineFuelType);
       console.log(transmissionName);
-      console.log(maxTowingCapacity);
+      //console.log(maxTowingCapacity);
       console.log(grossWeight);
       console.log(fuelTankCapacity);
     });
@@ -266,9 +266,27 @@ router.post("/vinTest", (req, res) => {
   //console.log(res.body);
 });
 
-/* router.get("/flash", function (req) {
-  req.flash("", "");
+router.get("/flash", function (req) {
+  req.flash("vin", masterVin);
+  req.flash("year", year);
+  req.flash("make", make);
+  req.flash("model", model);
+  req.flash("trim", trim);
+  req.flash("modelNumber", modelNumber);
+  req.flash("driveType", driveType);
+  req.flash("vehicleType", vehicleType);
+  req.flash("doors", doors);
+  req.flash("msrp", msrp);
+  req.flash("engineName", engineName);
+  req.flash("engineID", engineID);
+  req.flash("engineIceMaxHp", engineIceMaxHp);
+  req.flash("engineIceMaxTorque", engineIceMaxTorque);
+  req.flash("engineMaxPayLoad", engineMaxPayLoad);
+  req.flash("engineFuelType", engineFuelType);
+  req.flash("transmissionName", transmissionName);
+  req.flash("grossWeight", grossWeight);
+  req.flash("fuelTankCapacity", fuelTankCapacity);
   res.redirect("/vehicles");
-}); */
+});
 
 module.exports = router;
