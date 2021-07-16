@@ -1,6 +1,7 @@
 const express = require('express');
 const pgroutr = express.Router();
-const {ensureAuthenticated} = require('../config/auth');
+const ROLE = require('../roles');
+const {ensureAuthenticated, authRole} = require('../config/auth');
 
 const Vehicle = require('../models/vehicleSchema');
 const User = require('../models/userSchema');
@@ -16,7 +17,7 @@ pgroutr.get('/dashboard',ensureAuthenticated,(req,res)=>
     name:req.user.email
 }));
 
-pgroutr.get('/tulu',ensureAuthenticated,(req,res)=>
+pgroutr.get('/tulu',ensureAuthenticated, authRole(ROLE.TULU),(req,res)=>
     res.render('tulu',{
     fName:req.user.toObject().fName,
     lName:req.user.toObject().lName,
@@ -33,7 +34,7 @@ pgroutr.get('/tulu',ensureAuthenticated,(req,res)=>
     role:req.user.toObject().role
 }));
 
-pgroutr.get('/profile',ensureAuthenticated,(req,res)=>
+pgroutr.get('/profile',ensureAuthenticated, authRole(ROLE.USER),(req,res)=>
     res.render('profile',{
         fName:req.user.toObject().fName,
         lName:req.user.toObject().lName,
@@ -50,7 +51,7 @@ pgroutr.get('/profile',ensureAuthenticated,(req,res)=>
         role:req.user.toObject().role
 }));
 
-pgroutr.get('/dashboardsysadmin',ensureAuthenticated,(req,res)=>
+pgroutr.get('/dashboardsysadmin',ensureAuthenticated, authRole(ROLE.SYSADMIN),(req,res)=>
     res.render('dashboardsysadmin',{
         fName:req.user.toObject().fName,
         lName:req.user.toObject().lName,

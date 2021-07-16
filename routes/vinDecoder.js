@@ -5,6 +5,8 @@ const router = express.Router();
 const https = require("https");
 const querystring = require("query-string");
 const bodyParser = require("body-parser");
+const ROLE = require('../roles');
+const { ensureAuthenticated, authRole } = require("../config/auth");
 const middlewares = [bodyParser.urlencoded({ extended: true })];
 
 const access_key_id = "PnuvF35in4";
