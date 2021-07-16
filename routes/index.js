@@ -7,7 +7,7 @@ const User = require('../models/userSchema');
 
 pgroutr.get('/',(req,res)=>
     res.render('index',{
-    role:''
+    role:'guest'
 }));
 
 pgroutr.get('/dashboard',ensureAuthenticated,(req,res)=>
@@ -71,7 +71,17 @@ pgroutr.get('/shop',(req,res)=>{
     Vehicle.find({}).then((vehicles)=>{
         res.render('shop',{
             vehicles:vehicles,
-            role:''
+            role:'guest'
+        })
+    }).catch((err)=>{
+        res.status(500).send(error);
+    })
+})
+pgroutr.get('/carview',(req,res)=>{
+    Vehicle.find({}).then((vehicles)=>{
+        res.render('carview',{
+            vehicles:vehicles,
+            role:'guest'
         })
     }).catch((err)=>{
         res.status(500).send(error);
@@ -83,7 +93,7 @@ pgroutr.get('/tululist',(req,res)=>{
     User.find({role:'tulu'}).then((tulu)=>{
         res.render('tululist',{
             tulu:tulu,
-            role:''
+            role:'guest'
         })
     }).catch((err)=>{
         res.status(500).send(error);
@@ -93,7 +103,7 @@ pgroutr.get('/tululist',(req,res)=>{
 
 pgroutr.get('/:page', function(req, res){
     res.render(req.params.page,{
-        role:''
+        role:'guest'
 })});
 
 module.exports = pgroutr;

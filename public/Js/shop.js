@@ -1,4 +1,3 @@
-
 function populateVehicle(vehicleList){
     var html = "";
     for (var i = 0; i != vehicleList.length; i++) {
@@ -63,4 +62,8 @@ function bigView(){
     }
     $("#Vehicles").empty();
     $("#Vehicles").append(html);
+}
+
+function carView(index){
+    location.replace("/carview"+ "?id=" + index);
 }
