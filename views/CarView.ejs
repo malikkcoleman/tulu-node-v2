@@ -1,7 +1,4 @@
-﻿
-
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <link rel="icon" type="image/png" href="images/favicon.png">
@@ -57,7 +54,7 @@
         <!-- VEHICLE INFO -->
         <section id="Vehicles" class="vehicles">
             <div class="carDetails">
-                <img src="' + vehicle.links[0].url + '" class="carImage" alt="car-image">
+                <img src="" class="carImage" alt="car-image">
                 <div class="carTitle">
                     <h2 class="carName"></h2>
                     <p class="carPrice"></p>
@@ -67,22 +64,25 @@
                 <div class="carGallery">
                     <ul id="carImageList" class="lightbox-gallery carImageList">
                         <li class="carImageListItems">
-                            <img class="carThumbnail" src="' + vehicle.links[0].url + '" data-image-hd="' + vehicle.links[0].url + '">
+                            <img class="carThumbnail" src="" data-image-hd="">
                         </li>
                     </ul>
                 </div>
                 <button class="buyNowBtn" onclick="buyNow()">Buy now!</button>
-                @if (User.Identity.IsAuthenticated) {
-                    @* <button onclick="bookAppointment();" class="bookAppointment">Book an appointment</button> *@
-                    <button onclick="selectTulu();" class="bookAppointment">Book an appointment</button>
-                } else {
+
+                <% if(role === 'guest') {%>
+
                     <div class="BookContainer">
                         <p>Book an appointment?</p>
                         <div class="signInBtn">
                             <a href="/dashboard">Sign In!</a>
                         </div>
                     </div>
-                }
+                <% }  if(role === 'user'||role === 'tulu'){%>
+                    <button onclick="selectTulu();" class="bookAppointment">Book an appointment</button>
+                <%}%>
+                    
+
                 
             </div>
             <div class="carSpecsBox">
@@ -103,7 +103,6 @@
                 </div>
             </div>
         </section>
-        @if (User.Identity.IsAuthenticated) {
             <section class="questionSection" id="questionSection">
                 <div class="QuestionContainer">
                     <h2>Questions?</h2>
@@ -111,16 +110,12 @@
                     <button onclick="ShowConnectWithTulu()">Connect</button>
                 </div>
             </section>
-        }else{
-            
-        }
         <!-- SHARE BUTTON -->
 
         <section class="shareSection" id="shareSection">
             <div class="ShareContainer">
                 <p>Share This Listing</p>
                 <div class="shareBtnContainer" id="shareBtnContainer">
-                    @if (User.Identity.IsAuthenticated) {
 
                         <script>
                             var url = window.location.href;
@@ -130,11 +125,9 @@
                             fbBtn += '</a>';
                             $("#shareBtnContainer").append(fbBtn);
                         </script>
-                    } else {
                         <div class="signInBtn">
                             <a href="/test">Sign In!</a>
                         </div>
-                    }
                 </div>
             </div>
         </section>
@@ -244,506 +237,11 @@
 
 </body>
 <script src="Js/sideMenu.js"></script>
-<script src="Js/Helpers/ClientsHelper.js"></script>
+<script src="Js/carView.js"></script>
 
 <script type="text/javascript">
-    var vin = '';
-    var dealerId = '';
-    var tuluId = '';
-    var gUser = null;
-    var gVehicle = null;
-    var refFee = "";
-    var dealerVehicleList = "";
-    var street = "";
-    var city = "";
-    var province = "";
-    var postal = "";
-    var address = "";
-    var price = "";
-    var currVehicle = "";
-    var dealership = "";
-
-    window.onload = function () {
-
-        var hash;
-        var hashes = window.location.href.slice(window.location.href.indexOf("?") + 1).split("&");
-        
-        for (var i = 0; i < hashes.length; i++) {
-            hash = hashes[i].split("=");
-            if (hash[0] === "dealerId") {
-                dealerId = hash[1];
-            } else if (hash[0] === "vin") {
-                vin = hash[1];
-            } else if (hash[0] === "tuluId") {
-                tuluId = hash[1];
-            }
-        }
-        GetPageVehicle(vin, dealerId);
-        SearchVehicles(dealerId);    
-    }
-
-    function ShowConnectWithTulu(){
-        document.querySelector('.tuluConnectPicker').style = "display:flex;";
-    }
-
-    //THIS IS FOR THE BUY NOW
-    // if(vehicles[i].buyNow == true){
-    // document.querySelector('.buyNowBtn').style="display:none;";
-    // }
-
-
-    function buyNow(){
-        window.location = "/BuyNow?dealership=" + dealership+"&price=" + price+"&vehicle=" + currVehicle+"&address=" + address;
-    }
-
-    function connectWithTulu(selectedTuluId){
-        window.location = "/Connect?dealerId=" + dealerId+"&vin=" + vin+"&tuluId=" + selectedTuluId;
-    }
-    
-    function SearchVehicles(gDealerId) {
-        var obj = new Object();
-        obj.dealerId = gDealerId;
-        obj.model = $("#ModelSearch").val();
-        obj.make = $("#MakeSearch").val();
-        obj.yearMin = parseInt($("#YearMinSearch").val());
-        obj.yearMax = parseInt($("#YearMaxSearch").val());
-        obj.vehicleType = $("#VehicleTypeSearch").val();
-        obj.isSold = false;
-        obj.priceMin = parseFloat($("#PriceMinSearch").val());
-        obj.priceMax = parseFloat($("#PriceMaxSearch").val());
-        obj.priceType = $("#PriceTypeSearch option:selected").val();
-        obj.isSold = '';
-        if ($("#IsSoldSelect option:selected").val() === "1") { obj.isSold = 'true'; }
-        ListVehicles(obj).then(function (list) {
-            dealerVehicleList = list;
-            console.log(list);
-            ListDealerUsers().then(function (results) {
-                ListDealers() 
-            });
-        });
-    }
-
-function ListDealers() {
-    $.ajax({
-        type: "PUT",
-        url: "/Dealer/List",
-        cache: false,
-        dataType: "json",
-        contentType: "application/x-www-form-urlencoded",
-        success: function (results) {
-            console.log(results);
-            @* addDealerInfo(results); *@
-        },
-        error: function (results) {
-            alert("Error");
-        },
-    });
-}
-
-
-
-function addDealerInfo(dealerInfo){
-    if(dealerInfo.address.street != ""){
-        street = dealerInfo.address.street;
-    }
-    if(dealerInfo.address.city != ""){
-        city = dealerInfo.address.city;
-    }
-    if(dealerInfo.address.province != ""){
-        province = dealerInfo.address.province;
-    }
-    if(dealerInfo.address.postal != ""){
-        postal = dealerInfo.address.postal;
-    }
-    if(dealerInfo.address.postal != ""){
-        postal = dealerInfo.address.postal;
-    }
-    address = street +" "+city+" "+province+" "+postal;
-     $('.userInfo').append('<p class="address"> Address: '+address+'</p>');
-     $('.userInfo').append('<p class="email"> Email: '+dealerInfo.email+'</p>');
-     $('.userInfo').append('<p class="userActiveListingCount" id="userActiveListingCount"> '+ dealerVehicleList.length + ' Active Listing</p>');
-}
-
-    async function ListVehicles(obj) {
-
-        const results = await $.ajax({
-            type: "PUT",
-            url: "/Vehicle/List",
-            data: obj,
-            cache: false,
-            dataType: "json",
-            contentType: "application/x-www-form-urlencoded",
-            success: function (results) { 
-                listVehicle = results;
-            },
-            error: function (results) { console.log(results.statusText); },
-        });
-        return results;
-    }
-
-
-    function dealerListing(index) {
-        //window.sessionStorage.setItem("vin", vin);
-        console.log(vin);
-        //LocationChange('carView');
-        if (dealerId === "") {
-            //window.location = "/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
-            alert("error");
-        } else {
-            window.location = "/DealerListing?dealerId=" + dealerId;
-        }
-    }
-
-     function populateTuluList(List){
-         var html = "";
-        for(var i = 0; i!= List.length; i++){
-            html+='<li onclick="bookAppointment(`'+List[i].id+'`)">';
-            html+='    <p class="tuluName">'+List[i].firstName +' '+List[i].lastName+'</p>';
-            html+='    <p class="tuluEmail">'+List[i].email+'</p>';
-            html+='    <div class="tuluRating">';
-            html+='        <i class="fas fa-star"></i>';
-            html+='        <i class="fas fa-star"></i>';
-            html+='        <i class="fas fa-star"></i>';
-            html+='        <i class="fas fa-star"></i>';
-            html+='        <i class="far fa-star"></i>';
-            html+='    </div>';
-            html+='</li>';
-        }
-        $('.tuluPickerContainer').empty();
-        $('.tuluPickerContainer').append(html);
-
-        var html2 = "";
-        for(var i = 0; i!= List.length; i++){
-            html2+='<li onclick="connectWithTulu(`'+List[i].id+'`)">';
-            html2+='    <p class="tuluName">'+List[i].firstName +' '+List[i].lastName+'</p>';
-            html2+='    <p class="tuluEmail">'+List[i].email+'</p>';
-            html2+='    <div class="tuluRating">';
-            html2+='        <i class="fas fa-star"></i>';
-            html2+='        <i class="fas fa-star"></i>';
-            html2+='        <i class="fas fa-star"></i>';
-            html2+='        <i class="fas fa-star"></i>';
-            html2+='        <i class="far fa-star"></i>';
-            html2+='    </div>';
-            html2+='</li>';
-        }
-
-        $('.tuluConnectPickerContainer').empty();
-        $('.tuluConnectPickerContainer').append(html2);
-    }
-
-    function TestTuluList() {
-        //FIXME: I think this needs to be deleted
-        $.ajax({
-            type: "PUT",
-            url: "/Users/ListTulus",
-            //data: obj,
-            cache: false,
-            dataType: "json",
-            contentType: "application/x-www-form-urlencoded",
-            success: function (results) {
-                console.log(results);
-                populateTuluList(results);
-            },
-            error: function (results) {
-                alert("Error");
-            },
-        });
-    }
-
-
-    
-
-    function GetCurrentUser() {
-        //FIXME: I think this needs to be deleted
-        $.ajax({
-            type: "PUT",
-            url: "/Users/Current",
-            cache: false,
-            dataType: "json",
-            contentType: "application/x-www-form-urlencoded",
-            success: function (results) {
-                console.log(results)
-                gUser = results;
-                //console.log(gUser.roles[0].role);
-                @*if (gUser.roles[0].role == "Tulu") {
-                    $('.carReferralFee').html("Referral Fee: $" + vehicle.refferalFee);
-                    console.log(vehicle.refferalFee)
-                }*@
-            },
-            error: function (results) {
-                alert("Error");
-            },
-        });
-    }
-
-
-    function GetPageVehicle(vin, dealerId) {
-        GetVehicle(vin, dealerId).then(function (vehicle) {
-            //alert(JSON.stringify(vehicle));
-            console.log(vehicle);
-            populateVehicle(vehicle);
-            gVehicle = vehicle;
-            currVehicle = vehicle.year + " " + vehicle.make + " " + vehicle.model;
-            price = gVehicle.maxPrice;
-            dealership = gVehicle.dealerName;
-            displayRefFee(vehicle);
-        });
-    }
-
-    function selectTulu(){
-        document.querySelector('.tuluPicker').style = "display:flex !important;"
-    }
-
-    function bookAppointment(tuluId) {
-        @* console.log(tuluId) *@
-        window.location = "/booking?vin=" + vin + "&dealerId=" + dealerId + "&tuluId=" + tuluId + "&dealerAddress=" + address ;
-    }
-
-
-    function DisplayImage(link) {
-        var imageUrl = gVehicle.links[link].url;
-        $('.carImage').attr("src", imageUrl);
-    }
-
-
-    function formatNumber(num) {
-        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-    }
-
-   
-
-    function populateVehicle(vehicle) {
-        //var html = ""
-
-        createMetaTags(vehicle);
-       var DpImage = '';
-        for(var v=0; v != vehicle.links.length; v++){
-            if(vehicle.links[v].type == "Main Photo"){
-                DpImage = vehicle.links[v].url;
-            }
-        }
-        $('#dealershipName').html(vehicle.dealerName);
-        $('.carImage').attr("src",DpImage);
-        $('.carName').html(vehicle.year+' '+vehicle.make+' '+vehicle.model);
-
-        var thumbnailHtml = "";
-        for (var i = 0; i != vehicle.links.length; i++){
-            var link = vehicle.links[i].url;
-            thumbnailHtml+='<li class="carImageListItems">';
-            thumbnailHtml += '    <img class="carThumbnail" src="' + link + '" onclick="DisplayImage('+i+')" data-image-hd="' + link + '">';
-            thumbnailHtml+='</li>';
-        }
-        $('#carImageList').empty();
-        $('#carImageList').append(thumbnailHtml);
-        @* console.log(thumbnailHtml) *@
-        
-
-
-        $('.carPrice').html('$'+formatNumber(vehicle.maxPrice));
-        
-        
-        
-        var html = "";
-
-        if(vehicle.year != ""){
-            $('.year').html(vehicle.year);
-            //html +='';
-            html +='<li class="carInfo">';
-            html +='    <p>Year</p>';
-            html +='    <p class="year">'+vehicle.year+'</p>';
-            html +='</li>';
-        }
-        if(vehicle.make != ""){
-            $('.make').html(vehicle.make);
-
-            html +='<li class="carInfo">';
-            html +='    <p>Make</p>';
-            html +='    <p class="make">'+vehicle.make+'</p>';
-            html +='</li>   ';
-        }
-        if(vehicle.model != ""){
-            $('.model').html(vehicle.model);
-
-            html +='<li class="carInfo">';
-            html +='    <p>Model</p>';
-            html +='    <p class="model">'+vehicle.model+'</p>';
-            html +='</li>   ';
-        }
-        if(vehicle.colorName != ""){
-            $('.color').html(vehicle.colorName);
-
-            html +='<li class="carInfo">';
-            html +='    <p>Color</p>';
-            html +='    <p class="color">'+vehicle.colorName+'</p>';
-            html +='</li>';
-        }
-        if(vehicle.bodyType != ""){
-            $('.bodyType').html(vehicle.bodyType);
-
-            html +='<li class="carInfo">';
-            html +='    <p>Body Type</p>';
-            html +='    <p class="bodyType">'+vehicle.bodyType+'</p>';
-            html +='</li>';
-        }
-        if(vehicle.engineName != ""){
-            $('.engine').html(vehicle.engineName);
-
-            html +='<li class="carInfo">';
-            html +='    <p>Engine</p>';
-            html +='    <p class="engine">'+vehicle.engineName+'</p>';
-            html +='</li>';
-        }
-        if(vehicle.driveType != ""){
-            $('.driveType').html(vehicle.driveType);
-
-            html +='<li class="carInfo">';
-            html +='    <p>Drivetrain</p>';
-            html +='    <p class="driveType">'+vehicle.driveType+'</p>';
-            html +='</li>';
-        }
-        if(vehicle.transmissionName != ""){
-            $('.transmission').html(vehicle.transmissionName);
-
-            html +='<li class="carInfo">';
-            html +='    <p>Transmission</p>';
-            html +='    <p class="transmission">'+vehicle.transmissionName+'</p>';
-            html +='</li>';
-        }
-        if(vehicle.fuelType != ""){
-            $('.fuel').html(vehicle.fuelType);
-
-            html +='<li class="carInfo">';
-            html +='    <p>Fuel Type</p>';
-            html +='    <p class="fuel">'+vehicle.fuelType+'</p>';
-            html +='</li>';
-        }
-        if(vehicle.mileage != ""){
-            $('.mileage').html(vehicle.mileage+" kms");
-
-            html +='<li class="carInfo">';
-            html +='    <p>Kilometers</p>';
-            html +='    <p class="mileage">'+vehicle.mileage+'</p>';
-            html +='</li>';
-        }
-        if(vehicle.trim != ""){
-            $('.trim').html(vehicle.trim);
-
-            html +='<li class="carInfo">';
-            html +='    <p>Trim</p>';
-            html +='    <p class="trim">'+vehicle.trim+'</p>';
-            html +='</li>';
-        }
-        if(vehicle.vin != ""){
-            $('.vin').html(vehicle.vin);
-        }
-        if(vehicle.notes != ""){
-            $('.notes').html(vehicle.notes);
-        }
-
-
-        $("#carSpecs").empty();
-        $("#carSpecs").append(html);
-        
-
-    }
-
-    function createMetaTags(vehicle) {
-        var metaTags = '';
-        metaTags +='';
-        
-        metaTags += '<meta http-equiv="Content-Security-Policy" content=`default-src *; style-src "self" http://* "unsafe - inline"; script-src "self" http://* "unsafe - inline" "unsafe - eval"` />';
-        metaTags += '<meta name="format-detection" content="telephone=no">';
-        metaTags += '<meta name="msapplication-tap-highlight" content="no">';
-        metaTags += '<meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">';
-        metaTags += '<meta property="og:title" content="TULU - ' + vehicle.year + ' ' + vehicle.make + ' ' + vehicle.model + '">'; 
-        metaTags += '<meta property="og:description" content="TEST">'; 
-        metaTags += '<meta property="og:url" content="' + vehicle.links[0].url + '">';
-        @* metaTags += '<meta property="og:image" content="' + vehicle.links[0].url + '">';  *@
-        metaTags += '<meta property="og:image:type" content="image/png">'; 
-        metaTags += '<meta property="og:image:width" content="1024">'; 
-        metaTags += '<meta property="og:image:height" content="1024">'; 
-
-        $("head").append(metaTags);
-    }
-
-    async function GetVehicle(vin, dealerId) {
-        var obj = new Object();
-        obj.vin = vin;
-        obj.dealerId = dealerId;
-        const results = await $.ajax({
-            type: "PUT",
-            url: "/Vehicle/Get",
-            data: obj,
-            cache: false,
-            dataType: "json",
-            contentType: "application/x-www-form-urlencoded",
-            success: function (results) { },
-            error: function (results) { console.log(results.statusText); },
-        });
-        return results;
-    }
-
-    //Facebook
-
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-
-    function ShareVehicle() {
-        var obj = new Object();
-        obj.vin = vin;
-        obj.dealerId = dealerId;
-        $.ajax({
-            type: "PUT",
-            url: "/Tulu/ShareVehicle",
-            data: obj,
-            cache: false,
-            dataType: "json",
-            contentType: "application/x-www-form-urlencoded",
-            success: function (results) {
-                console.log(results);
-                //populateDashboard(results);
-                alert('shared!');
-            },
-            error: function (results) {
-                alert("Error");
-            },
-        });
-    }
-
-function displayRefFee(vehicle){
-    console.log(gUser);
-    //for(x=0;x!=gUser.roles.length;x++){
-        if(gUser.roles[0].role == "Tulu"){
-
-            $('.carReferralFee').html("Referral Fee: $"+vehicle.refferalFee);
-            console.log(vehicle.refferalFee)
-        }
-    //}
-}
+    var vehicleList = <%-JSON.stringify(vehicles)%>;
+    console.log(vehicleList);
+    // populateVehicle(vehicleList);
 </script>
-
-
-<!-- Your share button code -->
-<!-- @*<div class="fb-share-button"
-     data-href="https://www.your-domain.com/your-page.html"
-     data-layout="button_count">
-</div>*@ -->
-<script src="Js/privileges.js"></script>
-    </script>
-
-        <!-- <Script>
-            GetUser();
-            GetCurrentUser();
-            TestTuluList();
-            
-        </Script>      -->
-        <Script>
-            // guestprivileges();
-        </Script> 
 </html>
