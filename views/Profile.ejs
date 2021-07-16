@@ -46,25 +46,25 @@
                     <img src="images/jolo.jpeg" alt="" class="face">
                 </div>
                 <h3 class="userName">
-                    <%= fName%> <%= lName%>
+                    <%= user.fName%> <%= user.lName%>
                 </h3>
                 <p class="userBio">
-                    <%= bio%>
+                    <%= user.bio%>
                 </p>
                 
                 <ul class="socialMediaAccounts">
                     <li>
-                        <a href="<%= facebook%>" target="_blank">
+                        <a href="<%= user.facebook%>" target="_blank">
                             <i class="fab fa-facebook fa-2x"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="<%= instagram%>" target="_blank">
+                        <a href="<%= user.instagram%>" target="_blank">
                             <i class="fab fa-instagram fa-2x"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="<%= linkedin%>" target="_blank">
+                        <a href="<%= user.linkedin%>" target="_blank">
                             <i class="fab fa-linkedin-in fa-2x"></i>
                         </a>
                     </li>
@@ -74,19 +74,19 @@
                     Favourite Car:
                     </h4>
                     <p class="favouriteCar">
-                        <%= favoriteCar%>
+                        <%= user.favoriteCar%>
                     </p>
                     <h4>
                     Current Car:
                     </h4>
                     <p class="currentCar">
-                        <%= currentCar%>
+                        <%= user.currentCar%>
                     </p>
                     <h4>
                         Location: 
                     </h4>
                     <p class="location">
-                        <%= role%>
+                        <%= user.role%>
                     </p>
                 </div>
                 <a href="/Account/EditProfile">

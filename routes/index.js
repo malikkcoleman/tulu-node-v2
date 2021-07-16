@@ -8,71 +8,34 @@ const User = require('../models/userSchema');
 
 pgroutr.get('/',(req,res)=>
     res.render('index',{
-    role:'guest'
+    user:req.user
 }));
 
 pgroutr.get('/dashboard',ensureAuthenticated,(req,res)=>
     res.render('dashboard',{
-    name:req.user.name,
-    name:req.user.email
+    user:req.user.toObject()
 }));
 
 pgroutr.get('/tulu',ensureAuthenticated, authRole(ROLE.TULU),(req,res)=>
     res.render('tulu',{
-    fName:req.user.toObject().fName,
-    lName:req.user.toObject().lName,
-    linkedin:req.user.toObject().linkedin,
-    instagram:req.user.toObject().instagram,
-    facebook:req.user.toObject().facebook,
-    bio:req.user.toObject().bio,
-    experience:req.user.toObject().experience,
-    specialty:req.user.toObject().specialty,
-    favoriteCar:req.user.toObject().favoriteCar,
-    currentCar:req.user.toObject().currentCar,
-    phoneNumber:req.user.toObject().phoneNumber,
-    email:req.user.toObject().email,
-    role:req.user.toObject().role
+    user:req.user.toObject()
 }));
 
 pgroutr.get('/profile',ensureAuthenticated, authRole(ROLE.USER),(req,res)=>
     res.render('profile',{
-        fName:req.user.toObject().fName,
-        lName:req.user.toObject().lName,
-        linkedin:req.user.toObject().linkedin,
-        instagram:req.user.toObject().instagram,
-        facebook:req.user.toObject().facebook,
-        bio:req.user.toObject().bio,
-        experience:req.user.toObject().experience,
-        specialty:req.user.toObject().specialty,
-        favoriteCar:req.user.toObject().favoriteCar,
-        currentCar:req.user.toObject().currentCar,
-        phoneNumber:req.user.toObject().phoneNumber,
-        email:req.user.toObject().email,
-        role:req.user.toObject().role
+        user:req.user.toObject()
 }));
 
 pgroutr.get('/dashboardsysadmin',ensureAuthenticated, authRole(ROLE.SYSADMIN),(req,res)=>
     res.render('dashboardsysadmin',{
-        fName:req.user.toObject().fName,
-        lName:req.user.toObject().lName,
-        linkedin:req.user.toObject().linkedin,
-        instagram:req.user.toObject().instagram,
-        facebook:req.user.toObject().facebook,
-        bio:req.user.toObject().bio,
-        experience:req.user.toObject().experience,
-        specialty:req.user.toObject().specialty,
-        favoriteCar:req.user.toObject().favoriteCar,
-        currentCar:req.user.toObject().currentCar,
-        phoneNumber:req.user.toObject().phoneNumber,
-        email:req.user.toObject().email,
-        role:req.user.toObject().role
+        user:req.user.toObject()
 }));
 
 pgroutr.get('/shop',(req,res)=>{
     Vehicle.find({}).then((vehicles)=>{
         res.render('shop',{
             vehicles:vehicles,
-            role:'guest'
+            user:req.user.toObject()
         })
     }).catch((err)=>{
         res.status(500).send(error);
@@ -82,7 +45,7 @@ pgroutr.get('/carview',(req,res)=>{
     Vehicle.find({}).then((vehicles)=>{
         res.render('carview',{
             vehicles:vehicles,
-            role:'guest'
+            user:req.user.toObject()
         })
     }).catch((err)=>{
         res.status(500).send(error);
@@ -94,7 +57,7 @@ pgroutr.get('/tululist',(req,res)=>{
     User.find({role:'tulu'}).then((tulu)=>{
         res.render('tululist',{
             tulu:tulu,
-            role:'guest'
+            user:req.user.toObject()
         })
     }).catch((err)=>{
         res.status(500).send(error);
@@ -104,7 +67,7 @@ pgroutr.get('/tululist',(req,res)=>{
 
 pgroutr.get('/:page', function(req, res){
     res.render(req.params.page,{
-        role:'guest'
+        user:req.user.toObject()
 })});
 
 module.exports = pgroutr;

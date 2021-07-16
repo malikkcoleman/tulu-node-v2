@@ -7,11 +7,17 @@ const passport = require('passport');
 const User = require('../models/userSchema');
 
 // Login Page
-router.get('/login',(rerq,res)=>res.render('login'));
+router.get('/login',(req,res)=>
+    res.render('login',{
+        user:req.user
+}));
 
 
 // Register Page
-router.get('/register',(rerq,res)=>res.render('register'));
+router.get('/register',(req,res)=>
+    res.render('register',{
+    user:req.user
+}));
 
 // Register Handle
 router.post('/register',(req,res)=>{
@@ -87,17 +93,16 @@ router.post(
     }), (req, res) => {
         console.log(req.user.toObject().role)
         if (req.user.toObject().role === "user") {
-            res.redirect('/profile');
-            
+            res.redirect('/profile')
         }
         if (req.user.toObject().role === "tulu") {
-            res.redirect('/tulu');        
+            res.redirect('/tulu')   
         }
         if (req.user.toObject().role === "dealeradmin") {
-            res.redirect('/dashboard');
+            res.redirect('/dealeradmin')
         }
         if (req.user.toObject().role === "sysadmin") {
-            res.redirect('/dashboardSysAdmin');
+            res.redirect('/sysadmin')
         }
     });
 
