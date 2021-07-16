@@ -1,4 +1,5 @@
 const express = require("express");
+const flash = require("connect-flash");
 const router = express.Router();
 //const { ensureAuthenticated } = require("../config/auth");
 const https = require("https");
@@ -8,6 +9,44 @@ const middlewares = [bodyParser.urlencoded({ extended: true })];
 
 const access_key_id = "PnuvF35in4";
 const secret_access_key = "JIO13VOxL2u6FE1czz5tYGkPx8eRYyXZrpRimprI";
+
+var masterVin = "";
+var year = "";
+var make = "";
+var model = "";
+var trim = "";
+var modelNumber = "";
+var packageCode = "";
+var driveType = "";
+var vehicleType = "";
+var bodyType = "";
+var bodySubtype = "";
+var doors = "";
+var bedLength = "";
+var wheelBase = "";
+var msrp = "";
+var invoicePrice = "";
+var engineDescription = "";
+var blockType = "";
+var cylinders = "";
+var displacement = "";
+var fuelType = "";
+var transmissionName = "";
+var optionalEquipmentCodes = "";
+var installedEquipmentDescriptions = "";
+var interiorDescription = "";
+var interiorColourCode = "";
+var exteriorDescription = "";
+var exteriorColourCode = "";
+var engineName = "";
+var engineID = "";
+var engineBrand = "";
+var engineIceMaxHp = "";
+var engineIceMaxTorque = "";
+var engineMaxPayLoad = "";
+var maxTowingCapacity = "";
+var grossWeight = "";
+var fuelTankCapacity = "";
 
 function decoder(VIN) {
   const decoder_query = {
@@ -59,6 +98,12 @@ function decoder(VIN) {
         msrp: "",
         invoice_price: "",
         engine: {
+          name: "",
+          brand: "",
+          ice_max_hp: "",
+          ice_max_torque: "",
+          fuel_type: "",
+          engine_id: "",
           description: "",
           block_type: "",
           cylinders: "",
@@ -110,11 +155,98 @@ function decoder(VIN) {
 
     res.on("end", function () {
       response_json = JSON.parse(response_string);
-      console.log(
+      console.log();
+      masterVin = VIN;
+      year =
         response_json.query_responses.NodeJS_Sample.us_market_data
-          .common_us_data.basic_data
-      );
-      console.log("test");
+          .common_us_data.basic_data.year;
+      make =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.basic_data.make;
+      model =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.basic_data.model;
+      trim =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.basic_data.trim;
+      modelNumber =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.basic_data.model_number;
+      driveType =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.basic_data.drive_type;
+      vehicleType =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.basic_data.vehicle_type;
+      bodyType =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.basic_data.body_type;
+      bodySubtype =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.basic_data.body_subtype;
+      doors =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.basic_data.doors;
+      msrp =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.pricing.msrp;
+      engineName =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.engines[0].name;
+      engineFuelType =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.engines[0].fuel_type;
+      engineID =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.engines[0].engine_id;
+      engineBrand =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.engines[0].brand;
+      engineIceMaxHp =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.engines[0].ice_max_hp;
+      engineIceMaxTorque =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.engines[0].ice_max_torque;
+      engineMaxPayLoad =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.engines[0].max_payload;
+      transmissionName =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.transmissions[0].name;
+      maxTowingCapacity =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.standard_specifications[1].specification_values[5]
+          .specification_value;
+      grossWeight =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.standard_specifications[1].specification_values[0]
+          .specification_value;
+      fuelTankCapacity =
+        response_json.query_responses.NodeJS_Sample.us_market_data
+          .common_us_data.standard_specifications[1].specification_values[2]
+          .specification_value;
+
+      console.log(masterVin);
+      console.log(year);
+      console.log(make);
+      console.log(model);
+      console.log(trim);
+      console.log(modelNumber);
+      console.log(driveType);
+      console.log(vehicleType);
+      console.log(doors);
+      console.log(msrp);
+      console.log(engineName);
+      console.log(engineID);
+      console.log(engineIceMaxHp);
+      console.log(engineIceMaxTorque);
+      console.log(engineMaxPayLoad);
+      console.log(engineFuelType);
+      console.log(transmissionName);
+      console.log(maxTowingCapacity);
+      console.log(grossWeight);
+      console.log(fuelTankCapacity);
     });
   });
 
@@ -128,8 +260,13 @@ function decoder(VIN) {
 
 router.post("/vinTest", (req, res) => {
   decoder(req.body.vin);
-  console.log(req.body.vin);
-  console.log(res.body);
+  //console.log(req.body.model);
+  //console.log(res.body);
 });
+
+/* router.get("/flash", function (req) {
+  req.flash("", "");
+  res.redirect("/vehicles");
+}); */
 
 module.exports = router;
