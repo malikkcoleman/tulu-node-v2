@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 const vehicleschema = new mongoose.Schema({
-  vin: {
+  targetId: {
+    type: String,
+    required: false,
+  },vin: {
     type: String,
     required: false,
   },
@@ -13,6 +16,10 @@ const vehicleschema = new mongoose.Schema({
     required: false,
   },
   model: {
+    type: String,
+    required: false,
+  },
+  mileage: {
     type: String,
     required: false,
   },
