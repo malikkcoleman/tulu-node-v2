@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const {ensureAuthenticated, authRole} = require('../config/auth');
 
 // User Model
 const User = require('../models/userSchema');
@@ -92,6 +93,38 @@ router.post('/register',(req,res)=>{
         });
     }
 });
+
+router.get('/editProfile',ensureAuthenticated,(req,res)=>
+    res.render('editProfile',{
+        user:req.user
+    })
+);
+
+router.post('/editProfile',(req,res)=>{
+    var myquery = { _id: req.user.toObject()._id };
+    const { email,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber} = req.body;
+    var newvalues = { 
+        email: email,
+        fName: fName,
+        lName: lName,
+        linkedin: linkedin,
+        instagram: instagram,
+        facebook: facebook,
+        bio: bio,
+        experience: experience,
+        specialty: specialty,
+        favoriteCar: favoriteCar,
+        currentCar: currentCar,
+        phoneNumber: phoneNumber
+    };
+        User.updateOne(myquery, newvalues)
+        .then(user=>{
+            req.flash('success_msg', 'Changes Saved!');
+            res.redirect('/users/editProfile')  
+        })
+});
+
+
 
 // Login Handle
 router.post(

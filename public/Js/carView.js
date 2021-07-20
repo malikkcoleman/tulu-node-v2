@@ -14,6 +14,13 @@ window.onload = function () {
 }
 
 function populateVehicle(id){
+    for(x=0;x!=dealerList.length;x++){
+        if(dealerList[x].uuid == vehicleList[id].targetId){
+            $('#dealershipName').append(dealerList[x].name);
+        }
+    }
+
+
     $('.carPrice').html('$'+vehicleList[id].maxPrice);
     $('.carName').html(vehicleList[id].year+' '+vehicleList[id].make+' '+vehicleList[id].model);
     var html = "";

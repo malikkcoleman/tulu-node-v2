@@ -50,130 +50,16 @@
         bottom: 0;
     }
 
-.editForm label{
-    margin:20px 0 0 0;
+.editForm{
+    width:80vmin;
 }
 
 #upload-photos{
     display:none;
 }
 
-.addressContainer{
-    flex-direction: row;
-    border:1px solid #79c6ac;
-    border-radius:10px;
-    padding:10px;
-    position:relative;
-    justify-content: space-between;
-    margin:10px 0 15px 0;
-}
-
-.addressContainer p,.addressContainer i{
-    color:#79c6ac;
-    font-size: small;
-}
 
 
-
-.inputContainer{
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    border:1px solid #79c6ac;
-    border-radius: 10px;
-    padding:5px 10px;
-}
-
-.addAddress{
-    flex-direction: column;
-    /* align-items: center; */
-    justify-content: center;
-    border:1px solid #79c6ac;
-    border-radius: 10px;
-    padding:5px 10px 20px 10px;
-}
-
-.addPhone{
-    flex-direction: column;
-    /* align-items: center; */
-    justify-content: center;
-    border:1px solid #79c6ac;
-    border-radius: 10px;
-    padding:5px 10px 20px 10px;
-}
-
-.addressContainer div{
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    border:1px solid #79c6ac;
-    border-radius: 10px;
-    padding:10px 15px; 
-    margin:0 0 10px 0;
-}
-.phoneContainer div{
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    border:1px solid #79c6ac;
-    border-radius: 10px;
-    padding:10px 15px; 
-    margin:0 0 10px 0;
-}
-
-.phoneContainer{
-    flex-direction: column;
-}
-
-.phoneContainer p,.phoneContainer i{
-    color:#79c6ac;
-    font-size: small;
-}
-
-.addPhone label{
-    font-size: small;
-}
-
-.addPhone input{
-    font-size: small;
-}
-
-.addAddress i{
-    color: #79c6ac;
-}
-
-.addAddress label{
-    font-size: small;
-}
-
-.addAddress input{
-    font-size: small;
-}
-
-.phoneContainer{
-    justify-content: space-between;
-}
-
-
-.editForm{
-    width:70vmin;
-}
-
-.editForm input{
-    width:100%;
-    padding:5px;
-    border:none;
-    color:#79c6ac;
-}
-
-.editForm textarea{
-    width:100%;
-    height:100px;
-    padding:5px;
-    border:none;
-    color:#79c6ac;
-    resize: none;
-}
 
 .saveEditBtn{
     margin:30px 0 0 0;
@@ -198,3 +84,23 @@
 }
 
 
+label{
+    margin:20px 0 10px 0;
+}
+
+input{
+    padding:10px 15px;
+    border:2px solid #79C6AC;
+    border-radius: 10px;
+}
+
+button{
+    justify-content: center;
+    align-items: center;
+    padding:15px 0;
+    border-radius: 10px;
+    border: none;
+    background:#79C6AC;
+    color:white;
+    margin:0 0 20px 0;
+}

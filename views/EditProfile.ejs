@@ -7,18 +7,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tulu Canada</title>
-    <link rel="stylesheet" href="styles/reset.css" />
-    <link rel="stylesheet" href="styles/css/all.css" />
-    <link rel="stylesheet" href="styles/nav.css" />
-    <link rel="stylesheet" href="styles/editProfile.css" />
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/css/all.css" />
+    <link rel="stylesheet" href="../styles/nav.css" />
+    <link rel="stylesheet" href="../styles/editProfile.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
 </head>
 <body>
     <nav id="Nav">
         <a href="/">
-            <img src="images/tulu-logo_white.png" alt="">
+            <img src="../images/tulu-logo_white.png" alt="">
         </a>
         <div class="menuButton" onclick="slideMenu()">
             <i class="fas fa-bars fa-2x menuBtn"></i>
@@ -43,7 +43,7 @@
                 <i class="fas fa-user fa-2x" id="userIcon"></i>
                 <i class="fas fa-plus"></i>
             </div>
-            <form id="upload-photos" method="post" action="/api/file/upload" enctype="multipart/form-data">
+            <div id="upload-photos">
                 		<div class="form-group" style="display:none;">
                     		<label for="photos-input">Load Image</label>
                    			<input id="photos-input" type="file" name="photos[]" onchange="uploadImage()" multiple="multiple" accept="image/*" capture />
@@ -56,97 +56,67 @@
                 		<input type="hidden" name="csrf_token" value="just_a_text_field" />
                      <button type="button" class="addImageBtn" onclick="addImage()">ADD PHOTOS</button>
                 
-            </form>
-            <div action="" class="editForm">
-                <label for="email">Email:</label>
-                <div class="inputContainer">
-                    <input type="text" id="email" class="email" name="email" value="email"><br>
-                </div>
-                
-                <label for="name">First Name:</label>
-                <div class="inputContainer">
-                    <input type="text" id="fname" class="fname" name="fname"><br>
-                </div>
-                <label for="name">Last Name:</label>
-                <div class="inputContainer">
-                    <input type="text" id="lname" class="lname" name="lname"><br>
-                </div>
-                <label for="password">New Password:</label>
-                <div class="inputContainer">
-                    <input type="password" id="password" class="password" name="password">
-                </div>
-                <label for="confirmPassword">Confirm Password:</label>
-                <div class="inputContainer">
-                    <input type="password" id="confirmPassword" class="confirmPassword" name="confirmPassword">
-                </div>
-                <label for="address">Address:</label>
-                <div class="addressContainer" id="addressContainer">
-                    <p class="address"></p>
-                    <i class="fas fa-times"></i>
-                </div>
-                <div class="addAddress">
-                    <label for="street">Street:</label>
-                    <div class="inputContainer">
-                        <input type="text" id="street" class="street" name="street"><br>
-                    </div>
-                    <label for="city">City:</label>
-                    <div class="inputContainer">
-                        <input type="text" id="city" class="city" name="city"><br>
-                    </div>
-                    <label for="province">Province:</label>
-                    <div class="inputContainer">
-                        <input type="text" id="province" class="province" name="province"><br>
-                    </div>
-                    <label for="postalCode">Postal Code:</label>
-                    <div class="inputContainer">
-                        <input type="text" id="postalCode" class="postalCode" name="postalCode"><br>
-                    </div>
-                    <button class="saveEditBtn" onclick="AddNewAddress()">
-                        Add Address
-                    </button>
-                </div>
-                @* <label for="phone">Phone Number:</label>
-                <div class="phoneContainer" id="phoneContainer">
-                    <p class="phoneNumber"></p>
-                    <i class="fas fa-times"></i>
-                </div>
-                <div class="addPhone">
-                    <label for="phone">Add Phone Number:</label>
-                    <div class="inputContainer">
-                        <input type="text" id="phone" class="phone" name="phone"><br>
-                    </div>
-                    <button class="saveEditBtn" onclick="AddNewPhone()">
-                        Add Phone
-                    </button>
-                </div> *@
-                <label for="ig">Instagram:</label>
-                <div class="inputContainer">
-                    <input type="text" id="ig" class="ig" name="ig"><br>
-                </div>
-                <label for="fb">Facebook:</label>
-                <div class="inputContainer">
-                    <input type="text" id="fb" class="fb" name="fb"><br>
-                </div>
-                <label for="linkedIn">LinkedIn:</label>
-                <div class="inputContainer">
-                    <input type="text" id="linkedIn" class="linkedIn" name="linkedIn"><br>
-                </div>
-                <label for="bio">Bio:</label>
-                <div class="inputContainer">
-                    <textarea type="text" id="bio" class="bio" name="bio"></textarea>
-                </div>
-                <button class="saveEditBtn" onclick="SaveChanges()">
+            </div>
+            <form action="/users/editprofile" method="POST" class="editForm">
+                <%- include partials/messages %>
+                <div class="form-group">
+                    <label for="fName">Firstname</label>
+                    <input type="name" id="fName" name="fName" class="form-control" value="<%= user.toObject().fName%>"/>
+                    
+                  </div>
+                  <div class="form-group">
+                    <label for="name">Lastname</label>
+                    <input type="name" id="lName" name="lName" class="form-control" value="<%= user.toObject().lName%>"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" class="form-control" value="<%= user.toObject().email%>"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="bio">Bio</label>
+                    <input type="text" id="bio" name="bio" class="form-control" value="<%= user.toObject().bio%>"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="experience">Experience</label>
+                    <input type="text" id="experience" name="experience" class="form-control" value="<%= user.toObject().experience%>"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="specialty">Specialty</label>
+                    <input type="text" id="specialty" name="specialty" class="form-control" value="<%= user.toObject().specialty%>"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="favoriteCar">Favorite Car</label>
+                    <input type="text" id="favoriteCar" name="favoriteCar" class="form-control" value="<%= user.toObject().favoriteCar%>"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="currentCar">Current Car</label>
+                    <input type="text" id="currentCar" name="currentCar" class="form-control" value="<%= user.toObject().currentCar%>"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" value="<%= user.toObject().phoneNumber%>"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="linkedin">Linkedin</label>
+                    <input type="text" id="linkedin" name="linkedin" class="form-control" value="<%= user.toObject().linkedin%>"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="instagram">Instagram</label>
+                    <input type="text" id="instagram" name="instagram" class="form-control" value="<%= user.toObject().instagram%>"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="facebook">Facebook</label>
+                    <input type="text" id="facebook" name="facebook" class="form-control" value="<%= user.toObject().facebook%>"/>
+                  </div>
+                <button class="saveEditBtn">
                     Save Changes
                 </button>
-                <button class="cancelEditBtn" onclick="cancelChanges()">
-                    Cancel
-                </button>
-            </div>
+            </form>
         </div>
 
         </div>
 </body>
-<script src="Js/sideMenu.js"></script>
+<script src="../Js/sideMenu.js"></script>
 <script>
     var gUser = null;
     window.onload = function () {
@@ -241,7 +211,7 @@
     }
 
 </script>
-<script src="Js/privileges.js"></script>
+<script src="../Js/privileges.js"></script>
     </script>
 
     <!-- <Script>

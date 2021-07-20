@@ -70,7 +70,7 @@
                 </div>
                 <button class="buyNowBtn" onclick="buyNow()">Buy now!</button>
 
-                <% if(role === 'guest') {%>
+                <% if(!user) {%>
 
                     <div class="BookContainer">
                         <p>Book an appointment?</p>
@@ -78,7 +78,7 @@
                             <a href="/dashboard">Sign In!</a>
                         </div>
                     </div>
-                <% }  if(role === 'user'||role === 'tulu'){%>
+                <% }  if(user){%>
                     <button onclick="selectTulu();" class="bookAppointment">Book an appointment</button>
                 <%}%>
                     
@@ -116,7 +116,7 @@
             <div class="ShareContainer">
                 <p>Share This Listing</p>
                 <div class="shareBtnContainer" id="shareBtnContainer">
-
+                    <% if(user) {%>
                         <script>
                             var url = window.location.href;
                             var fbBtn = '';
@@ -125,9 +125,12 @@
                             fbBtn += '</a>';
                             $("#shareBtnContainer").append(fbBtn);
                         </script>
+                    <% }%>
+                    <% if(!user) {%>
                         <div class="signInBtn">
                             <a href="/test">Sign In!</a>
                         </div>
+                    <% }%>
                 </div>
             </div>
         </section>
@@ -242,6 +245,8 @@
 <script type="text/javascript">
     var vehicleList = <%-JSON.stringify(vehicles)%>;
     console.log(vehicleList);
+    var dealerList = <%-JSON.stringify(dealers)%>
+    console.log(dealerList)
     // populateVehicle(vehicleList);
 </script>
 </html>

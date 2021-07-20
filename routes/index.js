@@ -4,6 +4,7 @@ const ROLE = require('../roles');
 const {ensureAuthenticated, authRole} = require('../config/auth');
 
 const Vehicle = require("../models/vehicleSchema");
+const Dealer = require("../models/dealershipschema");
 const User = require("../models/userSchema");
 
 pgroutr.get('/',(req,res)=>
@@ -51,10 +52,19 @@ pgroutr.get('/shop',(req,res)=>{
 })
 pgroutr.get('/carview',(req,res)=>{
     Vehicle.find({}).then((vehicles)=>{
-        res.render('carview',{
-            vehicles:vehicles,
-            user:req.user
+        Dealer.find({}).then((dealers)=>{
+            res.render('carview',{
+                vehicles:vehicles,
+                user:req.user,
+                dealers:dealers
+            })
+        }).catch((err)=>{
+            res.status(500).send(error);
         })
+        .catch((err) => {
+          res.status(500).send(error);
+        });
+        
     }).catch((err)=>{
         res.status(500).send(error);
     })

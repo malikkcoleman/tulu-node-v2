@@ -46,25 +46,25 @@
                     <img src="images/jolo.jpeg" alt="" class="face">
                 </div>
                 <h3 class="userName">
-                    <%= user.fName%> <%= user.lName%>
+                    <%= user.toObject()fName%> <%= user.toObject()lName%>
                 </h3>
                 <p class="userBio">
-                    <%= user.bio%>
+                    <%= user.toObject()bio%>
                 </p>
                 
                 <ul class="socialMediaAccounts">
                     <li>
-                        <a href="<%= user.facebook%>" target="_blank">
+                        <a href="<%= user.toObject()facebook%>" target="_blank">
                             <i class="fab fa-facebook fa-2x"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="<%= user.instagram%>" target="_blank">
+                        <a href="<%= user.toObject()instagram%>" target="_blank">
                             <i class="fab fa-instagram fa-2x"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="<%= user.linkedin%>" target="_blank">
+                        <a href="<%= user.toObject()linkedin%>" target="_blank">
                             <i class="fab fa-linkedin-in fa-2x"></i>
                         </a>
                     </li>
@@ -74,19 +74,19 @@
                     Favourite Car:
                     </h4>
                     <p class="favouriteCar">
-                        <%= user.favoriteCar%>
+                        <%= user.toObject()favoriteCar%>
                     </p>
                     <h4>
                     Current Car:
                     </h4>
                     <p class="currentCar">
-                        <%= user.currentCar%>
+                        <%= user.toObject()currentCar%>
                     </p>
                     <h4>
                         Location: 
                     </h4>
                     <p class="location">
-                        <%= user.role%>
+                        <%= user.toObject()role%>
                     </p>
                 </div>
                 <a href="/Account/EditProfile">

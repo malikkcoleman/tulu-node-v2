@@ -44,10 +44,10 @@
                     <i class="fas fa-user fa-4x"></i>
                 </div>
                 <h3 class="userName">
-                    <%= user.fName%> <%= user.lName%>
+                    <%= user.toObject().fName%> <%= user.toObject().lName%>
                 </h3>
                 <p class="userRole">
-                    <%= user.role%>
+                    <%= user.toObject().role%>
                 </p>
                 <div class="userRating">
                     <i class="fas fa-star"></i>
@@ -58,7 +58,7 @@
                 </div>
                 <p class="carsSold">Cars sold:<span>0</span></p>
                 <p class="userBio">
-                    <%= user.bio%>
+                    <%= user.toObject().bio%>
                 </p>
                 <ul class="socialMediaAccounts">
                     <li>
@@ -77,7 +77,7 @@
                         </a>
                     </li>
                 </ul>
-                <% if(user.role == 'tulu') {%>
+                <% if(user.toObject().role == 'tulu') {%>
                     tulu
                 <% } %>
 
@@ -86,35 +86,35 @@
                         Experience:
                     </h4> 
                     <p class="experience">
-                        <%= user.experience%>    
+                        <%= user.toObject().experience%>    
                     </p>
                     <h4>
                         Specialty:
                     </h4>
                     <p class="specialty">
-                        <%= user.specialty%>    
+                        <%= user.toObject().specialty%>    
                     </p>
                     <h4>
                     Favourite Car:
                     </h4>
                     <p class="favouriteCar">
-                        <%= user.favoriteCar%>
+                        <%= user.toObject().favoriteCar%>
                     </p>
                     <h4>
                     Current Car:
                     </h4>
                     <p class="currentCar">
-                        <%= user.currentCar%>
+                        <%= user.toObject().currentCar%>
                     </p>
                     
                     <h4>
                         Location: 
                     </h4>
                     <p class="location">
-                        <%= user.role%>
+                        <%= user.toObject().role%>
                     </p>
                 </div>
-                <a href="/Account/EditProfile">
+                <a href="/users/EditProfile">
                     <button class="editProfileBtn">
                         Edit Profile
                     </button>
@@ -207,7 +207,6 @@
 
 </body>
 <script src="Js/sideMenu.js"></script>
-<script type="text/javascript" src="Js/Helpers/TuluHelper.js"></script>
 <script type="text/javascript">
     window.onload = function () {
 

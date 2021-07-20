@@ -214,8 +214,8 @@ router.post("/DashboardSysAdminVehicle", (req, res) => {
         newVehicle
           .save()
           .then((vehicle) => {
-            // req.flash('success_msg', 'You are now registered and can log in.');
-            res.redirect("/");
+            req.flash('success_msg', 'Vehicle Added.');
+            res.redirect("/sysadminvehicles/DashboardSysAdminVehicle");
           })
           .catch((err) => console.log(err));
 
