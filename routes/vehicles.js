@@ -8,8 +8,12 @@ const Vehicle = require("../models/vehicleSchema");
 
 // addvehicle Page
 router.get("/addvehicle", (req, res) => {
-  res.render("addvehicle");
+  res.render("addvehicle",{
+    user: req.user
+  })
 });
+
+
 
 //controller methods
 
@@ -49,7 +53,7 @@ router.post("/addvehicle", (req, res) => {
     baseTowingCapacity,
     grossWeight,
     fuelTankCapacity,
-    notes,
+    notes
   } = req.body;
 
   let errors = [];
@@ -121,6 +125,7 @@ router.post("/addvehicle", (req, res) => {
       grossWeight,
       fuelTankCapacity,
       notes,
+      user: req.user
     });
   } else {
     // res.send('Pass');
@@ -162,6 +167,7 @@ router.post("/addvehicle", (req, res) => {
           grossWeight,
           fuelTankCapacity,
           notes,
+          user: req.user
         });
       } else {
         const newVehicle = new Vehicle({
@@ -216,5 +222,54 @@ router.post("/addvehicle", (req, res) => {
   console.log(vinn);
   res.render("/vehicles", { vin: vin });
 }); */
+
+
+
+// EDIT VEHICLE
+router.get("/editvehicle", (req, res) => {
+  Vehicle.find().then((vehicle) => {
+    res.render("editvehicle",{
+      user: req.user,
+      vehicles:vehicle
+    })
+  })
+});
+
+router.post('/editvehicle',(req,res)=>{
+  const { vin,year,make,model,vehicleType,trim,doors,modelNumber,driveType,msrp,minPrice,maxPrice,refFee,engineName,engineBrand,engineID,fuelType,iceMaxHp,iceMaxTorque,transmissionName,colorName,colorHex,baseTowingCapacity,grossWeight,fuelTankCapacity} = req.body;
+  var myquery = { vin: vin };
+  var newvalues = { 
+    vin:vin,
+    year:year,
+    make:make,
+    model:model,
+    vehicleType:vehicleType,
+    trim:trim,
+    doors:doors,
+    modelNumber:modelNumber,
+    driveType:driveType,
+    msrp:msrp,
+    minPrice:minPrice,
+    maxPrice:maxPrice,
+    refFee:refFee,
+    engineName:engineName,
+    engineBrand:engineBrand,
+    engineID:engineID,
+    fuelType:fuelType,
+    iceMaxHp:iceMaxHp,
+    iceMaxTorque:iceMaxTorque,
+    transmissionName:transmissionName,
+    colorName:colorName,
+    colorHex:colorHex,
+    baseTowingCapacity:baseTowingCapacity,
+    grossWeight:grossWeight,
+    fuelTankCapacity:fuelTankCapacity
+  };
+      Vehicle.updateOne(myquery, newvalues)
+      .then(user=>{
+          req.flash('success_msg', 'Changes Saved!');
+          res.redirect('back');
+      })
+});
 
 module.exports = router;
