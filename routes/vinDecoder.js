@@ -9,6 +9,7 @@ const ROLE = require("../roles");
 const { ensureAuthenticated, authRole } = require("../config/auth");
 const middlewares = [bodyParser.urlencoded({ extended: true })];
 const vehicle = require("../models/vehicleSchema");
+const { decode } = require("punycode");
 const tempVehicle = new vehicle();
 
 const access_key_id = "PnuvF35in4";
@@ -51,8 +52,9 @@ var engineMaxPayLoad = "";
 var maxTowingCapacity = "";
 var grossWeight = "";
 var fuelTankCapacity = "";
+var infoData;
 
-function decoder(VIN) {
+async function decoder(VIN) {
   const decoder_query = {
     decoder_settings: {
       display: "full",
@@ -159,7 +161,7 @@ function decoder(VIN) {
 
     res.on("end", function () {
       response_json = JSON.parse(response_string);
-
+      infoData = response_json;
       masterVin = VIN;
       year =
         response_json.query_responses.NodeJS_Sample.us_market_data
@@ -215,9 +217,9 @@ function decoder(VIN) {
       engineMaxPayLoad =
         response_json.query_responses.NodeJS_Sample.us_market_data
           .common_us_data.engines[0].max_payload;
-      transmissionName =
-        response_json.query_responses.NodeJS_Sample.us_market_data
-          .common_us_data.transmissions[0].name;
+      // transmissionName =
+      //   response_json.query_responses.NodeJS_Sample.us_market_data
+      //     .common_us_data.transmissions[0].name;
       /*       maxTowingCapacity =
         response_json.query_responses.NodeJS_Sample.us_market_data
           .common_us_data.standard_specifications[1].specification_values[5]
@@ -247,26 +249,37 @@ function decoder(VIN) {
       console.log(engineIceMaxTorque);
       console.log(engineMaxPayLoad);
       console.log(engineFuelType);
-      console.log(transmissionName);
+      // console.log(transmissionName);
       //console.log(maxTowingCapacity);
       console.log(grossWeight);
       console.log(fuelTankCapacity);
+
+      console.log(infoData);
+
     });
   });
 
   req.on("error", (error) => {
     console.error(error);
-  });
+  })
+
+  
 
   req.write(post_data);
+  
   req.end();
+  return infoData;
 }
 
 router.post("/vinTest", (req, res) => {
-  decoder(req.body.vin);
-
-  //console.log(req.body.model);
-  //console.log(res.body);
+  decoder(req.body.vin).then(infoData=>{
+    res.render('addvehicle',{
+      vin:req.body.vin,
+      infoData:infoData,
+      user:req.user
+    })
+  })
+  
 });
 
 router.get("/flash", function (req) {

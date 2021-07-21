@@ -1,107 +1,126 @@
-﻿@{
-    ViewBag.Title = "Contact";
-}
-
+﻿@{ ViewBag.Title = "Contact"; }
 
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="icon" type="image/png" href="images/favicon.png">
+  <head>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tulu Canada</title>
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/css/all.css" />
     <link rel="stylesheet" href="styles/nav.css" />
     <link rel="stylesheet" href="styles/contactUs.css" />
     <link rel="stylesheet" href="styles/footer.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
     <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <nav id="Nav">
-        <a href="/">
-            <img src="images/tulu-logo_white.png" alt="">
-        </a>
-        <div class="menuButton" onclick="slideMenu()">
-            <i class="fas fa-bars fa-2x menuBtn"></i>
-            <i class="fas fa-times fa-2x closeMenuBtn"></i>
-        </div>
+      <a href="/">
+        <img src="images/tulu-logo_white.png" alt="" />
+      </a>
+      <div class="menuButton" onclick="slideMenu()">
+        <i class="fas fa-bars fa-2x menuBtn"></i>
+        <i class="fas fa-times fa-2x closeMenuBtn"></i>
+      </div>
     </nav>
 
     <div id="SideMenu" class="sideMenu">
-        <ul class="menu">
-            <%- include partials/sidemenu %>
-            
-        </ul>
-        <p class="loggedInAs"></p>
+      <ul class="menu">
+        <%- include partials/sidemenu %>
+      </ul>
+      <p class="loggedInAs"></p>
     </div>
 
     <div class="container body-content">
-
-        <div class="questions">
-            <h2>Questions?</h2>
-            <p>Email us now at 
-            <a href="mailto: info.tulucanada.com">info.tulucanada.com</a>
-            !
-            </p>
-        </div>
-
-        <!-- <div class="contactUs">
-            <div>
-                <label for="">Name:</label>
-                <input type="text">
-                <label for="">Email:</label>
-                <input type="text">
-                <label for="">Phone Number:</label>
-                <input type="text">
-                <label for="">Message:</label>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-                <button>SEND</button>
-            </div>
-        </div> -->
-
+      <div class="questions">
+        <h2>Questions?</h2>
+        <p>
+          Email us now at
+          <a href="mailto: info.tulucanada.com">info.tulucanada.com</a>
+          !
+        </p>
+      </div>
+      <div>
+        <form
+          id="my-form"
+          action="https://formspree.io/f/xyyldlok"
+          method="POST"
+        >
+          <label>Email:</label>
+          <input type="email" name="email" />
+          <label>Message:</label>
+          <input type="text" name="message" />
+          <button id="my-form-button">Submit</button>
+          <p id="my-form-status"></p>
+        </form>
+      </div>
     </div>
     <footer>
-        <ul class="footerList">
-            <li class="footerListItem">
-                <a href="/">
-                    <h4>Partners</h4>
-                </a>
-                <ul class="footerSubLinkList">
-                    <li class="SubLinkListItem">
-                        <a href="/DealershipList">Dealerships</a>
-                    </li>
-                </ul>
+      <ul class="footerList">
+        <li class="footerListItem">
+          <a href="/">
+            <h4>Partners</h4>
+          </a>
+          <ul class="footerSubLinkList">
+            <li class="SubLinkListItem">
+              <a href="/DealershipList">Dealerships</a>
             </li>
-            <li class="footerListItem">
-                <a href="/">
-                    <h4>Customer Support</h4>
-                </a>
-                <ul class="footerSubLinkList">
-                    <li class="SubLinkListItem">
-                        <a href="/">FAQ</a>
-                    </li>
-                    <li class="SubLinkListItem">
-                        <a href="/">Feedback and Comments</a>
-                    </li>
-                    <li class="SubLinkListItem">
-                        <a href="/Contact">Contact Us</a>
-                    </li>
-                </ul>
+          </ul>
+        </li>
+        <li class="footerListItem">
+          <a href="/">
+            <h4>Customer Support</h4>
+          </a>
+          <ul class="footerSubLinkList">
+            <li class="SubLinkListItem">
+              <a href="/">FAQ</a>
             </li>
-        </ul>
+            <li class="SubLinkListItem">
+              <a href="/">Feedback and Comments</a>
+            </li>
+            <li class="SubLinkListItem">
+              <a href="/Contact">Contact Us</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </footer>
-</body>
-<script src="Js/sideMenu.js"></script>
-<script src="Js/privileges.js"></script>
+  </body>
+  <script src="Js/sideMenu.js"></script>
+  <script>
+    var form = document.getElementById("my-form");
 
+    async function handleSubmit(event) {
+      event.preventDefault();
+      var status = document.getElementById("my-form-status");
+      var data = new FormData(event.target);
+      fetch(event.target.action, {
+        method: form.method,
+        body: data,
+        headers: {
+          Accept: "application/json",
+        },
+      })
+        .then((response) => {
+          status.innerHTML = "Thanks for your submission!";
+          form.reset();
+        })
+        .catch((error) => {
+          status.innerHTML = "Oops! There was a problem submitting your form";
+        });
+    }
+    form.addEventListener("submit", handleSubmit);
+  </script>
+  <script src="Js/privileges.js"></script>
 
-    <!-- <Script>
+  <!-- <Script>
             GetUser();
         </Script>   -->
-        <Script>
-            // guestprivileges();
-        </Script> 
+  <Script> // guestprivileges(); </Script>
 </html>
