@@ -6,6 +6,7 @@ const {ensureAuthenticated, authRole} = require('../config/auth');
 const Vehicle = require("../models/vehicleSchema");
 const Dealer = require("../models/dealershipschema");
 const User = require("../models/userSchema");
+const uploadController = require("../controllers/upload");
 
 pgroutr.get('/',(req,res)=>
     res.render('index',{
@@ -72,6 +73,10 @@ pgroutr.get('/carview',(req,res)=>{
       res.status(500).send(error);
     });
 });
+
+pgroutr.post("/upload", uploadController.uploadFile), (req, res) => {
+    console.log(req)
+};
 
 
 pgroutr.get('/tululist',(req,res)=>{
