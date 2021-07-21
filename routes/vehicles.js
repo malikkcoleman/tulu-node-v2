@@ -17,8 +17,9 @@ router.get("/addvehicle", (req, res) => {
 
 //controller methods
 
-router.get("/", VehicleController.GetVehicles);
-//router.post("/", VehicleController.CreateVehicle);
+router.get("/malik", VehicleController.GetVehicles);
+router.post("/coleman", VehicleController.CreateVehicle);
+//router.post("/addVehicle", addVehicle);
 
 // addvehicle Handle
 router.post("/addvehicle", (req, res) => {
