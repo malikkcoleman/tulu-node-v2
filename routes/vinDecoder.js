@@ -252,25 +252,19 @@ function decoder(VIN) {
       console.log(grossWeight);
       console.log(fuelTankCapacity);
     });
-    tempVehicle.vin = masterVin;
-    tempVehicle.year = year;
-    tempVehicle.model = model;
   });
 
   req.on("error", (error) => {
     console.error(error);
   });
-  return tempVehicle;
+
   req.write(post_data);
   req.end();
 }
 
 router.post("/vinTest", (req, res) => {
-  let newVehicle = vehicle();
-  //newVehicle = decoder(req.body);
-  newVehicle.vin = req.body.vin;
-  newVehicle.year = req.body.year;
-  console.log(newVehicle);
+  decoder(req.body.vin);
+
   //console.log(req.body.model);
   //console.log(res.body);
 });

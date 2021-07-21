@@ -30,15 +30,12 @@
     </nav>
 
     <div id="SideMenu" class="sideMenu">
-      <ul class="menu">
-        <%- include partials/sidemenu %>
-      </ul>
+      <ul class="menu"></ul>
       <p class="loggedInAs"></p>
     </div>
 
     <div class="container">
-      <form action="/vehicles/coleman" method="POST">
-        <%- include partials/messages %>
+      <form action="/vin/vinTest" method="POST">
         <label for="vin">VIN</label>
         <input type="text" name="vin" id="vin" />
         <button type="submit">Save Vehicle</button>
