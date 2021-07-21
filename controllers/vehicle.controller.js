@@ -11,6 +11,7 @@ const vehicle = require("../models/vehicleSchema");
 const access_key_id = "PnuvF35in4";
 const secret_access_key = "JIO13VOxL2u6FE1czz5tYGkPx8eRYyXZrpRimprI";
 
+const newVehicle = new vehicle();
 var masterVin = "";
 var year = "";
 var make = "";
@@ -227,58 +228,100 @@ function decoder(VIN) {
         response_json.query_responses.NodeJS_Sample.us_market_data
           .common_us_data.standard_specifications[1].specification_values[2]
           .specification_value;
-      console.log(newVehicle);
+
+      console.log(masterVin);
+      console.log(year);
+      console.log(make);
+      console.log(model);
+      newVehicle.vin = masterVin;
+      newVehicle.year = year;
+      newVehicle.make = make;
+      newVehicle.model = model;
+      newVehicle.vehicleType = vehicleType;
+      newVehicle.trim = trim;
+      newVehicle.dealerId = "";
+      newVehicle.isSold = "";
+      newVehicle.doors = doors;
+      newVehicle.modelNumber = modelNumber;
+      newVehicle.driveType = driveType;
+      newVehicle.msrp = msrp;
+      newVehicle.minPrice = "";
+      newVehicle.maxPrice = "";
+      newVehicle.refFee = "";
+      newVehicle.engineName = engineName;
+      newVehicle.engineBrand = engineBrand;
+      newVehicle.engineID = engineID;
+      newVehicle.fuelType = engineFuelType;
+      newVehicle.iceMaxHp = egineIceMaxHp;
+      newVehicle.iceMaxTorque = engineIceMaxTorque;
+      newVehicle.maxPayLoad = engineMaxPayLoad;
+      newVehicle.transmissionName = transmissionName;
+      newVehicle.colorName = "";
+      newVehicle.colorHex = "";
+      newVehicle.baseTowingCapacity = "";
+      newVehicle.grossWeight = grossWeight;
+      newVehicle.fuelTankCapacity = fuelTankCapacity;
+      newVehicle.notes = data.notes;
+      return newVehicle;
     });
+    console.log(newVehicle);
   });
 
   req.on("error", (error) => {
     console.error(error);
   });
-  return newVehicle;
+
   //req.write(post_data);
   //req.end();
 }
 
-const addVehicle = async (req, res, next) => {
-  const data = decoder(req.body.vin);
-  let vehicle = await new vehicle({
-    vin: data.masterVin,
-    year: data.year,
-    make: data.make,
-    model: data.model,
-    vehicleType: data.vehicleType,
-    trim: data.trim,
-    dealerId: "testtest",
-    isSold: "testtest",
-    doors: data.doors,
-    modelNumber: data.modelNumber,
-    driveType: data.driveType,
-    msrp: data.msrp,
-    minPrice: 111,
-    refFee: 111,
-    engineName: data.engineName,
-    engineBrand: data.engineBrand,
-    engineID: data.engineID,
-    fuelType: data.engineFuelType,
-    iceMaxHp: data.engineIceMaxHp,
-    iceMaxTorque: data.engineIceMaxTorque,
-    maxPayLoad: data.engineMaxPayLoad,
-    transmissionName: data.transmissionName,
-    colorName: "",
-    colorHex: "",
-    baseTowingCapacity: "",
-    grossWeight: data.grossWeight,
-    fuelTankCapacity: data.fuelTankCapacity,
-    notes: "",
-  });
-
-  vehicle = await vehicle.save();
-};
-
-module.exports = {
-  addVehicle,
-};
 module.exports = class Vehicle {
+  static async addVehicle(req, res, next) {
+    try {
+      const res = decoder(req.body.vin);
+      console.log(res);
+      //decoder(req.body.vin);
+      //console.log(req.body.vin);
+      //console.log(data);
+      /* const vehicle = await new vehicle({
+        vin: data.masterVin,
+        year: data.year,
+        make: data.make,
+        model: data.model,
+        vehicleType: data.vehicleType,
+        trim: data.trim,
+        dealerId: "testtest",
+        isSold: "testtest",
+        doors: data.doors,
+        modelNumber: data.modelNumber,
+        driveType: data.driveType,
+        msrp: data.msrp,
+        minPrice: 111,
+        refFee: 111,
+        engineName: data.engineName,
+        engineBrand: data.engineBrand,
+        engineID: data.engineID,
+        fuelType: data.engineFuelType,
+        iceMaxHp: data.engineIceMaxHp,
+        iceMaxTorque: data.engineIceMaxTorque,
+        maxPayLoad: data.engineMaxPayLoad,
+        transmissionName: data.transmissionName,
+        colorName: "",
+        colorHex: "",
+        baseTowingCapacity: "",
+        grossWeight: data.grossWeight,
+        fuelTankCapacity: data.fuelTankCapacity,
+        notes: "", */
+      //});
+
+      //console.log(vehicle);
+
+      //vehicle = await vehicle.save();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   static async GetVehicles(req, res, next) {
     try {
       const vehicles = await vehicleService.getAllVehicles();

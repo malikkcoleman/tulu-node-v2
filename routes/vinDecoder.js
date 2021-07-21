@@ -5,9 +5,11 @@ const router = express.Router();
 const https = require("https");
 const querystring = require("query-string");
 const bodyParser = require("body-parser");
-const ROLE = require('../roles');
+const ROLE = require("../roles");
 const { ensureAuthenticated, authRole } = require("../config/auth");
 const middlewares = [bodyParser.urlencoded({ extended: true })];
+const vehicle = require("../models/vehicleSchema");
+const tempVehicle = new vehicle();
 
 const access_key_id = "PnuvF35in4";
 const secret_access_key = "JIO13VOxL2u6FE1czz5tYGkPx8eRYyXZrpRimprI";
@@ -157,7 +159,7 @@ function decoder(VIN) {
 
     res.on("end", function () {
       response_json = JSON.parse(response_string);
-      console.log();
+
       masterVin = VIN;
       year =
         response_json.query_responses.NodeJS_Sample.us_market_data
@@ -250,18 +252,25 @@ function decoder(VIN) {
       console.log(grossWeight);
       console.log(fuelTankCapacity);
     });
+    tempVehicle.vin = masterVin;
+    tempVehicle.year = year;
+    tempVehicle.model = model;
   });
 
   req.on("error", (error) => {
     console.error(error);
   });
-
+  return tempVehicle;
   req.write(post_data);
   req.end();
 }
 
 router.post("/vinTest", (req, res) => {
-  decoder(req.body.vin);
+  let newVehicle = vehicle();
+  //newVehicle = decoder(req.body);
+  newVehicle.vin = req.body.vin;
+  newVehicle.year = req.body.year;
+  console.log(newVehicle);
   //console.log(req.body.model);
   //console.log(res.body);
 });
