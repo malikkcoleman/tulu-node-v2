@@ -1,173 +1,176 @@
-.appointmentContainer{
-    padding:50px 0 60px 0;
-    background:none ;
+.appointmentContainer {
+  padding: 50px 0 60px 0;
+  background: none;
 }
 
 .header {
-    /* background: #79C6AC; */
-    width:100%;
-    height:20vh;
-    justify-content:center;
-    align-items:center;
+  /* background: #79C6AC; */
+  width: 100%;
+  height: 20vh;
+  justify-content: center;
+  align-items: center;
 }
-
-
 
 .bookAppointmentContainer {
-    padding: 40px 30px 60px 30px;
-    /* background: #79C6AC; */
-    /* position: absolute; */
-    /* width: 100%; */
-    
-    justify-content: center;
-    align-items: center;
+  padding: 40px 30px 60px 30px;
+  /* background: #79C6AC; */
+  /* position: absolute; */
+  /* width: 100%; */
+
+  justify-content: center;
+  align-items: center;
 }
 
-.wrapper{
-    margin:60px 0 0 0;
-    width:80vmin;
+.wrapper {
+  margin: 60px 0 0 0;
+  width: 80vmin;
 }
 
-.bookAppointmentContainer .wrapper div:nth-child(2){
-    margin:20px 0;
+.bookAppointmentContainer .wrapper div:nth-child(2) {
+  margin: 20px 0;
 }
 
-h2{
-    margin:20px 0;
+h2 {
+  margin: 20px 0;
 }
 
-
-
-div p{
-    flex-direction:row;
+div p {
+  flex-direction: row;
 }
 
-div p span{
-    color:#79C6AC;
-    margin:0 0 0 5px;
+div p span {
+  color: #79c6ac;
+  margin: 0 0 0 5px;
 }
 
-.inputFieldDiv p{
-    margin: 10px 0 0 0;
+.inputFieldDiv p {
+  margin: 10px 0 0 0;
 }
 
-.inputFieldDiv input{
-    margin:5px 0 10px 0;
-    padding:5px 10px;
-    border:2px solid #79C6AC;
-    background:none;
-    border-radius:10px;
+.inputFieldDiv input {
+  margin: 5px 0 10px 0;
+  padding: 5px 10px;
+  border: 2px solid #79c6ac;
+  background: none;
+  border-radius: 10px;
 }
 
-.inputFieldDiv textarea{
-    margin:5px 0 10px 0;
-    padding:5px 10px;
-    border:2px solid #79C6AC;
-    /* background:none; */
-    border-radius:10px;
-    color:#79C6AC;
+.inputFieldDiv textarea {
+  margin: 5px 0 10px 0;
+  padding: 5px 10px;
+  border: 2px solid #79c6ac;
+  /* background:none; */
+  border-radius: 10px;
+  color: #79c6ac;
 }
 
-.inputFieldDiv select{
-    margin:5px 0 10px 0;
-    padding:5px 10px;
-    border:2px solid #79C6AC;
-    background:none;
-    border-radius:10px;
+.inputFieldDiv select {
+  margin: 5px 0 10px 0;
+  padding: 5px 10px;
+  border: 2px solid #79c6ac;
+  background: none;
+  border-radius: 10px;
 }
 
-.saveTestDrive,.cancelTestDrive{
-    width:100%;
-    padding:15px 0;
-    border-radius:10px;
-    align-self:center;
-    margin:20px 0 0 0;
-    align-items:center;
-    border:none;
-    background:#79C6AC;
-    color:white;
+.saveTestDrive,
+.cancelTestDrive {
+  width: 100%;
+  padding: 15px 0;
+  border-radius: 10px;
+  align-self: center;
+  margin: 20px 0 0 0;
+  align-items: center;
+  border: none;
+  background: #79c6ac;
+  color: white;
 }
 
-#DealerAccept,#TuluAccept{
-    opacity:0.5;
+#DealerAccept,
+#TuluAccept {
+  opacity: 0.5;
 }
 
-.saveTestDrive{
-    opacity:0.3;
+.saveTestDrive {
+  opacity: 0.3;
 }
 
-.prefAltTimeText{
-    color:#79C6AC;
-    margin:30px 0 0 0 !important;
+.prefAltTimeText {
+  color: #79c6ac;
+  margin: 30px 0 0 0 !important;
 }
 
-.tuluRepresentativeText{
-    text-align: center;
-    color:#79C6AC;
-    margin:50px 0 0 0;
+.tuluRepresentativeText {
+  text-align: center;
+  color: #79c6ac;
+  margin: 50px 0 0 0;
 }
 
-.privacyTermsText{
-    text-align: center;
-    color:#79C6AC;
-    margin:30px 0 10px 0;
-    font-size: smaller;
+.privacyTermsText {
+  text-align: center;
+  color: #79c6ac;
+  margin: 30px 0 10px 0;
+  font-size: smaller;
 }
 
-.privacyTermsBtn{
-    border-radius: 10px;
-    border:none;
-    padding:15px ;
-    background:#79C6AC;
-    color:white;
-    align-items: center;
+.privacyTermsBtn {
+  border-radius: 10px;
+  border: none;
+  padding: 15px;
+  background: #79c6ac;
+  color: white;
+  align-items: center;
 }
 
-.privacyTerms{
-    height:100vh;
-    width:100vw;
-    display:none;
-    position:fixed;
-    justify-content: center;
-    align-items: center;
-    background:#0000007a;
-    z-index: 999999999999999999999;
+.privacyTerms {
+  height: 100vh;
+  width: 100vw;
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  background: #0000007a;
+  z-index: 999999999999999999999;
 }
 
-.privacyTermsContainerWrapper{
-    padding:15px 20px;
-    background:white;
+.privacyTermsContainerWrapper {
+  padding: 15px 20px;
+  background: white;
 }
 
-.privacyTermsContainer{
-    background:white;
-    padding:5px 10px;
-    height:80vmin;
-    overflow: scroll;
-    width:80vmin;
+.privacyTermsContainer {
+  background: white;
+  padding: 5px 10px;
+  height: 80vmin;
+  overflow: scroll;
+  width: 80vmin;
 }
 
-.privacyTermsContainer h1{
-    color:#79C6AC;
-    margin:30px 0 20px 0;
+.privacyTermsContainer h1 {
+  color: #79c6ac;
+  margin: 30px 0 20px 0;
 }
 
-.agreeBtn{
-    margin:50px 0 0 0;
-    border-radius: 10px;
-    border:none;
-    padding:15px ;
-    background:#79C6AC;
-    color:white;
-    align-items: center;
+.agreeBtn {
+  margin: 50px 0 0 0;
+  border-radius: 10px;
+  border: none;
+  padding: 15px;
+  background: #79c6ac;
+  color: white;
+  align-items: center;
 }
 
-.cancelBtn{
-    margin:20px 0 20px 0;
-    border-radius: 10px;
-    border:none;
-    padding:15px ;
-    background:#79C6AC;
-    color:white;
-    align-items: center;
+.cancelBtn {
+  margin: 20px 0 20px 0;
+  border-radius: 10px;
+  border: none;
+  padding: 15px;
+  background: #79c6ac;
+  color: white;
+  align-items: center;
+}
+
+.saveTestDrive,
+.cancelTestDrive {
+  background: #79c6ac !important;
 }
