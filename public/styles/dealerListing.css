@@ -12,45 +12,86 @@
     margin:5px 0 0 0;
 }
 
-.dealershipContainer{
-    margin-top:30px;
+.dealershipListingList{
+    /* align-items: center; */
 }
 
-.dealershipList li{
-    padding:20px;
-    border-bottom: 1px solid #e4e4e4;
+.vehicleListItemsSmallView{
     flex-direction: row;
+    align-items: center;
+    padding:20px;
+    border-bottom: 1px solid #00000023;
+    position: relative;
 }
 
-.dealershipList li img{
-    height:120px;
+.vehicleListItemsSmallView .carImage{
+    height:100px;
+    width:100px;
+}
+
+.vehicleListItemsSmallView .carDetails{
+    /* width:100%; */
+    padding:0;
+    margin:0 0 0 20px;
+    justify-content: unset;
+    align-items: unset;
+}
+
+.vehicleListItemsSmallView .carDetails h2{
+    text-align: left;
+    width:unset;
+    font-size: 18px;
+}
+
+.vehicleListItemsSmallView .carDetails .carPrice{
+    text-align: left;
+    width:unset;
+    font-size: 16px;
+}
+
+.vehicleListItemsSmallView .carDetails .carMileage{
+    text-align: left;
+    width:unset;
+    font-size: 14px;
+}
+
+.vehicleListItemsSmallView .carDetails button{
     width:150px;
+    padding:5px 0;
+    margin:10px 0 0 0;
 }
 
-.dealershipList li .info{
-    padding:0 15px;
-    justify-content: center;
-}
 
-.title{
-
-}
-
-.mileage{
-    font-size: small;
+.carPrice{
     color:#79C6AC;
 }
 
-.price{
-    margin:5px 0;
+.carReferralFee{
+    color:#79C6AC;
+    padding:20px 0;
 }
 
-button{
-    padding:10px 0;
+.additionalCarInfo{
+    display:none;
+    justify-content: center;
     align-items: center;
-    border-radius: 10px;
+}
+
+
+.carDetails button{
     background:#79C6AC;
     color:white;
     border:none;
-    width:150px;
+    width:200px;
+    margin:20px 0 0 0;
+    padding:10px 20px;
+    border-radius:10px;
+    font-family: ralewaySemiBold;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
+
+.carDetails a button{
+    width:200px;
+}   

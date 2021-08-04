@@ -6,6 +6,7 @@ const {ensureAuthenticated, authRole} = require('../config/auth');
 const Vehicle = require("../models/vehicleSchema");
 const Dealer = require("../models/dealershipschema");
 const User = require("../models/userSchema");
+const Address = require("../models/addressschema");
 
 pgroutr.get('/',(req,res)=>
     res.render('index',{
@@ -78,6 +79,37 @@ pgroutr.get('/tululist',(req,res)=>{
     User.find({role:'tulu'}).then((tulu)=>{
         res.render('tululist',{
             tulu:tulu,
+            user:req.user
+        })
+    }).catch((err)=>{
+        res.status(500).send(error);
+    })
+    .catch((err) => {
+      res.status(500).send(error);
+    });
+});
+
+pgroutr.get('/DealerListing',(req,res)=>{
+    Dealer.find({}).then((dealer)=>{
+        Vehicle.find({}).then((vehicle)=>{
+            res.render('DealerListing',{
+                dealer:dealer,
+                vehicle:vehicle,
+                user:req.user
+            })
+        })
+    }).catch((err)=>{
+        res.status(500).send(error);
+    })
+    .catch((err) => {
+      res.status(500).send(error);
+    });
+});
+
+pgroutr.get('/DealershipList',(req,res)=>{
+    Dealer.find({}).then((dealer)=>{
+        res.render('dealershipList',{
+            dealer:dealer,
             user:req.user
         })
     }).catch((err)=>{
