@@ -26,6 +26,11 @@
   width: 80vmin;
 }
 
+.wrapper h1{
+  color:#79c6ac;
+  margin:0 0 10px 0;
+}
+
 .bookAppointmentContainer .wrapper div:nth-child(2) {
   margin: 20px 0;
 }
@@ -43,8 +48,12 @@ div p span {
   margin: 0 0 0 5px;
 }
 
+.inputFieldDiv{
+  margin:20px 0 0 0;
+}
+
 .inputFieldDiv p {
-  margin: 10px 0 0 0;
+  margin: 40px 0 0 0;
 }
 
 .inputFieldDiv input {
@@ -173,4 +182,80 @@ div p span {
 .saveTestDrive,
 .cancelTestDrive {
   background: #79c6ac !important;
+}
+
+.tuluPicker{
+  position:fixed;
+  height:100vh;
+  background:white;
+  width:100vw;
+  overflow: scroll;
+}
+
+.heading{
+  margin:80px 20px 20px 20px;
+  background:#79c6ac;
+  padding:20px;
+}
+
+.heading h2, .heading p{
+  color:white;
+}
+
+
+
+.tuluList{
+  padding:0px 0 60px 0;
+}
+
+.tuluList li{
+  padding:20px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tuluList img{
+  border-radius: 50%;
+  overflow: hidden;
+  border:2px solid #79c6ac;
+  height:80px;
+  width:80px;
+}
+
+.tuluList .tuluInfo{
+  margin:0 0 0 20px;
+}
+
+.tuluList .email{
+  color:#79c6ac;
+}
+
+.tuluPicker button{
+  border-radius: 10px;
+  border:none;
+  background:#79c6ac;
+  color:white;
+  align-items: center;
+  width:150px;
+  padding:15px 0;
+  align-self: center;
+  justify-self: center;
+}
+
+.tuluPicker .skipText{
+  align-self: center;
+  justify-self: center;
+  color:#79c6ac;
+  margin:10px 0 0 0;
+}
+
+
+.tuluLabel,.vehicleLabel,.priceLabel,.dealershipLabel,.customerLabel{
+  flex-direction: row;
+  margin:0 0 5px 0;
+}
+
+.tuluLabel span,.vehicleLabel span,.priceLabel span,.dealershipLabel span,.customerLabel span{
+  margin:0 0 0 5px;
+  color:#79c6ac;
 }

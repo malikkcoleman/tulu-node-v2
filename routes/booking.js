@@ -12,6 +12,8 @@ const vehicle = require("../models/vehicleSchema");
 const { decode } = require("punycode");
 const nodemailer = require("nodemailer");
 const Appointment = require("../models/appointmentschema");
+const Dealer = require("../models/dealershipschema");
+const User = require("../models/userSchema");
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -21,10 +23,25 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-router.get("/bookingtest", (req, res) =>
-  res.render("bookingtest", {
-    user: req.user,
-  })
+router.get("/booking", (req, res) =>
+  vehicle.find({})
+    .then((vehicles) => {
+      Dealer.find({})
+      .then((dealer) => {
+        User.find({})
+        .then((users) => {
+          res.render("booking", {
+            dealers: dealer,
+            vehicles: vehicles,
+            users: users,
+            user: req.user,
+          })
+        })
+      })
+    })
+    .catch((err) => {
+      res.status(500).send(error);
+    })
 );
 
 router.post("/email", (req, res) => {

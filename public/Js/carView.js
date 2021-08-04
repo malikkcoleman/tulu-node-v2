@@ -1,4 +1,6 @@
 var id= "";
+var vin = "";
+var dealerId = "";
 window.onload = function () {
     var hash;
     var hashes = window.location.href.slice(window.location.href.indexOf("?") + 1).split("&");
@@ -17,10 +19,11 @@ function populateVehicle(id){
     for(x=0;x!=dealerList.length;x++){
         if(dealerList[x].uuid == vehicleList[id].targetId){
             $('#dealershipName').append(dealerList[x].name);
+            dealerId = dealerList[x].uuid;
         }
     }
 
-
+    vin = vehicleList[id].vin;
     $('.carPrice').html('$'+vehicleList[id].maxPrice);
     $('.carName').html(vehicleList[id].year+' '+vehicleList[id].make+' '+vehicleList[id].model);
     var html = "";
@@ -143,6 +146,8 @@ function populateVehicle123(vehicle) {
 
     $("#carSpecs").empty();
     $("#carSpecs").append(html);
-    
+}
 
+function bookAppointment(){
+    location.replace("/appointment/booking"+ "?vin=" + vin+ "&dealerId=" + dealerId);
 }
