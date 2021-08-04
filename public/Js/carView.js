@@ -15,11 +15,24 @@ window.onload = function () {
     populateVehicle(id);
 }
 
+
+function viewDealer(index){
+    location.replace("/DealerListing?dealerId="+ dealerList[index]._id);
+}
+
+
+
 function populateVehicle(id){
     for(x=0;x!=dealerList.length;x++){
         if(dealerList[x].uuid == vehicleList[id].targetId){
-            $('#dealershipName').append(dealerList[x].name);
-            dealerId = dealerList[x].uuid;
+
+            var html="";
+            html+='<h3 class="userName" id="dealershipName" onclick="viewDealer('+x+')">';
+            html+=    dealerList[x].name;
+            html+='</h3>';
+
+
+            $('.userInfo').prepend(html)
         }
     }
 
