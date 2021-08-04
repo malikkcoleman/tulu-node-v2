@@ -78,6 +78,10 @@ pgroutr.post("/upload", uploadController.uploadFile), (req, res) => {
     console.log(req)
 };
 
+app.get('files', (req, res) => {
+    
+})
+
 
 pgroutr.get('/tululist',(req,res)=>{
     User.find({role:'tulu'}).then((tulu)=>{
