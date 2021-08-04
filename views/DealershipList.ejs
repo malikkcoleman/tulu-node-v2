@@ -85,80 +85,11 @@
 
 </body>
 <script src="Js/sideMenu.js"></script>
-<script src="Js/dealership.js"></script>
+<script src="Js/dealershipList.js"></script>
 <script src="Js/privileges.js"></script>
-
-<!-- <script>
-    function ListDealers() {
-    $.ajax({
-        type: "PUT",
-        url: "/Dealer/List",
-        cache: false,
-        dataType: "json",
-        contentType: "application/x-www-form-urlencoded",
-        success: function (results) {
-            console.log(results);
-        },
-        error: function (results) {
-            alert("Error");
-        },
-    });
-}
-
-ListDealers();
-</script> -->
-
-
-
-
-<script>
-    // function ListDealers() {
-    //     $.ajax({
-    //         type: "PUT",
-    //         url: "/Dealer/ListNames",
-    //         cache: false,
-    //         dataType: "json",
-    //         contentType: "application/x-www-form-urlencoded",
-    //         success: function (results) {
-    //             console.log(results);
-    //             populatePage(results);
-    //         },
-    //         error: function (results) {
-    //             alert("Error");
-    //         },
-    //     });
-    // }
-    // ListDealers();
-
-    function populatePage(dealerList){
-        var html = "";
-        for(x=0;x!=dealerList.length;x++){
-            html+='<li class="dealerlist" onclick="goToDealershipListing(`'+dealerList[x].id+'`)">';
-            html+='    <p>Name: '+dealerList[x].name+'</p>';
-            html+='    <p>Address: '+dealerList[x].notes+'</p>';
-            html+='</li>';
-        }
-        $('#dealershipList').empty();
-        $('#dealershipList').html(html);
-    }
-
-    function goToDealershipListing(dealerId){
-        //window.sessionStorage.setItem("vin", vin);
-        // console.log(vin);
-        //LocationChange('carView');
-        if (dealerId === "") {
-            //window.location = "/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
-            alert("error");
-        } else {
-            window.location = "/DealerListing?dealerId=" + dealerId;
-        }
-    }
-</script>
-
-    <!-- <Script>
-            GetUser();
-        </Script>   -->
-        <Script>
-            // guestprivileges();
-        </Script> 
+<Script>
+    var dealerList = <%-JSON.stringify(dealer)%>;
+    console.log(dealerList);
+    LoadDealer();
+</Script> 
 </html>
