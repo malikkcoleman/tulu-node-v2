@@ -6,7 +6,7 @@ var toggleSetting="off";
 const listingSettings = (index) => {
     var html = "";
     html += '    <ul class="listingSettingsList">';
-    html += '        <li class="settingsListItem" onClick="GetViewListing('+index+')">';
+    html += '        <li class="settingsListItem" onClick="viewListing('+index+')">';
     html += '            <i class="far fa-clipboard"></i>';
     html += '            <p>';
     html += '                View Listing';
@@ -18,18 +18,18 @@ const listingSettings = (index) => {
     html += '                Delete Listing';
     html += '            </p>';
     html += '        </li>';
-    html += '        <li class="settingsListItem" onclick="GetEditVehicle('+index+')">';
+    html += '        <li class="settingsListItem" onclick="editVehicle('+index+')">';
     html += '            <i class="far fa-edit"></i>';
     html += '            <p>';
     html += '                Edit Listing';
     html += '            </p>';
     html += '        </li>';
-    html += '        <li class="settingsListItem" onclick="GetEditPriceVehicle('+index+')">';
-    html += '            <i class="far fa-edit"></i>';
-    html += '            <p>';
-    html += '                Edit Pricing';
-    html += '            </p>';
-    html += '        </li>';
+    // html += '        <li class="settingsListItem" onclick="GetEditPriceVehicle('+index+')">';
+    // html += '            <i class="far fa-edit"></i>';
+    // html += '            <p>';
+    // html += '                Edit Pricing';
+    // html += '            </p>';
+    // html += '        </li>';
     html += '        <li class="settingsListItem">';
     html += '            <i class="far fa-check-circle"></i>';
     html += '            <p>';
@@ -75,3 +75,11 @@ const listingSettings = (index) => {
     }, false);
 
 };
+
+function editVehicle(i){
+    location.replace("/vehicles/editVehicle"+ "?id=" + vehicleList[i]._id);
+}
+
+function viewListing(i){
+    location.replace("/carview"+ "?id=" + i);
+}
