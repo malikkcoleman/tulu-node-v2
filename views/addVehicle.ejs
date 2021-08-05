@@ -93,11 +93,15 @@
                 <label for="msrp">MSRP</label>
                 <input type="text" name="msrp" id="msrp" disabled>
                 <label for="minPrice">Minimum Price</label>
-                <input type="text" name="minPrice" id="minPrice">
+                <input type="number" name="minPrice" id="minPrice" onchange="calculate()" value="0">
                 <label for="maxPrice">Maximum Price</label>
-                <input type="text" name="maxPrice" id="maxPrice">
+                <input type="number" name="maxPrice" id="maxPrice" onchange="calculate()" value="0">
+                <label for="refPercentage" style="flex-direction: row;">Referral Fee Percentage :<p class="percentage"style="margin:0 0 0 10px;">0.25%</p></label>
+                <input type="range" name="refPercentage" id="refPercentage" step=".05" min="0.25" max="0.50" oninput="sliderValue()" value="0.25" onchange="sliderValue()">
+                <button type="button" onclick="calculate()">Calculate</button>
+
                 <label for="refFee">Referral Fee</label>
-                <input type="text" name="refFee" id="refFee">
+                <input type="number" name="refFee" id="refFee">
             </div>
             
             <div class="pageFive">

@@ -160,11 +160,25 @@ function goBack(){
         document.querySelector('.pageFour').style = "display:flex;";
         document.querySelector('.pageFive').style = "display:none;";
         page--;
-    }else if(page==5){
+    }else if(page==6){
         document.querySelector('.pageFive').style = "display:flex;";
         document.querySelector('.pagesix').style = "display:none;";
         document.querySelector('.nextBtn').style = "display:flex;";
         document.querySelector('.saveBtn').style = "display:none;";
         page--;
     }
+}
+
+
+function calculate(){
+    var min = $('#minPrice').val();
+    var max = $('#maxPrice').val();
+    var diff = max-min
+    $('#refFee').val(diff * 0.25);
+}
+
+function sliderValue(){
+    var percentage = $('#refPercentage').val()
+    $('.percentage').empty();
+    $('.percentage').append(percentage + "%");
 }
