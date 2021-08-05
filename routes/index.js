@@ -25,6 +25,11 @@ pgroutr.get('/dashboard',ensureAuthenticated,(req,res)=>
     user:req.user
 }));
 
+pgroutr.get('/vindecoder',ensureAuthenticated,(req,res)=>
+    res.render('vindecoder',{
+    user:req.user
+}));
+
 pgroutr.get('/tulu',ensureAuthenticated, authRole(ROLE.TULU),(req,res)=>
     res.render('tulu',{
     user:req.user
