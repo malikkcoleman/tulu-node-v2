@@ -216,11 +216,15 @@ router.post("/addvehicle", (req, res) => {
   }
 });
 
-/* router.get("/", function (req, res) {
-  vinn = req.flash("vin");
-  console.log(vinn);
-  res.render("/vehicles", { vin: vin });
-}); */
+// Dashboard Vehicle
+router.get("/dashboardVehicle", (req, res) => {
+  Vehicle.find().then((vehicle) => {
+    res.render("dashboardVehicle", {
+      user: req.user,
+      vehicles: vehicle,
+    });
+  });
+});
 
 // EDIT VEHICLE
 router.get("/editvehicle", (req, res) => {
@@ -231,6 +235,7 @@ router.get("/editvehicle", (req, res) => {
     });
   });
 });
+
 
 router.post("/editvehicle", (req, res) => {
   const {

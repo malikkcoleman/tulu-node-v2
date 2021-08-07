@@ -8,17 +8,26 @@ const Vehicle = require("../models/vehicleSchema");
 const Dealer = require("../models/dealershipschema");
 
 // addvehicle Page
+// router.get("/DashboardSysAdminVehicle", (req, res) => {
+//   Dealer.find({}).then((dealers)=>{
+//     res.render('DashboardSysAdminVehicle',{
+//         dealers:dealers,
+//         user:req.user
+//     })
+//   }).catch((err)=>{
+//       res.status(500).send(error);
+//   })
+//   .catch((err) => {
+//     res.status(500).send(error);
+//   });
+// });
+
 router.get("/DashboardSysAdminVehicle", (req, res) => {
-  Dealer.find({}).then((dealers)=>{
-    res.render('DashboardSysAdminVehicle',{
-        dealers:dealers,
-        user:req.user
-    })
-  }).catch((err)=>{
-      res.status(500).send(error);
-  })
-  .catch((err) => {
-    res.status(500).send(error);
+  Vehicle.find().then((vehicle) => {
+    res.render("DashboardSysadminVehicle", {
+      user: req.user,
+      vehicles: vehicle,
+    });
   });
 });
 
@@ -225,6 +234,8 @@ router.post("/DashboardSysAdminVehicle", (req, res) => {
     });
   }
 });
+
+
 
 /* router.get("/", function (req, res) {
   vinn = req.flash("vin");
