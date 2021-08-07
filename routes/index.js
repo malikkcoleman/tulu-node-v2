@@ -7,6 +7,7 @@ const Vehicle = require("../models/vehicleSchema");
 const Dealer = require("../models/dealershipschema");
 const User = require("../models/userSchema");
 const uploadController = require("../controllers/upload");
+const fetchImage = require("../middleware/getImages");
 
 pgroutr.get('/',(req,res)=>
     res.render('index',{
@@ -78,10 +79,17 @@ pgroutr.post("/upload", uploadController.uploadFile), (req, res) => {
     console.log(req)
 };
 
-app.get('files', (req, res) => {
-    
+pgroutr.get('/files', (req, res) => {
+    fetchImage.getFiles(req, res)
 })
 
+pgroutr.get('/files/:filename', (req, res) => {
+    fetchImage.getFile(req, res)
+})
+
+pgroutr.get('/image/:targetid', (req, res) => {
+    fetchImage.getImage(req, res)
+})
 
 pgroutr.get('/tululist',(req,res)=>{
     User.find({role:'tulu'}).then((tulu)=>{

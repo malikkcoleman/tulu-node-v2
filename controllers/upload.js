@@ -1,4 +1,5 @@
 const upload = require("../middleware/upload");
+const Image = require("../models/imageschema");
 
 const uploadFile = async (req, res) => {
   try {
@@ -6,13 +7,23 @@ const uploadFile = async (req, res) => {
 
     console.log(req.file);
     if (req.file == undefined) {
-      return res.send(`You must select a file.`);
+      console.log(`You must select a file.`);
     }
-
-    return res.send(`File has been uploaded.`);
+    console.log(`File has been uploaded.`);
+    Image.updateMany({target_id: req.user.toObject()._id}, {is_deleted: true}).then(function(data){
+      const image = new Image({
+          image_type: "profile",
+          target_id: req.user.toObject()._id,
+          is_deleted: false,
+          file_id: req.file.id,
+          is_display_photo: false
+      })
+      image.save().then(function(){
+        res.redirect('/users/EditProfile');
+      })
+    })
   } catch (error) {
-    console.log(error);
-    return res.send(`Error when trying upload image: ${error}`);
+    console.log(`Error when trying upload image: ${error}`);
   }
 };
 

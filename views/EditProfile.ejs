@@ -39,10 +39,11 @@
         <div class="banner">
         </div>
         <div class="userInfo">
-            <div class="userImage" id="userImage" onclick="$(`#photos-input`).click()">
-                <i class="fas fa-user fa-2x" id="userIcon"></i>
-                <i class="fas fa-plus"></i>
+          <div class="userImage" style="position: relative; height: 100px; width: 100px;">
+            <div class=" preview-images" style="height: 100px; width: 100px; position: absolute;">
             </div>
+              <img src="/image/<%= user.toObject()._id %>" alt="" class="face" width="100px" height="100px">
+          </div>
             <div id="upload-photos">
                 <div class="form-group" style="display:none;">
                 	<label for="photos-input">Load Image</label>
@@ -55,9 +56,6 @@
                 		<input type="hidden" name="csrf_token" value="just_a_text_field" />
                      <button type="button" class="addImageBtn" onclick="addImage()">ADD PHOTOS</button>
                 
-            </div>
-            <div class=" preview-images">
-
             </div>
             
             <form class="mt-4"
@@ -154,6 +152,7 @@
       };
       $("#input-files").on("change", function() {
         imagesPreview(this, "div.preview-images");
+        console.log(imagesPreview)
       });
     });
   </script>
