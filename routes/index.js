@@ -129,7 +129,6 @@ pgroutr.get('/DealerListing',(req,res)=>{
     });
 });
 
-<<<<<<< HEAD
 pgroutr.post("/upload", uploadController.uploadFile), (req, res) => {
     console.log(req)
 };
@@ -150,12 +149,20 @@ pgroutr.get('/tululist',(req,res)=>{
     User.find({role:'tulu'}).then((tulu)=>{
         res.render('tululist',{
             tulu:tulu,
-=======
+            user:req.user
+        })
+    }).catch((err)=>{
+        res.status(500).send(error);
+    })
+    .catch((err) => {
+      res.status(500).send(error);
+    });
+});
+
 pgroutr.get('/DealershipList',(req,res)=>{
     Dealer.find({}).then((dealer)=>{
         res.render('dealershipList',{
             dealer:dealer,
->>>>>>> main
             user:req.user
         })
     }).catch((err)=>{
