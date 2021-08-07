@@ -35,170 +35,111 @@
         <p class="loggedInAs"></p>
     </div>
 
+    <div class="popUp">
+        <p>We're having connection issues. Please make sure you're logged in and try again</p>
+        <button><a href="/vindecoder">Try Again</a></button>
+    </div>
+
     <div class="container">
         <form action="/vehicles/addVehicle" method="POST">
             <%- include partials/messages %>
-            <label for="vin">VIN</label>
-            <input type="text" name="vin" id="vin">
-            <label for="year">Year</label>
-            <input type="text" name="year" id="year">
-            <label for="make">Make</label>
-            <input type="text" name="make" id="make">
-            <label for="model">Model</label>
-            <input type="text" name="model" id="model">
-            <label for="vehicleType">Vehicle Type</label>
-            <input type="text" name="vehicleType" id="vehicleType">
-            <label for="trim">Trim</label>
-            <input type="text" name="trim" id="trim">
-            <label for="dealerId">Dealer ID</label>
-            <input type="text" name="dealerId" id="dealerId">
-            <label for="isSold">isSold</label>
-            <input type="text" name="isSold" id="isSold">
-            <label for="doors">Doors</label>
-            <input type="text" name="doors" id="doors">
-            <label for="modelNumber">Model Number</label>
-            <input type="text" name="modelNumber" id="modelNumber">
-            <label for="driveType">Drive Type</label>
-            <input type="text" name="driveType" id="driveType">
-            <label for="msrp">MSRP</label>
-            <input type="text" name="msrp" id="msrp">
-            <label for="minPrice">Minimum Price</label>
-            <input type="text" name="minPrice" id="minPrice">
-            <label for="maxPrice">Maximum Price</label>
-            <input type="text" name="maxPrice" id="maxPrice">
-            <label for="refFee">Referral Fee</label>
-            <input type="text" name="refFee" id="refFee">
-            <label for="engineName">Engine Name</label>
-            <input type="text" name="engineName" id="engineName">
-            <label for="engineBrand">Engine Brand</label>
-            <input type="text" name="engineBrand" id="engineBrand">
-            <label for="engineID">Engine ID</label>
-            <input type="text" name="engineID" id="engineID">
-            <label for="fuelType">Fuel Type</label>
-            <input type="text" name="fuelType" id="fuelType">
-            <label for="iceMaxHp">Ice Max HP</label>
-            <input type="text" name="iceMaxHp" id="iceMaxHp">
-            <label for="iceMaxTorque">Ice Max Torque</label>
-            <input type="text" name="iceMaxTorque" id="iceMaxTorque">
-            <label for="maxPayLoad">Max Payload</label>
-            <input type="text" name="maxPayLoad" id="maxPayLoad">
-            <label for="transmissionName">Transmission Name</label>
-            <input type="text" name="transmissionName" id="transmissionName">
-            <label for="colorName">Colour Name</label>
-            <input type="text" name="colorName" id="colorName">
-            <label for="colorHex">Color Hex</label>
-            <input type="text" name="colorHex" id="colorHex">
-            <label for="baseTowingCapacity">Base Towing Capacity</label>
-            <input type="text" name="baseTowingCapacity" id="baseTowingCapacity">
-            <label for="grossWeight">Gross Weight</label>
-            <input type="text" name="grossWeight" id="grossWeight">
-            <label for="fuelTankCapacity">Fuel Tank Capacity</label>
-            <input type="text" name="fuelTankCapacity" id="fuelTankCapacity">
-            <label for="notes">Notes</label>
-            <input type="text" name="notes" id="notes">
-            <button type="submit">
-              Save Vehicle
+            <div class="pageOne">
+                <label for="vin">VIN</label>
+                <input type="text" name="vin" id="vin" disabled>
+                <label for="year">Year</label>
+                <input type="text" name="year" id="year" disabled>
+                <label for="make">Make</label>
+                <input type="text" name="make" id="make" disabled>
+                <label for="model">Model</label>
+                <input type="text" name="model" id="model" disabled>
+                <label for="vehicleType">Vehicle Type</label>
+                <input type="text" name="vehicleType" id="vehicleType" disabled>
+                <label for="trim">Trim</label>
+                <input type="text" name="trim" id="trim" disabled>
+                <label for="modelNumber">Model Number</label>
+                <input type="text" name="modelNumber" id="modelNumber" disabled>
+            </div>
+
+            <div class="pageTwo">
+                <label for="engineName">Engine Name</label>
+                <input type="text" name="engineName" id="engineName" disabled>
+                <label for="engineBrand">Engine Brand</label>
+                <input type="text" name="engineBrand" id="engineBrand" disabled>
+                <label for="driveType">Drive Type</label>
+                <input type="text" name="driveType" id="driveType" disabled>
+                <label for="transmissionName">Transmission Name</label>
+                <input type="text" name="transmissionName" id="transmissionName" disabled>
+                <label for="fuelType">Fuel Type</label>
+                <input type="text" name="fuelType" id="fuelType" disabled>
+            </div>
+            
+            <input type="hidden" name="dealerId" id="dealerId" disabled>
+            <input type="hidden" name="isSold" id="isSold" value="false" disabled>
+            <input type="hidden" name="engineID" id="engineID" disabled>
+            <input type="hidden" name="iceMaxHp" id="iceMaxHp">
+            <input type="hidden" name="iceMaxTorque" id="iceMaxTorque">
+            <input type="hidden" name="colorHex" id="colorHex">
+
+            <div class="pageThree">
+                <label for="doors">No. of Doors</label>
+                <input type="text" name="doors" id="doors" disabled>
+                <label for="colorName">Color</label>
+                <input type="text" name="colorName" id="colorName">
+                <label for="mileage">Mileage</label>
+                <input type="text" name="mileage" id="mileage">
+            </div>
+
+            <div class="pageFour">
+                <label for="msrp">MSRP</label>
+                <input type="text" name="msrp" id="msrp" disabled>
+                <label for="minPrice">Minimum Price</label>
+                <input type="number" name="minPrice" id="minPrice" onchange="calculate()" value="0">
+                <label for="maxPrice">Maximum Price</label>
+                <input type="number" name="maxPrice" id="maxPrice" onchange="calculate()" value="0">
+                <label for="refPercentage" style="flex-direction: row;">Referral Fee Percentage :<p class="percentage"style="margin:0 0 0 10px;">0.25%</p></label>
+                <input type="range" name="refPercentage" id="refPercentage" step=".05" min="0.25" max="0.50" oninput="sliderValue()" value="0.25" onchange="sliderValue()">
+                <button type="button" onclick="calculate()">Calculate</button>
+
+                <label for="refFee">Referral Fee</label>
+                <input type="number" name="refFee" id="refFee">
+            </div>
+            
+            <div class="pageFive">
+                <label for="maxPayLoad">Max Payload</label>
+                <input type="text" name="maxPayLoad" id="maxPayLoad" disabled>
+                <label for="baseTowingCapacity">Base Towing Capacity</label>
+                <input type="text" name="baseTowingCapacity" id="baseTowingCapacity" disabled>
+                <label for="grossWeight">Gross Weight</label>
+                <input type="text" name="grossWeight" id="grossWeight">
+                <label for="fuelTankCapacity">Fuel Tank Capacity</label>
+                <input type="text" name="fuelTankCapacity" id="fuelTankCapacity">
+            </div>
+
+            <div class="pageSix">
+                <label for="notes">Notes</label>
+                <input type="text" name="notes" id="notes">
+            </div>
+            <button type="button" class="nextBtn" onclick="goNext()">
+              Next
+            </button>
+            <button type="submit" class="saveBtn">
+                Save Vehicle
+              </button>
+            <button type="button" class="backBtn" onclick="goBack()">
+              Back
             </button>
           </form>
     </div>
-    <%-vin%>
-    <%-infoData%>
-    
 </body>
 <script src="../Js/sideMenu.js"></script>
 <script src="../Js/privileges.js"></script>
-
-
 <script>
-    var year = "";
-    var make = "";
-    var model = "";
-    var trim = "";
-    var modelNumber = "";
-    var packageCode = "";
-    var driveType = "";
-    var vehicleType = "";
-    var bodyType = "";
-    var bodySubtype = "";
-    var doors = "";
-    var bedLength = "";
-    var wheelBase = "";
-    var msrp = "";
-    var invoicePrice = "";
-    var engineDescription = "";
-    var blockType = "";
-    var cylinders = "";
-    var displacement = "";
-    var fuelType = "";
-    var transmissionName = "";
-    var optionalEquipmentCodes = "";
-    var installedEquipmentDescriptions = "";
-    var interiorDescription = "";
-    var interiorColourCode = "";
-    var exteriorDescription = "";
-    var exteriorColourCode = "";
-    var engineName = "";
-    var engineID = "";
-    var engineBrand = "";
-    var engineIceMaxHp = "";
-    var engineIceMaxTorque = "";
-    var engineMaxPayLoad = "";
-    var maxTowingCapacity = "";
-    var grossWeight = "";
-    var fuelTankCapacity = "";
     const vin = <%-JSON.stringify(vin)%>;
+    const dealer = <%-JSON.stringify(dealer)%>;
+    const user = <%-JSON.stringify(user)%>;
     const infoData = <%-JSON.stringify(infoData)%>;
-    // console.log(infoData);
-    year =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.basic_data.year;
-    make =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.basic_data.make;
-    model =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.basic_data.model;
-    trim =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.basic_data.trim;
-    modelNumber =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.basic_data.model_number;
-    driveType =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.basic_data.drive_type;
-    vehicleType =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.basic_data.vehicle_type;
-    bodyType =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.basic_data.body_type;
-    bodySubtype =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.basic_data.body_subtype;
-    doors =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.basic_data.doors;
-    msrp =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.pricing.msrp;
-    engineName =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].name;
-    engineFuelType =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].fuel_type;
-    engineID =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].engine_id;
-    engineBrand =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].brand;
-    engineIceMaxHp =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].ice_max_hp;
-    engineIceMaxTorque =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].ice_max_torque;
-    engineMaxPayLoad =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].max_payload;
-    // transmissionName =
-    //   infoData.query_responses.NodeJS_Sample.us_market_data
-    //     .common_us_data.transmissions[0].name;
-    /*       maxTowingCapacity =
-      infoData.query_responses.NodeJS_Sample.us_market_data
-        .common_us_data.standard_specifications[1].specification_values[5]
-        .specification_value; */
-    grossWeight =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.standard_specifications[1].specification_values[0].specification_value;
-    fuelTankCapacity =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.standard_specifications[1].specification_values[2].specification_value;
-    
-    $('#vin').val(vin)
-    $('#year').val(year);
-    $('#make').val(make);
-    $('#model').val(model);
-    $('#trim').val(trim);
-    $('#modelNumber').val(modelNumber);
-    $('#driveType').val(driveType);
-    $('#vehicleType').val(vehicleType);
-    $('#doors').val(doors);
-    $('#msrp').val(msrp);
-    $('#engineName').val(engineName);
-    $('#engineID').val(engineID);
-    $('#iceMaxHp').val(engineIceMaxHp);
-    $('#iceMaxTorque').val(engineIceMaxTorque);
-    $('#maxPayLoad').val(engineMaxPayLoad);
-    $('#fuelType').val(engineFuelType);
-    $('#transmissionName').val(transmissionName);
-    $('#baseTowingCapacity').val(maxTowingCapacity);
-    $('#grossWeight').val(grossWeight);
-    $('#fuelTankCapacity').val(fuelTankCapacity);
 </script>
-
+<script src="../Js/addVehicle.js"></script>
 
 </html>
 

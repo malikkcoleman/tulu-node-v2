@@ -42,6 +42,9 @@ const vehicleschema = new mongoose.Schema({
   doors: {
     type: String,
     required: false,
+  },mileage: {
+    type: String,
+    required: false,
   },
   modelNumber: {
     type: String,

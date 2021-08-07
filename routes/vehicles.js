@@ -33,6 +33,7 @@ router.post("/addvehicle", (req, res) => {
     dealerId,
     isSold,
     doors,
+    mileage,
     modelNumber,
     driveType,
     msrp,
@@ -68,6 +69,7 @@ router.post("/addvehicle", (req, res) => {
     !dealerId ||
     !isSold ||
     !doors ||
+    !mileage ||
     !modelNumber ||
     !driveType ||
     !msrp ||
@@ -104,6 +106,7 @@ router.post("/addvehicle", (req, res) => {
       dealerId,
       isSold,
       doors,
+      mileage,
       modelNumber,
       driveType,
       msrp,
@@ -146,6 +149,7 @@ router.post("/addvehicle", (req, res) => {
           dealerId,
           isSold,
           doors,
+          mileage,
           modelNumber,
           driveType,
           msrp,
@@ -179,6 +183,7 @@ router.post("/addvehicle", (req, res) => {
           dealerId,
           isSold,
           doors,
+          mileage,
           modelNumber,
           driveType,
           msrp,
@@ -246,6 +251,7 @@ router.post("/editvehicle", (req, res) => {
     vehicleType,
     trim,
     doors,
+    mileage,
     modelNumber,
     driveType,
     msrp,
@@ -274,6 +280,7 @@ router.post("/editvehicle", (req, res) => {
     vehicleType: vehicleType,
     trim: trim,
     doors: doors,
+    mileage: mileage,
     modelNumber: modelNumber,
     driveType: driveType,
     msrp: msrp,
