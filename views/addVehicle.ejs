@@ -45,44 +45,44 @@
             <%- include partials/messages %>
             <div class="pageOne">
                 <label for="vin">VIN</label>
-                <input type="text" name="vin" id="vin" disabled>
+                <input type="text" name="vin" id="vin">
                 <label for="year">Year</label>
-                <input type="text" name="year" id="year" disabled>
+                <input type="text" name="year" id="year">
                 <label for="make">Make</label>
-                <input type="text" name="make" id="make" disabled>
+                <input type="text" name="make" id="make">
                 <label for="model">Model</label>
-                <input type="text" name="model" id="model" disabled>
+                <input type="text" name="model" id="model">
                 <label for="vehicleType">Vehicle Type</label>
-                <input type="text" name="vehicleType" id="vehicleType" disabled>
+                <input type="text" name="vehicleType" id="vehicleType">
                 <label for="trim">Trim</label>
-                <input type="text" name="trim" id="trim" disabled>
+                <input type="text" name="trim" id="trim">
                 <label for="modelNumber">Model Number</label>
-                <input type="text" name="modelNumber" id="modelNumber" disabled>
+                <input type="text" name="modelNumber" id="modelNumber">
             </div>
 
             <div class="pageTwo">
                 <label for="engineName">Engine Name</label>
-                <input type="text" name="engineName" id="engineName" disabled>
+                <input type="text" name="engineName" id="engineName">
                 <label for="engineBrand">Engine Brand</label>
-                <input type="text" name="engineBrand" id="engineBrand" disabled>
+                <input type="text" name="engineBrand" id="engineBrand">
                 <label for="driveType">Drive Type</label>
-                <input type="text" name="driveType" id="driveType" disabled>
+                <input type="text" name="driveType" id="driveType">
                 <label for="transmissionName">Transmission Name</label>
-                <input type="text" name="transmissionName" id="transmissionName" disabled>
+                <input type="text" name="transmissionName" id="transmissionName">
                 <label for="fuelType">Fuel Type</label>
-                <input type="text" name="fuelType" id="fuelType" disabled>
+                <input type="text" name="fuelType" id="fuelType">
             </div>
             
-            <input type="hidden" name="dealerId" id="dealerId" disabled>
-            <input type="hidden" name="isSold" id="isSold" value="false" disabled>
-            <input type="hidden" name="engineID" id="engineID" disabled>
-            <input type="hidden" name="iceMaxHp" id="iceMaxHp">
-            <input type="hidden" name="iceMaxTorque" id="iceMaxTorque">
-            <input type="hidden" name="colorHex" id="colorHex">
+            <input type="hidden" name="dealerId" id="dealerId">
+            <input type="hidden" name="isSold" id="isSold" value="false">
+            <input type="hidden" name="engineID" id="engineID" value="pakyu">
+            <input type="hidden" name="iceMaxHp" id="iceMaxHp" value="pakyu">
+            <input type="hidden" name="iceMaxTorque" id="iceMaxTorque" value="pakyu">
+            <input type="hidden" name="colorHex" id="colorHex" value="123">
 
             <div class="pageThree">
                 <label for="doors">No. of Doors</label>
-                <input type="text" name="doors" id="doors" disabled>
+                <input type="text" name="doors" id="doors">
                 <label for="colorName">Color</label>
                 <input type="text" name="colorName" id="colorName">
                 <label for="mileage">Mileage</label>
@@ -90,29 +90,28 @@
             </div>
 
             <div class="pageFour">
+                <label for="maxPayLoad">Max Payload</label>
+                <input type="text" name="maxPayLoad" id="maxPayLoad">
+                <label for="baseTowingCapacity">Base Towing Capacity</label>
+                <input type="text" name="baseTowingCapacity" id="baseTowingCapacity">
+                <label for="grossWeight">Gross Weight</label>
+                <input type="text" name="grossWeight" id="grossWeight">
+                <label for="fuelTankCapacity">Fuel Tank Capacity</label>
+                <input type="text" name="fuelTankCapacity" id="fuelTankCapacity">
+            </div>
+            
+            <div class="pageFive">
                 <label for="msrp">MSRP</label>
-                <input type="text" name="msrp" id="msrp" disabled>
+                <input type="text" name="msrp" id="msrp">
                 <label for="minPrice">Minimum Price</label>
                 <input type="number" name="minPrice" id="minPrice" onchange="calculate()" value="0">
                 <label for="maxPrice">Maximum Price</label>
                 <input type="number" name="maxPrice" id="maxPrice" onchange="calculate()" value="0">
                 <label for="refPercentage" style="flex-direction: row;">Referral Fee Percentage :<p class="percentage"style="margin:0 0 0 10px;">0.25%</p></label>
                 <input type="range" name="refPercentage" id="refPercentage" step=".05" min="0.25" max="0.50" oninput="sliderValue()" value="0.25" onchange="sliderValue()">
-                <button type="button" onclick="calculate()">Calculate</button>
 
                 <label for="refFee">Referral Fee</label>
                 <input type="number" name="refFee" id="refFee">
-            </div>
-            
-            <div class="pageFive">
-                <label for="maxPayLoad">Max Payload</label>
-                <input type="text" name="maxPayLoad" id="maxPayLoad" disabled>
-                <label for="baseTowingCapacity">Base Towing Capacity</label>
-                <input type="text" name="baseTowingCapacity" id="baseTowingCapacity" disabled>
-                <label for="grossWeight">Gross Weight</label>
-                <input type="text" name="grossWeight" id="grossWeight">
-                <label for="fuelTankCapacity">Fuel Tank Capacity</label>
-                <input type="text" name="fuelTankCapacity" id="fuelTankCapacity">
             </div>
 
             <div class="pageSix">

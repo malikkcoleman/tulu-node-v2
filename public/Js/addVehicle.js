@@ -131,11 +131,13 @@ function goNext(){
     }else if(page==4){
         document.querySelector('.pageFour').style = "display:none;";
         document.querySelector('.pageFive').style = "display:flex;";
+        page++;
     }else if(page==5){
         document.querySelector('.pageFive').style = "display:none;";
-        document.querySelector('.pagesix').style = "display:flex;";
+        document.querySelector('.pageSix').style = "display:flex;";
         document.querySelector('.nextBtn').style = "display:none;";
         document.querySelector('.saveBtn').style = "display:flex;";
+        page++;
     }
 }
 
@@ -162,7 +164,7 @@ function goBack(){
         page--;
     }else if(page==6){
         document.querySelector('.pageFive').style = "display:flex;";
-        document.querySelector('.pagesix').style = "display:none;";
+        document.querySelector('.pageSix').style = "display:none;";
         document.querySelector('.nextBtn').style = "display:flex;";
         document.querySelector('.saveBtn').style = "display:none;";
         page--;
@@ -174,10 +176,12 @@ function calculate(){
     var min = $('#minPrice').val();
     var max = $('#maxPrice').val();
     var diff = max-min
-    $('#refFee').val(diff * 0.25);
+    var percentage = $('#refPercentage').val()
+    $('#refFee').val(diff * percentage);
 }
 
 function sliderValue(){
+    calculate()
     var percentage = $('#refPercentage').val()
     $('.percentage').empty();
     $('.percentage').append(percentage + "%");

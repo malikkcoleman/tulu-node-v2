@@ -288,7 +288,6 @@ router.post("/addvehicle",ensureAuthenticated,(req, res) => {
       })
     })
   })
-  
 });
 
 router.get("/flash", function (req) {

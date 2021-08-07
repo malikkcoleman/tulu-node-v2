@@ -108,6 +108,48 @@ pgroutr.get("/tululist", (req, res) => {
     });
 });
 
+pgroutr.get("/DashboardSysAdminTulu", (req, res) => {
+  User.find({ role: "tulu" })
+    .then((tulu) => {
+      User.find({role:"user"})
+        .then((users) => {
+          res.render("DashboardSysAdminTulu", {
+            tulu: tulu,
+            users: users,
+            user: req.user,
+          });
+        })
+        .catch((err) => {
+          res.status(500).send(error);
+        })
+        .catch((err) => {
+          res.status(500).send(error);
+        });
+    })
+    .catch((err) => {
+      res.status(500).send(error);
+    })
+    .catch((err) => {
+      res.status(500).send(error);
+    });
+});
+
+pgroutr.get("/DashboardSysAdminUser", (req, res) => {
+  User.find({role:"user"})
+    .then((users) => {
+      res.render("DashboardSysAdminUser", {
+        users: users,
+        user: req.user,
+      });
+    })
+    .catch((err) => {
+      res.status(500).send(error);
+    })
+    .catch((err) => {
+      res.status(500).send(error);
+    });
+});
+
 pgroutr.get("/:page", function (req, res) {
   res.render(req.params.page, {
     user: req.user,
