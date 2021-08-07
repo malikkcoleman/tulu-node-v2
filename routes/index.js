@@ -30,11 +30,15 @@ pgroutr.get("/dashboard", ensureAuthenticated, (req, res) =>
   })
 );
 
-pgroutr.get("/tulu", ensureAuthenticated, authRole(ROLE.TULU), (req, res) =>
-  res.render("tulu", {
-    user: req.user,
-  })
-);
+pgroutr.get('/vindecoder',ensureAuthenticated,(req,res)=>
+    res.render('vindecoder',{
+    user:req.user
+}));
+
+pgroutr.get('/tulu',ensureAuthenticated, authRole(ROLE.TULU),(req,res)=>
+    res.render('tulu',{
+    user:req.user
+}));
 
 pgroutr.get("/profile", ensureAuthenticated, authRole(ROLE.USER), (req, res) =>
   res.render("profile", {
@@ -95,6 +99,48 @@ pgroutr.get("/tululist", (req, res) => {
     .then((tulu) => {
       res.render("tululist", {
         tulu: tulu,
+        user: req.user,
+      });
+    })
+    .catch((err) => {
+      res.status(500).send(error);
+    })
+    .catch((err) => {
+      res.status(500).send(error);
+    });
+});
+
+pgroutr.get("/DashboardSysAdminTulu", (req, res) => {
+  User.find({ role: "tulu" })
+    .then((tulu) => {
+      User.find({role:"user"})
+        .then((users) => {
+          res.render("DashboardSysAdminTulu", {
+            tulu: tulu,
+            users: users,
+            user: req.user,
+          });
+        })
+        .catch((err) => {
+          res.status(500).send(error);
+        })
+        .catch((err) => {
+          res.status(500).send(error);
+        });
+    })
+    .catch((err) => {
+      res.status(500).send(error);
+    })
+    .catch((err) => {
+      res.status(500).send(error);
+    });
+});
+
+pgroutr.get("/DashboardSysAdminUser", (req, res) => {
+  User.find({role:"user"})
+    .then((users) => {
+      res.render("DashboardSysAdminUser", {
+        users: users,
         user: req.user,
       });
     })
