@@ -77,6 +77,7 @@ app.use("/vehicles", require("./routes/vehicles"));
 app.use("/dealerships", require("./routes/dealerships"));
 app.use("/sysadminvehicles", require("./routes/sysAdminVehicles"));
 app.use("/vin", require("./routes/vinDecoder"));
+app.use("/tulu", require("./routes/tulu"));
 app.use("/appointment", require("./routes/booking"));
 // ---------------------------------
 
