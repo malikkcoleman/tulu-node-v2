@@ -11,7 +11,7 @@ const Address = require('../models/addressschema');
 router.get("/viewTulu", (req, res) => {
     Tulu.find({role:"tulu"}).then((tulu) => {
         Address.find().then((address) => {
-            res.render("viewTulu", {
+            res.render("ViewTulu", {
             tulu: tulu,
             address: address,
             user:req.user

@@ -9,7 +9,7 @@ const User = require('../models/userschema');
 
 // Login Page
 router.get('/login',(req,res)=>
-    res.render('login',{
+    res.render('Login',{
         user: req.user
 }));
 
@@ -24,7 +24,7 @@ function isLoggedIn(req, res, next) {
 
 // Register Page
 router.get('/register',(req,res)=>
-    res.render('register',{
+    res.render('Register',{
     user:req.user
 }));
 
@@ -52,7 +52,7 @@ router.post('/register',(req,res)=>{
     }
 
     if(errors.length > 0){
-        res.render('register',{
+        res.render('Register',{
             errors,image,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
         });
     }else{
@@ -64,7 +64,7 @@ router.post('/register',(req,res)=>{
             if(user){
                 // user Exist
                 errors.push({msg:'Email already Exist'})
-                res.render('register',{
+                res.render('Register',{
                     errors,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
                 })
             }else{
@@ -82,7 +82,7 @@ router.post('/register',(req,res)=>{
                     newUser.save()
                     .then(user => {
                         req.flash('success_msg', 'You are now registered and can log in.');
-                        res.redirect('/users/login')
+                        res.redirect('/users/Login')
                     })
                     .catch(err => console.log(err));
                 }))
@@ -95,7 +95,7 @@ router.post('/register',(req,res)=>{
 });
 
 router.get('/addUser',(req,res)=>
-    res.render('addUser',{
+    res.render('AddUser',{
     user:req.user
 }));
 
@@ -122,7 +122,7 @@ router.post('/addUser',(req,res)=>{
     }
 
     if(errors.length > 0){
-        res.render('addUser',{
+        res.render('AddUser',{
             errors,image,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
         });
     }else{
@@ -134,7 +134,7 @@ router.post('/addUser',(req,res)=>{
             if(user){
                 // user Exist
                 errors.push({msg:'Email already Exist'})
-                res.render('addUser',{
+                res.render('AddUser',{
                     errors,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
                 })
             }else{
@@ -165,7 +165,7 @@ router.post('/addUser',(req,res)=>{
 });
 
 router.get('/editProfile',ensureAuthenticated,(req,res)=>
-    res.render('editProfile',{
+    res.render('EditProfile',{
         user:req.user
     })
 );

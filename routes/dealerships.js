@@ -13,7 +13,7 @@ const Address = require('../models/addressschema');
 
 // Add Dealership Page
 router.get('/dashboardSysAdminDealership',(req,res)=>
-    res.render("dashboardSysAdminDealership", {
+    res.render("DashboardSysAdminDealership", {
         user: req.user,
     })
 );
@@ -33,7 +33,7 @@ router.post('/dashboardSysAdminDealership',(req,res)=>{
 
 
     if(errors.length > 0){
-        res.render('dashboardSysAdminDealership',{
+        res.render('DashboardSysAdminDealership',{
             errors,name,logo,website,street,city,province,postal
         });
     }else{
@@ -45,7 +45,7 @@ router.post('/dashboardSysAdminDealership',(req,res)=>{
             if(dealer){
                 // dealerExist Exist
                 errors.push({msg:'Email already Exist'})
-                res.render('dashboardSysAdminDealership',{
+                res.render('DashboardSysAdminDealership',{
                     errors,name,logo,website,street,city,province,postal
                 })
             }else{

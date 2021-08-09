@@ -280,7 +280,7 @@ router.post("/addvehicle",ensureAuthenticated,(req, res) => {
   decoder(req.body.vin).then(infoData=>{
     Dealer.find({})
     .then(dealer=>{
-      res.render('addvehicle',{
+      res.render('AddVehicle',{
         vin:req.body.vin,
         infoData:infoData,
         user:req.user,
@@ -324,7 +324,7 @@ router.get("/flash", function (req) {
   req.flash("transmissionName", transmissionName);
   req.flash("grossWeight", grossWeight);
   req.flash("fuelTankCapacity", fuelTankCapacity);
-  res.redirect("/vehicles");
+  res.redirect("/Vehicles");
 });
 
 module.exports = router;

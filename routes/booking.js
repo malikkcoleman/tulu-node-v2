@@ -30,7 +30,7 @@ router.get("/booking", (req, res) =>
       .then((dealer) => {
         User.find({})
         .then((users) => {
-          res.render("booking", {
+          res.render("Booking", {
             dealers: dealer,
             vehicles: vehicles,
             users: users,

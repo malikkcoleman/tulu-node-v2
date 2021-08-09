@@ -57,7 +57,7 @@ pgroutr.get(
 pgroutr.get("/shop", (req, res) => {
   Vehicle.find({})
     .then((vehicles) => {
-      res.render("shop", {
+      res.render("Shop", {
         vehicles: vehicles,
         user: req.user,
       });
@@ -71,7 +71,7 @@ pgroutr.get("/carview", (req, res) => {
     .then((vehicles) => {
       Dealer.find({})
         .then((dealers) => {
-          res.render("carview", {
+          res.render("CarView", {
             vehicles: vehicles,
             user: req.user,
             dealers: dealers,
@@ -95,7 +95,7 @@ pgroutr.get("/carview", (req, res) => {
 pgroutr.get("/tululist", (req, res) => {
   User.find({ role: "tulu" })
     .then((tulu) => {
-      res.render("tululist", {
+      res.render("TuluList", {
         tulu: tulu,
         user: req.user,
       });
@@ -175,7 +175,7 @@ pgroutr.get('/DealerListing',(req,res)=>{
 
 pgroutr.get('/DealershipList',(req,res)=>{
     Dealer.find({}).then((dealer)=>{
-        res.render('dealershipList',{
+        res.render('DealershipList',{
             dealer:dealer,
             user:req.user
         })
