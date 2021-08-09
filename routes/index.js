@@ -9,7 +9,7 @@ const User = require("../models/userschema");
 const Address = require("../models/addressschema");
 
 pgroutr.get("/", (req, res) =>
-  res.render("index", {
+  res.render("Index", {
     user: req.user,
   })
 );
@@ -23,23 +23,23 @@ function isLoggedIn(req, res, next) {
 }
 
 pgroutr.get("/dashboard", ensureAuthenticated, (req, res) =>
-  res.render("dashboard", {
+  res.render("Dashboard", {
     user: req.user,
   })
 );
 
 pgroutr.get('/vindecoder',ensureAuthenticated,(req,res)=>
-    res.render('vindecoder',{
+    res.render('VinDecoder',{
     user:req.user
 }));
 
 pgroutr.get('/tulu',ensureAuthenticated, authRole(ROLE.TULU),(req,res)=>
-    res.render('tulu',{
+    res.render('Tulu',{
     user:req.user
 }));
 
 pgroutr.get("/profile", ensureAuthenticated, authRole(ROLE.USER), (req, res) =>
-  res.render("profile", {
+  res.render("Profile", {
     user: req.user,
   })
 );
@@ -49,7 +49,7 @@ pgroutr.get(
   ensureAuthenticated,
   authRole(ROLE.SYSADMIN),
   (req, res) =>
-    res.render("dashboardsysadmin", {
+    res.render("DashboardSysAdmin", {
       user: req.user,
     })
 );
