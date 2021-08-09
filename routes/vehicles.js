@@ -33,6 +33,7 @@ router.post("/addvehicle", (req, res) => {
     dealerId,
     isSold,
     doors,
+    mileage,
     modelNumber,
     driveType,
     msrp,
@@ -58,79 +59,7 @@ router.post("/addvehicle", (req, res) => {
   let errors = [];
 
   // Check required fields
-  if (
-    !vin ||
-    !year ||
-    !make ||
-    !model ||
-    !vehicleType ||
-    !trim ||
-    !dealerId ||
-    !isSold ||
-    !doors ||
-    !modelNumber ||
-    !driveType ||
-    !msrp ||
-    !minPrice ||
-    !maxPrice ||
-    !refFee ||
-    !engineName ||
-    !engineBrand ||
-    !engineID ||
-    !fuelType ||
-    !iceMaxHp ||
-    !iceMaxTorque ||
-    !maxPayLoad ||
-    !transmissionName ||
-    !colorName ||
-    !colorHex ||
-    !baseTowingCapacity ||
-    !grossWeight ||
-    !fuelTankCapacity ||
-    !notes
-  ) {
-    errors.push({ msg: "Please fill in all fields" });
-  }
-
-  if (errors.length > 0) {
-    res.render("addvehicle", {
-      errors,
-      vin,
-      year,
-      make,
-      model,
-      vehicleType,
-      trim,
-      dealerId,
-      isSold,
-      doors,
-      modelNumber,
-      driveType,
-      msrp,
-      minPrice,
-      maxPrice,
-      refFee,
-      engineName,
-      engineBrand,
-      engineID,
-      fuelType,
-      iceMaxHp,
-      iceMaxTorque,
-      maxPayLoad,
-      transmissionName,
-      colorName,
-      colorHex,
-      baseTowingCapacity,
-      grossWeight,
-      fuelTankCapacity,
-      notes,
-      user: req.user,
-    });
-  } else {
-    // res.send('Pass');
-
-    // Validation Passed
-    //make sure if the vehicle is existing or not
+  
     Vehicle.findOne({ vin: vin }).then((vehicle) => {
       if (vehicle) {
         // vehicle Exist
@@ -146,12 +75,12 @@ router.post("/addvehicle", (req, res) => {
           dealerId,
           isSold,
           doors,
+          mileage,
           modelNumber,
           driveType,
           msrp,
           minPrice,
           maxPrice,
-          refFee,
           engineName,
           engineBrand,
           engineID,
@@ -179,6 +108,7 @@ router.post("/addvehicle", (req, res) => {
           dealerId,
           isSold,
           doors,
+          mileage,
           modelNumber,
           driveType,
           msrp,
@@ -213,14 +143,17 @@ router.post("/addvehicle", (req, res) => {
         // res.send('hello');
       }
     });
-  }
 });
 
-/* router.get("/", function (req, res) {
-  vinn = req.flash("vin");
-  console.log(vinn);
-  res.render("/vehicles", { vin: vin });
-}); */
+// Dashboard Vehicle
+router.get("/dashboardVehicle", (req, res) => {
+  Vehicle.find().then((vehicle) => {
+    res.render("dashboardVehicle", {
+      user: req.user,
+      vehicles: vehicle,
+    });
+  });
+});
 
 // EDIT VEHICLE
 router.get("/editvehicle", (req, res) => {
@@ -232,6 +165,7 @@ router.get("/editvehicle", (req, res) => {
   });
 });
 
+
 router.post("/editvehicle", (req, res) => {
   const {
     vin,
@@ -241,6 +175,7 @@ router.post("/editvehicle", (req, res) => {
     vehicleType,
     trim,
     doors,
+    mileage,
     modelNumber,
     driveType,
     msrp,
@@ -269,6 +204,7 @@ router.post("/editvehicle", (req, res) => {
     vehicleType: vehicleType,
     trim: trim,
     doors: doors,
+    mileage: mileage,
     modelNumber: modelNumber,
     driveType: driveType,
     msrp: msrp,

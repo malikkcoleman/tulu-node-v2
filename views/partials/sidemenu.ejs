@@ -141,13 +141,16 @@
                         <a href="/DashboardSysAdmin">Profile</a>
                     </li>
                     <li class="subMenuListLink">
-                        <a href="sysadminvehicles/DashboardSysAdminVehicle">Add Vehicle</a>
+                        <a href="sysadminvehicles/DashboardSysAdminVehicle">View Vehicles</a>
                     </li>
                     <li class="subMenuListLink">
                         <a href="Dealerships/DashboardSysAdminDealership">Add Dealership</a>
                     </li>
                     <li class="subMenuListLink">
-                        <a href="/DashboardSysAdminUser">Add User</a>
+                        <a href="/DashboardSysAdminUser">User</a>
+                    </li>
+                    <li class="subMenuListLink">
+                        <a href="/DashboardSysAdminTulu">Tulu</a>
                     </li>
                     <li class="subMenuListLink">
                         <a href="/users/logout">Log Out</a>
@@ -164,7 +167,7 @@
                 <a href="/DealershipList">Dealerships</a>
             </li>
         <%}%>
-        <%if(user.toObject().role === 'dealerAdmin'||user.toObject().role === 'dealerUser'){%>    
+        <%if(user.toObject().role === 'dealeradmin'||user.toObject().role === 'dealeruser'){%>    
             <%console.log('DEALERADMIN or DEALERUSER')%>
             <li class="menuItems">
                 <p class="menuDropDownTitle">

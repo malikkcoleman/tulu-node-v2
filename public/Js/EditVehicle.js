@@ -33,6 +33,7 @@ function populateVehicle(index){
     // $('#dealerId').val(vehicleList[id].);
     // $('#isSold').val(vehicleList[id].);
     $('#doors').val(vehicleList[index].doors);
+    $('#mileage').val(vehicleList[index].mileage);
     $('#modelNumber').val(vehicleList[index].modelNumber);
     $('#driveType').val(vehicleList[index].driveType);
     $('#msrp').val(vehicleList[index].msrp);
