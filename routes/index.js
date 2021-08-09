@@ -191,8 +191,8 @@ pgroutr.get('/image/:targetid', (req, res) => {
     fetchImage.getImage(req, res)
 })
 
-pgroutr.get('/images/:targetid', (req, res) => {
-  fetchImage.getImages(req, res)
+pgroutr.get('/image/:targetid/:fileId', (req, res) => {
+  fetchImage.getCarImage(req, res)
 })
 
 pgroutr.get('/tululist',(req,res)=>{

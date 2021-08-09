@@ -77,7 +77,7 @@ const listingSettings = (index) => {
 };
 
 function editVehicle(i){
-    location.replace("/vehicles/editVehicle"+ "?id=" + vehicleList[i]._id);
+    location.replace("/vehicles/editVehicle/" + vehicleList[i].vin);
 }
 
 function viewListing(i){

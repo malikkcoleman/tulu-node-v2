@@ -2,24 +2,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <link rel="icon" type="image/png" href="../../images/favicon.png">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tulu Canada</title>
-    <link rel="stylesheet" href="../styles/reset.css" />
-    <link rel="stylesheet" href="../styles/css/all.css" />
-    <link rel="stylesheet" href="../styles/nav.css" />
-    <link rel="stylesheet" href="../styles/addVehicle.css" />
-    <link rel="stylesheet" href="../styles/footer.css" />
+    <link rel="stylesheet" href="../../styles/reset.css" />
+    <link rel="stylesheet" href="../../styles/css/all.css" />
+    <link rel="stylesheet" href="../../styles/nav.css" />
+    <link rel="stylesheet" href="../../styles/addVehicle.css" />
+    <link rel="stylesheet" href="../../styles/footer.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     
-    <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../../jquery/dist/jquery.min.js"></script>
 </head>
 <body>
     <nav id="Nav">
         <a href="/">
-            <img src="../images/tulu-logo_white.png" alt="">
+            <img src="../../images/tulu-logo_white.png" alt="">
         </a>
         <div class="menuButton" onclick="slideMenu()">
             <i class="fas fa-bars fa-2x menuBtn"></i>
@@ -54,67 +54,69 @@
         <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         <div class=" preview-images" style="height: 100px; width: 100px;"></div>
-        <img src="/images/<%= vehicles[0].vin %>" alt="" class="face" width="100px" height="100px">
+        <% images.forEach(function(image){  %>
+          <img src="/image/<%= image.target_id %>/<%= image.file_id %>" alt="">
+        <% }) %>
         <form action="/vehicles/EditVehicle" method="POST">
             <%- include partials/messages %>
             <label for="vin">VIN</label>
-            <input type="text" name="vin" id="vin">
+            <input type="text" name="vin" id="vin" value="<%= vehicles[0].vin %>">
             <label for="year">Year</label>
-            <input type="text" name="year" id="year">
+            <input type="text" name="year" id="year" value="<%= vehicles[0].year %>">
             <label for="make">Make</label>
-            <input type="text" name="make" id="make">
+            <input type="text" name="make" id="make" value="<%= vehicles[0].make %>">
             <label for="model">Model</label>
-            <input type="text" name="model" id="model">
+            <input type="text" name="model" id="model" value="<%= vehicles[0].model %>">
             <label for="vehicleType">Vehicle Type</label>
-            <input type="text" name="vehicleType" id="vehicleType">
+            <input type="text" name="vehicleType" id="vehicleType" value="<%= vehicles[0].vehicleType %>">
             <label for="trim">Trim</label>
-            <input type="text" name="trim" id="trim">
+            <input type="text" name="trim" id="trim" value="<%= vehicles[0].trim %>">
             <label for="dealerId">Dealer ID</label>
-            <input type="text" name="dealerId" id="dealerId">
+            <input type="text" name="dealerId" id="dealerId" value="<%= vehicles[0].dealerId %>">
             <label for="isSold">isSold</label>
-            <input type="text" name="isSold" id="isSold">
+            <input type="text" name="isSold" id="isSold" value="<%= vehicles[0].isSold %>">
             <label for="doors">Doors</label>
-            <input type="text" name="doors" id="doors">
+            <input type="text" name="doors" id="doors" value="<%= vehicles[0].doors %>">
             <label for="modelNumber">Model Number</label>
-            <input type="text" name="modelNumber" id="modelNumber">
+            <input type="text" name="modelNumber" id="modelNumber" value="<%= vehicles[0].modelNumber %>">
             <label for="driveType">Drive Type</label>
-            <input type="text" name="driveType" id="driveType">
+            <input type="text" name="driveType" id="driveType" value="<%= vehicles[0].driveType %>">
             <label for="msrp">MSRP</label>
-            <input type="text" name="msrp" id="msrp">
+            <input type="text" name="msrp" id="msrp" value="<%= vehicles[0].msrp %>">
             <label for="minPrice">Minimum Price</label>
-            <input type="text" name="minPrice" id="minPrice">
+            <input type="text" name="minPrice" id="minPrice" value="<%= vehicles[0].minPrice %>">
             <label for="maxPrice">Maximum Price</label>
-            <input type="text" name="maxPrice" id="maxPrice">
+            <input type="text" name="maxPrice" id="maxPrice" value="<%= vehicles[0].maxPrice %>">
             <label for="refFee">Referral Fee</label>
-            <input type="text" name="refFee" id="refFee">
+            <input type="text" name="refFee" id="refFee" value="<%= vehicles[0].refFee %>">
             <label for="engineName">Engine Name</label>
-            <input type="text" name="engineName" id="engineName">
+            <input type="text" name="engineName" id="engineName" value="<%= vehicles[0].engineName %>">
             <label for="engineBrand">Engine Brand</label>
-            <input type="text" name="engineBrand" id="engineBrand">
+            <input type="text" name="engineBrand" id="engineBrand" value="<%= vehicles[0].engineBrand %>">
             <label for="engineID">Engine ID</label>
-            <input type="text" name="engineID" id="engineID">
+            <input type="text" name="engineID" id="engineID" value="<%= vehicles[0].engineID %>">
             <label for="fuelType">Fuel Type</label>
-            <input type="text" name="fuelType" id="fuelType">
+            <input type="text" name="fuelType" id="fuelType" value="<%= vehicles[0].fuelType %>">
             <label for="iceMaxHp">Ice Max HP</label>
-            <input type="text" name="iceMaxHp" id="iceMaxHp">
+            <input type="text" name="iceMaxHp" id="iceMaxHp" value="<%= vehicles[0].iceMaxHp %>">
             <label for="iceMaxTorque">Ice Max Torque</label>
-            <input type="text" name="iceMaxTorque" id="iceMaxTorque">
+            <input type="text" name="iceMaxTorque" id="iceMaxTorque" value="<%= vehicles[0].iceMaxTorque %>">
             <label for="maxPayLoad">Max Payload</label>
-            <input type="text" name="maxPayLoad" id="maxPayLoad">
+            <input type="text" name="maxPayLoad" id="maxPayLoad" value="<%= vehicles[0].iceMaxPayload %>">
             <label for="transmissionName">Transmission Name</label>
-            <input type="text" name="transmissionName" id="transmissionName">
+            <input type="text" name="transmissionName" id="transmissionName" value="<%= vehicles[0].transmissionName %>">
             <label for="colorName">Colour Name</label>
-            <input type="text" name="colorName" id="colorName">
+            <input type="text" name="colorName" id="colorName" value="<%= vehicles[0].colorName %>">
             <label for="colorHex">Color Hex</label>
-            <input type="text" name="colorHex" id="colorHex">
+            <input type="text" name="colorHex" id="colorHex" value="<%= vehicles[0].colorHex %>">
             <label for="baseTowingCapacity">Base Towing Capacity</label>
-            <input type="text" name="baseTowingCapacity" id="baseTowingCapacity">
+            <input type="text" name="baseTowingCapacity" id="baseTowingCapacity" value="<%= vehicles[0].baseTowingCapacity %>">
             <label for="grossWeight">Gross Weight</label>
-            <input type="text" name="grossWeight" id="grossWeight">
+            <input type="text" name="grossWeight" id="grossWeight" value="<%= vehicles[0].grossWeight %>">
             <label for="fuelTankCapacity">Fuel Tank Capacity</label>
-            <input type="text" name="fuelTankCapacity" id="fuelTankCapacity">
+            <input type="text" name="fuelTankCapacity" id="fuelTankCapacity" value="<%= vehicles[0].fuelTankCapacity %>">
             <label for="notes">Notes</label>
-            <input type="text" name="notes" id="notes">
+            <input type="text" name="notes" id="notes" value="<%= vehicles[0].notes %>">
             <button type="submit">
               Save Vehicle
             </button>
@@ -123,13 +125,13 @@
 
     
 </body>
-<script src="../Js/sideMenu.js"></script>
-<script src="../Js/privileges.js"></script>
+<script src="../../Js/sideMenu.js"></script>
+<script src="../../Js/privileges.js"></script>
 <script>
   var vehicleList = <%-JSON.stringify(vehicles)%>;
   console.log(vehicleList);
 </script>
-<script src="../Js/EditVehicle.js"></script>
+<script src="../../Js/EditVehicle.js"></script>
 <script>
     $(document).ready(function() {
       let imagesPreview = function(input, placeToInsertImagePreview) {
