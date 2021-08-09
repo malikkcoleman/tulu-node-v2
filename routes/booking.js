@@ -13,7 +13,7 @@ const { decode } = require("punycode");
 const nodemailer = require("nodemailer");
 const Appointment = require("../models/appointmentschema");
 const Dealer = require("../models/dealershipschema");
-const User = require("../models/userSchema");
+const User = require("../models/userschema");
 
 const transporter = nodemailer.createTransport({
   service: "gmail",

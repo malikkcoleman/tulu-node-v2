@@ -5,7 +5,7 @@ const { ensureAuthenticated, authRole } = require("../config/auth");
 
 const Vehicle = require("../models/vehicleschema");
 const Dealer = require("../models/dealershipschema");
-const User = require("../models/userSchema");
+const User = require("../models/userschema");
 const Address = require("../models/addressschema");
 
 pgroutr.get("/", (req, res) =>
