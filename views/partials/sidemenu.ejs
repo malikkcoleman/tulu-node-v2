@@ -54,6 +54,7 @@
             <li class="menuItems">
                 <a href="/DealershipList">Dealerships</a>
             </li>
+            <p class="loggedInAs">Logged in as : <%- user.toObject().fName%> <%- user.toObject().lName%> </p>
         <%}%>
         <%if(user.toObject().role === 'user'){%>
             <%console.log('REGULAR USER')%>
@@ -108,6 +109,7 @@
                     <button class="influencerBtn">Become a Tulu</button>
                 </a>
             </li>
+            <p class="loggedInAs">Logged in as : <%- user.toObject().fName%> <%- user.toObject().lName%> </p>
         <%}%>
         <%if(user.toObject().role === 'sysadmin'){%>
             <%console.log('SYSADMIN')%>
@@ -166,6 +168,7 @@
             <li class="menuItems">
                 <a href="/DealershipList">Dealerships</a>
             </li>
+            <p class="loggedInAs">Logged in as : Sys Admin </p>
         <%}%>
         <%if(user.toObject().role === 'dealeradmin'||user.toObject().role === 'dealeruser'){%>    
             <%console.log('DEALERADMIN or DEALERUSER')%>
@@ -224,6 +227,7 @@
             <li class="menuItems">
                 <a href="/DealershipList">Dealerships</a>
             </li>
+            <p class="loggedInAs">Logged in as : <%- user.toObject().fName%> <%- user.toObject().lName%> </p>
         <%}%>
     <%}%>
 <%}%>
@@ -273,4 +277,5 @@
             <button class="influencerBtn">Become a Tulu</button>
         </a>
     </li>
+    <p class="loggedInAs">Logged in as Guest</p>
 <%}%> 
