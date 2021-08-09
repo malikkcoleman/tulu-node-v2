@@ -53,6 +53,7 @@ function getFile(req, res){
 
 function getImage(req, res){
     fetchImage.find({target_id: req.params.targetid, is_deleted: false}).then(function(data){
+        console.log(data)
         gfs.files.findOne({_id: data[0].file_id}, (err, file) => {
             if(!file || file.lenth === 0){
                 return res.status(404).json({
@@ -71,6 +72,33 @@ function getImage(req, res){
     })
 }
 
+function getImages(req, res){
+    var images = []
+    var thissinglefile
+    fetchImage.find({target_id: req.params.targetid, is_deleted: false}).then(function(data){
+        console.log(1)
+        data.forEach(function(file){
+            console.log(2)
+            gfs.files.findOne({_id: file.file_id}).then(function(data){
+                if(!data || file.lenth === 0){
+                    return res.status(404).json({
+                        err: 'No file Exists'
+                    })
+                }
+                if(data.contentType === 'image/jpeg' || data.contentType === 'image/png'){
+                    const readstream = gfs.createReadStream(data.filename);
+                    readstream.pipe(res)
+                } else {
+                    res.status(404).json({
+                        err: 'not an image'
+                    })
+                }
+            })
+        })
+    })
+    console.log(images)
+}
+
 
   
-module.exports = {getFiles, getFile, getImage};
+module.exports = {getFiles, getFile, getImage, getImages};

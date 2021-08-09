@@ -36,6 +36,25 @@
     </div>
 
     <div class="container">
+        <form class="mt-4"
+            action="/upload/vehicle/<%= vehicles[0].vin %>"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <div class="form-group">
+                <input
+                type="file"
+                name="file"
+                id="input-files"
+                class="form-control-file border"
+                accept=".png,.jpg,.jpeg"
+                multiple
+                />
+            </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div class=" preview-images" style="height: 100px; width: 100px;"></div>
+        <img src="/images/<%= vehicles[0].vin %>" alt="" class="face" width="100px" height="100px">
         <form action="/vehicles/EditVehicle" method="POST">
             <%- include partials/messages %>
             <label for="vin">VIN</label>
@@ -111,5 +130,27 @@
   console.log(vehicleList);
 </script>
 <script src="../Js/EditVehicle.js"></script>
+<script>
+    $(document).ready(function() {
+      let imagesPreview = function(input, placeToInsertImagePreview) {
+        if (input.files) {
+          let filesAmount = input.files.length;
+          for (i = 0; i < filesAmount; i++) {
+            let reader = new FileReader();
+            reader.onload = function(event) {
+              $($.parseHTML("<img>"))
+                .attr("src", event.target.result)
+                .appendTo(placeToInsertImagePreview);
+            };
+            reader.readAsDataURL(input.files[i]);
+          }
+        }
+      };
+      $("#input-files").on("change", function() {
+        imagesPreview(this, "div.preview-images");
+        console.log(imagesPreview)
+      });
+    });
+  </script>
 </html>
 

@@ -175,7 +175,7 @@ pgroutr.get('/DealerListing',(req,res)=>{
     });
 });
 
-pgroutr.post("/upload", uploadController.uploadFile), (req, res) => {
+pgroutr.post("/upload/:type/:targetid", uploadController.uploadFile), (req, res) => {
     console.log(req)
 };
 
@@ -189,6 +189,10 @@ pgroutr.get('/files/:filename', (req, res) => {
 
 pgroutr.get('/image/:targetid', (req, res) => {
     fetchImage.getImage(req, res)
+})
+
+pgroutr.get('/images/:targetid', (req, res) => {
+  fetchImage.getImages(req, res)
 })
 
 pgroutr.get('/tululist',(req,res)=>{

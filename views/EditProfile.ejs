@@ -59,7 +59,7 @@
             </div>
             
             <form class="mt-4"
-            action="/upload"
+            action="/upload/profile/<%= user.toObject()._id %>"
             method="POST"
             enctype="multipart/form-data"
           >
@@ -69,6 +69,7 @@
                 name="file"
                 id="input-files"
                 class="form-control-file border"
+                accept=".png,.jpg,.jpeg"
               />
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
