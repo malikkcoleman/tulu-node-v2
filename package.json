@@ -1,7 +1,7 @@
 {
   "name": "ch04-ejs",
   "version": "1.0.0",
-  "engine": {
+  "engines": {
     "node": "14.17.2",
     "npm": "6.14.13"
   },
