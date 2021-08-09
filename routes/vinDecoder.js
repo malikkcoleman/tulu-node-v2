@@ -290,6 +290,20 @@ router.post("/addvehicle",ensureAuthenticated,(req, res) => {
   })
 });
 
+router.post("/SysAdminAddVehicle",ensureAuthenticated,(req, res) => {
+  decoder(req.body.vin).then(infoData=>{
+    Dealer.find({})
+    .then(dealer=>{
+      res.render('DashboardSysAdminAddVehicle',{
+        vin:req.body.vin,
+        infoData:infoData,
+        user:req.user,
+        dealer:dealer
+      })
+    })
+  })
+});
+
 router.get("/flash", function (req) {
   req.flash("vin", masterVin);
   req.flash("year", year);
