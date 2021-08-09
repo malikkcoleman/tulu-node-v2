@@ -34,8 +34,6 @@ db.once("open", function () {
   console.log("DB Connected!!!");
 });
 
-
-
 app.use(function (req, res, next) {
   res.locals.customerInfo = null;
   next();
@@ -80,6 +78,7 @@ app.use("/dealerships", require("./routes/dealerships"));
 app.use("/sysadminvehicles", require("./routes/sysAdminVehicles"));
 app.use("/vin", require("./routes/vinDecoder"));
 app.use("/tulu", require("./routes/tulu"));
+app.use("/appointment", require("./routes/booking"));
 // ---------------------------------
 
 app.use(express.static(__dirname + "/public"));
