@@ -150,11 +150,7 @@ pgroutr.get("/DashboardSysAdminUser", (req, res) => {
     });
 });
 
-pgroutr.get("/:page", function (req, res) {
-  res.render(req.params.page, {
-    user: req.user,
-  });
-});
+
 
 pgroutr.get('/DealerListing',(req,res)=>{
     Dealer.find({}).then((dealer)=>{
@@ -174,17 +170,12 @@ pgroutr.get('/DealerListing',(req,res)=>{
 });
 
 pgroutr.get('/DealershipList',(req,res)=>{
-    Dealer.find({}).then((dealer)=>{
+    Dealer.find().then((dealer)=>{
         res.render('DealershipList',{
             dealer:dealer,
             user:req.user
         })
-    }).catch((err)=>{
-        res.status(500).send(error);
     })
-    .catch((err) => {
-      res.status(500).send(error);
-    });
 });
 
 pgroutr.get('/:page', function(req, res){

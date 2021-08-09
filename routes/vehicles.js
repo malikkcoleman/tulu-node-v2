@@ -8,7 +8,7 @@ const Vehicle = require("../models/vehicleschema");
 
 // addvehicle Page
 router.get("/addvehicle", (req, res) => {
-  res.render("addvehicle", {
+  res.render("Addvehicle", {
     user: req.user,
   });
 });
@@ -66,7 +66,7 @@ router.post("/addvehicle", (req, res) => {
       if (vehicle) {
         // vehicle Exist
         errors.push({ msg: "Vehicle already Exist" });
-        res.render("addvehicle", {
+        res.render("Addvehicle", {
           errors,
           vin,
           year,
@@ -285,7 +285,7 @@ router.post("/DashboardSysAdminAddVehicle", (req, res) => {
 // Dashboard Vehicle
 router.get("/dashboardVehicle", (req, res) => {
   Vehicle.find().then((vehicle) => {
-    res.render("dashboardVehicle", {
+    res.render("DashboardVehicle", {
       user: req.user,
       vehicles: vehicle,
     });
@@ -295,7 +295,7 @@ router.get("/dashboardVehicle", (req, res) => {
 // EDIT VEHICLE
 router.get("/editvehicle", (req, res) => {
   Vehicle.find().then((vehicle) => {
-    res.render("editvehicle", {
+    res.render("Editvehicle", {
       user: req.user,
       vehicles: vehicle,
     });

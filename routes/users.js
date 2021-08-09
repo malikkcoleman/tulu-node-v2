@@ -9,7 +9,7 @@ const User = require('../models/userschema');
 
 // Login Page
 router.get('/login',(req,res)=>
-    res.render('Login',{
+    res.render('login',{
         user: req.user
 }));
 
@@ -24,7 +24,7 @@ function isLoggedIn(req, res, next) {
 
 // Register Page
 router.get('/register',(req,res)=>
-    res.render('Register',{
+    res.render('register',{
     user:req.user
 }));
 
@@ -52,7 +52,7 @@ router.post('/register',(req,res)=>{
     }
 
     if(errors.length > 0){
-        res.render('Register',{
+        res.render('register',{
             errors,image,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
         });
     }else{
@@ -64,7 +64,7 @@ router.post('/register',(req,res)=>{
             if(user){
                 // user Exist
                 errors.push({msg:'Email already Exist'})
-                res.render('Register',{
+                res.render('register',{
                     errors,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
                 })
             }else{
@@ -82,7 +82,7 @@ router.post('/register',(req,res)=>{
                     newUser.save()
                     .then(user => {
                         req.flash('success_msg', 'You are now registered and can log in.');
-                        res.redirect('/users/Login')
+                        res.redirect('/users/login')
                     })
                     .catch(err => console.log(err));
                 }))
