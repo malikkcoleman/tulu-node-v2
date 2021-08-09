@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const VehicleController = require("../controllers/vehicle.controller");
 // Vehicle Model
-const Vehicle = require("../models/vehicleSchema");
+const Vehicle = require("../models/vehicleschema");
 
 // addvehicle Page
 router.get("/addvehicle", (req, res) => {

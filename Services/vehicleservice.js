@@ -5,7 +5,7 @@ const https = require("https");
 const querystring = require("query-string");
 const bodyParser = require("body-parser");
 const ROLE = require("../roles");
-const vehicle = require("../models/vehicleSchema");
+const vehicle = require("../models/vehicleschema");
 
 const { ensureAuthenticated, authRole } = require("../config/auth");
 const middlewares = [bodyParser.urlencoded({ extended: true })];
