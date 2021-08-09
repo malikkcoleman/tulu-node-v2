@@ -3,7 +3,7 @@ const pgroutr = express.Router();
 const ROLE = require("../roles");
 const { ensureAuthenticated, authRole } = require("../config/auth");
 
-const Vehicle = require("../models/vehicleSchema");
+const Vehicle = require("../models/vehicleschema");
 const Dealer = require("../models/dealershipschema");
 const User = require("../models/userSchema");
 const Address = require("../models/addressschema");
