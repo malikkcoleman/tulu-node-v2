@@ -19,5 +19,5 @@ function populateVehicles(){
 }
 
 function AddVehicle(){
-    location.replace("/testaddvehicle");
+    location.replace("/sysAdminVindecoder");
 }

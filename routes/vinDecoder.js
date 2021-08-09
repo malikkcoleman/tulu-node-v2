@@ -9,6 +9,7 @@ const ROLE = require("../roles");
 const { ensureAuthenticated, authRole } = require("../config/auth");
 const middlewares = [bodyParser.urlencoded({ extended: true })];
 const vehicle = require("../models/vehicleSchema");
+const Dealer = require('../models/dealershipschema');
 const { decode } = require("punycode");
 const tempVehicle = new vehicle();
 
@@ -163,6 +164,10 @@ async function decoder(VIN) {
       response_json = JSON.parse(response_string);
       infoData = response_json;
       masterVin = VIN;
+
+      if(response_json.query_responses.NodeJS_Sample.us_market_data
+        .common_us_data != "undefine"){
+
       year =
         response_json.query_responses.NodeJS_Sample.us_market_data
           .common_us_data.basic_data.year;
@@ -232,7 +237,7 @@ async function decoder(VIN) {
         response_json.query_responses.NodeJS_Sample.us_market_data
           .common_us_data.standard_specifications[1].specification_values[2]
           .specification_value;
-
+        }
       console.log(masterVin);
       console.log(year);
       console.log(make);
@@ -271,15 +276,32 @@ async function decoder(VIN) {
   return infoData;
 }
 
-router.post("/vinTest", (req, res) => {
+router.post("/addvehicle",ensureAuthenticated,(req, res) => {
   decoder(req.body.vin).then(infoData=>{
-    res.render('addvehicle',{
-      vin:req.body.vin,
-      infoData:infoData,
-      user:req.user
+    Dealer.find({})
+    .then(dealer=>{
+      res.render('addvehicle',{
+        vin:req.body.vin,
+        infoData:infoData,
+        user:req.user,
+        dealer:dealer
+      })
     })
   })
-  
+});
+
+router.post("/SysAdminAddVehicle",ensureAuthenticated,(req, res) => {
+  decoder(req.body.vin).then(infoData=>{
+    Dealer.find({})
+    .then(dealer=>{
+      res.render('DashboardSysAdminAddVehicle',{
+        vin:req.body.vin,
+        infoData:infoData,
+        user:req.user,
+        dealer:dealer
+      })
+    })
+  })
 });
 
 router.get("/flash", function (req) {

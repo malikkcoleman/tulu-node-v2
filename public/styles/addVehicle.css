@@ -38,3 +38,52 @@ button{
 .lead a{
     color:#79C6AC;
 }
+
+.popUp{
+    height:100vh;
+    width:100vw;
+    background:white;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index:1;
+
+}
+
+.popUp p{
+    text-align: center;
+    padding:0 30px;
+}
+
+.popUp button{
+    width:80vmin;
+    padding:15px 0;
+    margin:20px 0 0 0;
+}
+
+.popUp button a{
+    color:white;
+}
+
+.popUp h2{
+    color:#79C6AC;
+}
+
+.popUp h1{
+    margin:30px 0;
+}
+
+.verifyBtn{
+    width:80vmin;
+    padding:15px 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.saveBtn{
+    display:none;
+}
+
+.pageTwo,.pageThree,.pageFour,.pageFive,.pageSix{
+    display:none;
+}

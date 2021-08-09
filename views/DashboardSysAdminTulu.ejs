@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/css/all.css" />
     <link rel="stylesheet" href="styles/dashboardNav.css" />
-    <link rel="stylesheet" href="styles/dashboardUser.css" />
+    <link rel="stylesheet" href="styles/dashboardTulu.css" />
     <link rel="stylesheet" href="styles/footer.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
@@ -38,26 +38,21 @@
 
     <div class="container body-content">
         <div class="header">
-            <h1>Users</h1>
+            <h1>Tulus</h1>
         </div>
         <div class="users">
-            <div id="DealerList"></div>
-            <div id="DealerDiv">
-            </div>
-
-            <div class="addUser">
-                <i class="fas fa-plus" onclick="ShowAddNewUser();"></i>
-            </div>
+            <div id="TuluList"></div>
         </div>
     </div>
 </body>
 <script src="Js/sideMenu.js"></script>
 <script src="Js/privileges.js"></script>
-<script src="Js/DashboardSysAdminUser.js"></script>
+<script src="Js/DashboardSysAdminTulu.js"></script>
 <script>
+    var tuluList = <%-JSON.stringify(tulu)%>;
+    console.log(tuluList);
     var userList = <%-JSON.stringify(users)%>;
     console.log(userList);
-    populateUser()
-    
+    populateTulu()
 </script>
 </html>

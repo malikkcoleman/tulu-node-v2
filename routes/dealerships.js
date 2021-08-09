@@ -13,9 +13,10 @@ const Address = require('../models/addressschema');
 
 // Add Dealership Page
 router.get('/dashboardSysAdminDealership',(req,res)=>
-    res.render('dashboardSysAdminDealership',{
-    user:req.user
-}));
+    res.render("dashboardSysAdminDealership", {
+        user: req.user,
+    })
+);
 
 // Add Dealership Handle
 router.post('/dashboardSysAdminDealership',(req,res)=>{
@@ -60,7 +61,7 @@ router.post('/dashboardSysAdminDealership',(req,res)=>{
                     newAddress.save()
                     .then(address=>{
                         req.flash('Adding New Dealer Success!');
-                        res.redirect('/dealerships/dashboardSysAdminDealership')
+                        res.redirect('/dealerships/DashboardSysAdminDealership')
                     })
                     .catch(err => console.log(err));
                 })
