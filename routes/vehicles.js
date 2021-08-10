@@ -56,6 +56,7 @@ router.post("/addvehicle", (req, res) => {
     grossWeight,
     fuelTankCapacity,
     notes,
+    status
   } = req.body;
 
   let errors = [];
@@ -97,6 +98,7 @@ router.post("/addvehicle", (req, res) => {
           grossWeight,
           fuelTankCapacity,
           notes,
+          status,
           user: req.user,
         });
       } else {
@@ -131,6 +133,7 @@ router.post("/addvehicle", (req, res) => {
           grossWeight,
           fuelTankCapacity,
           notes,
+          status
         });
 
         newVehicle
@@ -190,6 +193,7 @@ router.post("/DashboardSysAdminAddVehicle", (req, res) => {
     grossWeight,
     fuelTankCapacity,
     notes,
+    status
   } = req.body;
 
   let errors = [];
@@ -231,6 +235,7 @@ router.post("/DashboardSysAdminAddVehicle", (req, res) => {
           grossWeight,
           fuelTankCapacity,
           notes,
+          status,
           user: req.user,
         });
       } else {
@@ -265,6 +270,7 @@ router.post("/DashboardSysAdminAddVehicle", (req, res) => {
           grossWeight,
           fuelTankCapacity,
           notes,
+          status
         });
 
         newVehicle
@@ -331,6 +337,7 @@ router.post("/editvehicle", (req, res) => {
     baseTowingCapacity,
     grossWeight,
     fuelTankCapacity,
+    status
   } = req.body;
   var myquery = { vin: vin };
   var newvalues = {
@@ -360,6 +367,7 @@ router.post("/editvehicle", (req, res) => {
     baseTowingCapacity: baseTowingCapacity,
     grossWeight: grossWeight,
     fuelTankCapacity: fuelTankCapacity,
+    status:status
   };
   Vehicle.updateOne(myquery, newvalues).then((user) => {
     req.flash("success_msg", "Changes Saved!");

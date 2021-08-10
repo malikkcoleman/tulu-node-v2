@@ -85,10 +85,13 @@ window.onload = function () {
     $('#grossWeight').val(grossWeight);
     $('#fuelTankCapacity').val(fuelTankCapacity);
 
-    console.log(user)
-    if(user.role == "dealeradmin"||user.role == "dealeruser"){
-        $('#dealerId').val(user.dealerId);
+
+    console.log(dealer)
+    var html = ""
+    for(var x=0;x!=dealer.length;x++){
+        html+='<option value="'+dealer[x].uuid+'">'+dealer[x].name+'</option>';
     }
+    $('#dealerId').append(html);
 
     verifyVehicle();
 }

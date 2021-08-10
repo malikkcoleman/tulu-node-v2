@@ -80,6 +80,7 @@
             <input type="hidden" name="iceMaxTorque" id="iceMaxTorque" value="pakyu">
             <input type="hidden" name="colorHex" id="colorHex" value="123">
 
+
             <div class="pageThree">
                 <label for="doors">No. of Doors</label>
                 <input type="text" name="doors" id="doors">
@@ -117,6 +118,12 @@
             <div class="pageSix">
                 <label for="notes">Notes</label>
                 <input type="text" name="notes" id="notes">
+                
+                <label for="status">Status</label>
+                <select id="status" name="status">
+                    <option value="true">Listed</option>
+                    <option value="false">Unlisted</option>
+                </select>
             </div>
             <button type="button" class="nextBtn" onclick="goNext()">
               Next

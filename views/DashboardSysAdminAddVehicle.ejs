@@ -45,7 +45,9 @@
             <%- include partials/messages %>
 
                 <label for="dealerId">Dealer ID</label>
-                <input type="text" name="dealerId" id="dealerId">
+                <select id="dealerId" name="dealerId">
+
+                </select>
                 <label for="isSold">Is Sold</label>
                 <input type="text" name="isSold" id="isSold" value="false">
                 <label for="vin">VIN</label>
@@ -108,7 +110,12 @@
                 <input type="number" name="refFee" id="refFee">
                 <label for="notes">Notes</label>
                 <input type="text" name="notes" id="notes">
-            <button type="submit" class="saveBtn">
+                <label for="status">Status</label>
+                <select id="status" name="status">
+                    <option value="true">Listed</option>
+                    <option value="false">Unlisted</option>
+                </select>
+            <button type="submit" class="saveBtn" style="display:flex;">
                 Save Vehicle
             </button>
             <a href="/sysadminvehicles/DashboardSysAdminVehicle">
