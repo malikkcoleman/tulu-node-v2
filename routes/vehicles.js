@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const VehicleController = require("../controllers/vehicle.controller");
+const fetchImage = require("../middleware/getImages");
 // Vehicle Model
 const Vehicle = require("../models/vehicleschema");
 
@@ -299,11 +300,13 @@ router.get("/dashboardVehicle", (req, res) => {
 });
 
 // EDIT VEHICLE
-router.get("/editvehicle", (req, res) => {
-  Vehicle.find().then((vehicle) => {
-    res.render("Editvehicle", {
+router.get("/editvehicle/:vin", (req, res) => {
+  Vehicle.find({vin: req.params.vin}).then((vehicle) => {
+    const images = fetchImage.getImagesArray(req.params.vin)
+    res.render("editvehicle", {
       user: req.user,
       vehicles: vehicle,
+      images: images
     });
   });
 });

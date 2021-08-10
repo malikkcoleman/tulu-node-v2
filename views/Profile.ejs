@@ -43,7 +43,7 @@
             </div>
             <div class="userInfo">
                 <div class="userImage" id="userImage">
-                    <img src="images/jolo.jpeg" alt="" class="face">
+                    <img src="image/<%= user.toObject()._id %>" alt="" class="face">
                 </div>
                 <h3 class="userName">
                     <%= user.toObject().fName%> <%= user.toObject().lName%>
@@ -89,7 +89,7 @@
                         <%= user.toObject().role%>
                     </p>
                 </div>
-                <a href="/users/EditProfile">
+                <a href="/EditProfile">
                     <button class="editProfileBtn">
                         Edit Profile
                     </button>

@@ -5,7 +5,8 @@ const { ensureAuthenticated, authRole } = require("../config/auth");
 
 const Vehicle = require("../models/vehicleschema");
 const Dealer = require("../models/dealershipschema");
-const User = require("../models/userschema");
+const uploadController = require("../controllers/upload");
+const fetchImage = require("../middleware/getImages");
 const Address = require("../models/addressschema");
 
 pgroutr.get("/", (req, res) =>
@@ -160,6 +161,40 @@ pgroutr.get('/DealerListing',(req,res)=>{
                 vehicle:vehicle,
                 user:req.user
             })
+        })
+    }).catch((err)=>{
+        res.status(500).send(error);
+    })
+    .catch((err) => {
+      res.status(500).send(error);
+    });
+});
+
+pgroutr.post("/upload/:type/:targetid", uploadController.uploadFile), (req, res) => {
+    console.log(req)
+};
+
+pgroutr.get('/files', (req, res) => {
+    fetchImage.getFiles(req, res)
+})
+
+pgroutr.get('/files/:filename', (req, res) => {
+    fetchImage.getFile(req, res)
+})
+
+pgroutr.get('/image/:targetid', (req, res) => {
+    fetchImage.getImage(req, res)
+})
+
+pgroutr.get('/image/:targetid/:fileId', (req, res) => {
+  fetchImage.getCarImage(req, res)
+})
+
+pgroutr.get('/tululist',(req,res)=>{
+    User.find({role:'tulu'}).then((tulu)=>{
+        res.render('tululist',{
+            tulu:tulu,
+            user:req.user
         })
     }).catch((err)=>{
         res.status(500).send(error);
