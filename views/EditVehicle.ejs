@@ -54,9 +54,14 @@
         <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         <div class=" preview-images" style="height: 100px; width: 100px;"></div>
-        <% images.forEach(function(image){  %>
-          <img src="/image/<%= image.target_id %>/<%= image.file_id %>" alt="">
-        <% }) %>
+        <div class="uploaded-images">
+          <h2>Image Uploaded</h2>
+          <div class="wrapper">
+          <% images.forEach(function(image){  %>
+            <img src="/image/<%= image.target_id %>/<%= image.file_id %>" alt="">
+          <% }) %>
+          </div>
+        </div>
         <form action="/vehicles/EditVehicle" method="POST">
             <%- include partials/messages %>
             <label for="vin">VIN</label>
