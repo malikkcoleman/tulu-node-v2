@@ -3,15 +3,14 @@ const pgroutr = express.Router();
 const ROLE = require("../roles");
 const { ensureAuthenticated, authRole } = require("../config/auth");
 
-const Vehicle = require("../models/vehicleSchema");
+const Vehicle = require("../models/vehicleschema");
 const Dealer = require("../models/dealershipschema");
-const User = require("../models/userSchema");
 const uploadController = require("../controllers/upload");
 const fetchImage = require("../middleware/getImages");
 const Address = require("../models/addressschema");
 
 pgroutr.get("/", (req, res) =>
-  res.render("index", {
+  res.render("Index", {
     user: req.user,
   })
 );
@@ -25,23 +24,23 @@ function isLoggedIn(req, res, next) {
 }
 
 pgroutr.get("/dashboard", ensureAuthenticated, (req, res) =>
-  res.render("dashboard", {
+  res.render("Dashboard", {
     user: req.user,
   })
 );
 
 pgroutr.get('/vindecoder',ensureAuthenticated,(req,res)=>
-    res.render('vindecoder',{
+    res.render('VinDecoder',{
     user:req.user
 }));
 
 pgroutr.get('/tulu',ensureAuthenticated, authRole(ROLE.TULU),(req,res)=>
-    res.render('tulu',{
+    res.render('Tulu',{
     user:req.user
 }));
 
 pgroutr.get("/profile", ensureAuthenticated, authRole(ROLE.USER), (req, res) =>
-  res.render("profile", {
+  res.render("Profile", {
     user: req.user,
   })
 );
@@ -51,7 +50,7 @@ pgroutr.get(
   ensureAuthenticated,
   authRole(ROLE.SYSADMIN),
   (req, res) =>
-    res.render("dashboardsysadmin", {
+    res.render("DashboardSysAdmin", {
       user: req.user,
     })
 );
@@ -59,7 +58,7 @@ pgroutr.get(
 pgroutr.get("/shop", (req, res) => {
   Vehicle.find({})
     .then((vehicles) => {
-      res.render("shop", {
+      res.render("Shop", {
         vehicles: vehicles,
         user: req.user,
       });
@@ -73,7 +72,7 @@ pgroutr.get("/carview", (req, res) => {
     .then((vehicles) => {
       Dealer.find({})
         .then((dealers) => {
-          res.render("carview", {
+          res.render("CarView", {
             vehicles: vehicles,
             user: req.user,
             dealers: dealers,
@@ -97,7 +96,7 @@ pgroutr.get("/carview", (req, res) => {
 pgroutr.get("/tululist", (req, res) => {
   User.find({ role: "tulu" })
     .then((tulu) => {
-      res.render("tululist", {
+      res.render("TuluList", {
         tulu: tulu,
         user: req.user,
       });
@@ -152,11 +151,7 @@ pgroutr.get("/DashboardSysAdminUser", (req, res) => {
     });
 });
 
-pgroutr.get("/:page", function (req, res) {
-  res.render(req.params.page, {
-    user: req.user,
-  });
-});
+
 
 pgroutr.get('/DealerListing',(req,res)=>{
     Dealer.find({}).then((dealer)=>{
@@ -210,17 +205,12 @@ pgroutr.get('/tululist',(req,res)=>{
 });
 
 pgroutr.get('/DealershipList',(req,res)=>{
-    Dealer.find({}).then((dealer)=>{
-        res.render('dealershipList',{
+    Dealer.find().then((dealer)=>{
+        res.render('DealershipList',{
             dealer:dealer,
             user:req.user
         })
-    }).catch((err)=>{
-        res.status(500).send(error);
     })
-    .catch((err) => {
-      res.status(500).send(error);
-    });
 });
 
 pgroutr.get('/:page', function(req, res){

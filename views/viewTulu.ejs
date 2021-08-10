@@ -3,22 +3,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" type="../image/png" href="../images/favicon.png">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tulu Canada</title>
-    <link rel="stylesheet" href="styles/reset.css" />
-    <link rel="stylesheet" href="styles/css/all.css" />
-    <link rel="stylesheet" href="styles/nav.css" />
-    <link rel="stylesheet" href="styles/viewTulu.css" />
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/css/all.css" />
+    <link rel="stylesheet" href="../styles/nav.css" />
+    <link rel="stylesheet" href="../styles/viewTulu.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
 </head>
 <body>
     <nav id="Nav">
         <a href="/">
-            <img src="images/tulu-logo_white.png" alt="">
+            <img src="../images/tulu-logo_white.png" alt="">
         </a>
         <div class="menuButton" onclick="slideMenu()">
             <i class="fas fa-bars fa-2x menuBtn"></i>
@@ -62,41 +62,32 @@
                     
                 </ul>
                 <div class="subInfo">
-                    @* <h4>
+                    <h4>
                         Experience:
                     </h4> 
                     <p class="experience">
                         
-                    </p> *@
-
-                    @* TO POPULATE THIS PAGE, UNCOMMENT LINE 63-67 in TuluViewHelper.js *@
+                    </p>
                     <h4>
                         Specialty:
                     </h4>
                     <p class="specialty">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae eveniet illum adipisci aliquid? Iure, tenetur?
                     </p>
                     <h4>
                     Favourite Car:
                     </h4>
                     <p class="favouriteCar">
-                        
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae eveniet illum adipisci aliquid? Iure, tenetur?
                     </p>
                     <h4>
                     Current Car:
                     </h4>
                     <p class="currentCar">
-                        
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae eveniet illum adipisci aliquid? Iure, tenetur?
                     </p>
                     
                     <h4>
                         Location: 
                     </h4>
                     <p class="location">
-                        
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae eveniet illum adipisci aliquid? Iure, tenetur?
                     </p>
                 </div>
             </div>
@@ -106,11 +97,11 @@
     </div>
 
 </body>
-<script src="Js/sideMenu.js"></script>
-<script type="text/javascript" src="Js/Helpers/TuluViewHelper.js"></script>
+<script src="../Js/sideMenu.js"></script>
 <script type="text/javascript">
     var tuluId = null;
-    var tuluList = null;
+    var tuluList = <%-JSON.stringify(tulu)%>;
+    var addressList = <%-JSON.stringify(address)%>;
     window.onload = function () {
         var hash;
         var hashes = window.location.href.slice(window.location.href.indexOf("?") + 1).split("&");
@@ -121,23 +112,62 @@
                 tuluId = hash[1];
             }
         }
-
-        TestTuluList();
-        
+        populateTulu();
     }
 
+    function populateTulu(){
+        for(var x = 0;x!=tuluList.length; x++){
+            if(tuluList[x]._id == tuluId){
+                console.log(tuluList[x]);
+                $('.userName').append(tuluList[x].fName +' '+tuluList[x].lName);
+                $('.userRole').append(tuluList[x].role);
+                $('.userBio').append(tuluList[x].bio);
+                $('').append();
+                $('').append();
+                $('').append();
+                $('').append();
+                $('').append();
+                $('').append();
+
+
+                var html = "";
+                html+='<li>';
+                html+='    <a href="'+tuluList[x].facebook+'">';
+                html+='        <i class="fab fa-facebook fa-2x"></i>';
+                html+='    </a>';
+                html+='</li>';
+                html+='<li>';
+                html+='    <a href="'+tuluList[x].instagram+'">';
+                html+='        <i class="fab fa-instagram fa-2x"></i>';
+                html+='    </a>';
+                html+='</li>';
+                html+='<li>';
+                html+='    <a href="'+tuluList[x].linkedin+'">';
+                html+='        <i class="fab fa-linkedin-in fa-2x"></i>';
+                html+='    </a>';
+                html+='</li>';
+                $('.socialMediaAccounts').append(html);
+
+                $('.experience').append(tuluList[x].experience);
+                $('.specialty').append(tuluList[x].specialty);
+                $('.favouriteCar').append(tuluList[x].favoriteCar);
+                $('.currentCar').append(tuluList[x].currentCar);
+
+                for(var z=0;z!=addressList.length;z++){
+                    console.log(addressList)
+                    if(addressList[z].targetId == tuluList[x]._id){
+                        
+                        $('.subInfo .location').append(addressList[z].street +' '+addressList[z].city+', '+addressList[z].province+', '+addressList[z].postal);
+                    }
+                }
+                }
+        }
+    };
+
     function sendTuluMessage(){
-        window.location = "/Messages?TargetId=" + tuluId;
+        // window.location = "/Messages?TargetId=" + tuluId;
     }
 
 </script>
-<script src="Js/privileges.js"></script>
-    </script>
-
-    <!-- <Script>
-            GetUser();
-        </Script>   -->
-        <Script>
-            // guestprivileges();
-        </Script> 
+<script src="../Js/privileges.js"></script>
 </html>

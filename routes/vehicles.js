@@ -5,14 +5,16 @@ const passport = require("passport");
 const VehicleController = require("../controllers/vehicle.controller");
 const fetchImage = require("../middleware/getImages");
 // Vehicle Model
-const Vehicle = require("../models/vehicleSchema");
+const Vehicle = require("../models/vehicleschema");
 
 // addvehicle Page
 router.get("/addvehicle", (req, res) => {
-  res.render("addvehicle", {
+  res.render("Addvehicle", {
     user: req.user,
   });
 });
+
+
 
 //controller methods
 
@@ -65,7 +67,7 @@ router.post("/addvehicle", (req, res) => {
       if (vehicle) {
         // vehicle Exist
         errors.push({ msg: "Vehicle already Exist" });
-        res.render("addvehicle", {
+        res.render("Addvehicle", {
           errors,
           vin,
           year,
@@ -146,10 +148,145 @@ router.post("/addvehicle", (req, res) => {
     });
 });
 
+
+
+router.get("/DashboardSysAdminAddVehicle", (req, res) => {
+  res.render("DashboardSysAdminAddVehicle", {
+    user: req.user,
+  });
+});
+
+// SysAdmin Add Vehicle
+router.post("/DashboardSysAdminAddVehicle", (req, res) => {
+  console.log(req.body);
+  // res.send('hello');
+  const {
+    vin,
+    year,
+    make,
+    model,
+    vehicleType,
+    trim,
+    dealerId,
+    isSold,
+    doors,
+    mileage,
+    modelNumber,
+    driveType,
+    msrp,
+    minPrice,
+    maxPrice,
+    refFee,
+    engineName,
+    engineBrand,
+    engineID,
+    fuelType,
+    iceMaxHp,
+    iceMaxTorque,
+    maxPayLoad,
+    transmissionName,
+    colorName,
+    colorHex,
+    baseTowingCapacity,
+    grossWeight,
+    fuelTankCapacity,
+    notes,
+  } = req.body;
+
+  let errors = [];
+
+  // Check required fields
+  
+    Vehicle.findOne({ vin: vin }).then((vehicle) => {
+      if (vehicle) {
+        // vehicle Exist
+        errors.push({ msg: "Vehicle already Exist" });
+        res.render("DashboardSysAdminAddVehicle", {
+          errors,
+          vin,
+          year,
+          make,
+          model,
+          vehicleType,
+          trim,
+          dealerId,
+          isSold,
+          doors,
+          mileage,
+          modelNumber,
+          driveType,
+          msrp,
+          minPrice,
+          maxPrice,
+          engineName,
+          engineBrand,
+          engineID,
+          fuelType,
+          iceMaxHp,
+          iceMaxTorque,
+          maxPayLoad,
+          transmissionName,
+          colorName,
+          colorHex,
+          baseTowingCapacity,
+          grossWeight,
+          fuelTankCapacity,
+          notes,
+          user: req.user,
+        });
+      } else {
+        const newVehicle = new Vehicle({
+          vin,
+          year,
+          make,
+          model,
+          vehicleType,
+          trim,
+          dealerId,
+          isSold,
+          doors,
+          mileage,
+          modelNumber,
+          driveType,
+          msrp,
+          minPrice,
+          maxPrice,
+          refFee,
+          engineName,
+          engineBrand,
+          engineID,
+          fuelType,
+          iceMaxHp,
+          iceMaxTorque,
+          maxPayLoad,
+          transmissionName,
+          colorName,
+          colorHex,
+          baseTowingCapacity,
+          grossWeight,
+          fuelTankCapacity,
+          notes,
+        });
+
+        newVehicle
+          .save()
+          .then((vehicle) => {
+            // req.flash('success_msg', 'You are now registered and can log in.');
+            res.redirect("/sysadminvehicles/DashboardSysAdminVehicle");
+          })
+          .catch((err) => console.log(err));
+
+        console.log(newUser);
+        // res.send('hello');
+      }
+    });
+});
+
+
 // Dashboard Vehicle
 router.get("/dashboardVehicle", (req, res) => {
   Vehicle.find().then((vehicle) => {
-    res.render("dashboardVehicle", {
+    res.render("DashboardVehicle", {
       user: req.user,
       vehicles: vehicle,
     });

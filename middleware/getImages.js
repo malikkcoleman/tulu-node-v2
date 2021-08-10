@@ -73,7 +73,6 @@ function getImage(req, res){
 }
 
 function getCarImage(req, res){
-    console.log(req.params.fileId)
     fetchImage.find({target_id: req.params.targetid, is_deleted: false, file_id: req.params.fileId }).then(function(data){
         gfs.files.findOne({_id: data[0].file_id}, (err, file) => {
             if(!file || file.lenth === 0){

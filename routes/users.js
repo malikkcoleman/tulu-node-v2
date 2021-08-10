@@ -5,7 +5,7 @@ const passport = require('passport');
 const {ensureAuthenticated, authRole} = require('../config/auth');
 
 // User Model
-const User = require('../models/userSchema');
+const User = require('../models/userschema');
 
 // Login Page
 router.get('/login',(req,res)=>
@@ -94,8 +94,78 @@ router.post('/register',(req,res)=>{
     }
 });
 
+router.get('/addUser',(req,res)=>
+    res.render('AddUser',{
+    user:req.user
+}));
+
+router.post('/addUser',(req,res)=>{
+    console.log(req.body);
+    // res.send('hello');
+    const { email,fName,lName,password,password2,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,image,phoneNumber} = req.body;
+
+    let errors = [];
+
+    // Check required fields
+    if(!email||!fName||!lName||!password||!password2||!linkedin||!instagram||!facebook||!bio||!experience||!specialty||!favoriteCar||!currentCar||!phoneNumber){
+        errors.push({msg:'Please fill in all fields'});
+    }
+
+    // Check passwords match
+    if(password !== password2){
+        errors.push({msg:'Passwords do not match'});
+    }
+
+    // Check pass length
+    if(password.length < 6){
+        errors.push({msg:'Password should be at least 6 characters'});
+    }
+
+    if(errors.length > 0){
+        res.render('AddUser',{
+            errors,image,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
+        });
+    }else{
+        // res.send('Pass');
+
+        // Validation Passed
+        User.findOne({email:email})
+        .then(user=>{
+            if(user){
+                // user Exist
+                errors.push({msg:'Email already Exist'})
+                res.render('AddUser',{
+                    errors,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
+                })
+            }else{
+                const newUser = new User({
+                    fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
+                });
+
+
+                // Hash Password
+                bcrypt.genSalt(10, (err, salt) =>bcrypt.hash(newUser.password, salt, (err,hash) =>{
+                    if(err)throw err;
+                    //Set password to hashed 
+                    newUser.password = hash;
+                    // Save User
+                    newUser.save()
+                    .then(user => {
+                        req.flash('success_msg', 'You are now registered and can log in.');
+                        res.redirect('/DashboardSysAdminUser')
+                    })
+                    .catch(err => console.log(err));
+                }))
+
+                // console.log(newUser)
+                // res.send('hello');
+            }
+        });
+    }
+});
+
 router.get('/editProfile',ensureAuthenticated,(req,res)=>
-    res.render('editProfile',{
+    res.render('EditProfile',{
         user:req.user
     })
 );
@@ -124,6 +194,75 @@ router.post('/editProfile',(req,res)=>{
         })
 });
 
+
+router.get('/DashboardSysAdminEditUser',ensureAuthenticated,(req,res)=>
+    User.find()
+    .then(users=>{
+        res.render('DashboardSysAdminEditUser',{
+            users:users,
+            user:req.user
+        })
+    })
+);
+
+router.post('/DashboardSysAdminEditUser',(req,res)=>{
+    const { selectedId,email,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber,role} = req.body;
+    var newvalues = { 
+        email: email,
+        fName: fName,
+        lName: lName,
+        linkedin: linkedin,
+        instagram: instagram,
+        facebook: facebook,
+        bio: bio,
+        experience: experience,
+        specialty: specialty,
+        favoriteCar: favoriteCar,
+        currentCar: currentCar,
+        phoneNumber: phoneNumber,
+        role: role
+    };
+        User.updateOne({_id:selectedId}, newvalues)
+        .then(user=>{
+            req.flash('success_msg', 'Changes Saved!');
+            res.redirect('/DashboardSysAdminUser')  
+        })
+});
+
+
+router.get('/DashboardSysAdminEditTulu',ensureAuthenticated,(req,res)=>
+    User.find()
+    .then(users=>{
+        res.render('DashboardSysAdminEditTulu',{
+            users:users,
+            user:req.user
+        })
+    })
+);
+
+router.post('/DashboardSysAdminEditTulu',(req,res)=>{
+    const { selectedId,email,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber,role} = req.body;
+    var newvalues = { 
+        email: email,
+        fName: fName,
+        lName: lName,
+        linkedin: linkedin,
+        instagram: instagram,
+        facebook: facebook,
+        bio: bio,
+        experience: experience,
+        specialty: specialty,
+        favoriteCar: favoriteCar,
+        currentCar: currentCar,
+        phoneNumber: phoneNumber,
+        role: role
+    };
+        User.updateOne({_id:selectedId}, newvalues)
+        .then(user=>{
+            req.flash('success_msg', 'Changes Saved!');
+            res.redirect('/DashboardSysAdminTulu')  
+        })
+});
 
 
 // Login Handle

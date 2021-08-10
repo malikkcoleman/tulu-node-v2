@@ -6,7 +6,7 @@ const https = require("https");
 const querystring = require("query-string");
 const bodyParser = require("body-parser");
 
-const vehicle = require("../models/vehicleSchema");
+const vehicle = require("../models/vehicleschema");
 
 const access_key_id = "PnuvF35in4";
 const secret_access_key = "JIO13VOxL2u6FE1czz5tYGkPx8eRYyXZrpRimprI";

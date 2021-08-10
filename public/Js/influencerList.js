@@ -1,4 +1,4 @@
-var tuluList = null;
+
 
 function LoadTulus(tulu) {
 	var html = '';
@@ -20,6 +20,6 @@ function LoadTulus(tulu) {
 	$("#influencerList").append(html);
 }
 
-function ViewTulu(tuluId){
-	window.location = "/viewTulu?tuluId=" + tuluList[tuluId].id;
+function ViewTulu(index){
+	window.location = "/tulu/viewTulu?tuluId=" + tuluList[index]._id;
 }

@@ -53,26 +53,11 @@
 </body>
 <script src="Js/sideMenu.js"></script>
 <script src="Js/privileges.js"></script>
+<script src="Js/DashboardSysAdminUser.js"></script>
 <script>
     var userList = <%-JSON.stringify(users)%>;
     console.log(userList);
-    populateTulu()
+    populateUser()
     
-    function populateTulu(){
-        var html = '<ul class="userContainer">';
-        for (var i = 0; i < userList.length; i++) {
-            html += '<li class="">';
-            html += '<p>' + userList[i].fName +' '+userList[i].lName + '</p>';
-            html += '<div class="userContainerControls">';
-            html += '<input type="button" class="btn" value="Remove" onclick="DeleteDealer(\'' + userList[i]._id + '\');" />';
-            html += '<input type="button" class="btn" value="Edit" onclick="EditUser(\'' + userList[i]._id + '\');" />';
-            html += '</div>';
-            html += '</li>';
-        }
-        //html += '<input type="button" class="btn" value="New Dealer" onclick="NewDealer();"  />';
-        html += '</ul>';
-        $("#DealerList").empty();
-        $("#DealerList").append(html);
-    }
 </script>
 </html>

@@ -8,12 +8,12 @@ const bodyParser = require("body-parser");
 const ROLE = require("../roles");
 const { ensureAuthenticated, authRole } = require("../config/auth");
 const middlewares = [bodyParser.urlencoded({ extended: true })];
-const vehicle = require("../models/vehicleSchema");
+const vehicle = require("../models/vehicleschema");
 const { decode } = require("punycode");
 const nodemailer = require("nodemailer");
 const Appointment = require("../models/appointmentschema");
 const Dealer = require("../models/dealershipschema");
-const User = require("../models/userSchema");
+const User = require("../models/userschema");
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -30,7 +30,7 @@ router.get("/booking", (req, res) =>
       .then((dealer) => {
         User.find({})
         .then((users) => {
-          res.render("booking", {
+          res.render("Booking", {
             dealers: dealer,
             vehicles: vehicles,
             users: users,
