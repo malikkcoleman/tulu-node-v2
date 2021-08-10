@@ -79,6 +79,7 @@ app.use("/sysadminvehicles", require("./routes/sysAdminVehicles"));
 app.use("/vin", require("./routes/vinDecoder"));
 app.use("/tulu", require("./routes/tulu"));
 app.use("/appointment", require("./routes/booking"));
+app.use("/buynow", require("./routes/buynow"));
 // ---------------------------------
 
 app.use(express.static(__dirname + "/public"));
