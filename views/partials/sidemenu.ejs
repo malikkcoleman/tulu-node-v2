@@ -170,7 +170,69 @@
             </li>
             <p class="loggedInAs">Logged in as : Sys Admin </p>
         <%}%>
-        <%if(user.toObject().role === 'dealeradmin'||user.toObject().role === 'dealeruser'){%>    
+        <%if(user.toObject().role === 'dealeradmin'){%>    
+            <%console.log('DEALERADMIN or DEALERUSER')%>
+            <li class="menuItems">
+                <p class="menuDropDownTitle">
+                    <a href="/">Home</a>
+                </p>
+            </li>
+            <li class="menuItems">
+                <p class="menuDropDownTitle">
+                    <a href="/About">About Us</a>
+                </p>
+            </li>
+            <li class="menuItems">
+                <p class="menuDropDownTitle">
+                    <a href="/Shop">Shop</a>
+                </p>
+            </li>
+            <li class="menuItems">
+                <p class="menuDropDownTitle">
+                    <a href="/WholesaleMarketplace">Wholesale Marketplace</a>
+                </p>
+            </li>
+            <li class="menuItems">
+                <p class="menuDropDownTitle" onclick="accountSubMenu()">
+                    My Account
+                    <i class="fas fa-sort-down accountDropMenuBtn"></i>
+                </p>
+                <ul class="accountSubMenuList">
+                    <li class="subMenuListLink">
+                        <a href="/Dashboard">Profile</a>
+                    </li>
+                    <li class="subMenuListLink">
+                        <a href="/EditDealership">Edit My Dealership</a>
+                    </li>
+                    <li class="subMenuListLink">
+                        <a href="/vehicles/DashboardVehicle">Vehicles</a>
+                    </li>
+                    <li class="subMenuListLink">
+                        <a href="/DashboardUser">Users</a>
+                    </li>
+                    <li class="subMenuListLink">
+                        <a href="/messages">Messages</a>
+                    </li>
+                    <li class="subMenuListLink">
+                        <a href="/appointment">Appointments</a>
+                    </li>
+                    <li class="subMenuListLink">
+                        <a href="/users/logout">Log Out</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="menuItems">
+                <a href="/Events">Events</a>
+            </li>
+            <li class="menuItems">
+                <a href="/TuluList">Tulus</a>
+            </li>
+            <li class="menuItems">
+                <a href="/DealershipList">Dealerships</a>
+            </li>
+            <p class="loggedInAs">Logged in as : <%- user.toObject().fName%> <%- user.toObject().lName%> </p>
+        <%}%>
+        <%if(user.toObject().role === 'dealeruser'){%>    
             <%console.log('DEALERADMIN or DEALERUSER')%>
             <li class="menuItems">
                 <p class="menuDropDownTitle">

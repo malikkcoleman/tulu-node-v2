@@ -1,0 +1,82 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulu Canada</title>
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/css/all.css" />
+    <link rel="stylesheet" href="../styles/dashboardNav.css" />
+    <link rel="stylesheet" href="../styles/dashboardDealership.css" />
+    <link rel="stylesheet" href="../styles/footer.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="../jquery/dist/jquery.js"></script>
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="../images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    </nav>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            <%- include partials/sidemenu %>
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+
+
+    <div class="container body-content">
+        <div class="header">
+            <h1>Dealerships</h1>
+        </div>
+        <div class="wrapper">
+            <%- include partials/messages %>
+            <form action="/dealerships/DashboardSysAdminDealership" method="POST">
+                <div class="form-group">
+                  <label for="name">Dealership Name</label>
+                  <input type="text" id="name" name="name" class="form-control" placeholder="Enter Dealership Name" value=""/>
+                </div>
+                <div class="form-group">
+                  <label for="logo">Logo</label>
+                  <input type="text" id="logo" name="logo" class="form-control" placeholder="Enter Logo" value=""/>
+                </div>
+                <div class="form-group">
+                  <label for="website">Website</label>
+                  <input type="text" id="website" name="website" class="form-control" placeholder="Enter Website" value=""/>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="street">Street</label>
+                  <input type="text" id="street" name="street" class="form-control" placeholder="Enter Street" value=""/>
+                </div>
+                <div class="form-group">
+                  <label for="city">City</label>
+                  <input type="text" id="city" name="city" class="form-control" placeholder="Enter City" value=""/>
+                </div>
+                <div class="form-group">
+                    <label for="province">Province</label>
+                    <input type="text" id="province" name="province" class="form-control" placeholder="Enter Province" value=""/>
+                  </div>
+                <div class="form-group">
+                  <label for="postal">Postal</label>
+                  <input type="text" id="postal" name="postal" class="form-control" placeholder="Enter Postal" value=""/>
+                </div>
+                <button type="submit">
+                  Add Dealership
+                </button>
+              </form>
+        </div>
+    </div>
+</body>
+<script src="../Js/sideMenu.js"></script>
+</html>

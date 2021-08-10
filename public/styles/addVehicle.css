@@ -114,3 +114,17 @@ button{
     height:100px;
     padding:10px;
 }
+
+.preview-images{
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding:20px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 30px 0;
+}
+
+.preview-images img{
+    height:100px;
+    padding:10px;
+}
