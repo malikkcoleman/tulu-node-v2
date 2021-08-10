@@ -126,6 +126,10 @@ const vehicleschema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  status: {
+    type: String,
+    required: false,
+  },
 });
 
 const vehicleschemas = mongoose.model("vehicles", vehicleschema);
