@@ -281,7 +281,7 @@ router.post("/addvehicle",ensureAuthenticated,(req, res) => {
     Dealer.find({})
     .then(dealer=>{
       res.render('AddVehicle',{
-        vin:req.body.vin,
+        vin:req.body.vin, 
         infoData:infoData,
         user:req.user,
         dealer:dealer
@@ -289,6 +289,7 @@ router.post("/addvehicle",ensureAuthenticated,(req, res) => {
     })
   })
 });
+
 
 router.post("/SysAdminAddVehicle",ensureAuthenticated,(req, res) => {
   decoder(req.body.vin).then(infoData=>{
