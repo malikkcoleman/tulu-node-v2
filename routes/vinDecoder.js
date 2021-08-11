@@ -282,7 +282,7 @@ router.post("/AddVehicle",ensureAuthenticated,(req, res) => {
     .then(dealer=>{
       res.render('AddVehicle',{
         vin:req.body.vin, 
-        infoData:infoData,
+        infoDatas:infoData,
         user:req.user,
         dealer:dealer
       })
