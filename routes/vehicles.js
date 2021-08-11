@@ -155,7 +155,7 @@ router.post("/addvehicle", (req, res) => {
 
 
 router.get("/DashboardSysAdminAddVehicle", (req, res) => {
-  Dealer.find({})
+  Dealer.find()
   .then(dealer=>{
     res.render('DashboardSysAdminAddVehicle',{
       vin:req.body.vin, 

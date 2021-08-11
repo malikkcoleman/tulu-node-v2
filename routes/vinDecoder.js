@@ -293,7 +293,7 @@ router.post("/AddVehicle",ensureAuthenticated,(req, res) => {
 
 router.post("/SysAdminAddVehicle",ensureAuthenticated,(req, res) => {
   decoder(req.body.vin).then(infoData=>{
-    Dealer.find({})
+    Dealer.find()
     .then(dealer=>{
       res.render('DashboardSysAdminAddVehicle',{
         vin:req.body.vin,
