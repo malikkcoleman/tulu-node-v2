@@ -40,7 +40,31 @@
         </div>
         <div class="wrapper">
             <%- include partials/messages %>
-            <form action="/dealerships/DashboardSysAdminDealership" method="POST">
+
+            <div class="userImage" style="position: relative; height: 100px; width: 100px;">
+              <div class=" preview-images" style="height: 100px; width: 100px; position: absolute;">
+              </div>
+                <img src="/image/<%= user._id %>" alt="" class="face" width="100px" height="100px">
+            </div>
+
+            <form class="mt-4"
+            action="/upload/profile/<%= user.toObject()._id %>"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <div class="form-group">
+              <input
+                type="file"
+                name="file"
+                id="input-files"
+                class="form-control-file border"
+                accept=".png,.jpg,.jpeg"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          
+            <form action="/dealerships/EditDealership" method="POST">
                 <div class="form-group">
                   <label for="name">Dealership Name</label>
                   <input type="text" id="name" name="name" class="form-control" placeholder="Enter Dealership Name" value=""/>
@@ -72,11 +96,30 @@
                   <input type="text" id="postal" name="postal" class="form-control" placeholder="Enter Postal" value=""/>
                 </div>
                 <button type="submit">
-                  Add Dealership
+                  Save Edit
                 </button>
               </form>
         </div>
     </div>
 </body>
 <script src="../Js/sideMenu.js"></script>
+<script>
+  var user = <%-JSON.stringify(user)%>;
+  console.log(user);
+  var Dealer = <%-JSON.stringify(dealer)%>;
+  console.log(Dealer);
+  var Address = <%-JSON.stringify(address)%>;
+  console.log(Address);
+  populateDealership()
+
+  function populateDealership(){
+    $('#name').val(Dealer[0].name);
+    $('#logo').val(Dealer[0].logo);
+    $('#website').val(Dealer[0].website);
+    $('#street').val(Address[0].street);
+    $('#city').val(Address[0].city);
+    $('#province').val(Address[0].province);
+    $('#postal').val(Address[0].postal);
+  }
+</script>
 </html>
