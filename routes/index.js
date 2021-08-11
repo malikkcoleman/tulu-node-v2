@@ -8,6 +8,7 @@ const Dealer = require("../models/dealershipschema");
 const uploadController = require("../controllers/upload");
 const fetchImage = require("../middleware/getImages");
 const Address = require("../models/addressschema");
+const User = require("../models/userschema");
 
 pgroutr.get("/", (req, res) =>
   res.render("Index", {
