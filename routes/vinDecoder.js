@@ -276,7 +276,7 @@ async function decoder(VIN) {
   return infoData;
 }
 
-router.post("/addvehicle",ensureAuthenticated,(req, res) => {
+router.post("/AddVehicle",ensureAuthenticated,(req, res) => {
   decoder(req.body.vin).then(infoData=>{
     Dealer.find({})
     .then(dealer=>{
