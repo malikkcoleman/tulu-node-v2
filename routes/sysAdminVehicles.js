@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const VehicleController = require("../controllers/vehicle.controller");
 // Vehicle Model
-const Vehicle = require("../models/vehicleSchema");
+const Vehicle = require("../models/vehicleschema");
 const Dealer = require("../models/dealershipschema");
 
 // addvehicle Page
@@ -24,7 +24,7 @@ const Dealer = require("../models/dealershipschema");
 
 router.get("/DashboardSysAdminVehicle", (req, res) => {
   Vehicle.find().then((vehicle) => {
-    res.render("DashboardSysadminVehicle", {
+    res.render("DashboardSysAdminVehicle", {
       user: req.user,
       vehicles: vehicle,
     });

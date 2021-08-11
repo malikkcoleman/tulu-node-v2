@@ -1,0 +1,115 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulu Canada</title>
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/css/all.css" />
+    <link rel="stylesheet" href="../styles/nav.css" />
+    <link rel="stylesheet" href="../styles/addVehicle.css" />
+    <link rel="stylesheet" href="../styles/footer.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    
+    <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="../images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    </nav>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            <%- include partials/sidemenu %>
+            
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+
+    <div class="container">
+        <form action="/users/DashboardSysAdminEditUser" method="POST" class="editForm">
+            <%- include partials/messages %>
+            <input type="hidden" name="selectedId" id="selectedId">
+            <div class="form-group">
+                <label for="fName">Firstname</label>
+                <input type="name" id="fName" name="fName" class="form-control"/>
+                
+              </div>
+              <div class="form-group">
+                <label for="name">Lastname</label>
+                <input type="name" id="lName" name="lName" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <label for="bio">Bio</label>
+                <input type="text" id="bio" name="bio" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <label for="experience">Experience</label>
+                <input type="text" id="experience" name="experience" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <label for="specialty">Specialty</label>
+                <input type="text" id="specialty" name="specialty" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <label for="favoriteCar">Favorite Car</label>
+                <input type="text" id="favoriteCar" name="favoriteCar" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <label for="currentCar">Current Car</label>
+                <input type="text" id="currentCar" name="currentCar" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <label for="phoneNumber">Phone Number</label>
+                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <label for="linkedin">Linkedin</label>
+                <input type="text" id="linkedin" name="linkedin" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <label for="instagram">Instagram</label>
+                <input type="text" id="instagram" name="instagram" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <label for="facebook">Facebook</label>
+                <input type="text" id="facebook" name="facebook" class="form-control"/>
+              </div>
+              <div class="form-group">
+                <label for="role">Role</label>
+                <input type="text" id="role" name="role" class="form-control"/>
+              </div>
+            <button class="saveEditBtn" type="submit">
+                Save Changes
+            </button>
+            <a href="/DashboardSysAdminUser">
+              <button class="saveEditBtn" type="button">
+                  Back
+              </button>
+            </a>
+        </form>
+    </div>
+
+    
+</body>
+<script src="../Js/sideMenu.js"></script>
+<script src="../Js/privileges.js"></script>
+<script>
+    var userList = <%-JSON.stringify(users)%>
+</script>
+<script src="../Js/SysAdminEditUser.js"></script>
+</html>
+

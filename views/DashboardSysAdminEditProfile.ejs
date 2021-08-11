@@ -39,16 +39,16 @@
         <div class="banner">
         </div>
         <div class="userInfo">
-          <div class="userImage" style="position: relative; height: 100px; width: 100px;">
-            <div class=" preview-images" style="height: 100px; width: 100px; position: absolute;">
+            <div class="userImage" id="userImage" onclick="$(`#photos-input`).click()">
+                <i class="fas fa-user fa-2x" id="userIcon"></i>
+                <i class="fas fa-plus"></i>
             </div>
-              <img src="/image/<%= user.toObject()._id %>" alt="" class="face" width="100px" height="100px">
-          </div>
             <div id="upload-photos">
-                <div class="form-group" style="display:none;">
-                	<label for="photos-input">Load Image</label>
-                	<input id="photos-input" type="file" name="photos[]" onchange="uploadImage()" multiple="multiple" accept="image/*" capture />
-                    <input class="btn btn-default" id="uploadBtn" style="display:none;" type="submit" name="Photo Uploads" value="Upload" />
+                		<div class="form-group" style="display:none;">
+                    		<label for="photos-input">Load Image</label>
+                   			<input id="photos-input" type="file" name="photos[]" onchange="uploadImage()" multiple="multiple" accept="image/*" capture />
+                   		<input class="btn btn-default" id="uploadBtn" style="display:none;" type="submit" name="Photo Uploads" value="Upload" />
+                   
                 </div>
                 <div id="thumbnailContainer">
                 
@@ -57,23 +57,6 @@
                      <button type="button" class="addImageBtn" onclick="addImage()">ADD PHOTOS</button>
                 
             </div>
-            
-            <form class="mt-4"
-            action="/upload/profile/<%= user.toObject()._id %>"
-            method="POST"
-            enctype="multipart/form-data"
-          >
-            <div class="form-group">
-              <input
-                type="file"
-                name="file"
-                id="input-files"
-                class="form-control-file border"
-                accept=".png,.jpg,.jpeg"
-              />
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
             <form action="/users/editprofile" method="POST" class="editForm">
                 <%- include partials/messages %>
                 <div class="form-group">

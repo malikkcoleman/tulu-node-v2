@@ -3,15 +3,19 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const VehicleController = require("../controllers/vehicle.controller");
+const fetchImage = require("../middleware/getImages");
 // Vehicle Model
-const Vehicle = require("../models/vehicleSchema");
+const Vehicle = require("../models/vehicleschema");
+const Dealer = require('../models/dealershipschema');
 
 // addvehicle Page
 router.get("/addvehicle", (req, res) => {
-  res.render("addvehicle", {
+  res.render("Addvehicle", {
     user: req.user,
   });
 });
+
+
 
 //controller methods
 
@@ -54,50 +58,115 @@ router.post("/addvehicle", (req, res) => {
     grossWeight,
     fuelTankCapacity,
     notes,
+    status
   } = req.body;
 
   let errors = [];
 
   // Check required fields
   
-    Vehicle.findOne({ vin: vin }).then((vehicle) => {
-      if (vehicle) {
-        // vehicle Exist
-        errors.push({ msg: "Vehicle already Exist" });
-        res.render("addvehicle", {
-          errors,
-          vin,
-          year,
-          make,
-          model,
-          vehicleType,
-          trim,
-          dealerId,
-          isSold,
-          doors,
-          mileage,
-          modelNumber,
-          driveType,
-          msrp,
-          minPrice,
-          maxPrice,
-          engineName,
-          engineBrand,
-          engineID,
-          fuelType,
-          iceMaxHp,
-          iceMaxTorque,
-          maxPayLoad,
-          transmissionName,
-          colorName,
-          colorHex,
-          baseTowingCapacity,
-          grossWeight,
-          fuelTankCapacity,
-          notes,
-          user: req.user,
-        });
-      } else {
+    
+      const newVehicle = new Vehicle({
+        vin,
+        year,
+        make,
+        model,
+        vehicleType,
+        trim,
+        dealerId,
+        isSold,
+        doors,
+        mileage,
+        modelNumber,
+        driveType,
+        msrp,
+        minPrice,
+        maxPrice,
+        refFee,
+        engineName,
+        engineBrand,
+        engineID,
+        fuelType,
+        iceMaxHp,
+        iceMaxTorque,
+        maxPayLoad,
+        transmissionName,
+        colorName,
+        colorHex,
+        baseTowingCapacity,
+        grossWeight,
+        fuelTankCapacity,
+        notes,
+        status
+      });
+      newVehicle
+        .save()
+        .then((vehicle) => {
+          // req.flash('success_msg', 'You are now registered and can log in.');
+          res.redirect("/");
+        })
+        .catch((err) => console.log(err));
+      console.log(newVehicle);
+      // res.send('hello');
+});
+
+
+
+router.get("/DashboardSysAdminAddVehicle", (req, res) => {
+  Dealer.find()
+  .then(dealer=>{
+    res.render('DashboardSysAdminAddVehicle',{
+      vin:req.body.vin, 
+      infoData:infoData,
+      user:req.user,
+      dealer:dealer
+    })
+  })
+});
+
+
+    
+
+
+// SysAdmin Add Vehicle
+router.post("/DashboardSysAdminAddVehicle", (req, res) => {
+  console.log(req.body);
+  // res.send('hello');
+  const {
+    vin,
+    year,
+    make,
+    model,
+    vehicleType,
+    trim,
+    dealerId,
+    isSold,
+    doors,
+    mileage,
+    modelNumber,
+    driveType,
+    msrp,
+    minPrice,
+    maxPrice,
+    refFee,
+    engineName,
+    engineBrand,
+    engineID,
+    fuelType,
+    iceMaxHp,
+    iceMaxTorque,
+    maxPayLoad,
+    transmissionName,
+    colorName,
+    colorHex,
+    baseTowingCapacity,
+    grossWeight,
+    fuelTankCapacity,
+    notes,
+    status
+  } = req.body;
+
+  let errors = [];
         const newVehicle = new Vehicle({
           vin,
           year,
@@ -129,26 +198,27 @@ router.post("/addvehicle", (req, res) => {
           grossWeight,
           fuelTankCapacity,
           notes,
+          status
         });
 
         newVehicle
           .save()
           .then((vehicle) => {
             // req.flash('success_msg', 'You are now registered and can log in.');
-            res.redirect("/");
+            res.redirect("/sysadminvehicles/DashboardSysAdminVehicle");
           })
           .catch((err) => console.log(err));
 
-        console.log(newUser);
+        console.log(newVehicle);
         // res.send('hello');
-      }
-    });
 });
 
+
 // Dashboard Vehicle
-router.get("/dashboardVehicle", (req, res) => {
-  Vehicle.find().then((vehicle) => {
-    res.render("dashboardVehicle", {
+router.get("/DashboardVehicle", (req, res) => {
+  console.log(req.user)
+  Vehicle.find({dealerId:req.user.toObject().dealerId}).then((vehicle) => {
+    res.render("DashboardVehicle", {  
       user: req.user,
       vehicles: vehicle,
     });
@@ -156,11 +226,13 @@ router.get("/dashboardVehicle", (req, res) => {
 });
 
 // EDIT VEHICLE
-router.get("/editvehicle", (req, res) => {
-  Vehicle.find().then((vehicle) => {
-    res.render("editvehicle", {
+router.get("/editvehicle/:vin", (req, res) => {
+  Vehicle.find({vin: req.params.vin}).then((vehicle) => {
+    const images = fetchImage.getImagesArray(req.params.vin)
+    res.render("EditVehicle", {
       user: req.user,
       vehicles: vehicle,
+      images: images
     });
   });
 });
@@ -194,6 +266,7 @@ router.post("/editvehicle", (req, res) => {
     baseTowingCapacity,
     grossWeight,
     fuelTankCapacity,
+    status
   } = req.body;
   var myquery = { vin: vin };
   var newvalues = {
@@ -223,6 +296,7 @@ router.post("/editvehicle", (req, res) => {
     baseTowingCapacity: baseTowingCapacity,
     grossWeight: grossWeight,
     fuelTankCapacity: fuelTankCapacity,
+    status:status
   };
   Vehicle.updateOne(myquery, newvalues).then((user) => {
     req.flash("success_msg", "Changes Saved!");

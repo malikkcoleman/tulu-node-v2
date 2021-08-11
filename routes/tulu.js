@@ -5,7 +5,7 @@ const passport = require('passport');
 const {ensureAuthenticated, authRole} = require('../config/auth');
 
 // User Model
-const Tulu = require('../models/userSchema');
+const Tulu = require('../models/userschema');
 const Address = require('../models/addressschema');
 
 router.get("/viewTulu", (req, res) => {

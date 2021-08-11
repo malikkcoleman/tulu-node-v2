@@ -87,3 +87,44 @@ button{
 .pageTwo,.pageThree,.pageFour,.pageFive,.pageSix{
     display:none;
 }
+
+.uploaded-images{
+    padding:10px 20px;
+    border:2px solid #79C6AC;
+    border-radius: 10px;
+    max-width: 70vmin;
+    margin:0 0 30px 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.uploaded-images h2{
+    margin:20px 0 30px 0;
+    color:#79C6AC;
+}
+
+.uploaded-images .wrapper{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.uploaded-images img{
+    height:100px;
+    padding:10px;
+}
+
+.preview-images{
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding:20px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 30px 0;
+}
+
+.preview-images img{
+    height:100px;
+    padding:10px;
+}

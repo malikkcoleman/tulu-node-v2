@@ -5,7 +5,7 @@ function LoadDealer() {
 	for (i = 0; i != dealerList.length; i++) {
 		html = html + '<li class="dealershipListItem" onclick="ViewDealer('+i+')">';
 		html = html + '	<div class="dealerImage">';
-		html = html + '		<img src="" alt="">';
+		html = html + '		<img src="/image/'+ dealerList[i]._id +'" alt="">';
 		html = html + '	</div>';
 		html = html + '	<div class="dealerInfo">';
 		html = html + '		<h4 class="dealerName">' + dealerList[i].name + '</h4>';

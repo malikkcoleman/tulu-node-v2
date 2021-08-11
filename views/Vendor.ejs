@@ -868,15 +868,15 @@
 
 
         if(referralOption ==2){
-            gVehicleTest.refferalFee = $('#referralFee').val();
+            gVehicleTest.refFee = $('#refFee').val();
         }else{
             var minPrice = Number($("#minPrice").val());
             var maxPrice = Number($("#maxPrice").val());
-            var refferalFee = (maxPrice - minPrice) * newValue;
-            if (refferalFee < 1) {
-                gVehicleTest.refferalFee = 0;
+            var refFee = (maxPrice - minPrice) * newValue;
+            if (refFee < 1) {
+                gVehicleTest.refFee = 0;
             } else {
-                gVehicleTest.refferalFee = (maxPrice - minPrice) * newValue;
+                gVehicleTest.refFee = (maxPrice - minPrice) * newValue;
             }
 
         }
@@ -957,7 +957,7 @@
                     html = html + '    <div class="listingInfo" onclick="ViewVehicle(\'' + vehicles[i].vin + '\',\'' + vehicles[i].dealerId + '\');">';
                     html = html + '        <h4 class="listingName">' + vehicles[i].year + ' ' + vehicles[i].make + ' ' + vehicles[i].model + '</h4>';
                     html = html + '        <p class="listingPrice">$' + vehicles[i].maxPrice + '</p>';
-                    html = html + '        <p class="listingReferralFee">Referral Fee: $' + vehicles[i].refferalFee + '</p>';
+                    html = html + '        <p class="listingReferralFee">Referral Fee: $' + vehicles[i].refFee + '</p>';
                     html = html + '        <p  class="listingViews">4420 views</p>';
                     html = html + '    </div>';
                     html = html + '    <i class="fas fa-ellipsis-h" class="listingsettingBtn" onclick="listingSettings('+i+')"></i>';
@@ -1161,7 +1161,7 @@
         // gVehicleTest.notes = $(".editNotes").val();
         gVehicleTest.minPrice = $(".editMinPrice").val();
         gVehicleTest.maxPrice = $(".editMaxPrice").val();
-        gVehicleTest.refferalFee = $(".editReferralFee").val();
+        gVehicleTest.refFee = $(".editReferralFee").val();
 
 
         document.querySelector(".editPriceVehicleContainer").style = "display:none !important;";

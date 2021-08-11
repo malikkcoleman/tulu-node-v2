@@ -32,7 +32,7 @@ function populateVehicle(){
 	for(var x=0;x!= vehicleList.length;x++){
 		if(vehicleList[x].targetId == DealerUuid){
 			html+='<li class="vehicleListItemsSmallView">';
-			html+='    <img src="' + text + '" class="carImage" alt="car-image"/>';
+			html+='    <img ssrc="/image/'+ vehicleList[x].vin +'" class="carImage" alt="car-image"/>';
 			html+='    <div class="carDetails">';
 			html+='        <h2 class="carName">' + vehicleList[x].year + ' ' + vehicleList[x].make + ' ' + vehicleList[x].model + '</h2>';
 			html+='        <p class="carPrice">$'+vehicleList[x].maxPrice + '</p>';

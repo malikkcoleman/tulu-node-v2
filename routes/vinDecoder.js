@@ -8,8 +8,13 @@ const bodyParser = require("body-parser");
 const ROLE = require("../roles");
 const { ensureAuthenticated, authRole } = require("../config/auth");
 const middlewares = [bodyParser.urlencoded({ extended: true })];
+<<<<<<< HEAD
 const vehicle = require("../models/vehicleSchema");
 const Dealer = require("../models/dealershipschema");
+=======
+const vehicle = require("../models/vehicleschema");
+const Dealer = require('../models/dealershipschema');
+>>>>>>> main
 const { decode } = require("punycode");
 const tempVehicle = new vehicle();
 
@@ -395,6 +400,7 @@ async function decoder(VIN) {
   return infoData;
 }
 
+<<<<<<< HEAD
 router.post("/addvehicle", ensureAuthenticated, (req, res) => {
   decoder(req.body.vin).then((infoData) => {
     Dealer.find({}).then((dealer) => {
@@ -406,6 +412,35 @@ router.post("/addvehicle", ensureAuthenticated, (req, res) => {
       });
     });
   });
+=======
+router.post("/AddVehicle",ensureAuthenticated,(req, res) => {
+  decoder(req.body.vin).then(infoData=>{
+    Dealer.find()
+    .then(dealer=>{
+      res.render('DealerAdminAddVehicle',{
+        vin:req.body.vin, 
+        infoDatas:infoData,
+        user:req.user,
+        dealer:dealer
+      })
+    })
+  })
+});
+
+
+router.post("/SysAdminAddVehicle",ensureAuthenticated,(req, res) => {
+  decoder(req.body.vin).then(infoData=>{
+    Dealer.find()
+    .then(dealer=>{
+      res.render('DashboardSysAdminAddVehicle',{
+        vin:req.body.vin,
+        infoData:infoData,
+        user:req.user,
+        dealer:dealer
+      })
+    })
+  })
+>>>>>>> main
 });
 
 router.get("/flash", function (req) {
@@ -428,7 +463,7 @@ router.get("/flash", function (req) {
   req.flash("transmissionName", transmissionName);
   req.flash("grossWeight", grossWeight);
   req.flash("fuelTankCapacity", fuelTankCapacity);
-  res.redirect("/vehicles");
+  res.redirect("/Vehicles");
 });
 
 module.exports = router;
