@@ -6,6 +6,7 @@ const VehicleController = require("../controllers/vehicle.controller");
 const fetchImage = require("../middleware/getImages");
 // Vehicle Model
 const Vehicle = require("../models/vehicleschema");
+const Dealer = require('../models/dealershipschema');
 
 // addvehicle Page
 router.get("/addvehicle", (req, res) => {
@@ -154,10 +155,20 @@ router.post("/addvehicle", (req, res) => {
 
 
 router.get("/DashboardSysAdminAddVehicle", (req, res) => {
-  res.render("DashboardSysAdminAddVehicle", {
-    user: req.user,
-  });
+  Dealer.find({})
+  .then(dealer=>{
+    res.render('DashboardSysAdminAddVehicle',{
+      vin:req.body.vin, 
+      infoData:infoData,
+      user:req.user,
+      dealer:dealer
+    })
+  })
 });
+
+
+    
+
 
 // SysAdmin Add Vehicle
 router.post("/DashboardSysAdminAddVehicle", (req, res) => {
