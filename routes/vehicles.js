@@ -291,8 +291,8 @@ router.post("/DashboardSysAdminAddVehicle", (req, res) => {
 
 // Dashboard Vehicle
 router.get("/dashboardVehicle", (req, res) => {
-  Vehicle.find().then((vehicle) => {
-    res.render("DashboardVehicle", {
+  Vehicle.find({dealerId:req.user.toObject().dealerId}).then((vehicle) => {
+    res.render("DashboardVehicle", {  
       user: req.user,
       vehicles: vehicle,
     });
