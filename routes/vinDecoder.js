@@ -280,7 +280,7 @@ router.post("/AddVehicle",ensureAuthenticated,(req, res) => {
   decoder(req.body.vin).then(infoData=>{
     Dealer.find()
     .then(dealer=>{
-      res.render('AddVehicle',{
+      res.render('DealerAdminAddVehicle',{
         vin:req.body.vin, 
         infoDatas:infoData,
         user:req.user,
