@@ -106,7 +106,7 @@ router.post("/addvehicle", (req, res) => {
           res.redirect("/");
         })
         .catch((err) => console.log(err));
-      console.log(newUser);
+      console.log(newVehicle);
       // res.send('hello');
 });
 
