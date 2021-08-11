@@ -24,7 +24,7 @@ const Dealer = require("../models/dealershipschema");
 
 router.get("/DashboardSysAdminVehicle", (req, res) => {
   Vehicle.find().then((vehicle) => {
-    res.render("DashboardSysadminVehicle", {
+    res.render("DashboardSysAdminVehicle", {
       user: req.user,
       vehicles: vehicle,
     });
