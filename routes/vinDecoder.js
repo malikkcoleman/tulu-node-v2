@@ -278,7 +278,7 @@ async function decoder(VIN) {
 
 router.post("/AddVehicle",ensureAuthenticated,(req, res) => {
   decoder(req.body.vin).then(infoData=>{
-    Dealer.find({})
+    Dealer.find()
     .then(dealer=>{
       res.render('AddVehicle',{
         vin:req.body.vin, 
