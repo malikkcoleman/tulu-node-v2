@@ -97,7 +97,7 @@ router.post("/email", (req, res) => {
   // var mailOptions = {
   //   from: "tuluapps@gmail.com",
   //   to: "info@tulucanada.com",
-  //   subject: "Tulu Canada Application Test Drive Appointment Request",
+  //   subject: "Tulu Canada Application Buy Now Request",
   //   text:
   //     "Customer Information \n" +
   //     "Full Name: " +

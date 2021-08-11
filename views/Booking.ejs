@@ -1,148 +1,238 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="icon" type="image/png" href="../images/favicon.png">
+  <head>
+    <link rel="icon" type="image/png" href="../images/favicon.png" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tulu Canada</title>
     <link rel="stylesheet" href="../styles/reset.css" />
     <link rel="stylesheet" href="../styles/css/all.css" />
     <link rel="stylesheet" href="../styles/nav.css" />
     <link rel="stylesheet" href="../styles/booking.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
     <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <nav id="Nav">
-        <a href="/">
-            <img src="../images/tulu-logo_white.png" alt="">
-        </a>
-        <div class="menuButton" onclick="slideMenu()">
-            <i class="fas fa-bars fa-2x menuBtn"></i>
-            <i class="fas fa-times fa-2x closeMenuBtn"></i>
-        </div>
+      <a href="/">
+        <img src="../images/tulu-logo_white.png" alt="" />
+      </a>
+      <div class="menuButton" onclick="slideMenu()">
+        <i class="fas fa-bars fa-2x menuBtn"></i>
+        <i class="fas fa-times fa-2x closeMenuBtn"></i>
+      </div>
     </nav>
 
     <div id="SideMenu" class="sideMenu">
-        <ul class="menu">
-            <%- include partials/sidemenu %>
-            
-        </ul>
-        <p class="loggedInAs"></p>
+      <ul class="menu">
+        <%- include partials/sidemenu %>
+      </ul>
+      <p class="loggedInAs"></p>
     </div>
 
- 
     <div class="bookAppointmentContainer" id="bookAppointmentContainer">
-        <div class="wrapper">
-            <h1>Appointment</h1>
-            <label class="tuluLabel">Tulu:</label>           
-            <label class="vehicleLabel">Vehicle:</label>
-            <label class="priceLabel">Price:</label>           
-            <label class="dealershipLabel">Dealership:</label>          
-            <label class="customerLabel">Customer:</label>  
-            <div class="inputFieldDiv">
-                <%- include partials/messages %>
-                <form
-                  id="my-form"
-                  action="/appointment/email"
-                  method="POST"
-                >
-                    <input type="hidden" id="dealerId" name="dealerId" disabled/>
-                    <input type="hidden" id="tuluId"name="tuluId" disabled/>
-                    <input type="hidden" id="userId"name="userId" disabled/>
-                    <input type="hidden" id="vin" name="vin" disabled/>
-                    <input type="hidden" id="tulu" name="tulu" value="" disabled/>
-                    <input type="hidden" id="vehicle" name="vehicle" value=""  disabled/>
-                    <input type="hidden" id="vehiclePrice" name="vehiclePrice" value=""  disabled/>
-                    <input type="hidden" id="customer" name="customer" value=""  disabled/>
-                    <input type="hidden" id="dealership" name="dealership" value=""  disabled/>
-                    <label for="phonenumber">Phone Number: </label>
-                    <input type="text" id="phonenumber" name="phonenumber" />
-                    <label for="email">Email: </label>
-                    <input type="email" id="email" name="email" />
-                    <label for="street">Street: </label>
-                    <input type="text" id="street" name="street" />
-                    <label for="city">City: </label>
-                    <input type="text" id="city" name="city" />
-                    <label for="province">Province: </label>
-                    <input type="province" id="province" name="province" />
-                    <label for="postalcode">Postal Code: </label>
-                    <input type="postalcode" id="postalcode" name="postalcode" />
-                    <label for="notes">Notes: </label>
-                    <textarea name="notes" id="notes" ></textarea>
-                    <p class="prefAltTimeText">Book a preferred and alternate time for your appointment.</p>
-                    <label>Preferred Time:</label>
-                    <input type="datetime-local" id="preferred" name="preferred" id="Times_" />
-                    <label>Alternate Time:</label>
-                    <input type="datetime-local" id="alternate" name="alternate" id="Times_" />
-                    <p class="privacyTermsText">To Proceed, Please click to read and agree to our Privacy Policy & Terms and Condition</p>
-                    <button type="button" class="privacyTermsBtn" onclick="showPrivacyTerms()">Privacy Policy & Terms and Condition</button>
+      <div class="wrapper">
+        <h1>Appointment</h1>
+        <label class="tuluLabel">Tulu:</label>
+        <label class="vehicleLabel">Vehicle:</label>
+        <label class="priceLabel">Price:</label>
+        <label class="dealershipLabel">Dealership:</label>
+        <label class="customerLabel">Customer:</label>
+        <div class="inputFieldDiv">
+          <%- include partials/messages %>
+          <form id="my-form" action="/appointment/email" method="POST">
+            <input type="hidden" id="dealerId" name="dealerId" disabled />
+            <input type="hidden" id="tuluId" name="tuluId" disabled />
+            <input type="hidden" id="userId" name="userId" disabled />
+            <input type="hidden" id="vin" name="vin" disabled />
+            <input type="hidden" id="tulu" name="tulu" value="" disabled />
+            <input
+              type="hidden"
+              id="vehicle"
+              name="vehicle"
+              value=""
+              disabled
+            />
+            <input
+              type="hidden"
+              id="vehiclePrice"
+              name="vehiclePrice"
+              value=""
+              disabled
+            />
+            <input
+              type="hidden"
+              id="customer"
+              name="customer"
+              value=""
+              disabled
+            />
+            <input
+              type="hidden"
+              id="dealership"
+              name="dealership"
+              value=""
+              disabled
+            />
+            <label for="phonenumber">Phone Number: </label>
+            <input type="text" id="phonenumber" name="phonenumber" />
+            <label for="email">Email: </label>
+            <input type="email" id="email" name="email" />
+            <label for="street">Street: </label>
+            <input type="text" id="street" name="street" />
+            <label for="city">City: </label>
+            <input type="text" id="city" name="city" />
+            <label for="province">Province: </label>
+            <input type="province" id="province" name="province" />
+            <label for="postalcode">Postal Code: </label>
+            <input type="postalcode" id="postalcode" name="postalcode" />
+            <label for="notes">Notes: </label>
+            <textarea name="notes" id="notes"></textarea>
+            <p class="prefAltTimeText">
+              Book a preferred and alternate time for your appointment.
+            </p>
+            <label>Preferred Time:</label>
+            <input
+              type="datetime-local"
+              id="preferred"
+              name="preferred"
+              id="Times_"
+            />
+            <label>Alternate Time:</label>
+            <input
+              type="datetime-local"
+              id="alternate"
+              name="alternate"
+              id="Times_"
+            />
+            <p class="privacyTermsText">
+              To Proceed, Please click to read and agree to our Privacy Policy &
+              Terms and Condition
+            </p>
+            <button
+              type="button"
+              class="privacyTermsBtn"
+              onclick="showPrivacyTerms()"
+            >
+              Privacy Policy & Terms and Condition
+            </button>
 
-
-                    <p class="tuluRepresentativeText">A tulu Canada representative will contact you in the next 24 hours to confirm your valid license and the appointment</p>
-   <button class="saveTestDrive">  Book Appointment</button>
-    <input type="button" class="cancelTestDrive" value="Cancel" onclick="CancelTest('TestDriveList');" />
-                    <!-- <button id="my-form-button">Submit</button> -->
-                    <p id="my-form-status"></p>
-                </form>
-              </div>
-            
+            <p class="tuluRepresentativeText">
+              A tulu Canada representative will contact you in the next 24 hours
+              to confirm your valid license and the appointment
+            </p>
+            <button class="saveTestDrive">Book Appointment</button>
+            <input
+              type="button"
+              class="cancelTestDrive"
+              value="Cancel"
+              onclick="CancelTest('TestDriveList');"
+            />
+            <!-- <button id="my-form-button">Submit</button> -->
+            <p id="my-form-status"></p>
+          </form>
         </div>
+      </div>
     </div>
 
     <div class="privacyTerms">
-        <div class="privacyTermsContainerWrapper">
-            <div class="privacyTermsContainer">
-                <h1>Privacy Policy & Terms and Condition</h1>
-                <p>The quick brown fox jumps over the lazy dog.</p>
-                <p>Jived fox nymph grabs quick waltz.</p>
-                <p>Glib jocks quiz nymph to vex dwarf.</p>
-                <p>Sphinx of black quartz, judge my vow.</p>
-                <p>How vexingly quick daft zebras jump!</p>
-                <p>The five boxing wizards jump quickly.</p>
-                <p>Jackdaws love my big sphinx of quartz.</p>
-                <p>Pack my box with five dozen liquor jugs.</p>
-                <br/>
-                <br/>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean molestie libero odio, quis aliquam massa luctus in. Cras molestie metus ante, eget vestibulum nisi tincidunt sed. Etiam semper suscipit nisi, non molestie orci. Vestibulum sodales leo iaculis sapien tempor, non imperdiet sem dapibus. Duis vitae imperdiet lacus. Sed eget ligula et elit tincidunt venenatis id non neque. Sed vel tincidunt turpis. Morbi et odio eget ligula elementum pellentesque et at ipsum.
-                <br/>
-                <br/>
-                Phasellus posuere egestas sagittis. Etiam sit amet condimentum mi. Nulla facilisi. Vestibulum semper feugiat mi, ac euismod metus molestie nec. Proin sit amet quam sed justo porttitor mollis non at velit. Aenean semper mi vel magna dapibus fringilla. Duis lacus mi, auctor quis congue sed, tristique quis metus. Fusce auctor metus eros, quis rhoncus ligula mattis ac.
-                <br/>
-                <br/>
-                Aliquam vel aliquam purus. Nam lacinia dictum vestibulum. Morbi luctus ligula sit amet imperdiet sodales. Vestibulum semper vitae massa ac scelerisque. Quisque volutpat mi eu nulla fringilla, non blandit nisi porta. Nunc quis cursus nulla, id dignissim nunc. Etiam dictum leo enim, ac sagittis arcu ultrices et. Aliquam vel tristique est. Curabitur nibh nisl, mollis sed convallis quis, molestie id ante. Nullam malesuada dui elementum lorem placerat sagittis. Nunc ullamcorper rhoncus suscipit.
-        
-                <br/>
-                <br/>
-                Sed hendrerit ante ac ullamcorper mollis. Nulla ultricies lectus sollicitudin nibh egestas, et molestie dui dignissim. Quisque nisl orci, elementum vel pulvinar at, hendrerit id felis. Fusce lobortis tristique diam, ut rhoncus neque molestie ut. Sed maximus, lectus id tempor pretium, est purus sollicitudin nisi, sit amet auctor velit tortor sed elit. Duis tincidunt libero at turpis varius cursus. Ut id enim eget erat facilisis aliquam quis in orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc sagittis consectetur ante, sed cursus orci pretium ut. Aenean laoreet nunc quis eros tincidunt ultricies. Donec odio augue, blandit sed quam vitae, lobortis dignissim purus. Vestibulum orci nunc, dapibus sit amet lacus sed, rhoncus ornare nunc.
+      <div class="privacyTermsContainerWrapper">
+        <div class="privacyTermsContainer">
+          <h1>Privacy Policy & Terms and Condition</h1>
+          <p>The quick brown fox jumps over the lazy dog.</p>
+          <p>Jived fox nymph grabs quick waltz.</p>
+          <p>Glib jocks quiz nymph to vex dwarf.</p>
+          <p>Sphinx of black quartz, judge my vow.</p>
+          <p>How vexingly quick daft zebras jump!</p>
+          <p>The five boxing wizards jump quickly.</p>
+          <p>Jackdaws love my big sphinx of quartz.</p>
+          <p>Pack my box with five dozen liquor jugs.</p>
+          <br />
+          <br />
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+            molestie libero odio, quis aliquam massa luctus in. Cras molestie
+            metus ante, eget vestibulum nisi tincidunt sed. Etiam semper
+            suscipit nisi, non molestie orci. Vestibulum sodales leo iaculis
+            sapien tempor, non imperdiet sem dapibus. Duis vitae imperdiet
+            lacus. Sed eget ligula et elit tincidunt venenatis id non neque. Sed
+            vel tincidunt turpis. Morbi et odio eget ligula elementum
+            pellentesque et at ipsum.
+            <br />
+            <br />
+            Phasellus posuere egestas sagittis. Etiam sit amet condimentum mi.
+            Nulla facilisi. Vestibulum semper feugiat mi, ac euismod metus
+            molestie nec. Proin sit amet quam sed justo porttitor mollis non at
+            velit. Aenean semper mi vel magna dapibus fringilla. Duis lacus mi,
+            auctor quis congue sed, tristique quis metus. Fusce auctor metus
+            eros, quis rhoncus ligula mattis ac.
+            <br />
+            <br />
+            Aliquam vel aliquam purus. Nam lacinia dictum vestibulum. Morbi
+            luctus ligula sit amet imperdiet sodales. Vestibulum semper vitae
+            massa ac scelerisque. Quisque volutpat mi eu nulla fringilla, non
+            blandit nisi porta. Nunc quis cursus nulla, id dignissim nunc. Etiam
+            dictum leo enim, ac sagittis arcu ultrices et. Aliquam vel tristique
+            est. Curabitur nibh nisl, mollis sed convallis quis, molestie id
+            ante. Nullam malesuada dui elementum lorem placerat sagittis. Nunc
+            ullamcorper rhoncus suscipit.
 
-                <br/>
-                <br/>
-                Phasellus nibh neque, feugiat id tempor in, pulvinar sed ex. Donec auctor vestibulum velit. Nunc in lorem quis elit semper rutrum. Donec commodo blandit justo, nec tempor nibh bibendum pulvinar. Proin pellentesque, massa ut porttitor dignissim, purus nisi facilisis augue, vitae varius neque ipsum id enim. Sed in nulla sagittis, elementum sapien non, facilisis odio. Vivamus mauris urna, tristique in aliquam at, scelerisque quis sem. Proin at lectus ut risus dapibus vestibulum. Nunc ultrices mi vitae maximus commodo. Nulla cursus sollicitudin venenatis. Pellentesque libero metus, bibendum quis fermentum id, lobortis in sem. Aliquam congue nibh id finibus sagittis. Nullam nisl eros, ornare at lectus a, finibus pretium turpis. Donec at dui a metus efficitur viverra. Donec porta molestie ultrices.
-                </p>
+            <br />
+            <br />
+            Sed hendrerit ante ac ullamcorper mollis. Nulla ultricies lectus
+            sollicitudin nibh egestas, et molestie dui dignissim. Quisque nisl
+            orci, elementum vel pulvinar at, hendrerit id felis. Fusce lobortis
+            tristique diam, ut rhoncus neque molestie ut. Sed maximus, lectus id
+            tempor pretium, est purus sollicitudin nisi, sit amet auctor velit
+            tortor sed elit. Duis tincidunt libero at turpis varius cursus. Ut
+            id enim eget erat facilisis aliquam quis in orci. Orci varius
+            natoque penatibus et magnis dis parturient montes, nascetur
+            ridiculus mus. Nunc sagittis consectetur ante, sed cursus orci
+            pretium ut. Aenean laoreet nunc quis eros tincidunt ultricies. Donec
+            odio augue, blandit sed quam vitae, lobortis dignissim purus.
+            Vestibulum orci nunc, dapibus sit amet lacus sed, rhoncus ornare
+            nunc.
 
-                <button class="agreeBtn" onclick="iAgree()">I Agree</button>
-                <button class="cancelBtn"  onclick="CancelTest()">Cancel</button>
-            </div>
+            <br />
+            <br />
+            Phasellus nibh neque, feugiat id tempor in, pulvinar sed ex. Donec
+            auctor vestibulum velit. Nunc in lorem quis elit semper rutrum.
+            Donec commodo blandit justo, nec tempor nibh bibendum pulvinar.
+            Proin pellentesque, massa ut porttitor dignissim, purus nisi
+            facilisis augue, vitae varius neque ipsum id enim. Sed in nulla
+            sagittis, elementum sapien non, facilisis odio. Vivamus mauris urna,
+            tristique in aliquam at, scelerisque quis sem. Proin at lectus ut
+            risus dapibus vestibulum. Nunc ultrices mi vitae maximus commodo.
+            Nulla cursus sollicitudin venenatis. Pellentesque libero metus,
+            bibendum quis fermentum id, lobortis in sem. Aliquam congue nibh id
+            finibus sagittis. Nullam nisl eros, ornare at lectus a, finibus
+            pretium turpis. Donec at dui a metus efficitur viverra. Donec porta
+            molestie ultrices.
+          </p>
+
+          <button class="agreeBtn" onclick="iAgree()">I Agree</button>
+          <button class="cancelBtn" onclick="CancelTest()">Cancel</button>
         </div>
+      </div>
     </div>
     <div class="tuluPicker">
-        <div class="heading">
-            <h2>Have you connected with a tulu?</h2>
-            <p>If so, select your tulu.</p>
-        </div>
-        <ul class="tuluList">
-            
-        </ul>
-        <button>Skip</button>
-        <p class="skipText">If not, skip</p>
+      <div class="heading">
+        <h2>Have you connected with a tulu?</h2>
+        <p>If so, select your tulu.</p>
+      </div>
+      <ul class="tuluList"></ul>
+      <button>Skip</button>
+      <p class="skipText">If not, skip</p>
     </div>
-</body>
-<script src="../Js/sideMenu.js"></script>
-<script src="../Js/booking.js"></script>
-<script>
-    
+  </body>
+  <script src="../Js/sideMenu.js"></script>
+  <script src="../Js/booking.js"></script>
+  <script>
+
     var vehicleList = <%-JSON.stringify(vehicles)%>;
     var dealerList = <%-JSON.stringify(dealers)%>
     var userList = <%-JSON.stringify(users)%>
@@ -154,7 +244,6 @@
     var currUserId = user._id;
     var tuluList = userList;
     var vehiclerTargetId = "";
-
-</script>
-<script src="../Js/privileges.js"></script>
+  </script>
+  <script src="../Js/privileges.js"></script>
 </html>
