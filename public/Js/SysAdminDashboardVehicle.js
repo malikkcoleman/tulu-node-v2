@@ -7,7 +7,7 @@ function populateVehicles(){
         html+='    <div class="listingInfo" onclick="ViewVehicle(\'' + vehicleList[x].vin + '\',\'' + vehicleList[x].dealerId + '\');">';
         html+='        <h4 class="listingName">' + vehicleList[x].year + ' ' + vehicleList[x].make + ' ' + vehicleList[x].model + '</h4>';
         html+='        <p class="listingPrice">$' + vehicleList[x].maxPrice + '</p>';
-        html+='        <p class="listingReferralFee">Referral Fee: $' + vehicleList[x].refferalFee + '</p>';
+        html+='        <p class="listingReferralFee">Referral Fee: $' + vehicleList[x].refFee + '</p>';
         html+='        <p  class="listingViews">4420 views</p>';
         html+='    </div>';
         html+='    <i class="fas fa-ellipsis-h" class="listingsettingBtn" onclick="listingSettings('+x+')"></i>';

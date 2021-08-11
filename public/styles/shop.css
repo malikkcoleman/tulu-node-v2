@@ -58,12 +58,11 @@
 
 .carImage{
     width:300px;
-    height:300px;
     border:none;
     border-radius: 10px;
     background:white;
     margin:0 0 10px 0;
-    filter:drop-shadow(0 10px 10px #3a3a3a50)
+    padding:30px 0;
 }
 
 .carDetails{

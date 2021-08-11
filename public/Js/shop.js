@@ -3,7 +3,7 @@ function populateVehicle(vehicleList){
     for (var i = 0; i != vehicleList.length; i++) {
         html += '<li class="vehicleListItems">';
         var text = '';
-        html += '    <img src="' + text + '" class="carImage" alt="car-image">';
+        html += '    <img src="/image/'+ vehicleList[i].vin +'" class="carImage" alt="car-image">';
         html += '   <div class="carDetails">';
         html += '       <h2 class="carName">' + vehicleList[i].year + ' ' + vehicleList[i].make + ' ' + vehicleList[i].model + '</h2>';
         html += '       <p class="carPrice">$'+vehicleList[i].maxPrice + '</p>';
@@ -27,7 +27,7 @@ function smallView(){
     for (var i = 0; i != vehicleList.length; i++) {
         html+='<li class="vehicleListItemsSmallView">';
         var text = '';
-        html+='    <img src="' + text + '" class="carImage" alt="car-image"/>';
+        html+='    <img src="/image/'+ vehicleList[i].vin +'" class="carImage" alt="car-image"/>';
         html+='    <div class="carDetails">';
         html+='        <h2 class="carName">' + vehicleList[i].year + ' ' + vehicleList[i].make + ' ' + vehicleList[i].model + '</h2>';
         html+='        <p class="carPrice">$'+vehicleList[i].maxPrice + '</p>';
@@ -45,7 +45,7 @@ function bigView(){
     for (var i = 0; i != vehicleList.length; i++) {
         html += '<li class="vehicleListItems">';
         var text = '';
-        html += '    <img src="' + text + '" class="carImage" alt="car-image">';
+        html += '    <img src="/image/'+ vehicleList[i].vin +'" class="carImage" alt="car-image">';
         html += '   <div class="carDetails">';
         html += '       <h2 class="carName">' + vehicleList[i].year + ' ' + vehicleList[i].make + ' ' + vehicleList[i].model + '</h2>';
         html += '       <p class="carPrice">$'+vehicleList[i].maxPrice + '</p>';

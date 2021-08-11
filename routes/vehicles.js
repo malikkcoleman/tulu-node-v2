@@ -65,91 +65,49 @@ router.post("/addvehicle", (req, res) => {
 
   // Check required fields
   
-    Vehicle.findOne({ vin: vin }).then((vehicle) => {
-      if (vehicle) {
-        // vehicle Exist
-        errors.push({ msg: "Vehicle already Exist" });
-        res.render("Addvehicle", {
-          errors,
-          vin,
-          year,
-          make,
-          model,
-          vehicleType,
-          trim,
-          dealerId,
-          isSold,
-          doors,
-          mileage,
-          modelNumber,
-          driveType,
-          msrp,
-          minPrice,
-          maxPrice,
-          engineName,
-          engineBrand,
-          engineID,
-          fuelType,
-          iceMaxHp,
-          iceMaxTorque,
-          maxPayLoad,
-          transmissionName,
-          colorName,
-          colorHex,
-          baseTowingCapacity,
-          grossWeight,
-          fuelTankCapacity,
-          notes,
-          status,
-          user: req.user,
-        });
-      } else {
-        const newVehicle = new Vehicle({
-          vin,
-          year,
-          make,
-          model,
-          vehicleType,
-          trim,
-          dealerId,
-          isSold,
-          doors,
-          mileage,
-          modelNumber,
-          driveType,
-          msrp,
-          minPrice,
-          maxPrice,
-          refFee,
-          engineName,
-          engineBrand,
-          engineID,
-          fuelType,
-          iceMaxHp,
-          iceMaxTorque,
-          maxPayLoad,
-          transmissionName,
-          colorName,
-          colorHex,
-          baseTowingCapacity,
-          grossWeight,
-          fuelTankCapacity,
-          notes,
-          status
-        });
-
-        newVehicle
-          .save()
-          .then((vehicle) => {
-            // req.flash('success_msg', 'You are now registered and can log in.');
-            res.redirect("/");
-          })
-          .catch((err) => console.log(err));
-
-        console.log(newUser);
-        // res.send('hello');
-      }
-    });
+    
+      const newVehicle = new Vehicle({
+        vin,
+        year,
+        make,
+        model,
+        vehicleType,
+        trim,
+        dealerId,
+        isSold,
+        doors,
+        mileage,
+        modelNumber,
+        driveType,
+        msrp,
+        minPrice,
+        maxPrice,
+        refFee,
+        engineName,
+        engineBrand,
+        engineID,
+        fuelType,
+        iceMaxHp,
+        iceMaxTorque,
+        maxPayLoad,
+        transmissionName,
+        colorName,
+        colorHex,
+        baseTowingCapacity,
+        grossWeight,
+        fuelTankCapacity,
+        notes,
+        status
+      });
+      newVehicle
+        .save()
+        .then((vehicle) => {
+          // req.flash('success_msg', 'You are now registered and can log in.');
+          res.redirect("/");
+        })
+        .catch((err) => console.log(err));
+      console.log(newUser);
+      // res.send('hello');
 });
 
 
@@ -209,48 +167,6 @@ router.post("/DashboardSysAdminAddVehicle", (req, res) => {
   } = req.body;
 
   let errors = [];
-
-  // Check required fields
-  
-    Vehicle.findOne({ vin: vin }).then((vehicle) => {
-      if (vehicle) {
-        // vehicle Exist
-        errors.push({ msg: "Vehicle already Exist" });
-        res.render("DashboardSysAdminAddVehicle", {
-          errors,
-          vin,
-          year,
-          make,
-          model,
-          vehicleType,
-          trim,
-          dealerId,
-          isSold,
-          doors,
-          mileage,
-          modelNumber,
-          driveType,
-          msrp,
-          minPrice,
-          maxPrice,
-          engineName,
-          engineBrand,
-          engineID,
-          fuelType,
-          iceMaxHp,
-          iceMaxTorque,
-          maxPayLoad,
-          transmissionName,
-          colorName,
-          colorHex,
-          baseTowingCapacity,
-          grossWeight,
-          fuelTankCapacity,
-          notes,
-          status,
-          user: req.user,
-        });
-      } else {
         const newVehicle = new Vehicle({
           vin,
           year,
@@ -293,15 +209,13 @@ router.post("/DashboardSysAdminAddVehicle", (req, res) => {
           })
           .catch((err) => console.log(err));
 
-        console.log(newUser);
+        console.log(newVehicle);
         // res.send('hello');
-      }
-    });
 });
 
 
 // Dashboard Vehicle
-router.get("/dashboardVehicle", (req, res) => {
+router.get("/DashboardVehicle", (req, res) => {
   Vehicle.find({dealerId:req.user.toObject().dealerId}).then((vehicle) => {
     res.render("DashboardVehicle", {  
       user: req.user,
