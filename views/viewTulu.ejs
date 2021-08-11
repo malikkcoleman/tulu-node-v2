@@ -122,7 +122,9 @@
                 $('.userName').append(tuluList[x].fName +' '+tuluList[x].lName);
                 $('.userRole').append(tuluList[x].role);
                 $('.userBio').append(tuluList[x].bio);
-                $('').append();
+                var userImage = '<img src="/image/'+ tuluList[x]._id +'">'
+                $('.userImage').empty();
+                $('.userImage').append(userImage);
                 $('').append();
                 $('').append();
                 $('').append();
