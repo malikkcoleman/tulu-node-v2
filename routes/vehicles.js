@@ -303,7 +303,7 @@ router.get("/dashboardVehicle", (req, res) => {
 router.get("/editvehicle/:vin", (req, res) => {
   Vehicle.find({vin: req.params.vin}).then((vehicle) => {
     const images = fetchImage.getImagesArray(req.params.vin)
-    res.render("editvehicle", {
+    res.render("EditVehicle", {
       user: req.user,
       vehicles: vehicle,
       images: images
