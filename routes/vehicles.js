@@ -216,6 +216,7 @@ router.post("/DashboardSysAdminAddVehicle", (req, res) => {
 
 // Dashboard Vehicle
 router.get("/DashboardVehicle", (req, res) => {
+  console.log(req.user)
   Vehicle.find({dealerId:req.user.toObject().dealerId}).then((vehicle) => {
     res.render("DashboardVehicle", {  
       user: req.user,
