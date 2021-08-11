@@ -81,12 +81,12 @@ router.post("/upload/:type/:targetid", uploadController.uploadFile), (req, res) 
     console.log(req)
 };
 
-router.get('/editdealership',ensureAuthenticated,(req,res)=>
+router.get('/EditDealer',ensureAuthenticated,(req,res)=>
     Dealer.find({uuid:req.user.toObject().dealerId})
     .then(dealer=>{
         Address.find({targetId:req.user.toObject().dealerId})
         .then(address=>{
-            res.render('editdealership',{
+            res.render('EditDealer',{
                 user:req.user,
                 dealer:dealer,
                 address:address
@@ -95,7 +95,7 @@ router.get('/editdealership',ensureAuthenticated,(req,res)=>
     })
 );
 
-router.post('/editdealership',(req,res)=>{
+router.post('/EditDealer',(req,res)=>{
     var myquery = { uuid: req.user.toObject().dealerId };
     const { name,logo,website,street,city,province,postal} = req.body;
     var newvalues = { 

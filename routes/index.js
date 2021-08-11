@@ -10,6 +10,20 @@ const fetchImage = require("../middleware/getImages");
 const Address = require("../models/addressschema");
 const User = require("../models/userschema");
 
+pgroutr.get('/EditDealer',ensureAuthenticated,(req,res)=>
+    Dealer.find({uuid:req.user.toObject().dealerId})
+    .then(dealer=>{
+        Address.find({targetId:req.user.toObject().dealerId})
+        .then(address=>{
+            res.render('EditDealer',{
+                user:req.user,
+                dealer:dealer,
+                address:address
+            })
+        })
+    })
+);
+
 pgroutr.get("/", (req, res) =>
   res.render("Index", {
     user: req.user,
