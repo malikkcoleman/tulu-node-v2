@@ -55,7 +55,15 @@
                 <label for="model">Model</label>
                 <input type="text" name="model" id="model">
                 <label for="vehicleType">Vehicle Type</label>
-                <input type="text" name="vehicleType" id="vehicleType">
+                <select id="vehicleType" name="vehicleType">
+                    <option value="sedan">sedan</option>
+                    <option value="coupe">coupe</option>
+                    <option value="hatchback">hatchback</option>
+                    <option value="convertible">convertible</option>
+                    <option value="truck">truck</option>
+                    <option value="van">van</option>
+                    <option value="wagon">wagon</option>
+                </select>
                 <label for="trim">Trim</label>
                 <input type="text" name="trim" id="trim">
                 <label for="modelNumber">Model Number</label>
@@ -68,8 +76,12 @@
                 <input type="text" name="engineBrand" id="engineBrand">
                 <label for="driveType">Drive Type</label>
                 <input type="text" name="driveType" id="driveType">
-                <label for="transmissionName">Transmission Name</label>
-                <input type="text" name="transmissionName" id="transmissionName">
+                <label for="transmissionName">Transmission</label>
+                <select id="transmissionName" name="transmissionName">
+                    <option value="manual">manual</option>
+                    <option value="automatic">automatic</option>
+                    <option value="other">other</option>
+                </select>
                 <label for="fuelType">Fuel Type</label>
                 <input type="text" name="fuelType" id="fuelType">
             
