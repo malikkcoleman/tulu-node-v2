@@ -47,13 +47,13 @@ window.onload = function () {
     bodySubtype =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.basic_data.body_subtype;
     doors =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.basic_data.doors;
     msrp =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.pricing.msrp;
-    engineName =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].name;
-    engineFuelType =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].fuel_type;
-    engineID =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].engine_id;
-    engineBrand =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].brand;
-    engineIceMaxHp =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].ice_max_hp;
-    engineIceMaxTorque =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].ice_max_torque;
-    engineMaxPayLoad =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].max_payload;
+    // engineName =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].name;
+    // engineFuelType =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].fuel_type;
+    // engineID =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].engine_id;
+    // engineBrand =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].brand;
+    // engineIceMaxHp =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].ice_max_hp;
+    // engineIceMaxTorque =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].ice_max_torque;
+    // engineMaxPayLoad =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.engines[0].max_payload;
     // transmissionName =
     //   infoData.query_responses.NodeJS_Sample.us_market_data
     //     .common_us_data.transmissions[0].name;
@@ -61,8 +61,8 @@ window.onload = function () {
       infoData.query_responses.NodeJS_Sample.us_market_data
         .common_us_data.standard_specifications[1].specification_values[5]
         .specification_value; */
-    grossWeight =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.standard_specifications[1].specification_values[0].specification_value;
-    fuelTankCapacity =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.standard_specifications[1].specification_values[2].specification_value;
+    // grossWeight =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.standard_specifications[1].specification_values[0].specification_value;
+    // fuelTankCapacity =infoData.query_responses.NodeJS_Sample.us_market_data.common_us_data.standard_specifications[1].specification_values[2].specification_value;
     
     $('#vin').val(vin)
     $('#year').val(year);
@@ -74,16 +74,16 @@ window.onload = function () {
     $('#vehicleType').val(vehicleType);
     $('#doors').val(doors);
     $('#msrp').val(msrp);
-    $('#engineName').val(engineName);
-    $('#engineID').val(engineID);
-    $('#iceMaxHp').val(engineIceMaxHp);
-    $('#iceMaxTorque').val(engineIceMaxTorque);
-    $('#maxPayLoad').val(engineMaxPayLoad);
-    $('#fuelType').val(engineFuelType);
-    $('#transmissionName').val(transmissionName);
-    $('#baseTowingCapacity').val(maxTowingCapacity);
-    $('#grossWeight').val(grossWeight);
-    $('#fuelTankCapacity').val(fuelTankCapacity);
+    // $('#engineName').val(engineName);
+    // $('#engineID').val(engineID);
+    // $('#iceMaxHp').val(engineIceMaxHp);
+    // $('#iceMaxTorque').val(engineIceMaxTorque);
+    // $('#maxPayLoad').val(engineMaxPayLoad);
+    // $('#fuelType').val(engineFuelType);
+    // $('#transmissionName').val(transmissionName);
+    // $('#baseTowingCapacity').val(maxTowingCapacity);
+    // $('#grossWeight').val(grossWeight);
+    // $('#fuelTankCapacity').val(fuelTankCapacity);
 
 
     console.log(dealer)

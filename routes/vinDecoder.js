@@ -165,8 +165,6 @@ async function decoder(VIN) {
       infoData = response_json;
       masterVin = VIN;
 
-      if(response_json.query_responses.NodeJS_Sample.us_market_data
-        .common_us_data != "undefine"){
 
       year =
         response_json.query_responses.NodeJS_Sample.us_market_data
@@ -192,9 +190,6 @@ async function decoder(VIN) {
       bodyType =
         response_json.query_responses.NodeJS_Sample.us_market_data
           .common_us_data.basic_data.body_type;
-      bodySubtype =
-        response_json.query_responses.NodeJS_Sample.us_market_data
-          .common_us_data.basic_data.body_subtype;
       doors =
         response_json.query_responses.NodeJS_Sample.us_market_data
           .common_us_data.basic_data.doors;
@@ -204,40 +199,7 @@ async function decoder(VIN) {
       engineName =
         response_json.query_responses.NodeJS_Sample.us_market_data
           .common_us_data.engines[0].name;
-      engineFuelType =
-        response_json.query_responses.NodeJS_Sample.us_market_data
-          .common_us_data.engines[0].fuel_type;
-      engineID =
-        response_json.query_responses.NodeJS_Sample.us_market_data
-          .common_us_data.engines[0].engine_id;
-      engineBrand =
-        response_json.query_responses.NodeJS_Sample.us_market_data
-          .common_us_data.engines[0].brand;
-      engineIceMaxHp =
-        response_json.query_responses.NodeJS_Sample.us_market_data
-          .common_us_data.engines[0].ice_max_hp;
-      engineIceMaxTorque =
-        response_json.query_responses.NodeJS_Sample.us_market_data
-          .common_us_data.engines[0].ice_max_torque;
-      engineMaxPayLoad =
-        response_json.query_responses.NodeJS_Sample.us_market_data
-          .common_us_data.engines[0].max_payload;
-      // transmissionName =
-      //   response_json.query_responses.NodeJS_Sample.us_market_data
-      //     .common_us_data.transmissions[0].name;
-      /*       maxTowingCapacity =
-        response_json.query_responses.NodeJS_Sample.us_market_data
-          .common_us_data.standard_specifications[1].specification_values[5]
-          .specification_value; */
-      grossWeight =
-        response_json.query_responses.NodeJS_Sample.us_market_data
-          .common_us_data.standard_specifications[1].specification_values[0]
-          .specification_value;
-      fuelTankCapacity =
-        response_json.query_responses.NodeJS_Sample.us_market_data
-          .common_us_data.standard_specifications[1].specification_values[2]
-          .specification_value;
-        }
+      
       console.log(masterVin);
       console.log(year);
       console.log(make);
@@ -253,7 +215,7 @@ async function decoder(VIN) {
       console.log(engineIceMaxHp);
       console.log(engineIceMaxTorque);
       console.log(engineMaxPayLoad);
-      console.log(engineFuelType);
+      // console.log(engineFuelType);
       // console.log(transmissionName);
       //console.log(maxTowingCapacity);
       console.log(grossWeight);
