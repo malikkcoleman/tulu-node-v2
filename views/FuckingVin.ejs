@@ -40,6 +40,7 @@
         <form action="/vehicles/DashboardSysAdminAddVehicle" method="POST">
             <%- include partials/messages %>
 
+                style="display:none;"
                 <label for="dealerId">Dealer ID</label>
                 <select id="dealerId" name="dealerId">
 
@@ -67,14 +68,14 @@
                 </select>
                 <label for="trim">Trim</label>
                 <input type="text" name="trim" id="trim">
-                <label for="modelNumber">Model Number</label>
-                <input type="text" name="modelNumber" id="modelNumber">
+                <label style="display:none;" for="modelNumber">Model Number</label>
+                <input style="display:none;" type="text" name="modelNumber" id="modelNumber">
                 <label for="engineName">Engine Name</label>
                 <input type="text" name="engineName" id="engineName">
-                <label for="engineID">Engine ID</label>
-                <input type="text" name="engineID" id="engineID">
-                <label for="engineBrand">Engine Brand</label>
-                <input type="text" name="engineBrand" id="engineBrand">
+                <label style="display:none;" for="engineID">Engine ID</label>
+                <input style="display:none;" type="text" name="engineID" id="engineID">
+                <label style="display:none;" for="engineBrand">Engine Brand</label>
+                <input style="display:none;" type="text" name="engineBrand" id="engineBrand">
                 <label for="driveType">Drive Type</label>
                 <input type="text" name="driveType" id="driveType">
                 <label for="transmissionName">Transmission</label>
@@ -90,24 +91,24 @@
                 <input type="text" name="doors" id="doors">
                 <label for="colorName">Color</label>
                 <input type="text" name="colorName" id="colorName">
-                <label for="colorHex">Color Hex</label>
-                <input type="text" name="colorHex" id="colorHex">
+                <label style="display:none;" for="colorHex">Color Hex</label>
+                <input style="display:none;" type="text" name="colorHex" id="colorHex">
                 <label for="mileage">Mileage</label>
                 <input type="text" name="mileage" id="mileage">
-                <label for="iceMaxHp">Ice Max Hp</label>
-                <input type="text" name="iceMaxHp" id="iceMaxHp">
-                <label for="iceMaxTorque">Ice Max Torque</label>
-                <input type="text" name="iceMaxTorque" id="iceMaxTorque">
-                <label for="maxPayLoad">Max Payload</label>
-                <input type="text" name="maxPayLoad" id="maxPayLoad">
-                <label for="baseTowingCapacity">Base Towing Capacity</label>
-                <input type="text" name="baseTowingCapacity" id="baseTowingCapacity">
-                <label for="grossWeight">Gross Weight</label>
-                <input type="text" name="grossWeight" id="grossWeight">
-                <label for="fuelTankCapacity">Fuel Tank Capacity</label>
-                <input type="text" name="fuelTankCapacity" id="fuelTankCapacity">
-                <label for="msrp">MSRP</label>
-                <input type="text" name="msrp" id="msrp">
+                <label style="display:none;" for="iceMaxHp">Ice Max Hp</label>
+                <input style="display:none;" type="text" name="iceMaxHp" id="iceMaxHp">
+                <label style="display:none;" for="iceMaxTorque">Ice Max Torque</label>
+                <input style="display:none;" type="text" name="iceMaxTorque" id="iceMaxTorque">
+                <label style="display:none;" for="maxPayLoad">Max Payload</label>
+                <input style="display:none;" type="text" name="maxPayLoad" id="maxPayLoad">
+                <label style="display:none;" for="baseTowingCapacity">Base Towing Capacity</label>
+                <input style="display:none;" type="text" name="baseTowingCapacity" id="baseTowingCapacity">
+                <label  style="display:none;"for="grossWeight">Gross Weight</label>
+                <input  style="display:none;"type="text" name="grossWeight" id="grossWeight">
+                <label  style="display:none;"for="fuelTankCapacity">Fuel Tank Capacity</label>
+                <input  style="display:none;"type="text" name="fuelTankCapacity" id="fuelTankCapacity">
+                <label style="display:none;" for="msrp">MSRP</label>
+                <input style="display:none;" type="text" name="msrp" id="msrp">
                 <label for="minPrice">Minimum Price</label>
                 <input type="number" name="minPrice" id="minPrice" onchange="calculate()" value="0">
                 <label for="maxPrice">Maximum Price</label>
