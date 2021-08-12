@@ -13,7 +13,7 @@ function populateVehicle(vehicleList){
         html += '           <p class="carTransmission">' + vehicleList[i].transmissionName + '</p>';
         html += '       </div>';
         html += '       <div class="moreInfoContainer">';
-        html += '               <button class="moreInfo" onclick="carView(' + i + ')">View Vehicle</button>';
+        html += '              <a href="carview/'+ vehicleList[i].vin +'"><button class="moreInfo">View Vehicle</button></a>';
         html += '       </div>';
         html += '   </div>';
         html += '</li>';
@@ -32,7 +32,7 @@ function smallView(){
         html+='        <h2 class="carName">' + vehicleList[i].year + ' ' + vehicleList[i].make + ' ' + vehicleList[i].model + '</h2>';
         html+='        <p class="carPrice">$'+vehicleList[i].maxPrice + '</p>';
         html+='        <p class="carMileage">1234567890 Kms</p>';
-        html+='        <button class="moreInfo" onclick="carView(' + i + ')">View Vehicle</button>';
+        html+='        <a href="carview/'+ vehicleList[i].vin +'"><button class="moreInfo">View Vehicle</button></a>';
         html+='    </div>';
         html+='</li>';
     }
@@ -55,7 +55,7 @@ function bigView(){
         html += '           <p class="carTransmission">' + vehicleList[i].transmissionName + '</p>';
         html += '       </div>';
         html += '       <div class="moreInfoContainer">';
-        html += '               <button class="moreInfo" onclick="carView(' + i + ')">View Vehicle</button>';
+        html += '               <a href="carview/'+ vehicleList[i].vin +'"><button class="moreInfo">View Vehicle</button></a>';
         html += '       </div>';
         html += '   </div>';
         html += '</li>';

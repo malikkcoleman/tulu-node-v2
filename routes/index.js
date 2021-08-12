@@ -82,15 +82,17 @@ pgroutr.get("/shop", (req, res) => {
       res.status(500).send(error);
     });
 });
-pgroutr.get("/carview", (req, res) => {
-  Vehicle.find({})
+pgroutr.get("/carview/:vin", (req, res) => {
+  Vehicle.find({vin: req.params.vin})
     .then((vehicles) => {
       Dealer.find({})
         .then((dealers) => {
+          const images = fetchImage.getImagesArray(req.params.vin)
           res.render("CarView", {
             vehicles: vehicles,
             user: req.user,
             dealers: dealers,
+            images: images
           });
         })
         .catch((err) => {
