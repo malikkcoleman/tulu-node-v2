@@ -165,8 +165,8 @@ async function decoder(VIN) {
       infoData = response_json;
       masterVin = VIN;
 
-
-      year =
+      try{
+        year =
         response_json.query_responses.NodeJS_Sample.us_market_data
           .common_us_data.basic_data.year;
       make =
@@ -199,6 +199,10 @@ async function decoder(VIN) {
       engineName =
         response_json.query_responses.NodeJS_Sample.us_market_data
           .common_us_data.engines[0].name;
+      }catch(e){
+        console.log(e)
+      }
+      
       
       console.log(masterVin);
       console.log(year);
