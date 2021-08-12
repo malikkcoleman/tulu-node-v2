@@ -238,6 +238,16 @@ async function decoder(VIN) {
   return infoData;
 }
 
+router.post("/FuckingVinDoesntWork",ensureAuthenticated,(req, res) => {
+  Dealer.find()
+  .then(dealer=>{
+    res.render('FuckingVin',{
+      user:req.user,
+      dealer:dealer
+    })
+  })
+});
+
 router.post("/AddVehicle",ensureAuthenticated,(req, res) => {
   decoder(req.body.vin).then(infoData=>{
     Dealer.find()
