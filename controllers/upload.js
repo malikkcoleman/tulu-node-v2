@@ -34,6 +34,7 @@ const uploadFile = async (req, res) => {
         })
         image.save()
         })
+        res.redirect('/vehicles/EditVehicle/'+req.params.targetid) 
       })
     }
 
