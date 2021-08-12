@@ -50,26 +50,29 @@
         <!-- VEHICLE INFO -->
         <section id="Vehicles" class="vehicles">
             <div class="carDetails">
-                <div class="slideshow-container">
+                <% if (images.length > 0){%>
+                    <div class="slideshow-container">
 
-                    <% images.forEach(function(image){  %>
-                        <div class="mySlides fade">
-                            <img  class="imageContain" src="/image/<%= image.target_id %>/<%= image.file_id %>" alt="">
+                        <% images.forEach(function(image){  %>
+                            <div class="mySlides fade">
+                                <img  class="imageContain" src="/image/<%= image.target_id %>/<%= image.file_id %>" alt="">
+                            </div>
+                        <% }) %>
+                        
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                        <br>
+                        <div style="text-align:center; display: flex; flex-direction: row; margin: auto;">
+                            <% for(i=1; i<= images.length; i++){  %>
+                                <span class="dot" onclick="currentSlide(<%= i %>)"></span> 
+                            <% } %>
                         </div>
-                    <% }) %>
-                    
-                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                    
-                </div>
-                <br>
-                    
-                    
-                <div style="text-align:center; display: flex; flex-direction: row;">
-                    <% for(i=1; i<= images.length; i++){  %>
-                        <span class="dot" onclick="currentSlide(<%= i %>)"></span> 
-                    <% } %>
-                </div>
+                    </div>
+                <%} else {%>
+                    <br>
+                    <br>
+                    <img src="../images/noimageavailable.jpg" alt="">
+                <% } %>
                 <div class="carTitle">
                     <h2 class="carName"></h2>
                     <p class="carPrice"></p>

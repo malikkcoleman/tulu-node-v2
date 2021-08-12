@@ -318,8 +318,8 @@ router.get("/DashboardVehicle", (req, res) => {
 
 // EDIT VEHICLE
 router.get("/editvehicle/:vin", (req, res) => {
-  Vehicle.find({vin: req.params.vin}).then((vehicle) => {
-    const images = fetchImage.getImagesArray(req.params.vin)
+  Vehicle.find({vin: req.params.vin}).then( async (vehicle) => {
+    const images = await fetchImage.getImagesArray(req.params.vin)
     res.render("EditVehicle", {
       user: req.user,
       vehicles: vehicle,

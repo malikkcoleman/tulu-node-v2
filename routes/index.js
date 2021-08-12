@@ -86,8 +86,9 @@ pgroutr.get("/carview/:vin", (req, res) => {
   Vehicle.find({vin: req.params.vin})
     .then((vehicles) => {
       Dealer.find({})
-        .then((dealers) => {
-          const images = fetchImage.getImagesArray(req.params.vin)
+        .then(async (dealers) => {
+          const images = await fetchImage.getImagesArray(req.params.vin)
+          console.log(images)
           res.render("CarView", {
             vehicles: vehicles,
             user: req.user,
@@ -190,14 +191,6 @@ pgroutr.get('/DealerListing',(req,res)=>{
 pgroutr.post("/upload/:type/:targetid", uploadController.uploadFile), (req, res) => {
     console.log(req)
 };
-
-pgroutr.get('/files', (req, res) => {
-    fetchImage.getFiles(req, res)
-})
-
-pgroutr.get('/files/:filename', (req, res) => {
-    fetchImage.getFile(req, res)
-})
 
 pgroutr.get('/image/:targetid', (req, res) => {
     fetchImage.getImage(req, res)
