@@ -84,13 +84,13 @@ app.use("/appointment", require("./routes/booking"));
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(path.join(__dirname, "assets")));
 
-// app.use((req, res, next) => {
-//   res.render('404error');
-// });
 
-// app.use((error, req, res, next) => {
-//   res.render('404error');
-// });
+app.use(function (err, req, res, next) {
+  res.render('404');
+})
+app.use(function(req,res){
+  res.status(404).render('404');
+});
 
 const PORT = process.env.PORT || 3000;
 
