@@ -1,42 +1,18 @@
 var events = [{
     id:0,
-    postDate:"Jan 1,2022",
-    eventDate:"Jan 1,2021",
-    title:"Lorem Ipsum",
-    body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget magna sit amet mauris finibus.",
-    image:"https://picsum.photos/300/150"
+    postDate:"August 12,2021",
+    eventDate:"September 12,2021",
+    title:"So Scare Season Ender",
+    body:"2021 YYC SEASON ENDER CAR MEET FREE EVENT AND ALWAYS WILL BE Universal Ford Lincoln 2800 Barlow Trail NE Calgary, AB T1Y 1A2 Sunday, September 12 2021",
+    image:"images/event_soscare.jpg"
 },
 {
     id:1,
-    postDate:"Dec 1,2022",
-    eventDate:"Dec 1,2021",
-    title:"Lorem Ipsum",
-    body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget magna sit amet mauris finibus.",
-    image:"https://picsum.photos/300/150"
-},
-{
-    id:2,
-    postDate:"Feb 1,2022",
-    eventDate:"Feb 1,2021",
-    title:"Lorem Ipsum",
-    body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget magna sit amet mauris finibus.",
-    image:"https://picsum.photos/300/150"
-},
-{
-    id:3,
-    postDate:"Mar 1,2022",
-    eventDate:"Mar 1,2021",
-    title:"Lorem Ipsum",
-    body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget magna sit amet mauris finibus.",
-    image:"https://picsum.photos/300/150"
-},
-{
-    id:4,
-    postDate:"Apr 1,2022",
-    eventDate:"Apr 1,2021",
-    title:"Lorem Ipsum",
-    body:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eget magna sit amet mauris finibus.",
-    image:"https://picsum.photos/300/150"
+    postDate:"August 10,2022",
+    eventDate:"August 13,2021",
+    title:"Tulu Canada Launch Party",
+    body:"tulu Canada is officially launching! Come out and take our new app for a test drive! We'll have DJ third degree on some throwback 90's music, prizes to give away and a lot of partying to do!August 13, 2021, doors open at 8PM We can't wait to see everyone there!",
+    image:"images/event_launch.jfif"
 }];
 
 // PUT THE EVENTS HERE! ^^^^

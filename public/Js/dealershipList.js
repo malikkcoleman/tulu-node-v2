@@ -18,5 +18,5 @@ function LoadDealer() {
 }
 
 function ViewDealer(index){
-	window.location = "/DealerListing?dealerId=" + dealerList[index]._id;
+	window.location = "/DealerListing/" + dealerList[index].uuid;
 }
