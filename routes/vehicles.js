@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const VehicleController = require("../controllers/vehicle.controller");
 const fetchImage = require("../middleware/getImages");
+const Image = require("../models/imageschema");
 // Vehicle Model
 const Vehicle = require("../models/vehicleschema");
 const Dealer = require('../models/dealershipschema');
@@ -327,6 +328,14 @@ router.get("/editvehicle/:vin", (req, res) => {
     });
   });
 });
+
+router.post("/makedisplayphoto/:fileid/:vin", (req, res) =>{
+  Image.updateMany({target_id: req.params.vin}, {is_display_photo: false}).then(function(data){
+    Image.updateOne({_id: req.params.fileid},{is_display_photo: true}).then(function(data){
+      res.send({data: data})
+    })
+  })
+})
 
 
 router.post("/editvehicle", (req, res) => {

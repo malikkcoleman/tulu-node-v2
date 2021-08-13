@@ -30,7 +30,7 @@ conn.once('open', () => {
 });
 
 function getImage(req, res){
-    fetchImage.find({target_id: req.params.targetid, is_deleted: false}).then(function(data){
+    fetchImage.find({target_id: req.params.targetid, is_deleted: false, is_display_photo: true}).then(function(data){
         
         gfs.files.findOne({_id: data[0].file_id}, (err, file) => {
             if(!file || file.length === 0){
