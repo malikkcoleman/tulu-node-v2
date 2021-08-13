@@ -43,7 +43,7 @@
             <i class="fas fa-th-list" id="gridDisplayBtn" onclick="vehicleDisplay()"></i>
             <div class="sortFilter">
                 <i class="fas fa-sort-amount-up-alt sortBtn" onclick="slideSortMenu()"></i>
-                <i class="fas fa-filter filterBtn" onclick="slideFilterMenu()"></i>
+                <p class="filterBtn" onclick="slideFilterMenu()">Filter</p>
             </div>
         </div>
         <div class="breadCrumbs">
@@ -97,11 +97,11 @@
                         <option value="Fiat">Fiat</option>
                     </select>
                 </div>
-                <div class="YearMinContainer">
+                <div class="YearMinContainer" style="display:none;">
                     <label for="YearMin" class="YearMinLabel">Year Min :</label>
                     <input type="text" id="YearMinSearch" value="0" />
                 </div>
-                <div class="YearMaxContainer">
+                <div class="YearMaxContainer" style="display:none;">
                     <label for="YearMax" class="YearMaxLabel">Year Max :</label>
                     <input type="text" id="YearMaxSearch" value="0" />
                 </div>
@@ -110,21 +110,26 @@
 
                     <select name="VehicleTypeSearch" id="VehicleTypeSearch">
                         <option value=""></option>
-                        <option value="Car">Car</option>
-                        <option value="SUV">SUV</option>
-                        <option value="Van">Van</option>
-                        <option value="Truck">Truck</option>
+                        <option value="sedan">Sedan</option>
+                        <option value="coupe">Coupe</option>
+                        <option value="hatchback">Hatchback</option>
+                        <option value="van">Van</option>
+                        <option value="truck">Truck</option>
+                        <option value="suv">SUV</option>
+                        <option value="convertible">Convertible</option>
+                        <option value="wagon">Wagon</option>
+                        <option value="crossover">Crossover</option>
                     </select>
                 </div>
                 <div class="IsSoldContainer" style="display:none;">
                     <label for="IsSold" class="IsSoldLabel">Model :</label>
                     <select id="IsSoldSelect"><option value="0">False</option><option value="1">True</option></select>
                 </div>
-                <div class="PriceMinContainer">
+                <div class="PriceMinContainer" style="display:none;">
                     <label for="PriceMin" class="PriceMinLabel">Price Min :</label>
                     <input type="text" id="PriceMinSearch" value="0" />
                 </div>
-                <div class="PriceMaxContainer">
+                <div class="PriceMaxContainer" style="display:none;">
                     <label for="PriceMax" class="PriceMaxLabel">Price Max :</label>
                     <input type="text" id="PriceMaxSearch" value="0" />
                 </div>
@@ -218,7 +223,8 @@
 <script src="Js/shop.js"></script>
 <script src="Js/privileges.js"></script>
 <script>
-    var vehicleList = <%-JSON.stringify(vehicles)%>;
+    var vehicleListDefault = <%-JSON.stringify(vehicles)%>;
+    var vehicleList = vehicleListDefault;
     console.log(vehicleList);
     populateVehicle(vehicleList);
 </script>

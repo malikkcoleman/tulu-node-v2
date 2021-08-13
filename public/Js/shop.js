@@ -68,3 +68,39 @@ function bigView(){
 function carView(index){
     location.replace("/carview"+ "?id=" + index);
 }
+
+function SearchVehicles(){
+    vehicleList = [];
+    for(var x=0;x!=vehicleListDefault.length;x++){
+        if($('#MakeSearch').val()!=""){
+            if(vehicleListDefault[x].make == $('#MakeSearch').val()){
+                if($('#VehicleTypeSearch').val()!= ""){
+                    if(vehicleListDefault[x].vehicleType == $('#VehicleTypeSearch').val()){
+                        vehicleList.push(vehicleListDefault[x]);
+                    }
+                }else{
+                    vehicleList.push(vehicleListDefault[x]);
+                }
+            }
+        }else{
+            if($('#VehicleTypeSearch').val()!= ""){
+                if(vehicleListDefault[x].vehicleType == $('#VehicleTypeSearch').val()){
+                    vehicleList.push(vehicleListDefault[x]);
+                }
+            }
+        }
+    }
+
+    
+    $('.filterBreadCrumbs span').empty()
+    if($('#MakeSearch').val()!=""){
+        $('.filterBreadCrumbs span').append($('#MakeSearch').val().toUpperCase()+" ")
+    }
+
+    if($('#VehicleType').val()!=""){
+        $('.filterBreadCrumbs span').append($('#VehicleTypeSearch').val().toUpperCase()+" ")
+    }
+    
+    console.log(vehicleList)
+    populateVehicle(vehicleList);
+}
