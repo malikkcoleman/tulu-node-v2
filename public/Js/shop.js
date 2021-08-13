@@ -1,4 +1,5 @@
 function populateVehicle(vehicleList){
+    sort('default');
     var html = "";
     for (var i = 0; i != vehicleList.length; i++) {
         html += '<li class="vehicleListItems">';
