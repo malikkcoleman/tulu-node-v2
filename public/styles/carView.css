@@ -128,6 +128,16 @@
     color:goldenrod;
 }
 
+.slideshow-container{
+    justify-content: center;
+    position: relative;
+}
+
+.dot{
+    display:none !important;
+}
+
+
 /* Car Section */
 
 .vehicles{
@@ -197,8 +207,17 @@
     color:#79C6AC ;
 }
 
+.carInfoNotes{
+    margin:30px 0 0 0;
+    padding:15px;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
-
+.carInfoNotes .notes{
+    margin:20px 0 0 0;
+    text-align: justify;
+}
 
 /* Question Section */
 
@@ -293,6 +312,8 @@ iframe button{
     padding:15px 0;
 }
 
+
+
 @media screen and (min-width: 720px) {
     body{
         /* background:lightgreen; */
@@ -333,6 +354,10 @@ iframe button{
 
     .infoBoxVN{
         width:unset;
+    }
+
+    .carDetails,.carSpecsBox{
+        margin:0 30px;
     }
 }
 
@@ -383,9 +408,8 @@ img {vertical-align: middle;}
 /* Slideshow container */
 .slideshow-container {
   position: relative;
-  margin: auto;
-  height: auto;
-  width: auto;
+  margin: 30px 0 0 0;
+  width: 80vmin;
 }
 
 /* Next & previous buttons */
@@ -448,8 +472,7 @@ img {vertical-align: middle;}
 }
 
 .imageContain{
-    max-width: 100%;
-    max-height: 100%;
+    width:80vmin;
 }
 
 .active, .dot:hover {

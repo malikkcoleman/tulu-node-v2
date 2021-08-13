@@ -121,7 +121,7 @@
 .vehicleListItemsSmallView{
     flex-direction: row;
     align-items: center;
-    padding:20px 0;
+    /* padding:20px 0; */
     border-bottom: 1px solid #00000023;
     position: relative;
 }
@@ -224,7 +224,7 @@
         flex-direction: row;
         /* align-items: center; */
         margin:10px 0;
-        width:800px;
+        width:600px;
     }
     .carName{
         text-align: left;
