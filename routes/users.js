@@ -2,10 +2,14 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const {v4: uuidv4} = require('uuid');
 const {ensureAuthenticated, authRole} = require('../config/auth');
+var uuid = uuidv4();
+var targetId = uuid;
 
 // User Model
 const User = require('../models/userschema');
+const Address = require('../models/addressschema');
 
 // Login Page
 router.get('/login',(req,res)=>
@@ -32,12 +36,12 @@ router.get('/register',(req,res)=>
 router.post('/register',(req,res)=>{
     console.log(req.body);
     // res.send('hello');
-    const { email,fName,lName,password,password2,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,image,phoneNumber} = req.body;
+    const { email,fName,lName,password,password2,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,image,phoneNumber,street,city,province,postal} = req.body;
 
     let errors = [];
 
     // Check required fields
-    if(!email||!fName||!lName||!password||!password2||!linkedin||!instagram||!facebook||!bio||!experience||!specialty||!favoriteCar||!currentCar||!phoneNumber){
+    if(!email||!fName||!lName||!password||!password2||!linkedin||!instagram||!facebook||!bio||!experience||!specialty||!favoriteCar||!currentCar||!phoneNumber||!street||!city||!province||!postal){
         errors.push({msg:'Please fill in all fields'});
     }
 
@@ -53,7 +57,7 @@ router.post('/register',(req,res)=>{
 
     if(errors.length > 0){
         res.render('register',{
-            errors,image,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
+            errors,image,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2,street,city,province,postal
         });
     }else{
         // res.send('Pass');
@@ -65,13 +69,16 @@ router.post('/register',(req,res)=>{
                 // user Exist
                 errors.push({msg:'Email already Exist'})
                 res.render('register',{
-                    errors,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
+                    errors,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2,street,city,province,postal
                 })
             }else{
                 const newUser = new User({
-                    fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
+                    uuid,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
                 });
 
+                const newAddress = new Address({
+                    errors,targetId,street,city,province,postal
+                });
 
                 // Hash Password
                 bcrypt.genSalt(10, (err, salt) =>bcrypt.hash(newUser.password, salt, (err,hash) =>{
@@ -81,8 +88,11 @@ router.post('/register',(req,res)=>{
                     // Save User
                     newUser.save()
                     .then(user => {
-                        req.flash('success_msg', 'You are now registered and can log in.');
-                        res.redirect('/users/login')
+                        newAddress.save()
+                        .then(address=>{
+                            req.flash('success_msg', 'You are now registered and can log in.');
+                            res.redirect('/users/login')
+                        })
                     })
                     .catch(err => console.log(err));
                 }))
@@ -102,12 +112,12 @@ router.get('/addUser',(req,res)=>
 router.post('/addUser',(req,res)=>{
     console.log(req.body);
     // res.send('hello');
-    const { email,fName,lName,password,password2,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,image,phoneNumber} = req.body;
+    const { email,fName,lName,password,password2,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,image,phoneNumber,street,city,province,postal} = req.body;
 
     let errors = [];
 
     // Check required fields
-    if(!email||!fName||!lName||!password||!password2||!linkedin||!instagram||!facebook||!bio||!experience||!specialty||!favoriteCar||!currentCar||!phoneNumber){
+    if(!email||!fName||!lName||!password||!password2||!linkedin||!instagram||!facebook||!bio||!experience||!specialty||!favoriteCar||!currentCar||!phoneNumber||!street||!city||!province||!postal){
         errors.push({msg:'Please fill in all fields'});
     }
 
@@ -123,7 +133,7 @@ router.post('/addUser',(req,res)=>{
 
     if(errors.length > 0){
         res.render('AddUser',{
-            errors,image,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
+            errors,image,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2,street,city,province,postal
         });
     }else{
         // res.send('Pass');
@@ -139,7 +149,11 @@ router.post('/addUser',(req,res)=>{
                 })
             }else{
                 const newUser = new User({
-                    fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
+                    uuid,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
+                });
+
+                const newAddress = new Address({
+                    errors,targetId,street,city,province,postal
                 });
 
 
@@ -151,8 +165,11 @@ router.post('/addUser',(req,res)=>{
                     // Save User
                     newUser.save()
                     .then(user => {
-                        req.flash('success_msg', 'You are now registered and can log in.');
-                        res.redirect('/DashboardSysAdminUser')
+                        newAddress.save()
+                        .then(address=>{
+                            req.flash('success_msg', 'You are now registered and can log in.');
+                            res.redirect('/DashboardSysAdminUser')
+                        })
                     })
                     .catch(err => console.log(err));
                 }))
@@ -165,14 +182,19 @@ router.post('/addUser',(req,res)=>{
 });
 
 router.get('/editProfile',ensureAuthenticated,(req,res)=>
-    res.render('EditProfile',{
-        user:req.user
+    Address.find({targetId:req.user.toObject().uuid})
+    .then(address=>{
+        res.render('EditProfile',{
+            user:req.user,
+            address:address
+        })
     })
 );
 
 router.post('/editProfile',(req,res)=>{
     var myquery = { _id: req.user.toObject()._id };
-    const { email,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber} = req.body;
+    var myqueryaddress = { _id: req.user.toObject()._id };
+    const { email,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber,street,city,province,postal} = req.body;
     var newvalues = { 
         email: email,
         fName: fName,
@@ -187,11 +209,23 @@ router.post('/editProfile',(req,res)=>{
         currentCar: currentCar,
         phoneNumber: phoneNumber
     };
+
+    var newvaluesaddress = { 
+        street: street,
+        city: city,
+        province: province,
+        postal: postal,
+    };
         User.updateOne(myquery, newvalues)
         .then(user=>{
-            req.flash('success_msg', 'Changes Saved!');
-            res.redirect('/users/editProfile')  
+            Address.updateOne(myqueryaddress, newvaluesaddress)
+            .then(address=>{
+                req.flash('success_msg', 'Changes Saved!');
+                res.redirect('/users/editProfile')  
+            })
         })
+
+        
 });
 
 
@@ -206,6 +240,14 @@ router.get('/DashboardSysAdminEditUser',ensureAuthenticated,(req,res)=>
 );
 
 router.post('/DashboardSysAdminEditUser',(req,res)=>{
+    
+
+
+
+
+
+
+
     const { selectedId,email,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber,role} = req.body;
     var newvalues = { 
         email: email,

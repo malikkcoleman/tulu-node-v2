@@ -1,5 +1,5 @@
 .heading{
-    margin:80px 10px 0 10px;
+    margin:0px 10px 20px 10px;
     background:#79C6AC;
     padding:40px 20px 30px 20px;
 }
@@ -95,3 +95,24 @@
 .carDetails a button{
     width:200px;
 }   
+
+.breadCrumbs{
+    flex-direction: row;
+    padding:0px 15px 5px 15px;
+}
+
+.breadCrumbs p{
+    flex-direction: row;
+    font-size: smaller;
+    color:#79C6AC;
+    margin:0 15px 0 0;
+}
+
+.breadCrumbs p span{
+    color:#707070;
+    margin: 0 0 0 5px;
+}
+
+#Filter{
+    justify-content: flex-end;
+}
