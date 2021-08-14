@@ -32,6 +32,9 @@
     width:300px;
     border-radius: 10px;
     overflow: hidden;
+    justify-self: center;
+    align-self: center;
+    margin:15px 0 0 0;
 }
 
 .events li:nth-child(2) img{
