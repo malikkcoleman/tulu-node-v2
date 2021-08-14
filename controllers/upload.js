@@ -18,6 +18,7 @@ const uploadFile = async (req, res) => {
         })
         image.save().then(function(){
         })
+        res.redirect('/users/EditProfile') 
       })
     }else if(req.params.type == 'vehicle'){
       imageType = "vehicle"
