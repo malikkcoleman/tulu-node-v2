@@ -23,7 +23,7 @@ var events = [{
 function loadEvents(){
     var html = "";
     for(var x=0;x!=events.length;x++){
-        html+='<li onclick="viewEvents('+x+')">';
+        html+='<li>';
         html+='    <img src="'+events[x].image+'">';
         html+='    <div class="eventInfo">';
         html+='    <h3 class="title">'+events[x].title+'</h3>';
