@@ -1,115 +1,106 @@
-﻿
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-<head>
-    <link rel="icon" type="image/png" href="images/favicon.png">
+  <head>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tulu Canada</title>
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/css/all.css" />
     <link rel="stylesheet" href="styles/nav.css" />
     <link rel="stylesheet" href="styles/buyNow.css" />
     <link rel="stylesheet" href="styles/footer.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
     <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <nav id="Nav">
-        <a href="/">
-            <img src="images/tulu-logo_white.png" alt="">
-        </a>
-        <div class="menuButton" onclick="slideMenu()">
-            <i class="fas fa-bars fa-2x menuBtn"></i>
-            <i class="fas fa-times fa-2x closeMenuBtn"></i>
-        </div>
+      <a href="/">
+        <img src="images/tulu-logo_white.png" alt="" />
+      </a>
+      <div class="menuButton" onclick="slideMenu()">
+        <i class="fas fa-bars fa-2x menuBtn"></i>
+        <i class="fas fa-times fa-2x closeMenuBtn"></i>
+      </div>
     </nav>
 
     <div id="SideMenu" class="sideMenu">
-        <ul class="menu">
-            <%- include partials/sidemenu %>
-            
-        </ul>
-        <p class="loggedInAs"></p>
+      <ul class="menu">
+        <%- include partials/sidemenu %>
+      </ul>
+      <p class="loggedInAs"></p>
     </div>
-
 
     <div class="header">
-        <h2>Tulu Buy Now!</h2>
+      <h2>Tulu Buy Now!</h2>
     </div>
     <div class="container body-content">
-       
-            <label for="fname">Firstname:</label>
-            <input type="text" name="fname" id="fname">
-            <label for="lname">Lastname:</label>
-            <input type="text" name="lname" id="lname">
-            <label for="phoneNumber">Phone Number:</label>
-            <input type="text" name="phoneNumber" id="phoneNumber">
-            <label for="email">Email address:</label>
-            <input type="text" name="email" id="email">
+      <label for="fname">Firstname:</label>
+      <input type="text" name="fname" id="fname" />
+      <label for="lname">Lastname:</label>
+      <input type="text" name="lname" id="lname" />
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="text" name="phoneNumber" id="phoneNumber" />
+      <label for="email">Email address:</label>
+      <input type="text" name="email" id="email" />
 
-            <input type="hidden" name="status">
+      <input type="hidden" name="status" />
 
-            <button>Submit</button>
-  
+      <button>Submit</button>
     </div>
+  </body>
+  <script src="Js/sideMenu.js"></script>
 
-</body>
-<script src="Js/sideMenu.js"></script>
-
-<script src="Js/privileges.js"></script>
-    <!-- <Script>
+  <script src="Js/privileges.js"></script>
+  <!-- <Script>
             GetUser();
         </Script>   -->
-        <Script>
-            // guestprivileges();
-        </Script> 
+  <Script> // guestprivileges(); </Script>
 
-<script>
+  <script>
     var dealership = "";
     var price = "";
     var currVehicle = "";
     var address = "";
 
     window.onload = function () {
+      var hash;
+      var hashes = window.location.href
+        .slice(window.location.href.indexOf("?") + 1)
+        .split("&");
 
-        var hash;
-        var hashes = window.location.href.slice(window.location.href.indexOf("?") + 1).split("&");
-        
-        for (var i = 0; i < hashes.length; i++) {
-            hash = hashes[i].split("=");
-            if (hash[0] === "dealership") {
-                dealership = hash[1];
-            } else if (hash[0] === "price") {
-                price = hash[1];
-            }else if (hash[0] === "vehicle") {
-                currVehicle = hash[1];
-            }else if (hash[0] === "address") {
-                address = hash[1];
-            }
+      for (var i = 0; i < hashes.length; i++) {
+        hash = hashes[i].split("=");
+        if (hash[0] === "dealership") {
+          dealership = hash[1];
+        } else if (hash[0] === "price") {
+          price = hash[1];
+        } else if (hash[0] === "vehicle") {
+          currVehicle = hash[1];
+        } else if (hash[0] === "address") {
+          address = hash[1];
         }
+      }
 
-        dealership = dealership.replace(/%20/g, " ");
-        address = address.replace(/%20/g, " ");
-        currVehicle = currVehicle.replace(/%20/g, " ");
+      dealership = dealership.replace(/%20/g, " ");
+      address = address.replace(/%20/g, " ");
+      currVehicle = currVehicle.replace(/%20/g, " ");
 
-        
-        console.log(dealership);
-        console.log(price);
-        console.log(currVehicle);
-        console.log(address);
+      console.log(dealership);
+      console.log(price);
+      console.log(currVehicle);
+      console.log(address);
 
-
-        var html = "";
-        html+='<p>Dealership : '+dealership+'</p>';
-        html+='<p>Address : '+address+'</p>';
-        html+='<p>Vehicle :'+currVehicle+'</p>';
-        html+='<p>Price : $'+price+'</p>';
-        $('.header').append(html);
-    }
-
-
-</script>
+      var html = "";
+      html += "<p>Dealership : " + dealership + "</p>";
+      html += "<p>Address : " + address + "</p>";
+      html += "<p>Vehicle :" + currVehicle + "</p>";
+      html += "<p>Price : $" + price + "</p>";
+      $(".header").append(html);
+    };
+  </script>
 </html>
