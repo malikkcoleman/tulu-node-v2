@@ -8,19 +8,12 @@ const bodyParser = require("body-parser");
 const ROLE = require("../roles");
 const { ensureAuthenticated, authRole } = require("../config/auth");
 const middlewares = [bodyParser.urlencoded({ extended: true })];
-<<<<<<< HEAD
-const vehicle = require("../models/vehicleSchema");
-const Dealer = require("../models/dealershipschema");
-=======
 const vehicle = require("../models/vehicleschema");
-const Dealer = require('../models/dealershipschema');
->>>>>>> main
+const Dealer = require("../models/dealershipschema");
 const { decode } = require("punycode");
 const tempVehicle = new vehicle();
-
 const access_key_id = "PnuvF35in4";
 const secret_access_key = "JIO13VOxL2u6FE1czz5tYGkPx8eRYyXZrpRimprI";
-
 var masterVin = "";
 var year = "";
 var make = "";
@@ -59,7 +52,6 @@ var maxTowingCapacity = "";
 var grossWeight = "";
 var fuelTankCapacity = "";
 var infoData;
-
 async function decoder(VIN) {
   const decoder_query = {
     decoder_settings: {
@@ -140,14 +132,12 @@ async function decoder(VIN) {
       },
     },
   };
-
   // Set up the request POST data
   const post_data = querystring.stringify({
     access_key_id: access_key_id,
     secret_access_key: secret_access_key,
     decoder_query: JSON.stringify(decoder_query),
   });
-
   const options = {
     hostname: "api.dataonesoftware.com",
     port: 443,
@@ -158,214 +148,53 @@ async function decoder(VIN) {
       "Content-Length": Buffer.byteLength(post_data),
     },
   };
-
   var response_string = "";
   const req = https.request(options, (res) => {
     res.on("data", (d) => {
       response_string += d;
     });
-
     res.on("end", function () {
       response_json = JSON.parse(response_string);
       infoData = response_json;
       masterVin = VIN;
-      console.log(
-        response_json.query_responses.NodeJS_Sample.us_market_data
-          .common_us_data.standard_specifications[1].specification_values[2]
-      );
-      console.log(
-        response_json.query_responses.NodeJS_Sample.us_market_data
-          .common_us_data.transmissions[0].name
-      );
-      if (
-        response_json.query_responses.NodeJS_Sample.us_market_data
-          .common_us_data != undefined
-      ) {
-        if (
+      try {
+        year =
           response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.basic_data.year != undefined
-        ) {
-          year =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.basic_data.year;
-        }
-        if (
+            .common_us_data.basic_data.year;
+        make =
           response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.basic_data.make != undefined
-        ) {
-          make =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.basic_data.make;
-        }
-        if (
+            .common_us_data.basic_data.make;
+        model =
           response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.basic_data.model != undefined
-        ) {
-          model =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.basic_data.model;
-        }
-        if (
+            .common_us_data.basic_data.model;
+        trim =
           response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.basic_data.trim != undefined
-        ) {
-          trim =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.basic_data.trim;
-        }
-        if (
+            .common_us_data.basic_data.trim;
+        modelNumber =
           response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.basic_data.model_number != undefined
-        ) {
-          modelNumber =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.basic_data.model_number;
-        }
-        if (
+            .common_us_data.basic_data.model_number;
+        driveType =
           response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.basic_data.drive_type != undefined
-        ) {
-          driveType =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.basic_data.drive_type;
-        }
-        if (
+            .common_us_data.basic_data.drive_type;
+        vehicleType =
           response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.basic_data.vehicle_type != undefined
-        ) {
-          vehicleType =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.basic_data.vehicle_type;
-        }
-        if (
+            .common_us_data.basic_data.vehicle_type;
+        bodyType =
           response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.basic_data.body_type !== undefined
-        ) {
-          bodyType =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.basic_data.body_type;
-        }
-        if (
+            .common_us_data.basic_data.body_type;
+        doors =
           response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.basic_data.body_subtype != undefined
-        ) {
-          bodySubtype =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.basic_data.body_subtype;
-        }
-        if (
+            .common_us_data.basic_data.doors;
+        msrp =
           response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.basic_data.doors != undefined
-        ) {
-          doors =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.basic_data.doors;
-        }
-        if (
+            .common_us_data.pricing.msrp;
+        engineName =
           response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.pricing.msrp != undefined
-        ) {
-          msrp =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.pricing.msrp;
-        }
-        if (
-          response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.engines[0].name != undefined
-        ) {
-          engineName =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.engines[0].name;
-        }
-        if (
-          response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.engines[0].fuel_type != undefined
-        ) {
-          engineFuelType =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.engines[0].fuel_type;
-        }
-
-        if (
-          response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.engines[0].engine_id != undefined
-        ) {
-          engineID =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.engines[0].engine_id;
-        }
-        if (
-          response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.engines[0].brand != undefined
-        ) {
-          engineBrand =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.engines[0].brand;
-        }
-        if (
-          response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.engines[0].ice_max_hp != undefined
-        ) {
-          engineIceMaxHp =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.engines[0].ice_max_hp;
-        }
-        if (
-          response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.engines[0].ice_max_torque != undefined
-        ) {
-          engineIceMaxTorque =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.engines[0].ice_max_torque;
-        }
-        if (
-          response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.engines[0].max_payload != undefined
-        ) {
-          engineMaxPayLoad =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.engines[0].max_payload;
-        }
-        if (
-          response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.transmissions[0].name != undefined
-        ) {
-          transmissionName =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.transmissions[0].name;
-        }
-        if (
-          response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.standard_specifications[1]
-            .specification_values[5] != undefined
-        ) {
-          maxTowingCapacity =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.standard_specifications[1]
-              .specification_values[5];
-        }
-        if (
-          response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.standard_specifications[1].specification_values[0]
-            .specification_value != undefined
-        ) {
-          grossWeight =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.standard_specifications[1].specification_values[0]
-              .specification_value;
-        }
-        if (
-          response_json.query_responses.NodeJS_Sample.us_market_data
-            .common_us_data.standard_specifications[1].specification_values[2]
-            .specification_value !== undefined
-        ) {
-          fuelTankCapacity =
-            response_json.query_responses.NodeJS_Sample.us_market_data
-              .common_us_data.standard_specifications[1].specification_values[2]
-              .specification_value;
-        }
+            .common_us_data.engines[0].name;
+      } catch (e) {
+        console.log(e);
       }
-      /*      console.log(masterVin);
+      console.log(masterVin);
       console.log(year);
       console.log(make);
       console.log(model);
@@ -380,31 +209,45 @@ async function decoder(VIN) {
       console.log(engineIceMaxHp);
       console.log(engineIceMaxTorque);
       console.log(engineMaxPayLoad);
-      //console.log(engineFuelType);
+      // console.log(engineFuelType);
       // console.log(transmissionName);
       //console.log(maxTowingCapacity);
       console.log(grossWeight);
       console.log(fuelTankCapacity);
-
-      console.log(infoData); */
+      console.log(infoData);
     });
   });
-
   req.on("error", (error) => {
     console.error(error);
   });
-
   req.write(post_data);
-
   req.end();
   return infoData;
 }
-
-<<<<<<< HEAD
-router.post("/addvehicle", ensureAuthenticated, (req, res) => {
+router.get("/FuckingVinDoesntWork", ensureAuthenticated, (req, res) => {
+  Dealer.find().then((dealer) => {
+    res.render("FuckingVin", {
+      user: req.user,
+      dealer: dealer,
+    });
+  });
+});
+router.post("/AddVehicle", ensureAuthenticated, (req, res) => {
   decoder(req.body.vin).then((infoData) => {
-    Dealer.find({}).then((dealer) => {
-      res.render("addvehicle", {
+    Dealer.find().then((dealer) => {
+      res.render("DealerAdminAddVehicle", {
+        vin: req.body.vin,
+        infoDatas: infoData,
+        user: req.user,
+        dealer: dealer,
+      });
+    });
+  });
+});
+router.post("/SysAdminAddVehicle", ensureAuthenticated, (req, res) => {
+  decoder(req.body.vin).then((infoData) => {
+    Dealer.find().then((dealer) => {
+      res.render("DashboardSysAdminAddVehicle", {
         vin: req.body.vin,
         infoData: infoData,
         user: req.user,
@@ -412,37 +255,7 @@ router.post("/addvehicle", ensureAuthenticated, (req, res) => {
       });
     });
   });
-=======
-router.post("/AddVehicle",ensureAuthenticated,(req, res) => {
-  decoder(req.body.vin).then(infoData=>{
-    Dealer.find()
-    .then(dealer=>{
-      res.render('DealerAdminAddVehicle',{
-        vin:req.body.vin, 
-        infoDatas:infoData,
-        user:req.user,
-        dealer:dealer
-      })
-    })
-  })
 });
-
-
-router.post("/SysAdminAddVehicle",ensureAuthenticated,(req, res) => {
-  decoder(req.body.vin).then(infoData=>{
-    Dealer.find()
-    .then(dealer=>{
-      res.render('DashboardSysAdminAddVehicle',{
-        vin:req.body.vin,
-        infoData:infoData,
-        user:req.user,
-        dealer:dealer
-      })
-    })
-  })
->>>>>>> main
-});
-
 router.get("/flash", function (req) {
   req.flash("vin", masterVin);
   req.flash("year", year);
@@ -465,5 +278,4 @@ router.get("/flash", function (req) {
   req.flash("fuelTankCapacity", fuelTankCapacity);
   res.redirect("/Vehicles");
 });
-
 module.exports = router;

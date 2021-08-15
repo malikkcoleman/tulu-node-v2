@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const VehicleController = require("../controllers/vehicle.controller");
 const fetchImage = require("../middleware/getImages");
+const Image = require("../models/imageschema");
 // Vehicle Model
 const Vehicle = require("../models/vehicleschema");
 const Dealer = require('../models/dealershipschema');
@@ -214,6 +215,97 @@ router.post("/DashboardSysAdminAddVehicle", (req, res) => {
 });
 
 
+
+
+
+// SysAdmin Add Vehicle
+router.post("/FuckingVinDoesntWork", (req, res) => {
+  console.log(req.body);
+  // res.send('hello');
+  const {
+    vin,
+    year,
+    make,
+    model,
+    vehicleType,
+    trim,
+    dealerId,
+    isSold,
+    doors,
+    mileage,
+    modelNumber,
+    driveType,
+    msrp,
+    minPrice,
+    maxPrice,
+    refFee,
+    engineName,
+    engineBrand,
+    engineID,
+    fuelType,
+    iceMaxHp,
+    iceMaxTorque,
+    maxPayLoad,
+    transmissionName,
+    colorName,
+    colorHex,
+    baseTowingCapacity,
+    grossWeight,
+    fuelTankCapacity,
+    notes,
+    status
+  } = req.body;
+
+  let errors = [];
+        const newVehicle = new Vehicle({
+          vin,
+          year,
+          make,
+          model,
+          vehicleType,
+          trim,
+          dealerId,
+          isSold,
+          doors,
+          mileage,
+          modelNumber,
+          driveType,
+          msrp,
+          minPrice,
+          maxPrice,
+          refFee,
+          engineName,
+          engineBrand,
+          engineID,
+          fuelType,
+          iceMaxHp,
+          iceMaxTorque,
+          maxPayLoad,
+          transmissionName,
+          colorName,
+          colorHex,
+          baseTowingCapacity,
+          grossWeight,
+          fuelTankCapacity,
+          notes,
+          status
+        });
+
+        newVehicle
+          .save()
+          .then((vehicle) => {
+            // req.flash('success_msg', 'You are now registered and can log in.');
+            res.redirect("/sysadminvehicles/DashboardSysAdminVehicle");
+          })
+          .catch((err) => console.log(err));
+
+        console.log(newVehicle);
+        // res.send('hello');
+});
+
+
+
+
 // Dashboard Vehicle
 router.get("/DashboardVehicle", (req, res) => {
   console.log(req.user)
@@ -227,8 +319,8 @@ router.get("/DashboardVehicle", (req, res) => {
 
 // EDIT VEHICLE
 router.get("/editvehicle/:vin", (req, res) => {
-  Vehicle.find({vin: req.params.vin}).then((vehicle) => {
-    const images = fetchImage.getImagesArray(req.params.vin)
+  Vehicle.find({vin: req.params.vin}).then( async (vehicle) => {
+    const images = await fetchImage.getImagesArray(req.params.vin)
     res.render("EditVehicle", {
       user: req.user,
       vehicles: vehicle,
@@ -236,6 +328,14 @@ router.get("/editvehicle/:vin", (req, res) => {
     });
   });
 });
+
+router.post("/makedisplayphoto/:fileid/:vin", (req, res) =>{
+  Image.updateMany({target_id: req.params.vin}, {is_display_photo: false}).then(function(data){
+    Image.updateOne({_id: req.params.fileid},{is_display_photo: true}).then(function(data){
+      res.send({data: data})
+    })
+  })
+})
 
 
 router.post("/editvehicle", (req, res) => {

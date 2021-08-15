@@ -10,6 +10,7 @@ const app = express();
 const bodyparser = require('body-parser')
 const path = require("path");
 const fetchImage = require("../models/imageschema");
+const fs = require("fs");
 require("dotenv").config();
 
 
@@ -28,34 +29,11 @@ conn.once('open', () => {
   gfs.collection('photos')
 });
 
-
-function getFiles(req, res){
-    gfs.files.find().toArray((err, files) => {
-        if(!files || files.lenth === 0){
-            return res.status(404).json({
-                err: 'No files Exist'
-            })
-        }
-        return res.json(files)
-    })
-}
-
-function getFile(req, res){
-    gfs.files.findOne({filename: req.params.filename}, (err, file) => {
-        if(!file || file.lenth === 0){
-            return res.status(404).json({
-                err: 'No file Exists'
-            })
-        }
-        return res.json(file)
-    })
-}
-
 function getImage(req, res){
-    fetchImage.find({target_id: req.params.targetid, is_deleted: false}).then(function(data){
-        console.log(data)
+    fetchImage.find({target_id: req.params.targetid, is_deleted: false, is_display_photo: true}).then(function(data){
+        
         gfs.files.findOne({_id: data[0].file_id}, (err, file) => {
-            if(!file || file.lenth === 0){
+            if(!file || file.length === 0){
                 return res.status(404).json({
                     err: 'No file Exists'
                 })
@@ -69,13 +47,17 @@ function getImage(req, res){
                 })
             }
         })
+    }).catch(rrr => {
+        var img = fs.readFileSync('./public/images/noimageavailable.jpg');
+            res.writeHead(200, {'Content-Type': 'image/png' });
+            res.end(img, 'binary');
     })
 }
 
 function getCarImage(req, res){
     fetchImage.find({target_id: req.params.targetid, is_deleted: false, file_id: req.params.fileId }).then(function(data){
         gfs.files.findOne({_id: data[0].file_id}, (err, file) => {
-            if(!file || file.lenth === 0){
+            if(!file || file.length === 0){
                 return res.status(404).json({
                     err: 'No file Exists'
                 })
@@ -92,13 +74,12 @@ function getCarImage(req, res){
     })
 }
 
-var datarray = []
-function getImagesArray(targetId){
-    fetchImage.find({target_id: targetId, is_deleted: false}, (err, data) => {
-        datarray = data
+async function getImagesArray(targetId){
+    let test = await fetchImage.find({target_id: targetId, is_deleted: false}).then(function(data){
+        return data
     })
-    return datarray
+    return test
 }
 
   
-module.exports = {getFiles, getFile, getImage, getImagesArray, getCarImage};
+module.exports = {getImage, getImagesArray, getCarImage};

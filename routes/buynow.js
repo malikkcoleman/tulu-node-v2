@@ -8,12 +8,12 @@ const bodyParser = require("body-parser");
 const ROLE = require("../roles");
 const { ensureAuthenticated, authRole } = require("../config/auth");
 const middlewares = [bodyParser.urlencoded({ extended: true })];
-const vehicle = require("../models/vehicleSchema");
+const vehicle = require("../models/vehicleschema");
 const { decode } = require("punycode");
 const nodemailer = require("nodemailer");
 const Appointment = require("../models/appointmentschema");
 const Dealer = require("../models/dealershipschema");
-const User = require("../models/userSchema");
+const User = require("../models/userschema");
 const BuyNow = require("../models/buynowschema");
 
 const transporter = nodemailer.createTransport({
@@ -29,6 +29,7 @@ router.post("/email", (req, res) => {
   const {
     targetId,
     vin,
+    vehicle,
     firstName,
     lastName,
     phoneNumber,
@@ -46,6 +47,7 @@ router.post("/email", (req, res) => {
   if (
     !targetId ||
     !vin ||
+    !vehicle ||
     !firstName ||
     !lastName ||
     !phoneNumber ||
@@ -75,6 +77,7 @@ router.post("/email", (req, res) => {
     const newBuyNow = new BuyNow({
       targetId,
       vin,
+      vehicle,
       firstName,
       lastName,
       phoneNumber,
@@ -94,56 +97,53 @@ router.post("/email", (req, res) => {
 
     console.log(newBuyNow);
   }
-  // var mailOptions = {
-  //   from: "tuluapps@gmail.com",
-  //   to: "info@tulucanada.com",
-  //   subject: "Tulu Canada Application Buy Now Request",
-  //   text:
-  //     "Customer Information \n" +
-  //     "Full Name: " +
-  //     req.body.customer +
-  //     "\n" +
-  //     "Phone Number: " +
-  //     req.body.phonenumber +
-  //     "\n" +
-  //     "Email Address: " +
-  //     req.body.email +
-  //     "\n" +
-  //     "Street: " +
-  //     req.body.street +
-  //     "\n" +
-  //     "City: " +
-  //     req.body.city +
-  //     "\n" +
-  //     "Province: " +
-  //     req.body.province +
-  //     "\n" +
-  //     "Postal Code: " +
-  //     req.body.postalcode +
-  //     "\n" +
-  //     "Notes: \n" +
-  //     req.body.notes +
-  //     "\n\n" +
-  //     "Tulu Information \n" +
-  //     "Tulu: " +
-  //     req.body.tulu +
-  //     "\n\n" +
-  //     "Dealership Information \n" +
-  //     "Dealership: " +
-  //     req.body.dealership +
-  //     "\n" +
-  //     "Vehicle: " +
-  //     req.body.vehicle +
-  //     "\n",
-  // };
+  var mailOptions = {
+    from: "tuluapps@gmail.com",
+    to: "info@tulucanada.com",
+    subject: "Tulu Canada Application (LEAD) Buy Now Request",
+    text:
+      "Customer Information \n" +
+      "Full Name: " +
+      req.body.firstName +
+      " " +
+      req.body.lastName +
+      "\n" +
+      "Phone Number: " +
+      req.body.phoneNumber +
+      "\n" +
+      "Email Address: " +
+      req.body.email +
+      "\n" +
+      "Street: " +
+      req.body.street +
+      "\n" +
+      "City: " +
+      req.body.city +
+      "\n" +
+      "Province: " +
+      req.body.province +
+      "\n" +
+      "Postal Code: " +
+      req.body.postal +
+      "\n\n" +
+      "Dealership Information \n" +
+      "Dealership: " +
+      req.body.dealership +
+      "\n" +
+      "Vehicle: " +
+      req.body.vehicle +
+      "\n" +
+      "Vin: " +
+      req.body.vin,
+  };
 
-  // transporter.sendMail(mailOptions, function (error, info) {
-  //   if (error) {
-  //     console.log(error);
-  //   } else {
-  //     console.log("Email Send: " + info.response);
-  //   }
-  // });
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email Send: " + info.response);
+    }
+  });
 });
 
 module.exports = router;

@@ -1,4 +1,5 @@
 function populateVehicle(vehicleList){
+    sort('default');
     var html = "";
     for (var i = 0; i != vehicleList.length; i++) {
         html += '<li class="vehicleListItems">';
@@ -7,13 +8,13 @@ function populateVehicle(vehicleList){
         html += '   <div class="carDetails">';
         html += '       <h2 class="carName">' + vehicleList[i].year + ' ' + vehicleList[i].make + ' ' + vehicleList[i].model + '</h2>';
         html += '       <p class="carPrice">$'+vehicleList[i].maxPrice + '</p>';
-        html += '       <p class="carMileage">1234567890 Kms</p>';
+        html += '       <p class="carMileage">'+vehicleList[i].mileage +'  Kms</p>';
         html += '       <div class="additionalCarInfo" id="vehicle' + i + '">';
         html += '           <p class="carTrim">' + vehicleList[i].trim + '</p>';
         html += '           <p class="carTransmission">' + vehicleList[i].transmissionName + '</p>';
         html += '       </div>';
         html += '       <div class="moreInfoContainer">';
-        html += '               <button class="moreInfo" onclick="carView(' + i + ')">View Vehicle</button>';
+        html += '              <a href="carview/'+ vehicleList[i].vin +'"><button class="moreInfo">View Vehicle</button></a>';
         html += '       </div>';
         html += '   </div>';
         html += '</li>';
@@ -32,7 +33,7 @@ function smallView(){
         html+='        <h2 class="carName">' + vehicleList[i].year + ' ' + vehicleList[i].make + ' ' + vehicleList[i].model + '</h2>';
         html+='        <p class="carPrice">$'+vehicleList[i].maxPrice + '</p>';
         html+='        <p class="carMileage">1234567890 Kms</p>';
-        html+='        <button class="moreInfo" onclick="carView(' + i + ')">View Vehicle</button>';
+        html+='        <a href="carview/'+ vehicleList[i].vin +'"><button class="moreInfo">View Vehicle</button></a>';
         html+='    </div>';
         html+='</li>';
     }
@@ -55,7 +56,7 @@ function bigView(){
         html += '           <p class="carTransmission">' + vehicleList[i].transmissionName + '</p>';
         html += '       </div>';
         html += '       <div class="moreInfoContainer">';
-        html += '               <button class="moreInfo" onclick="carView(' + i + ')">View Vehicle</button>';
+        html += '               <a href="carview/'+ vehicleList[i].vin +'"><button class="moreInfo">View Vehicle</button></a>';
         html += '       </div>';
         html += '   </div>';
         html += '</li>';
@@ -66,4 +67,40 @@ function bigView(){
 
 function carView(index){
     location.replace("/carview"+ "?id=" + index);
+}
+
+function SearchVehicles(){
+    vehicleList = [];
+    for(var x=0;x!=vehicleListDefault.length;x++){
+        if($('#MakeSearch').val()!=""){
+            if(vehicleListDefault[x].make == $('#MakeSearch').val()){
+                if($('#VehicleTypeSearch').val()!= ""){
+                    if(vehicleListDefault[x].vehicleType == $('#VehicleTypeSearch').val()){
+                        vehicleList.push(vehicleListDefault[x]);
+                    }
+                }else{
+                    vehicleList.push(vehicleListDefault[x]);
+                }
+            }
+        }else{
+            if($('#VehicleTypeSearch').val()!= ""){
+                if(vehicleListDefault[x].vehicleType == $('#VehicleTypeSearch').val()){
+                    vehicleList.push(vehicleListDefault[x]);
+                }
+            }
+        }
+    }
+
+    
+    $('.filterBreadCrumbs span').empty()
+    if($('#MakeSearch').val()!=""){
+        $('.filterBreadCrumbs span').append($('#MakeSearch').val().toUpperCase()+" ")
+    }
+
+    if($('#VehicleType').val()!=""){
+        $('.filterBreadCrumbs span').append($('#VehicleTypeSearch').val().toUpperCase()+" ")
+    }
+    
+    console.log(vehicleList)
+    populateVehicle(vehicleList);
 }

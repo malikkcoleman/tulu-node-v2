@@ -3,7 +3,7 @@ function populateVehicles(){
     var html = "";
     for(var x=0;x!=vehicleList.length;x++){
         html+='<li class="activeListingListItem" id="' + vehicleList[x].vin + '" >';
-        html+='    <img src="" alt="" class="listingImage">';
+        html+='    <img src="/image/'+ vehicleList[x].vin +'" alt="" class="listingImage">';
         html+='    <div class="listingInfo" onclick="ViewVehicle(\'' + vehicleList[x].vin + '\',\'' + vehicleList[x].dealerId + '\');">';
         html+='        <h4 class="listingName">' + vehicleList[x].year + ' ' + vehicleList[x].make + ' ' + vehicleList[x].model + '</h4>';
         html+='        <p class="listingPrice">$' + vehicleList[x].maxPrice + '</p>';

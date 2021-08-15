@@ -82,15 +82,18 @@ pgroutr.get("/shop", (req, res) => {
       res.status(500).send(error);
     });
 });
-pgroutr.get("/carview", (req, res) => {
-  Vehicle.find({})
+pgroutr.get("/carview/:vin", (req, res) => {
+  Vehicle.find({vin: req.params.vin})
     .then((vehicles) => {
       Dealer.find({})
-        .then((dealers) => {
+        .then(async (dealers) => {
+          const images = await fetchImage.getImagesArray(req.params.vin)
+          console.log(images)
           res.render("CarView", {
             vehicles: vehicles,
             user: req.user,
             dealers: dealers,
+            images: images
           });
         })
         .catch((err) => {
@@ -168,9 +171,9 @@ pgroutr.get("/DashboardSysAdminUser", (req, res) => {
 
 
 
-pgroutr.get('/DealerListing',(req,res)=>{
-    Dealer.find({}).then((dealer)=>{
-        Vehicle.find({}).then((vehicle)=>{
+pgroutr.get('/DealerListing/:dealerId',(req,res)=>{
+    Dealer.find({uuid: req.params.dealerId}).then((dealer)=>{
+        Vehicle.find({dealerId:req.params.dealerId}).then((vehicle)=>{
             res.render('DealerListing',{
                 dealer:dealer,
                 vehicle:vehicle,
@@ -188,14 +191,6 @@ pgroutr.get('/DealerListing',(req,res)=>{
 pgroutr.post("/upload/:type/:targetid", uploadController.uploadFile), (req, res) => {
     console.log(req)
 };
-
-pgroutr.get('/files', (req, res) => {
-    fetchImage.getFiles(req, res)
-})
-
-pgroutr.get('/files/:filename', (req, res) => {
-    fetchImage.getFile(req, res)
-})
 
 pgroutr.get('/image/:targetid', (req, res) => {
     fetchImage.getImage(req, res)

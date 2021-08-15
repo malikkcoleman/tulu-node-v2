@@ -12,7 +12,7 @@ window.onload = function () {
         } 
     }
     console.log(id);
-    populateVehicle(id);
+    // populateVehicle(id);
 }
 
 
