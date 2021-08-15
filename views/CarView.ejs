@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="../styles/carView.css" />
     <link rel="stylesheet" href="../styles/gallery.css" />
     <link rel="stylesheet" href="../styles/footer.css" />
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
 </head>
 <body>
@@ -284,35 +284,17 @@
         </aside>
 
 </body>
-<script src="../Js/sideMenu.js"></script>
-<script src="../Js/carView.js"></script>
+
 
 <script type="text/javascript">
-    var slideIndex = 1;
-    showSlides(slideIndex);
 
-    function plusSlides(n) {
-    showSlides(slideIndex += n);
-    }
+    var vin = <%- JSON.stringify(vehicles[0].vin)%>
+    console.log(vin)
+    var dealers = <%- JSON.stringify(dealers)%>
+    console.log(dealers)
+    var dealerId = dealers[0]._id;
 
-    function currentSlide(n) {
-    showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
-    if (n > slides.length) {slideIndex = 1}    
-    if (n < 1) {slideIndex = slides.length}
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
-    }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex-1].style.display = "block";  
-    dots[slideIndex-1].className += " active";
-    }
 </script>
+<script src="../Js/sideMenu.js"></script>
+<script src="../Js/carView.js"></script>
 </html>

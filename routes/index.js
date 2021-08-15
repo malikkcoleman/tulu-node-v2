@@ -85,7 +85,7 @@ pgroutr.get("/shop", (req, res) => {
 pgroutr.get("/carview/:vin", (req, res) => {
   Vehicle.find({vin: req.params.vin})
     .then((vehicles) => {
-      Dealer.find({})
+      Dealer.find({uuid:vehicles[0].dealerId})
         .then(async (dealers) => {
           const images = await fetchImage.getImagesArray(req.params.vin)
           console.log(images)
@@ -126,6 +126,26 @@ pgroutr.get("/tululist", (req, res) => {
       res.status(500).send(error);
     });
 });
+
+
+pgroutr.get("/BuyNow/:vin",(req,res)=>{
+    Vehicle.find({vin:req.params.vin})
+    .then((vehicle)=>{
+      Dealer.find({uuid: vehicle[0].dealerId})
+      .then((dealer)=>{
+          res.render('BuyNow',{
+              dealer:dealer,
+              vehicle:vehicle,
+              user:req.user
+          })
+      })
+      }).catch((err)=>{
+          res.status(500).send(error);
+      })
+    .catch((err) => {
+      res.status(500).send(error);
+    });
+})
 
 pgroutr.get("/DashboardSysAdminTulu", (req, res) => {
   User.find({ role: "tulu" })
