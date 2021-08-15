@@ -110,13 +110,22 @@
           <label for="postal">Postal</label>
           <input type="text" id="postal" name="postal" class="form-control" placeholder="Enter Postal" value=""/>
         </div>
-        <button type="submit">
+        <p onclick="popUp()" class="privacyPolicy">Please Read Privacy Policy and Terms and Condition</p>
+        <button type="submit" disabled class="registerBtn">
           Register
         </button>
       </form>
       <p class="lead mt-4">Have An Account? <a href="/users/login">Login</a></p>
     </div>
+    <div class="popUp">
+      <div class="wrapper">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus pariatur hic aspernatur veritatis reprehenderit perspiciatis dignissimos culpa totam at officia libero obcaecati voluptas, esse incidunt eaque optio quas voluptatum. Ab tempore quo nobis minima modi nemo quasi voluptas eaque eum ipsa ex, animi nesciunt et fugiat voluptates odit facilis totam iusto, nulla quia corporis? Doloribus neque temporibus veniam earum natus repudiandae, tempore vel hic ipsa dolorem accusamus! Minus doloremque, rem itaque nihil ipsum necessitatibus animi, quam sequi ut quisquam repellendus ex, nobis repudiandae omnis dolorem vitae. Aliquid commodi officiis asperiores laborum delectus eligendi, aut sint hic optio quaerat nulla, dolor beatae itaque voluptatem assumenda, reprehenderit saepe maiores veritatis consectetur nobis at quas voluptate. Corrupti dolorem dolores consequatur, nemo amet hic porro aliquam harum recusandae odio enim dignissimos cupiditate! Natus sapiente odio maiores fugiat nostrum doloribus, dicta dolorum, velit maxime ea fuga nesciunt, unde accusantium aut ullam? Odit tempore temporibus repellat?
+        </p>
+        <button type="button" onclick="agree()">I agree</button>
+      </div>
+    </div>
   </body>
   <script src="../Js/sideMenu.js"></script>
   <script src="../Js/privileges.js"></script>
+  <script src="../Js/register.js"></script>
 </html>

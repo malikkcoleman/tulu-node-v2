@@ -118,7 +118,7 @@
     function populateTulu(){
         for(var x = 0;x!=tuluList.length; x++){
             if(tuluList[x]._id == tuluId){
-                console.log(tuluList[x]);
+                // console.log(tuluList[x]);
                 $('.userName').append(tuluList[x].fName +' '+tuluList[x].lName);
                 $('.userRole').append(tuluList[x].role);
                 $('.userBio').append(tuluList[x].bio);
@@ -155,13 +155,6 @@
                 $('.favouriteCar').append(tuluList[x].favoriteCar);
                 $('.currentCar').append(tuluList[x].currentCar);
 
-                for(var z=0;z!=addressList.length;z++){
-                    console.log(addressList)
-                    if(addressList[z].targetId == tuluList[x]._id){
-                        
-                        $('.subInfo .location').append(addressList[z].street +' '+addressList[z].city+', '+addressList[z].province+', '+addressList[z].postal);
-                    }
-                }
                 }
         }
     };
