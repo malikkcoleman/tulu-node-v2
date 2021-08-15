@@ -27,6 +27,12 @@
     width:100px;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.userImage img{
+    height:100%;
+    position: absolute;
 }
 
 .userImage i{

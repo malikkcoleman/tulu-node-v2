@@ -47,7 +47,16 @@
     overflow: hidden;
     width:100px;
     height:100px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
+
+.dealerImage img{
+    height:60px;
+}
+
+
 
 .dealerInfo{
     margin:0 0 0 10px;

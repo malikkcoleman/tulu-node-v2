@@ -14,10 +14,11 @@ const uploadFile = async (req, res) => {
             target_id: req.params.targetid,
             is_deleted: false,
             file_id: req.file.id,
-            is_display_photo: false
+            is_display_photo: true
         })
         image.save().then(function(){
         })
+        res.redirect('/users/EditProfile') 
       })
     }else if(req.params.type == 'vehicle'){
       imageType = "vehicle"

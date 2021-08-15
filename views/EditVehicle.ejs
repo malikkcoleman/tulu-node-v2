@@ -60,7 +60,11 @@
 
             <% if (images.length > 0){%>
               <% images.forEach(function(image){  %>
-                <img src="/image/<%= image.target_id %>/<%= image.file_id %>" alt="">
+                <% if (image.is_display_photo == true){%>
+                  <img src="/image/<%= image.target_id %>/<%= image.file_id %>" onclick="clicked('<%= image._id %>', '<%= image.target_id %>');" alt="" style="border: 3px solid #79C6AC;" >
+                <%}else{%>
+                  <img src="/image/<%= image.target_id %>/<%= image.file_id %>" onclick="clicked('<%= image._id %>', '<%= image.target_id %>');" alt="">
+                <%}%>
               <% }) %>
             <%} else {%>
                 <br>
@@ -165,6 +169,20 @@
         console.log(imagesPreview)
       });
     });
+    function clicked(fileid, vin) {
+       if (confirm('Do you want this photo to be a Display Photo?')) {
+        $.ajax({
+          url: "/vehicles/makedisplayphoto/" + fileid + "/" + vin,
+          method: "POST",
+          success: function(response){
+            console.log(response)
+            setInterval('location.reload()', 1000);
+          }
+        });
+       } else {
+           return false;
+       }
+    }
   </script>
 </html>
 

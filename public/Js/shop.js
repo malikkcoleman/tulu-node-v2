@@ -8,7 +8,7 @@ function populateVehicle(vehicleList){
         html += '   <div class="carDetails">';
         html += '       <h2 class="carName">' + vehicleList[i].year + ' ' + vehicleList[i].make + ' ' + vehicleList[i].model + '</h2>';
         html += '       <p class="carPrice">$'+vehicleList[i].maxPrice + '</p>';
-        html += '       <p class="carMileage">1234567890 Kms</p>';
+        html += '       <p class="carMileage">'+vehicleList[i].mileage +'  Kms</p>';
         html += '       <div class="additionalCarInfo" id="vehicle' + i + '">';
         html += '           <p class="carTrim">' + vehicleList[i].trim + '</p>';
         html += '           <p class="carTransmission">' + vehicleList[i].transmissionName + '</p>';

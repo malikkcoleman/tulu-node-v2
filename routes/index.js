@@ -171,9 +171,9 @@ pgroutr.get("/DashboardSysAdminUser", (req, res) => {
 
 
 
-pgroutr.get('/DealerListing',(req,res)=>{
-    Dealer.find({}).then((dealer)=>{
-        Vehicle.find({}).then((vehicle)=>{
+pgroutr.get('/DealerListing/:dealerId',(req,res)=>{
+    Dealer.find({uuid: req.params.dealerId}).then((dealer)=>{
+        Vehicle.find({dealerId:req.params.dealerId}).then((vehicle)=>{
             res.render('DealerListing',{
                 dealer:dealer,
                 vehicle:vehicle,

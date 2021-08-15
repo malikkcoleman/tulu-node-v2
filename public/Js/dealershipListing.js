@@ -13,16 +13,14 @@ window.onload = function () {
 }
 
 function populateDealer(){
-	for(var x = 0; x!= dealerList.length;x++){
-		if(dealerList[x]._id == gDealerId){
-			DealerUuid = dealerList[x].uuid;
+
+			DealerUuid = dealerList[0].uuid;
 			var html ="";
-			html+="<h2>"+dealerList[x].name+"</h2>"
-			html+="<p>"+dealerList[x].website+"</p>"
+			html+="<h2>"+dealerList[0].name+"</h2>"
+			html+="<p>"+dealerList[0].website+"</p>"
 			$('.heading').empty();
 			$('.heading').append(html);
-		}
-	}
+
 	populateVehicle();
 }
 
@@ -30,18 +28,15 @@ function populateVehicle(){
 	var html = "";
 	var text = '';
 	for(var x=0;x!= vehicleList.length;x++){
-		if(vehicleList[x].targetId == DealerUuid){
 			html+='<li class="vehicleListItemsSmallView">';
-			html+='    <img ssrc="/image/'+ vehicleList[x].vin +'" class="carImage" alt="car-image"/>';
+			html+='    <img src="/image/'+ vehicleList[x].vin +'" class="carImage" alt="car-image"/>';
 			html+='    <div class="carDetails">';
 			html+='        <h2 class="carName">' + vehicleList[x].year + ' ' + vehicleList[x].make + ' ' + vehicleList[x].model + '</h2>';
 			html+='        <p class="carPrice">$'+vehicleList[x].maxPrice + '</p>';
 			html+='        <p class="carMileage">1234567890 Kms</p>';
-			html+='        <button class="moreInfo" onclick="carView(' + x + ')">View Vehicle</button>';
+			html+='        <a href="/carview/'+ vehicleList[x].vin +'"><button class="moreInfo">View Vehicle</button></a>';
 			html+='    </div>';
 			html+='</li>';
-		}
-
 	}
 	$("#dealershipListingList").empty();
 	$("#dealershipListingList").append(html);
@@ -50,4 +45,41 @@ function populateVehicle(){
 
 function carView(index){
 	location.replace("/carview"+ "?id=" + index);
+}
+
+
+function SearchVehicles(){
+    vehicleList = [];
+    for(var x=0;x!=vehicleListDefault.length;x++){
+        if($('#MakeSearch').val()!=""){
+            if(vehicleListDefault[x].make == $('#MakeSearch').val()){
+                if($('#VehicleTypeSearch').val()!= ""){
+                    if(vehicleListDefault[x].vehicleType == $('#VehicleTypeSearch').val()){
+                        vehicleList.push(vehicleListDefault[x]);
+                    }
+                }else{
+                    vehicleList.push(vehicleListDefault[x]);
+                }
+            }
+        }else{
+            if($('#VehicleTypeSearch').val()!= ""){
+                if(vehicleListDefault[x].vehicleType == $('#VehicleTypeSearch').val()){
+                    vehicleList.push(vehicleListDefault[x]);
+                }
+            }
+        }
+    }
+
+
+	$('.filterBreadCrumbs span').empty()
+    if($('#MakeSearch').val()!=""){
+        $('.filterBreadCrumbs span').append($('#MakeSearch').val().toUpperCase()+" ")
+    }
+
+    if($('#VehicleType').val()!=""){
+        $('.filterBreadCrumbs span').append($('#VehicleTypeSearch').val().toUpperCase()+" ")
+    }
+    
+    console.log(vehicleList)
+    populateVehicle(vehicleList);
 }

@@ -27,6 +27,23 @@
     background:white;
 }
 
+.events li img{
+    height:300px;
+    width:300px;
+    border-radius: 10px;
+    overflow: hidden;
+    justify-self: center;
+    align-self: center;
+    margin:15px 0 0 0;
+}
+
+.events li:nth-child(2) img{
+    height:200px;
+    width:300px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
 .events li .eventInfo{
     padding:20px;
 }

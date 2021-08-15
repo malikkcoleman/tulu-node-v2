@@ -27,7 +27,7 @@
             console.log(tuluList[x]);
             if(tuluList[x].role == "tulu"){
                 html+='<li onclick="selectTulu('+x+')">';
-                html+='    <img src="" alt="">';
+                html+='    <img src="/image/'+ tuluList[x]._id +'" alt="">';
                 html+='    <div class="tuluInfo">';
                 html+='        <p class="name">'+tuluList[x].fName+ ' ' +tuluList[x].lName+ '</p>';
                 html+='        <p class="email">'+tuluList[x].email+'</p>';
