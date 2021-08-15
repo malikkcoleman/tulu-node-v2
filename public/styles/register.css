@@ -28,10 +28,43 @@ button{
     margin:0 0 20px 0;
 }
 
+.registerBtn{
+    opacity: 0.5;
+}
+
 .lead{
     text-align: center;
 }
 
 .lead a{
     color:#79C6AC;
+}
+
+.privacyPolicy{
+    color:#79C6AC;
+    text-align: center;
+    margin:10px 0;
+}
+
+.popUp{
+    display: none;
+    height:100vh;
+    width:100vw;
+    justify-content: center;
+    align-items: center;
+    background:#00000063;
+    position: fixed;
+}
+
+.popUp .wrapper{
+    padding:30px;
+    width:80vmin;
+    height:400px;
+    background:white;
+    overflow: scroll;
+    border-radius: 10px;
+}
+
+.popUp .wrapper button{
+    margin:20px 0 0 0;
 }

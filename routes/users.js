@@ -41,7 +41,7 @@ router.post('/register',(req,res)=>{
     let errors = [];
 
     // Check required fields
-    if(!email||!fName||!lName||!password||!password2||!linkedin||!instagram||!facebook||!bio||!experience||!specialty||!favoriteCar||!currentCar||!phoneNumber||!street||!city||!province||!postal){
+    if(!email||!fName||!lName||!password||!password2||!bio||!experience||!specialty||!favoriteCar||!currentCar||!phoneNumber||!street||!city||!province||!postal){
         errors.push({msg:'Please fill in all fields'});
     }
 
