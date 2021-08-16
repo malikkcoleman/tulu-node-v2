@@ -1,68 +1,53 @@
 
- 
+window.onload = function () {
+    populateFields();
+}
 
-    window.onload = function () {
+function populateFields(){
+    $('#dealerId').val(dealer[0]._id);
+    $('#userId').val(user._id);
+    $('#vin').val(vehicle[0].vin);
+    $('#vehicle').val(vehicle[0].year +" "+vehicle[0].make +" "+vehicle[0].model);
+    $('#vehiclePrice').val(vehicle[0].maxPrice);
+    $('#customer').val(user.fName+" "+user.lName);
+    $('#dealership').val(dealer[0].name);
 
-        var hash;
-        var hashes = window.location.href.slice(window.location.href.indexOf("?") + 1).split("&");
-
-        for (var i = 0; i < hashes.length; i++) {
-            hash = hashes[i].split("=");
-            if (hash[0] === "dealerId") {
-                dealerId = hash[1];
-            } else if (hash[0] === "vin") {
-                vin = hash[1];
-            } 
-        }
-        populateFields();
+    $('.vehicleLabel').append("<span>"+vehicle[0].year +" "+vehicle[0].make +" "+vehicle[0].model+"</span>");
+    $('.priceLabel').append("<span>"+vehicle[0].maxPrice+"</span>");
+    $('.dealershipLabel').append("<span>"+dealer[0].name+"</span>");
+    $('.customerLabel').append("<span>"+user.fName+" "+user.lName+"</span>");
+    var html="";
+    for(var x=0;x!=tulus.length;x++){
+            html+='<li onclick="selectTulu('+x+')">';
+            html+='    <img src="/image/'+ tulus[x]._id +'" alt="">';
+            html+='    <div class="tuluInfo">';
+            html+='        <p class="name">'+tulus[x].fName+ ' ' +tulus[x].lName+ '</p>';
+            html+='        <p class="email">'+tulus[x].email+'</p>';
+            html+='    </div>';
+            html+='</li>';
     }
+    $('.tuluList').append(html);
+}
 
-    function populateFields(){
-        $('#dealerId').val(dealerId);
-        $('#userId').val(currUserId);
-        $('#vin').val(vin);
+function selectTulu(index){
+    document.querySelector('.tuluPicker').style = "display:none;";
+    $('#tuluId').val(tulus[index]._id);
+    $('#tulu').val(tulus[index].fName + " " + tulus[index].lName)
+    $('.tuluLabel').append("<span>"+tulus[index].fName + " " + tulus[index].lName+"</span>")
+}
 
-        var html="";
-        for(var x=0;x!=tuluList.length;x++){
-            console.log(tuluList[x]);
-            if(tuluList[x].role == "tulu"){
-                html+='<li onclick="selectTulu('+x+')">';
-                html+='    <img src="/image/'+ tuluList[x]._id +'" alt="">';
-                html+='    <div class="tuluInfo">';
-                html+='        <p class="name">'+tuluList[x].fName+ ' ' +tuluList[x].lName+ '</p>';
-                html+='        <p class="email">'+tuluList[x].email+'</p>';
-                html+='    </div>';
-                html+='</li>';
-            }
-        }
-        
-        $('.tuluList').append(html);
 
-        for(var x=0;x!=vehicleList.length;x++){
-            if(vehicleList[x].vin == vin){
-                $("#vehicle").val(vehicleList[x].year +" "+vehicleList[x].make+" "+vehicleList[x].model)
-                $(".vehicleLabel").append("<span>"+vehicleList[x].year +" "+vehicleList[x].make+" "+vehicleList[x].model+"</span>")
-                $("#vehiclePrice").val(vehicleList[x].maxPrice);
-                $(".priceLabel").append("<span>"+vehicleList[x].maxPrice+"</span>");
-                $("#customer").val(user.fName +" "+ user.lName);
-                $(".customerLabel").append("<span>"+user.fName +" "+ user.lName+"</span>");
-                vehiclerTargetId = vehicleList[x].targetId;
+function showPrivacyTerms(){
+    document.querySelector('.privacyTerms').style="display:flex;"
+}
 
-            }
-        }
+function iAgree(){
+    document.querySelector('.privacyTerms').style="display:none;"
+    document.querySelector('.saveTestDrive').style="opacity:1;";
+    document.querySelector('.saveTestDrive').disabled=false;
+}
 
-        for(var x=0;x!=dealerList.length;x++){
-            if(dealerList[x].uuid == vehiclerTargetId){
-                $("#dealership").val(dealerList[x].name);
-                $(".dealershipLabel").append("<span>"+dealerList[x].name+"</span>");
-            }
-        }
-
-    }
-
-    function selectTulu(id){
-        document.querySelector('.tuluPicker').style = "display:none;";
-        $('#tuluId').val(tuluList[id]._id);
-        $('#tulu').val(tuluList[id].fName + " " + tuluList[id].lName)
-        $('.tuluLabel').append("<span>"+tuluList[id].fName + " " + tuluList[id].lName+"</span>")
-    }
+function skip(){
+    document.querySelector('.tuluPicker').style = "display:none;";
+    $('.tuluLabel').append("<span>Skipped</span>")
+}

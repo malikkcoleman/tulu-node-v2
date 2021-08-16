@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="icon" type="image/png" href="../images/favicon.png" />
+    <link rel="icon" type="image/png" href="../../images/favicon.png" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tulu Canada</title>
-    <link rel="stylesheet" href="../styles/reset.css" />
-    <link rel="stylesheet" href="../styles/css/all.css" />
-    <link rel="stylesheet" href="../styles/nav.css" />
-    <link rel="stylesheet" href="../styles/booking.css" />
+    <link rel="stylesheet" href="../../styles/reset.css" />
+    <link rel="stylesheet" href="../../styles/css/all.css" />
+    <link rel="stylesheet" href="../../styles/nav.css" />
+    <link rel="stylesheet" href="../../styles/booking.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
-    <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../../jquery/dist/jquery.min.js"></script>
   </head>
   <body>
     <nav id="Nav">
       <a href="/">
-        <img src="../images/tulu-logo_white.png" alt="" />
+        <img src="../../images/tulu-logo_white.png" alt="" />
       </a>
       <div class="menuButton" onclick="slideMenu()">
         <i class="fas fa-bars fa-2x menuBtn"></i>
@@ -37,7 +37,7 @@
     <div class="bookAppointmentContainer" id="bookAppointmentContainer">
       <div class="wrapper">
         <h1>Appointment</h1>
-        <label class="tuluLabel">Tulu:</label>
+        <label class="tuluLabel">Tulu: </label>
         <label class="vehicleLabel">Vehicle:</label>
         <label class="priceLabel">Price:</label>
         <label class="dealershipLabel">Dealership:</label>
@@ -45,38 +45,30 @@
         <div class="inputFieldDiv">
           <%- include partials/messages %>
           <form id="my-form" action="/appointment/email" method="POST">
-            <input type="hidden" id="dealerId" name="dealerId" disabled />
-            <input type="hidden" id="tuluId" name="tuluId" disabled />
-            <input type="hidden" id="userId" name="userId" disabled />
-            <input type="hidden" id="vin" name="vin" disabled />
-            <input type="hidden" id="tulu" name="tulu" value="" disabled />
+            <input type="hidden" id="dealerId" name="dealerId"/>
+            <input type="hidden" id="tuluId" name="tuluId"/>
+            <input type="hidden" id="userId" name="userId"/>
+            <input type="hidden" id="vin" name="vin"/>
+            <input type="hidden" id="tulu" name="tulu"/>
             <input
               type="hidden"
               id="vehicle"
               name="vehicle"
-              value=""
-              disabled
             />
             <input
               type="hidden"
               id="vehiclePrice"
               name="vehiclePrice"
-              value=""
-              disabled
             />
             <input
               type="hidden"
               id="customer"
               name="customer"
-              value=""
-              disabled
             />
             <input
               type="hidden"
               id="dealership"
               name="dealership"
-              value=""
-              disabled
             />
             <label for="phonenumber">Phone Number: </label>
             <input type="text" id="phonenumber" name="phonenumber" />
@@ -117,6 +109,7 @@
               type="button"
               class="privacyTermsBtn"
               onclick="showPrivacyTerms()"
+              
             >
               Privacy Policy & Terms and Condition
             </button>
@@ -125,7 +118,7 @@
               A tulu Canada representative will contact you in the next 24 hours
               to confirm your valid license and the appointment
             </p>
-            <button class="saveTestDrive">Book Appointment</button>
+            <button class="saveTestDrive" type="submit"disabled >Book Appointment</button>
             <input
               type="button"
               class="cancelTestDrive"
@@ -215,7 +208,6 @@
           </p>
 
           <button class="agreeBtn" onclick="iAgree()">I Agree</button>
-          <button class="cancelBtn" onclick="CancelTest()">Cancel</button>
         </div>
       </div>
     </div>
@@ -225,25 +217,20 @@
         <p>If so, select your tulu.</p>
       </div>
       <ul class="tuluList"></ul>
-      <button>Skip</button>
+      <button onclick="skip()">Skip</button>
       <p class="skipText">If not, skip</p>
     </div>
   </body>
-  <script src="../Js/sideMenu.js"></script>
-  <script src="../Js/booking.js"></script>
+  
   <script>
 
-    var vehicleList = <%-JSON.stringify(vehicles)%>;
-    var dealerList = <%-JSON.stringify(dealers)%>
-    var userList = <%-JSON.stringify(users)%>
+    var vehicle = <%-JSON.stringify(vehicles)%>;
+    var dealer = <%-JSON.stringify(dealer)%>
+    var tulus = <%-JSON.stringify(tulus)%>
     var user = <%-JSON.stringify(user)%>
 
-
-    var vin = "";
-    var dealerId = "";
-    var currUserId = user._id;
-    var tuluList = userList;
-    var vehiclerTargetId = "";
   </script>
-  <script src="../Js/privileges.js"></script>
+  <script src="../../Js/sideMenu.js"></script>
+  <script src="../../Js/privileges.js"></script>
+  <script src="../../Js/booking.js"></script>
 </html>

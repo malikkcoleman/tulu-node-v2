@@ -46,3 +46,7 @@ function viewDealer(dealerId){
 function buyNow(){
     location.replace("/BuyNow/"+vin);
 }
+
+function bookAppointment(){
+    location.replace("/appointment/booking/"+vin);
+}

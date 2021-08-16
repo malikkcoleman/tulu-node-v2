@@ -23,24 +23,24 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-router.get("/booking", (req, res) =>
-  vehicle.find({})
+router.get("/booking/:vin", (req, res) =>
+  vehicle.find({vin:req.params.vin})
     .then((vehicles) => {
-      Dealer.find({})
+      Dealer.find({uuid:vehicles[0].dealerId})
       .then((dealer) => {
-        User.find({})
-        .then((users) => {
+        User.find({role:"tulu"})
+        .then((tulus) => {
           res.render("Booking", {
-            dealers: dealer,
             vehicles: vehicles,
-            users: users,
+            tulus: tulus,
+            dealer: dealer,
             user: req.user,
           })
         })
       })
     })
     .catch((err) => {
-      res.status(500).send(error);
+      res.status(500).send(err);
     })
 );
 
@@ -63,6 +63,8 @@ router.post("/email", (req, res) => {
     preferred,
     alternate,
   } = req.body;
+
+  console.log(req.body);
 
   let errors = [];
 
@@ -129,56 +131,59 @@ router.post("/email", (req, res) => {
 
     console.log(newAppointment);
   }
-  // var mailOptions = {
-  //   from: "tuluapps@gmail.com",
-  //   to: "info@tulucanada.com",
-  //   subject: "Tulu Canada Application Test Drive Appointment Request",
-  //   text:
-  //     "Customer Information \n" +
-  //     "Full Name: " +
-  //     req.body.customer +
-  //     "\n" +
-  //     "Phone Number: " +
-  //     req.body.phonenumber +
-  //     "\n" +
-  //     "Email Address: " +
-  //     req.body.email +
-  //     "\n" +
-  //     "Street: " +
-  //     req.body.street +
-  //     "\n" +
-  //     "City: " +
-  //     req.body.city +
-  //     "\n" +
-  //     "Province: " +
-  //     req.body.province +
-  //     "\n" +
-  //     "Postal Code: " +
-  //     req.body.postalcode +
-  //     "\n" +
-  //     "Notes: \n" +
-  //     req.body.notes +
-  //     "\n\n" +
-  //     "Tulu Information \n" +
-  //     "Tulu: " +
-  //     req.body.tulu +
-  //     "\n\n" +
-  //     "Dealership Information \n" +
-  //     "Dealership: " +
-  //     req.body.dealership +
-  //     "\n" +
-  //     "Vehicle: " +
-  //     req.body.vehicle +
-  //     "\n",
-  // };
+  var mailOptions = {
+    from: "tuluapps@gmail.com",
+    to: "info@tulucanada.com",
+    subject: "Tulu Canada Application Test Drive Appointment Request",
+    text:
+      "Customer Information \n" +
+      "Full Name: " +
+      req.body.customer +
+      "\n" +
+      "Phone Number: " +
+      req.body.phonenumber +
+      "\n" +
+      "Email Address: " +
+      req.body.email +
+      "\n" +
+      "Street: " +
+      req.body.street +
+      "\n" +
+      "City: " +
+      req.body.city +
+      "\n" +
+      "Province: " +
+      req.body.province +
+      "\n" +
+      "Postal Code: " +
+      req.body.postalcode +
+      "\n" +
+      "Notes: \n" +
+      req.body.notes +
+      "\n\n" +
+      "Tulu Information \n" +
+      "Tulu: " +
+      req.body.tulu +
+      "\n\n" +
+      "Dealership Information \n" +
+      "Dealership: " +
+      req.body.dealership +
+      "\n" +
+      "Vehicle: " +
+      req.body.vehicle +
+      "\n"+
+      "Vin: " +
+      req.body.vin +
+      "\n",
+  };
 
-  // transporter.sendMail(mailOptions, function (error, info) {
-  //   if (error) {
-  //     console.log(error);
-  //   } else {
-  //     console.log("Email Send: " + info.response);
-  //   }
-  // });
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email Send: " + info.response);
+    }
+  });
 });
 
 module.exports = router;
