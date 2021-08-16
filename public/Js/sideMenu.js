@@ -63,3 +63,16 @@ const accountSubMenu = () => {
     }
 };
 
+var dropDownToggle = "off"
+
+function dropDownMenu(){
+    if(dropDownToggle == "off"){
+        dropDownToggle = "on"
+        document.querySelector('.dropDownMenu').style = "top:0vh;transition:0.5s;"
+        document.querySelector('.dropDownMenuBtn').style = "color:#79C6AC;"
+    }else{
+        dropDownToggle = "off"
+        document.querySelector('.dropDownMenu').style = "top:-35vh;transition:0.5s;"
+        document.querySelector('.dropDownMenuBtn').style = "color:white;"
+    }
+}

@@ -110,7 +110,7 @@ router.post('/EditDealer',(req,res)=>{
         Dealer.updateOne(myquery, newvalues)
         .then(user=>{
             req.flash('success_msg', 'Changes Saved!');
-            res.redirect('/dealerships/EditDealership')  
+            res.redirect('/dealerships/EditDealer')  
         })
 });
 

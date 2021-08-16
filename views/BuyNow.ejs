@@ -19,14 +19,20 @@
   </head>
   <body>
     <nav id="Nav">
-      <a href="/">
-        <img src="../images/tulu-logo_white.png" alt="" />
-      </a>
-      <div class="menuButton" onclick="slideMenu()">
-        <i class="fas fa-bars fa-2x menuBtn"></i>
-        <i class="fas fa-times fa-2x closeMenuBtn"></i>
-      </div>
+        <a href="/">
+            <img src="images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    <%- include partials/navbar %>
     </nav>
+    <div class="dropDownMenu">
+        <ul>
+            <%- include partials/dropDownMenu %>
+        </ul>
+    </div>
 
     <div id="SideMenu" class="sideMenu">
       <ul class="menu">

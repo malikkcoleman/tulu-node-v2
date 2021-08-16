@@ -12,6 +12,10 @@ nav {
     padding: 10px 0;
 }
 
+.navBar,.dropDownMenu{
+    display:none;
+}
+
     nav img {
         width: 50px;
     }
@@ -111,4 +115,88 @@ button.influencerBtn {
     text-align: center;
     justify-content: center;
     align-items: center;
+}
+
+
+@media screen and (min-width: 600px) {
+    nav {
+        background: #1A2A33;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        z-index: 5;
+        position: fixed;
+        width: 100vw;
+        padding: 15px 0px;
+        flex-direction: row;
+    }
+
+    nav img {
+        width: 50px;
+        margin:0 0 0 150px;
+    }
+
+    nav i {
+        position: absolute;
+        left: 15px;
+        display: none;
+    }
+
+    nav .menuButton {
+        position: absolute;
+        left: 5px;
+        top: 10px;
+        display: none;
+    }
+
+    .navBar{
+        display:flex;
+        flex-direction: row;
+        margin:0 150px 0 0;
+        align-self: flex-end;
+    }
+
+    .navBar li a{
+        color:white;
+        margin:0 0 0 30px;
+    }
+
+    .navBar li a:hover{
+        color:#79C6AC;
+    }
+
+    .sideMenu{
+        display: none;
+    }
+
+    .dropDownMenu{
+        display: flex;
+        position: fixed;
+        right:0;
+        height:30vh;
+        width:230px;
+        background:#1A2A33;
+        z-index:1 ;
+        border-bottom-left-radius: 10px;
+        padding:70px 0 30px 30px;
+        top:-35vh;
+    }
+
+    .dropDownMenu{
+        transition: 0.5s;
+    }
+
+
+    .dropDownMenu ul li a{
+        color:white !important;
+        margin:5px 0 !important;
+    }
+
+    .dropDownMenu ul li a:hover{
+        color:#79C6AC !important;
+    }
+
+    .dropDownMenu ul .loggedInAs{
+        right:unset
+    }
 }

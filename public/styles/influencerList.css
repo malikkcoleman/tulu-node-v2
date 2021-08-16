@@ -14,6 +14,7 @@
 }
 
 
+
 .influencerContainer{
     margin:20px 0;
 }
@@ -54,10 +55,17 @@
 
 .influencerInfo p{
     color:#8b9196;
+    font-size: small;
 }
 
-.influencerInfo .phoneNumber,.influencerInfo .hours,.influencerInfo .listing{
-    font-size: small;
+
+.userRating{
+    flex-direction: row;
+    margin:5px 0;
+}
+
+.userRating i{
+    color:goldenrod;
 }
 
 .influencerInfo button{
@@ -68,4 +76,11 @@
     border:none;
     border-radius: 10px;
     color:white;
+}
+
+
+@media screen and (min-width: 600px) {
+    .container{
+        
+    }
 }

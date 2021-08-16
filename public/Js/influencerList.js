@@ -10,8 +10,15 @@ function LoadTulus(tulu) {
 		html = html + '	</div>';
 		html = html + '	<div class="influencerInfo">';
 		html = html + '		<h4 class="influencerName">' + tulu[i].fName +" "+ tulu[i].lName + '</h4>';
-		// html = html + '		<p class="influencerPhoneNumber">' + tulu[i]. + '</p>';
-		//html = html + '		<p class="influencerEmail">' + tulu[i].email + '</p>';
+		html = html + '		<div class="userRating">';
+		html = html + '		    <i class="fas fa-star"></i>';
+		html = html + '		    <i class="fas fa-star"></i>';
+		html = html + '		    <i class="fas fa-star"></i>';
+		html = html + '		    <i class="fas fa-star"></i>';
+		html = html + '		    <i class="fas fa-star"></i>';
+		html = html + '		</div>';
+		html = html + '		<p class="influencerPhoneNumber">' + tulu[i].phoneNumber + '</p>';
+		html = html + '		<p class="influencerEmail">' + tulu[i].email + '</p>';
 		// html = html + '<a href="mailto: '+tulu[i].email+'"><button>Contact Tulu</button></a>';
 		html = html + '	</div>';
 		html = html + '</li>';
