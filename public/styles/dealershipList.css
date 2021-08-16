@@ -33,11 +33,11 @@
     padding:10px 15px;
 }
 
-.dealershipList li p:nth-child(1){
+/* .dealershipList li p:nth-child(1){
     color:#79C6AC;
-}
+} */
 
-.dealershipList li p:nth-child(2){
+.dealershipList li p{
     font-size: small;
 }
 
@@ -53,7 +53,8 @@
 }
 
 .dealerImage img{
-    height:60px;
+    width:100px;
+    height:100px;
 }
 
 
@@ -73,6 +74,11 @@
 
 .dealerInfo p{
     color:#8b9196;
+}
+
+.amvic{
+    color: #79c6ac !important;
+    margin:10px 0 0 0;
 }
 
 .dealerInfo .phoneNumber,.dealerInfo .hours,.dealerInfo .listing{

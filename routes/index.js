@@ -193,19 +193,19 @@ pgroutr.get("/DashboardSysAdminUser", (req, res) => {
 
 pgroutr.get('/DealerListing/:dealerId',(req,res)=>{
     Dealer.find({uuid: req.params.dealerId}).then((dealer)=>{
-        Vehicle.find({dealerId:req.params.dealerId}).then((vehicle)=>{
-            res.render('DealerListing',{
-                dealer:dealer,
-                vehicle:vehicle,
-                user:req.user
-            })
+        Address.find({targetId:req.params.dealerId}).then((address)=>{
+          Vehicle.find({dealerId:req.params.dealerId}).then((vehicle)=>{
+              res.render('DealerListing',{
+                  dealer:dealer,
+                  vehicle:vehicle,
+                  address:address,
+                  user:req.user
+              })
+          })
         })
     }).catch((err)=>{
         res.status(500).send(error);
     })
-    .catch((err) => {
-      res.status(500).send(error);
-    });
 });
 
 pgroutr.post("/upload/:type/:targetid", uploadController.uploadFile), (req, res) => {
@@ -236,10 +236,16 @@ pgroutr.get('/tululist',(req,res)=>{
 
 pgroutr.get('/DealershipList',(req,res)=>{
     Dealer.find().then((dealer)=>{
-        res.render('DealershipList',{
-            dealer:dealer,
-            user:req.user
+      Address.find().then((address)=>{
+        User.find({role:"dealeradmin"}).then((dealerAdmin)=>{
+            res.render('DealershipList',{
+                dealer:dealer,
+                user:req.user,
+                address:address,
+                dealeradmin:dealerAdmin
+            })
         })
+      })
     })
 });
 

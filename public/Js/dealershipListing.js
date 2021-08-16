@@ -18,6 +18,8 @@ function populateDealer(){
 			var html ="";
 			html+="<h2>"+dealerList[0].name+"</h2>"
 			html+="<p>"+dealerList[0].website+"</p>"
+			html+="<p class='address'>"+address[0].street+" "+address[0].city+", "+address[0].province+"</p>"
+			html+="<p class='amvic'>"+dealerList[0].amvic+"</p>"
 			$('.heading').empty();
 			$('.heading').append(html);
 
@@ -33,7 +35,7 @@ function populateVehicle(){
 			html+='    <div class="carDetails">';
 			html+='        <h2 class="carName">' + vehicleList[x].year + ' ' + vehicleList[x].make + ' ' + vehicleList[x].model + '</h2>';
 			html+='        <p class="carPrice">$'+vehicleList[x].maxPrice + '</p>';
-			html+='        <p class="carMileage">1234567890 Kms</p>';
+			html+='        <p class="carMileage">'+vehicleList[x].mileage +' Kms</p>';
 			html+='        <a href="/carview/'+ vehicleList[x].vin +'"><button class="moreInfo">View Vehicle</button></a>';
 			html+='    </div>';
 			html+='</li>';

@@ -2,6 +2,7 @@
     margin:0px 10px 20px 10px;
     background:#79C6AC;
     padding:40px 20px 30px 20px;
+    position: relative;
 }
 
 .heading h2,.heading p{
@@ -115,4 +116,13 @@
 
 #Filter{
     justify-content: flex-end;
+}
+
+.address{
+    font-size: small;
+}
+
+.amvic{
+    font-size: small;
+    margin:10px 0 0 0 !important;
 }
