@@ -1,20 +1,23 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <link rel="icon" type="image/png" href="images/favicon.png">
+  <head>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/reset.css" />
     <link rel="stylesheet" href="../styles/css/all.css" />
     <link rel="stylesheet" href="../styles/nav.css" />
     <link rel="stylesheet" href="../styles/carView.css" />
     <link rel="stylesheet" href="../styles/gallery.css" />
     <link rel="stylesheet" href="../styles/footer.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
     <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <nav id="Nav">
         <a href="/">
             <img src="../images/tulu-logo_white.png" alt="">
@@ -32,269 +35,279 @@
     </div>
 
     <div id="SideMenu" class="sideMenu">
-        <ul class="menu">
-            <%- include partials/sidemenu %>
-            
-        </ul>
-        <p class="loggedInAs"></p>
+      <ul class="menu">
+        <%- include partials/sidemenu %>
+      </ul>
+      <p class="loggedInAs"></p>
     </div>
     <div class="container body-content">
-
-        <!-- Vendor -->
-        <div id="carVendor" class="carVendor">
-            <div class="userImage">
-                <a href="/DealerListing/<%= dealers[0].uuid %>">
-                    <img src="/image/<%= dealerAdmin[0]._id %>" alt="">
-                </a>
-            </div>
-            <div class="userInfo">
-                
-                <p class="userActiveListingCount" id="userActiveListingCount">
-                    
-                </p>
-            </div>
+      <!-- Vendor -->
+      <div id="carVendor" class="carVendor">
+        <div class="userImage">
+          <a href="/DealerListing/<%= dealers[0].uuid %>">
+            <img src="/image/<%= dealerAdmin[0]._id %>" alt="" />
+          </a>
         </div>
+        <div class="userInfo">
+          <p class="userActiveListingCount" id="userActiveListingCount"></p>
+        </div>
+      </div>
 
-        <!-- VEHICLE INFO -->
-        <section id="Vehicles" class="vehicles">
-            <div class="carDetails">
-                <% if (images.length > 0){%>
-                    <div class="slideshow-container">
-
-                        <% images.forEach(function(image){  %>
-                            <div class="mySlides fade">
-                                <img  class="imageContain" src="/image/<%= image.target_id %>/<%= image.file_id %>" alt="">
-                            </div>
-                        <% }) %>
-                        
-                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                        <br>
-                        <div style="text-align:center; display: flex; flex-direction: row; margin: auto;">
-                            <% for(i=1; i<= images.length; i++){  %>
-                                <span class="dot" onclick="currentSlide(<%= i %>)"></span> 
-                            <% } %>
-                        </div>
-                    </div>
-                <%} else {%>
-                    <br>
-                    <br>
-                    <img src="../images/noimageavailable.jpg" alt="">
-                <% } %>
-                <div class="carTitle">
-                    <h2 class="carName"></h2>
-                    <p class="carPrice"></p>
-                    <p class="carReferralFee"></p>
-                    
-                </div>
-                <button class="buyNowBtn" onclick="buyNow()">Buy now!</button>
-
-                <% if(!user) {%>
-
-                    <div class="BookContainer">
-                        <p>Book an appointment?</p>
-                        <div class="signInBtn">
-                            <a href="/dashboard">Sign In!</a>
-                        </div>
-                    </div>
-                <% }  if(user){%>
-                    <button onclick="bookAppointment()" class="bookAppointment">Book an appointment</button>
-                <%}%>
-                    
-
-                
+      <!-- VEHICLE INFO -->
+      <section id="Vehicles" class="vehicles">
+        <div class="carDetails">
+          <% if (images.length > 0){%>
+          <div class="slideshow-container">
+            <% images.forEach(function(image){ %>
+            <div class="mySlides fade">
+              <img
+                class="imageContain"
+                src="/image/<%= image.target_id %>/<%= image.file_id %>"
+                alt=""
+              />
             </div>
-            <div class="carSpecsBox">
-                <div class="carSpecsCol">
-                    <ul class="carSpecs" id="carSpecs">
-                            <li class="carInfo">
-                                <p>Year</p>
-                                <p class="year"><%= vehicles[0].year%></p>
-                            </li>
-                            <li class="carInfo">
-                                <p>Make</p>
-                                <p class="make"><%= vehicles[0].make%></p>
-                            </li>   
-                            <li class="carInfo">
-                                <p>Model</p>
-                                <p class="model"><%= vehicles[0].model%></p>
-                            </li>   
-                            <li class="carInfo">
-                                <p>Color</p>
-                                <p class="color"><%= vehicles[0].color%></p>
-                            </li>
-                            <li class="carInfo">
-                                <p>Body Type</p>
-                                <p class="bodyType"><%= vehicles[0].vehicleType%></p>
-                            </li>
-                            <li class="carInfo">
-                                <p>Engine</p>
-                                <p class="engine"><%= vehicles[0].engineName%></p>
-                            </li>
-                            <li class="carInfo">
-                                <p>Drivetrain</p>
-                                <p class="driveType"><%= vehicles[0].driveType%></p>
-                            </li>
-                            <li class="carInfo">
-                                <p>Transmission</p>
-                                <p class="transmission"><%= vehicles[0].transmissionName%></p>
-                            </li>
-                            <li class="carInfo">
-                                <p>Fuel Type</p>
-                                <p class="fuel"><%= vehicles[0].fuelType%></p>
-                            </li>
-                            <li class="carInfo">
-                                <p>Trim</p>
-                                <p class="trim"><%= vehicles[0].trim%></p>
-                            </li>
-                    </ul>
-                </div>
-                <div class="infoBoxVN">
-                    <div class="carInfoVin">
-                        <p>VIN#:</p>
-                        <p class="vin"><%= vehicles[0].vin %></p>
-                    </div>
-                    <div class="carInfo carInfoNotes">
-                        <p>Notes:</p>
-                        <p class="notes"><%= vehicles[0].notes %></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-            <section class="questionSection" id="questionSection">
-                <div class="QuestionContainer">
-                    <h2>Questions?</h2>
-                    <p>Connect with a Tulu!</p>
-                    <button onclick="ShowConnectWithTulu()">Connect</button>
-                </div>
-            </section>
-        <!-- SHARE BUTTON -->
+            <% }) %>
 
-        <section class="shareSection" id="shareSection">
-            <div class="ShareContainer">
-                <p>Share This Listing</p>
-                <div class="shareBtnContainer" id="shareBtnContainer">
-                    <% if(user) {%>
-                        <script>
-                            var url = window.location.href;
-                            var fbBtn = '';
-                            fbBtn += '<a class="facebookButton"  onclick="ShareVehicle()" href="https://www.facebook.com/sharer/sharer.php?u=' + url + '" target="_blank">';
-                            fbBtn += '     Share on Facebook';
-                            fbBtn += '</a>';
-                            $("#shareBtnContainer").append(fbBtn);
-                        </script>
-                    <% }%>
-                    <% if(!user) {%>
-                        <div class="signInBtn">
-                            <a href="/test">Sign In!</a>
-                        </div>
-                    <% }%>
-                </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            <br />
+            <div
+              style="
+                text-align: center;
+                display: flex;
+                flex-direction: row;
+                margin: auto;
+              "
+            >
+              <% for(i=1; i<= images.length; i++){ %>
+              <span class="dot" onclick="currentSlide(<%= i %>)"></span>
+              <% } %>
             </div>
-        </section>
+          </div>
+          <%} else {%>
+          <br />
+          <br />
+          <img src="../images/noimageavailable.jpg" alt="" />
+          <% } %>
+          <div class="carTitle">
+            <h2 class="carName"></h2>
+            <p class="carPrice"></p>
+            <p class="carReferralFee"></p>
+          </div>
+          <button class="buyNowBtn" onclick="buyNow()">Buy now!</button>
+
+          <% if(!user) {%>
+
+          <div class="BookContainer">
+            <p>Book an appointment?</p>
+            <div class="signInBtn">
+              <a href="/dashboard">Sign In!</a>
+            </div>
+          </div>
+          <% } if(user){%>
+          <button onclick="bookAppointment()" class="bookAppointment">
+            Book an appointment
+          </button>
+          <%}%>
+        </div>
+        <div class="carSpecsBox">
+          <div class="carSpecsCol">
+            <ul class="carSpecs" id="carSpecs">
+              <li class="carInfo">
+                <p>Year</p>
+                <p class="year"><%= vehicles[0].year%></p>
+              </li>
+              <li class="carInfo">
+                <p>Make</p>
+                <p class="make"><%= vehicles[0].make%></p>
+              </li>
+              <li class="carInfo">
+                <p>Model</p>
+                <p class="model"><%= vehicles[0].model%></p>
+              </li>
+              <li class="carInfo">
+                <p>Color</p>
+                <p class="color"><%= vehicles[0].color%></p>
+              </li>
+              <li class="carInfo">
+                <p>Body Type</p>
+                <p class="bodyType"><%= vehicles[0].vehicleType%></p>
+              </li>
+              <li class="carInfo">
+                <p>Engine</p>
+                <p class="engine"><%= vehicles[0].engineName%></p>
+              </li>
+              <li class="carInfo">
+                <p>Drivetrain</p>
+                <p class="driveType"><%= vehicles[0].driveType%></p>
+              </li>
+              <li class="carInfo">
+                <p>Transmission</p>
+                <p class="transmission"><%= vehicles[0].transmissionName%></p>
+              </li>
+              <li class="carInfo">
+                <p>Fuel Type</p>
+                <p class="fuel"><%= vehicles[0].fuelType%></p>
+              </li>
+              <li class="carInfo">
+                <p>Trim</p>
+                <p class="trim"><%= vehicles[0].trim%></p>
+              </li>
+            </ul>
+          </div>
+          <div class="infoBoxVN">
+            <div class="carInfoVin">
+              <p>VIN#:</p>
+              <p class="vin"><%= vehicles[0].vin %></p>
+            </div>
+            <div class="carInfo carInfoNotes">
+              <p>Notes:</p>
+              <p class="notes"><%= vehicles[0].notes %></p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="questionSection" id="questionSection">
+        <div class="QuestionContainer">
+          <h2>Questions?</h2>
+          <p>Connect with a Tulu!</p>
+          <button onclick="ShowConnectWithTulu()">Connect</button>
+        </div>
+      </section>
+      <!-- SHARE BUTTON -->
+
+      <section class="shareSection" id="shareSection">
+        <div class="ShareContainer">
+          <p>Share This Listing</p>
+          <div class="shareBtnContainer" id="shareBtnContainer">
+            <% if(user) {%>
+            <script>
+              var url = window.location.href;
+              var fbBtn = "";
+              fbBtn +=
+                '<a class="facebookButton"  onclick="ShareVehicle()" href="https://www.facebook.com/sharer/sharer.php?u=' +
+                url +
+                '" target="_blank">';
+              fbBtn += "     Share on Facebook";
+              fbBtn += "</a>";
+              $("#shareBtnContainer").append(fbBtn);
+            </script>
+            <% }%> <% if(!user) {%>
+            <div class="signInBtn">
+              <a href="/test">Sign In!</a>
+            </div>
+            <% }%>
+          </div>
+        </div>
+      </section>
     </div>
     <footer>
-        <ul class="footerList">
-            <li class="footerListItem">
-                <a href="/">
-                    <h4>Partners</h4>
-                </a>
-                <ul class="footerSubLinkList">
-                    <li class="SubLinkListItem">
-                        <a href="/DealershipList">Dealerships</a>
-                    </li>
-                </ul>
+      <ul class="footerList">
+        <li class="footerListItem">
+          <a href="/">
+            <h4>Partners</h4>
+          </a>
+          <ul class="footerSubLinkList">
+            <li class="SubLinkListItem">
+              <a href="/DealershipList">Dealerships</a>
             </li>
-            <li class="footerListItem">
-                <a href="/">
-                    <h4>Customer Support</h4>
-                </a>
-                <ul class="footerSubLinkList">
-                    <li class="SubLinkListItem">
-                        <a href="/faq">FAQ</a>
-                    </li>
-                   
-                </ul>
+          </ul>
+        </li>
+        <li class="footerListItem">
+          <a href="/">
+            <h4>Customer Support</h4>
+          </a>
+          <ul class="footerSubLinkList">
+            <li class="SubLinkListItem">
+              <a href="/faq">FAQ</a>
             </li>
-        </ul>
+            <li class="SubLinkListItem">
+              <a href="/Contact">Contact Us</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </footer>
     <div id="fb-root"></div>
 
     <div class="tuluPicker">
-        <div class="tuluPickerHeading">
-            <h2>Have you connected with a tulu?</h2>
-            <p>if so, select your tulu.</p>
-        </div>
-        <ul class="tuluPickerContainer">
+      <div class="tuluPickerHeading">
+        <h2>Have you connected with a tulu?</h2>
+        <p>if so, select your tulu.</p>
+      </div>
+      <ul class="tuluPickerContainer"></ul>
 
-        </ul>
-        
-        <button onclick="bookAppointment(`Skipped`)">Skip</button>
-        <p class="skipLabel">If not, click skip.</p>
-        
+      <button onclick="bookAppointment(`Skipped`)">Skip</button>
+      <p class="skipLabel">If not, click skip.</p>
     </div>
 
     <div class="tuluConnectPicker">
-        <div class="tuluPickerHeading">
-            <h2>Questions?</h2>
-            <p>Connect with a tulu today!</p>
-        </div>
-        <ul class="tuluConnectPickerContainer">
-
-        </ul>
+      <div class="tuluPickerHeading">
+        <h2>Questions?</h2>
+        <p>Connect with a tulu today!</p>
+      </div>
+      <ul class="tuluConnectPickerContainer"></ul>
     </div>
-    
-    <aside id="FilterSettings" class="filterSettings" style="display:none;">
-            <div class="filterSettingContainer">
-                <div class="ModelSearchContainer">
-                    <label for="ModelSearch" class="ModelSearchLabel">Model :</label>
-                    <input type="text" id="ModelSearch" />
-                </div>
-                <div class="MakeSearchContainer">
-                    <label for="MakeSearch" class="MakeSearchLabel">Make :</label>
-                    <input type="text" id="MakeSearch" />
-                </div>
-                <div class="YearMinContainer">
-                    <label for="YearMin" class="YearMinLabel">Year Min :</label>
-                    <input type="text" id="YearMinSearch" value="0" />
-                </div>
-                <div class="YearMaxContainer">
-                    <label for="YearMax" class="YearMaxLabel">Year Max :</label>
-                    <input type="text" id="YearMaxSearch" value="0" />
-                </div>
-                <div class="VehicleTypeContainer">
-                    <label for="VehicleType" class="VehicleTypeLabel">Vehicle Type :</label>
-                    <input type="text" id="VehicleTypeSearch" />
-                </div>
-                <div class="IsSoldContainer">
-                    <label for="IsSold" class="IsSoldLabel">Model :</label>
-                    <select id="IsSoldSelect"><option value="0">False</option><option value="1">True</option></select>
-                </div>
-                <div class="PriceMinContainer">
-                    <label for="PriceMin" class="PriceMinLabel">Price Min :</label>
-                    <input type="text" id="PriceMinSearch" value="0" />
-                </div>
-                <div class="PriceMaxContainer">
-                    <label for="PriceMax" class="PriceMaxLabel">Price Max :</label>
-                    <input type="text" id="PriceMaxSearch" value="0" />
-                </div>
-                <div class="PriceTypeContainer">
-                    <label for="PriceType" class="PriceTypeLabel">Price Type :</label>
-                    <select id="PriceTypeSearch">
-                        <option value=""></option>
-                        <option value="msrp">MSRP</option>
-                        <option value="wholeSalePrice">Whole Sale Price</option>
-                    </select>
-                </div>
 
-                <input type="button" value="Search" id="searchButton" onclick="SearchVehicles();" />
-            </div>
-        </aside>
+    <aside id="FilterSettings" class="filterSettings" style="display: none">
+      <div class="filterSettingContainer">
+        <div class="ModelSearchContainer">
+          <label for="ModelSearch" class="ModelSearchLabel">Model :</label>
+          <input type="text" id="ModelSearch" />
+        </div>
+        <div class="MakeSearchContainer">
+          <label for="MakeSearch" class="MakeSearchLabel">Make :</label>
+          <input type="text" id="MakeSearch" />
+        </div>
+        <div class="YearMinContainer">
+          <label for="YearMin" class="YearMinLabel">Year Min :</label>
+          <input type="text" id="YearMinSearch" value="0" />
+        </div>
+        <div class="YearMaxContainer">
+          <label for="YearMax" class="YearMaxLabel">Year Max :</label>
+          <input type="text" id="YearMaxSearch" value="0" />
+        </div>
+        <div class="VehicleTypeContainer">
+          <label for="VehicleType" class="VehicleTypeLabel"
+            >Vehicle Type :</label
+          >
+          <input type="text" id="VehicleTypeSearch" />
+        </div>
+        <div class="IsSoldContainer">
+          <label for="IsSold" class="IsSoldLabel">Model :</label>
+          <select id="IsSoldSelect">
+            <option value="0">False</option>
+            <option value="1">True</option>
+          </select>
+        </div>
+        <div class="PriceMinContainer">
+          <label for="PriceMin" class="PriceMinLabel">Price Min :</label>
+          <input type="text" id="PriceMinSearch" value="0" />
+        </div>
+        <div class="PriceMaxContainer">
+          <label for="PriceMax" class="PriceMaxLabel">Price Max :</label>
+          <input type="text" id="PriceMaxSearch" value="0" />
+        </div>
+        <div class="PriceTypeContainer">
+          <label for="PriceType" class="PriceTypeLabel">Price Type :</label>
+          <select id="PriceTypeSearch">
+            <option value=""></option>
+            <option value="msrp">MSRP</option>
+            <option value="wholeSalePrice">Whole Sale Price</option>
+          </select>
+        </div>
 
-</body>
+        <input
+          type="button"
+          value="Search"
+          id="searchButton"
+          onclick="SearchVehicles();"
+        />
+      </div>
+    </aside>
+  </body>
 
-
-<script type="text/javascript">
+  <script type="text/javascript">
 
     var vin = <%- JSON.stringify(vehicles[0].vin)%>
     console.log(vin)
@@ -305,8 +318,7 @@
     var address = <%- JSON.stringify(address)%>
     console.log(address)
     var dealerId = dealers[0]._id;
-
-</script>
-<script src="../Js/sideMenu.js"></script>
-<script src="../Js/carView.js"></script>
+  </script>
+  <script src="../Js/sideMenu.js"></script>
+  <script src="../Js/carView.js"></script>
 </html>

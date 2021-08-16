@@ -14,7 +14,10 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
-    <script type="text/javascript" src="../../jquery/dist/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../../jquery/dist/jquery.min.js"
+    ></script>
   </head>
   <body>
     <nav id="Nav">
@@ -51,31 +54,15 @@
         <div class="inputFieldDiv">
           <%- include partials/messages %>
           <form id="my-form" action="/appointment/email" method="POST">
-            <input type="hidden" id="dealerId" name="dealerId"/>
-            <input type="hidden" id="tuluId" name="tuluId"/>
-            <input type="hidden" id="userId" name="userId"/>
-            <input type="hidden" id="vin" name="vin"/>
-            <input type="hidden" id="tulu" name="tulu"/>
-            <input
-              type="hidden"
-              id="vehicle"
-              name="vehicle"
-            />
-            <input
-              type="hidden"
-              id="vehiclePrice"
-              name="vehiclePrice"
-            />
-            <input
-              type="hidden"
-              id="customer"
-              name="customer"
-            />
-            <input
-              type="hidden"
-              id="dealership"
-              name="dealership"
-            />
+            <input type="hidden" id="dealerId" name="dealerId" />
+            <input type="hidden" id="tuluId" name="tuluId" />
+            <input type="hidden" id="userId" name="userId" />
+            <input type="hidden" id="vin" name="vin" />
+            <input type="hidden" id="tulu" name="tulu" />
+            <input type="hidden" id="vehicle" name="vehicle" />
+            <input type="hidden" id="vehiclePrice" name="vehiclePrice" />
+            <input type="hidden" id="customer" name="customer" />
+            <input type="hidden" id="dealership" name="dealership" />
             <label for="phonenumber">Phone Number: </label>
             <input type="text" id="phonenumber" name="phonenumber" />
             <label for="email">Email: </label>
@@ -115,7 +102,6 @@
               type="button"
               class="privacyTermsBtn"
               onclick="showPrivacyTerms()"
-              
             >
               Privacy Policy & Terms and Condition
             </button>
@@ -124,7 +110,9 @@
               A tulu Canada representative will contact you in the next 24 hours
               to confirm your valid license and the appointment
             </p>
-            <button class="saveTestDrive" type="submit"disabled >Book Appointment</button>
+            <button class="saveTestDrive" type="submit" disabled>
+              Book Appointment
+            </button>
             <input
               type="button"
               class="cancelTestDrive"
@@ -227,14 +215,13 @@
       <p class="skipText">If not, skip</p>
     </div>
   </body>
-  
+
   <script>
 
     var vehicle = <%-JSON.stringify(vehicles)%>;
     var dealer = <%-JSON.stringify(dealer)%>
     var tulus = <%-JSON.stringify(tulus)%>
     var user = <%-JSON.stringify(user)%>
-
   </script>
   <script src="../../Js/sideMenu.js"></script>
   <script src="../../Js/privileges.js"></script>

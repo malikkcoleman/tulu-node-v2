@@ -1,23 +1,25 @@
-﻿
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-<head>
-    <link rel="icon" type="image/png" href="images/favicon.png">
+  <head>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tulu Canada</title>
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/css/all.css" />
     <link rel="stylesheet" href="styles/nav.css" />
     <link rel="stylesheet" href="styles/influencerList.css" />
     <link rel="stylesheet" href="styles/footer.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
     <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <nav id="Nav">
+<<<<<<< HEAD
         <a href="/">
             <img src="images/tulu-logo_white.png" alt="">
         </a>
@@ -26,6 +28,15 @@
             <i class="fas fa-times fa-2x closeMenuBtn"></i>
         </div>
     <%- include partials/navbar %>
+=======
+      <a href="/">
+        <img src="images/tulu-logo_white.png" alt="" />
+      </a>
+      <div class="menuButton" onclick="slideMenu()">
+        <i class="fas fa-bars fa-2x menuBtn"></i>
+        <i class="fas fa-times fa-2x closeMenuBtn"></i>
+      </div>
+>>>>>>> main
     </nav>
     <div class="dropDownMenu">
         <ul>
@@ -34,59 +45,58 @@
     </div>
 
     <div id="SideMenu" class="sideMenu">
-        <ul class="menu">
-            <%- include partials/sidemenu %>
-            
-        </ul>
-        <p class="loggedInAs"></p>
+      <ul class="menu">
+        <%- include partials/sidemenu %>
+      </ul>
+      <p class="loggedInAs"></p>
     </div>
 
-
     <div class="container body-content">
-        <div class="heading">
-            <h2>Here are the list of our Tulus!</h2>
-            <p>Each Tulu is here to help you through the process of purchasing a new vehicle.</p>
-        </div>
-        <div class="influencerContainer">
-            <ul class="influencerList" id="influencerList">
-
-            </ul>
-        </div>
+      <div class="heading">
+        <h2>Here are the list of our Tulus!</h2>
+        <p>
+          Each Tulu is here to help you through the process of purchasing a new
+          vehicle.
+        </p>
+      </div>
+      <div class="influencerContainer">
+        <ul class="influencerList" id="influencerList"></ul>
+      </div>
     </div>
 
     <footer>
-        <ul class="footerList">
-            <li class="footerListItem">
-                <a href="/">
-                    <h4>Partners</h4>
-                </a>
-                <ul class="footerSubLinkList">
-                    <li class="SubLinkListItem">
-                        <a href="/DealershipList">Dealerships</a>
-                    </li>
-                </ul>
+      <ul class="footerList">
+        <li class="footerListItem">
+          <a href="/">
+            <h4>Partners</h4>
+          </a>
+          <ul class="footerSubLinkList">
+            <li class="SubLinkListItem">
+              <a href="/DealershipList">Dealerships</a>
             </li>
-            <li class="footerListItem">
-                <a href="/">
-                    <h4>Customer Support</h4>
-                </a>
-                <ul class="footerSubLinkList">
-                    <li class="SubLinkListItem">
-                        <a href="/faq">FAQ</a>
-                    </li>
-                   
-                </ul>
+          </ul>
+        </li>
+        <li class="footerListItem">
+          <a href="/">
+            <h4>Customer Support</h4>
+          </a>
+          <ul class="footerSubLinkList">
+            <li class="SubLinkListItem">
+              <a href="/faq">FAQ</a>
             </li>
-        </ul>
+            <li class="SubLinkListItem">
+              <a href="/Contact">Contact Us</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </footer>
-
-</body>
-<script src="Js/influencerList.js"></script>
-<script src="Js/sideMenu.js"></script>
-<script src="Js/privileges.js"></script>
-<Script>
-    var tuluList = <%-JSON.stringify(tulu)%>;
-    console.log(tuluList);
+  </body>
+  <script src="Js/influencerList.js"></script>
+  <script src="Js/sideMenu.js"></script>
+  <script src="Js/privileges.js"></script>
+  <Script>
+    var tuluList = <%-JSON.stringify(tulu)%>; console.log(tuluList);
     LoadTulus(tuluList);
-</Script> 
+  </Script>
 </html>
