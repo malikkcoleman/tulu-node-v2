@@ -26,8 +26,15 @@
 }
 
 .vehicleListItemsSmallView .carImage{
+    width:100px;
+}
+
+.imgContainer{
     height:100px;
     width:100px;
+    overflow: hidden;
+    justify-content: center;
+    align-items:center;
 }
 
 .vehicleListItemsSmallView .carDetails{

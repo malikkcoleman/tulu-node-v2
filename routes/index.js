@@ -87,14 +87,22 @@ pgroutr.get("/carview/:vin", (req, res) => {
     .then((vehicles) => {
       Dealer.find({uuid:vehicles[0].dealerId})
         .then(async (dealers) => {
-          const images = await fetchImage.getImagesArray(req.params.vin)
-          console.log(images)
-          res.render("CarView", {
-            vehicles: vehicles,
-            user: req.user,
-            dealers: dealers,
-            images: images
-          });
+          User.find({dealerId:vehicles[0].dealerId})
+          .then(async (dealerAdmin) => {
+            Address.find({targetId:vehicles[0].dealerId})
+            .then(async (address) => {
+              const images = await fetchImage.getImagesArray(req.params.vin)
+              console.log(images)
+              res.render("CarView", {
+                vehicles: vehicles,
+                user: req.user,
+                dealers: dealers,
+                dealerAdmin: dealerAdmin,
+                address:address,
+                images: images
+              });
+            })
+          })
         })
         .catch((err) => {
           res.status(500).send(error);

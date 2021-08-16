@@ -37,7 +37,9 @@
         <!-- Vendor -->
         <div id="carVendor" class="carVendor">
             <div class="userImage">
-                <i class="fas fa-user fa-2x"></i>
+                <a href="/DealerListing/<%= dealers[0].uuid %>">
+                    <img src="/image/<%= dealerAdmin[0]._id %>" alt="">
+                </a>
             </div>
             <div class="userInfo">
                 
@@ -292,6 +294,10 @@
     console.log(vin)
     var dealers = <%- JSON.stringify(dealers)%>
     console.log(dealers)
+    var dealerAdmin = <%- JSON.stringify(dealerAdmin)%>
+    console.log(dealerAdmin)
+    var address = <%- JSON.stringify(address)%>
+    console.log(address)
     var dealerId = dealers[0]._id;
 
 </script>

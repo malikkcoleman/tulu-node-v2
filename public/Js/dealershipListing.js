@@ -31,7 +31,9 @@ function populateVehicle(){
 	var text = '';
 	for(var x=0;x!= vehicleList.length;x++){
 			html+='<li class="vehicleListItemsSmallView">';
-			html+='    <img src="/image/'+ vehicleList[x].vin +'" class="carImage" alt="car-image"/>';
+			html+='	   <a class="imgContainer" href="/carview/'+ vehicleList[x].vin +'" style="">';
+			html+='	       <img src="/image/'+ vehicleList[x].vin +'" class="carImage" alt="car-image"/>';
+			html+='	   </a>';
 			html+='    <div class="carDetails">';
 			html+='        <h2 class="carName">' + vehicleList[x].year + ' ' + vehicleList[x].make + ' ' + vehicleList[x].model + '</h2>';
 			html+='        <p class="carPrice">$'+vehicleList[x].maxPrice + '</p>';
