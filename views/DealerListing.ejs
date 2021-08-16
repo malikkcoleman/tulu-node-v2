@@ -1,11 +1,9 @@
-﻿
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-<head>
-    <link rel="icon" type="image/png" href="../images/favicon.png">
+  <head>
+    <link rel="icon" type="image/png" href="../images/favicon.png" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tulu Canada</title>
     <link rel="stylesheet" href="../styles/reset.css" />
     <link rel="stylesheet" href="../styles/css/all.css" />
@@ -13,151 +11,161 @@
     <link rel="stylesheet" href="../styles/dealerListing.css" />
     <link rel="stylesheet" href="../styles/filter.css" />
     <link rel="stylesheet" href="../styles/footer.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
     <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <nav id="Nav">
-        <a href="/">
-            <img src="../images/tulu-logo_white.png" alt="">
-        </a>
-        <div class="menuButton" onclick="slideMenu()">
-            <i class="fas fa-bars fa-2x menuBtn"></i>
-            <i class="fas fa-times fa-2x closeMenuBtn"></i>
-        </div>
+      <a href="/">
+        <img src="../images/tulu-logo_white.png" alt="" />
+      </a>
+      <div class="menuButton" onclick="slideMenu()">
+        <i class="fas fa-bars fa-2x menuBtn"></i>
+        <i class="fas fa-times fa-2x closeMenuBtn"></i>
+      </div>
     </nav>
 
     <div id="SideMenu" class="sideMenu">
-        <ul class="menu">
-            <%- include partials/sidemenu %>
-            
-        </ul>
-        <p class="loggedInAs"></p>
+      <ul class="menu">
+        <%- include partials/sidemenu %>
+      </ul>
+      <p class="loggedInAs"></p>
     </div>
-
 
     <div class="container body-content">
-
-        <div id="Filter" class="filter">
-            <div class="sortFilter">
-                <p class="filterBtn" onclick="slideFilterMenu()">Filter</p>
-            </div>
+      <div id="Filter" class="filter">
+        <div class="sortFilter">
+          <p class="filterBtn" onclick="slideFilterMenu()">Filter</p>
         </div>
-        <aside id="FilterSettings" class="filterSettings">
-            <div class="filterSettingContainer">
-                <div class="MakeSearchContainer">
-                    <label for="MakeSearch" class="MakeSearchLabel">Make :</label>
+      </div>
+      <aside id="FilterSettings" class="filterSettings">
+        <div class="filterSettingContainer">
+          <div class="MakeSearchContainer">
+            <label for="MakeSearch" class="MakeSearchLabel">Make :</label>
 
-                    <select name="MakeSearch" id="MakeSearch">
-                        <option value=""></option>
-                        <option value="Ford">Ford</option>
-                        <option value="Toyota">Toyota</option>
-                        <option value="Honda">Honda</option>
-                        <option value="Chevrolet">Chevrolet</option>
-                        <option value="Hyundai">Hyundai</option>
-                        <option value="Nissan">Nissan</option>
-                        <option value="Ram">Ram</option>
-                        <option value="Gmc">Gmc</option>
-                        <option value="Kia">Kia</option>
-                        <option value="Volkswagen">Volkswagen</option>
-                        <option value="Jeep">Jeep</option>
-                        <option value="Mazda">Mazda</option>
-                        <option value="Subaru">Subaru</option>
-                        <option value="Dodge">Dodge</option>
-                        <option value="Mercedes-Benz">Mercedes-Benz</option>
-                        <option value="Bmw">Bmw</option>
-                        <option value="Audi">Audi</option>
-                        <option value="Lexus">Lexus</option>
-                        <option value="Mitsubishi">Mitsubishi</option>
-                        <option value="Acura">Acura</option>
-                        <option value="Buick">Buick</option>
-                        <option value="Cadillac">Cadillac</option>
-                        <option value="Tesla">Tesla</option>
-                        <option value="Infiniti">Infiniti</option>
-                        <option value="Land Rover">Land Rover</option>
-                        <option value="Volvo">Volvo</option>
-                        <option value="Lincoln">Lincoln</option>
-                        <option value="Porsche">Porsche</option>
-                        <option value="Chrysler">Chrysler</option>
-                        <option value="Mini">Mini</option>
-                        <option value="Jaguar">Jaguar</option>
-                        <option value="Genesis">Genesis</option>
-                        <option value="AlfaRomeo">AlfaRomeo</option>
-                        <option value="Maserati">Maserati</option>
-                        <option value="Fiat">Fiat</option>
-                    </select>
-                </div>
-                
-                <div class="VehicleTypeContainer">
-                    <label for="VehicleType" class="VehicleTypeLabel">Vehicle Type :</label>
+            <select name="MakeSearch" id="MakeSearch">
+              <option value=""></option>
+              <option value="Ford">Ford</option>
+              <option value="Toyota">Toyota</option>
+              <option value="Honda">Honda</option>
+              <option value="Chevrolet">Chevrolet</option>
+              <option value="Hyundai">Hyundai</option>
+              <option value="Nissan">Nissan</option>
+              <option value="Ram">Ram</option>
+              <option value="Gmc">Gmc</option>
+              <option value="Kia">Kia</option>
+              <option value="Volkswagen">Volkswagen</option>
+              <option value="Jeep">Jeep</option>
+              <option value="Mazda">Mazda</option>
+              <option value="Subaru">Subaru</option>
+              <option value="Dodge">Dodge</option>
+              <option value="Mercedes-Benz">Mercedes-Benz</option>
+              <option value="Bmw">Bmw</option>
+              <option value="Audi">Audi</option>
+              <option value="Lexus">Lexus</option>
+              <option value="Mitsubishi">Mitsubishi</option>
+              <option value="Acura">Acura</option>
+              <option value="Buick">Buick</option>
+              <option value="Cadillac">Cadillac</option>
+              <option value="Tesla">Tesla</option>
+              <option value="Infiniti">Infiniti</option>
+              <option value="Land Rover">Land Rover</option>
+              <option value="Volvo">Volvo</option>
+              <option value="Lincoln">Lincoln</option>
+              <option value="Porsche">Porsche</option>
+              <option value="Chrysler">Chrysler</option>
+              <option value="Mini">Mini</option>
+              <option value="Jaguar">Jaguar</option>
+              <option value="Genesis">Genesis</option>
+              <option value="AlfaRomeo">AlfaRomeo</option>
+              <option value="Maserati">Maserati</option>
+              <option value="Fiat">Fiat</option>
+            </select>
+          </div>
 
-                    <select name="VehicleTypeSearch" id="VehicleTypeSearch">
-                        <option value=""></option>
-                        <option value="sedan">Sedan</option>
-                        <option value="coupe">Coupe</option>
-                        <option value="hatchback">Hatchback</option>
-                        <option value="van">Van</option>
-                        <option value="truck">Truck</option>
-                        <option value="suv">SUV</option>
-                        <option value="convertible">Convertible</option>
-                        <option value="wagon">Wagon</option>
-                        <option value="crossover">Crossover</option>
-                    </select>
-                </div>
-                
+          <div class="VehicleTypeContainer">
+            <label for="VehicleType" class="VehicleTypeLabel"
+              >Vehicle Type :</label
+            >
 
-                <input type="button" value="Search" id="searchButton" onclick="SearchVehicles();" />
-                <input type="button" value="Clear" id="searchButton" onclick="location.reload();" />
-            </div>
-        </aside>
-        <div class="heading">
+            <select name="VehicleTypeSearch" id="VehicleTypeSearch">
+              <option value=""></option>
+              <option value="sedan">Sedan</option>
+              <option value="coupe">Coupe</option>
+              <option value="hatchback">Hatchback</option>
+              <option value="van">Van</option>
+              <option value="truck">Truck</option>
+              <option value="suv">SUV</option>
+              <option value="convertible">Convertible</option>
+              <option value="wagon">Wagon</option>
+              <option value="crossover">Crossover</option>
+            </select>
+          </div>
 
+          <input
+            type="button"
+            value="Search"
+            id="searchButton"
+            onclick="SearchVehicles();"
+          />
+          <input
+            type="button"
+            value="Clear"
+            id="searchButton"
+            onclick="location.reload();"
+          />
         </div>
+      </aside>
+      <div class="heading"></div>
 
-        <div class="breadCrumbs">
-            <p class="filterBreadCrumbs">Filtered by : <span>None</span></p>
-        </div>
+      <div class="breadCrumbs">
+        <p class="filterBreadCrumbs">Filtered by : <span>None</span></p>
+      </div>
 
-        <div class="loading">        
-            <p>Fetching Data.</p>
-        </div>
+      <div class="loading">
+        <p>Fetching Data.</p>
+      </div>
 
-        <div class="dealershipListingContainer">
-            <ul class="dealershipListingList" id="dealershipListingList">
-            </ul>
-        </div>
+      <div class="dealershipListingContainer">
+        <ul class="dealershipListingList" id="dealershipListingList"></ul>
+      </div>
     </div>
     <footer>
-        <ul class="footerList">
-            <li class="footerListItem">
-                <a href="/">
-                    <h4>Partners</h4>
-                </a>
-                <ul class="footerSubLinkList">
-                    <li class="SubLinkListItem">
-                        <a href="/DealershipList">Dealerships</a>
-                    </li>
-                </ul>
+      <ul class="footerList">
+        <li class="footerListItem">
+          <a href="/">
+            <h4>Partners</h4>
+          </a>
+          <ul class="footerSubLinkList">
+            <li class="SubLinkListItem">
+              <a href="/DealershipList">Dealerships</a>
             </li>
-            <li class="footerListItem">
-                <a href="/">
-                    <h4>Customer Support</h4>
-                </a>
-                <ul class="footerSubLinkList">
-                    <li class="SubLinkListItem">
-                        <a href="/faq">FAQ</a>
-                    </li>
-                   
-                </ul>
+          </ul>
+        </li>
+        <li class="footerListItem">
+          <a href="/">
+            <h4>Customer Support</h4>
+          </a>
+          <ul class="footerSubLinkList">
+            <li class="SubLinkListItem">
+              <a href="/faq">FAQ</a>
             </li>
-        </ul>
+            <li class="SubLinkListItem">
+              <a href="/Contact">Contact Us</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </footer>
-</body>
-<script src="../Js/sideMenu.js"></script>
-<script src="../Js/loading.js"></script>
-<script src="../Js/dealershipListing.js"></script>
-<script>
+  </body>
+  <script src="../Js/sideMenu.js"></script>
+  <script src="../Js/loading.js"></script>
+  <script src="../Js/dealershipListing.js"></script>
+  <script>
     var gDealerId = "";
     var DealerUuid = "";
 
@@ -168,8 +176,7 @@
     var vehicleListDefault = <%-JSON.stringify(vehicle)%>;
     var vehicleList = vehicleListDefault;
     console.log(vehicleList);
-
-</script>
-<script src="../Js/privileges.js"></script>
-<script src="../Js/filter.js"></script>
+  </script>
+  <script src="../Js/privileges.js"></script>
+  <script src="../Js/filter.js"></script>
 </html>

@@ -1,186 +1,177 @@
-﻿
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-<head>
-    <link rel="icon" type="image/png" href="images/favicon.png">
+  <head>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tulu Canada</title>
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/css/all.css" />
     <link rel="stylesheet" href="styles/dashboardNav.css" />
     <link rel="stylesheet" href="styles/dashboard.css" />
     <link rel="stylesheet" href="styles/footer.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
     <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <nav id="Nav">
-        <a href="/">
-            <img src="images/tulu-logo_white.png" alt="">
-        </a>
-        <div class="menuButton" onclick="slideMenu()">
-            <i class="fas fa-bars fa-2x menuBtn"></i>
-            <i class="fas fa-times fa-2x closeMenuBtn"></i>
-        </div>
+      <a href="/">
+        <img src="images/tulu-logo_white.png" alt="" />
+      </a>
+      <div class="menuButton" onclick="slideMenu()">
+        <i class="fas fa-bars fa-2x menuBtn"></i>
+        <i class="fas fa-times fa-2x closeMenuBtn"></i>
+      </div>
     </nav>
     <a href="~/Views/Shared/_Dashboard.vbhtml"></a>
 
     <div id="SideMenu" class="sideMenu">
-        <ul class="menu">
-            <%- include partials/sidemenu %>
-            
-        </ul>
-        <p class="loggedInAs"></p>
+      <ul class="menu">
+        <%- include partials/sidemenu %>
+      </ul>
+      <p class="loggedInAs"></p>
     </div>
 
     <div class="container body-content">
-        <div class="header">
-            <h1>Dashboard</h1>
-        </div>
+      <div class="header">
+        <h1>Dashboard</h1>
+      </div>
 
-        <div class="addImage" onclick="addDealerImage()"></div>
+      <div class="addImage" onclick="addDealerImage()"></div>
 
-
-        <div class="wrapper">
-            <div class="cardContainer">
-                <div class="card carsUploaded">
-                    <div class="icon">
-                        <i class="far fa-copy fa-4x"></i>
-                    </div>
-                    <div class="info">
-                        <p>Cars Uploaded</p>
-                        <p class="uploadCount">
-                        </p>
-                    </div>
-                    <div class="viewCars">
-                        <i class="fas fa-list"></i>
-                        
-                    </div>
-                </div>
-
-                <div class="card carsSold">
-                    <div class="icon">
-                        <i class="fas fa-file-invoice-dollar fa-4x"></i>
-                    </div>
-                    <div class="info">
-                        <p>Total Sales</p>
-                        <p class="dailySalesCount">
-                        </p>
-                    </div>
-                    <div class="lastUpdate">
-                        <i class="far fa-clock"></i>
-                        <p>Last 24 Hours</p>
-                    </div>
-                </div>
-                <div class="card testDriveAppointments">
-                    <div class="icon">
-                        <i class="far fa-calendar-alt fa-4x"></i>
-                    </div>
-                    <div class="info">
-                        <p>New Test Drive Appointments</p>
-                        <p class="testDriveCount">
-                        </p>
-                    </div>
-                    <div class="appointmentUpdate">
-                        <div>
-                            <i class="far fa-calendar-alt"></i>
-                            <a href="/test/testdrive">
-                                Show Appointments
-                            </a>
-                        </div>
-                        <div>
-                            <i class="far fa-calendar-alt"></i>
-                            <a href="/test/testdrive">
-                                View Calendar
-                            </a> 
-                        </div>  
-                    </div>
-                </div>
+      <div class="wrapper">
+        <div class="cardContainer">
+          <div class="card carsUploaded">
+            <div class="icon">
+              <i class="far fa-copy fa-4x"></i>
             </div>
-            <div class="tabContainer">
-                <div class="tab">
-                    <div class="tabIcon">
-                        <i class="fas fa-user fa-2x"></i>
-                    </div>
-                    <div class="info">
-                        <p>User</p>
-                        <p>Add / Edit Users</p>
-                    </div>
-                </div>
-                <div class="tab">
-                    <div class="tabIcon">
-                        <i class="fas fa-car fa-2x"></i>
-                    </div>
-                    <div class="info">
-                        <p>Inventory</p>
-                        <p>Edit / Delete Vehicles</p>
-                    </div>
-                </div>  
-
-                 <div class="kpiContainer">
-                    <h3>Key Performance Indicators</h3>
-                    <div class="tab">
-                        <div class="tabIcon">
-                            <i class="fas fa-dollar-sign fa-2x"></i>
-                        </div>
-                        <div class="info">
-                            <p>Cars sold</p>
-                            <p>0</p>
-                        </div>
-                    </div>
-                    <div class="tab">
-                        <div class="tabIcon">
-                            <i class="fas fa-share-square fa-2x"></i>
-                        </div>
-                        <div class="info">
-                            <p>Cars shared</p>
-                            <p>0</p>
-                        </div>
-                    </div> 
-                    <div class="tab">
-                        <div class="tabIcon">
-                            <i class="far fa-eye fa-2x"></i>
-                        </div>
-                        <div class="info">
-                            <p>Cars viewed</p>
-                            <p>0</p>
-                        </div>
-                    </div> 
-                </div>
-
+            <div class="info">
+              <p>Cars Uploaded</p>
+              <p class="uploadCount"></p>
             </div>
-            
+            <div class="viewCars">
+              <i class="fas fa-list"></i>
+            </div>
+          </div>
+
+          <div class="card carsSold">
+            <div class="icon">
+              <i class="fas fa-file-invoice-dollar fa-4x"></i>
+            </div>
+            <div class="info">
+              <p>Total Sales</p>
+              <p class="dailySalesCount"></p>
+            </div>
+            <div class="lastUpdate">
+              <i class="far fa-clock"></i>
+              <p>Last 24 Hours</p>
+            </div>
+          </div>
+          <div class="card testDriveAppointments">
+            <div class="icon">
+              <i class="far fa-calendar-alt fa-4x"></i>
+            </div>
+            <div class="info">
+              <p>New Test Drive Appointments</p>
+              <p class="testDriveCount"></p>
+            </div>
+            <div class="appointmentUpdate">
+              <div>
+                <i class="far fa-calendar-alt"></i>
+                <a href="/test/testdrive"> Show Appointments </a>
+              </div>
+              <div>
+                <i class="far fa-calendar-alt"></i>
+                <a href="/test/testdrive"> View Calendar </a>
+              </div>
+            </div>
+          </div>
         </div>
+        <div class="tabContainer">
+          <div class="tab">
+            <div class="tabIcon">
+              <i class="fas fa-user fa-2x"></i>
+            </div>
+            <div class="info">
+              <p>User</p>
+              <p>Add / Edit Users</p>
+            </div>
+          </div>
+          <div class="tab">
+            <div class="tabIcon">
+              <i class="fas fa-car fa-2x"></i>
+            </div>
+            <div class="info">
+              <p>Inventory</p>
+              <p>Edit / Delete Vehicles</p>
+            </div>
+          </div>
+
+          <div class="kpiContainer">
+            <h3>Key Performance Indicators</h3>
+            <div class="tab">
+              <div class="tabIcon">
+                <i class="fas fa-dollar-sign fa-2x"></i>
+              </div>
+              <div class="info">
+                <p>Cars sold</p>
+                <p>0</p>
+              </div>
+            </div>
+            <div class="tab">
+              <div class="tabIcon">
+                <i class="fas fa-share-square fa-2x"></i>
+              </div>
+              <div class="info">
+                <p>Cars shared</p>
+                <p>0</p>
+              </div>
+            </div>
+            <div class="tab">
+              <div class="tabIcon">
+                <i class="far fa-eye fa-2x"></i>
+              </div>
+              <div class="info">
+                <p>Cars viewed</p>
+                <p>0</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <footer>
-        <ul class="footerList">
-            <li class="footerListItem">
-                <a href="/">
-                    <h4>Partners</h4>
-                </a>
-                <ul class="footerSubLinkList">
-                    <li class="SubLinkListItem">
-                        <a href="/DealershipList">Dealerships</a>
-                    </li>
-                </ul>
+      <ul class="footerList">
+        <li class="footerListItem">
+          <a href="/">
+            <h4>Partners</h4>
+          </a>
+          <ul class="footerSubLinkList">
+            <li class="SubLinkListItem">
+              <a href="/DealershipList">Dealerships</a>
             </li>
-            <li class="footerListItem">
-                <a href="/">
-                    <h4>Customer Support</h4>
-                </a>
-                <ul class="footerSubLinkList">
-                    <li class="SubLinkListItem">
-                        <a href="/faq">FAQ</a>
-                    </li>
-                   
-                </ul>
+          </ul>
+        </li>
+        <li class="footerListItem">
+          <a href="/">
+            <h4>Customer Support</h4>
+          </a>
+          <ul class="footerSubLinkList">
+            <li class="SubLinkListItem">
+              <a href="/faq">FAQ</a>
             </li>
-        </ul>
+            <li class="SubLinkListItem">
+              <a href="/Contact">Contact Us</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </footer>
-</body>
-<script src="Js/sideMenu.js"></script>
-<script src="Js/privileges.js"></script>
+  </body>
+  <script src="Js/sideMenu.js"></script>
+  <script src="Js/privileges.js"></script>
 </html>

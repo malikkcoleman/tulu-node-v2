@@ -80,17 +80,21 @@ app.use("/vin", require("./routes/vinDecoder"));
 app.use("/tulu", require("./routes/tulu"));
 app.use("/appointment", require("./routes/booking"));
 app.use("/buynow", require("./routes/buynow"));
+app.use("/contact", require("./routes/contact"));
 // ---------------------------------
 
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(path.join(__dirname, "assets")));
 
-
 app.use(function (err, req, res, next) {
-  res.render('404');
-})
-app.use(function(req,res){
-  res.status(404).render('404');
+  res.render("404", {
+    user: req.user,
+  });
+});
+app.use(function (req, res) {
+  res.status(404).render("404", {
+    user: req.user,
+  });
 });
 
 const PORT = process.env.PORT || 3000;

@@ -1,10 +1,9 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-<head>
-    <link rel="icon" type="image/png" href="images/favicon.png">
+  <head>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tulu Canada</title>
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/css/all.css" />
@@ -12,216 +11,229 @@
     <link rel="stylesheet" href="styles/filter.css" />
     <link rel="stylesheet" href="styles/shop.css" />
     <link rel="stylesheet" href="styles/footer.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
     <script type="text/javascript" src="Js/Helpers/UploadHelper.js"></script>
     <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <nav id="Nav">
-        <a href="/">
-            <img src="images/tulu-logo_white.png" alt="">
-        </a> 
-        <div class="menuButton" onclick="slideMenu()">
-            <i class="fas fa-bars fa-2x menuBtn"></i>
-            <i class="fas fa-times fa-2x closeMenuBtn"></i>
-        </div>
-        
+      <a href="/">
+        <img src="images/tulu-logo_white.png" alt="" />
+      </a>
+      <div class="menuButton" onclick="slideMenu()">
+        <i class="fas fa-bars fa-2x menuBtn"></i>
+        <i class="fas fa-times fa-2x closeMenuBtn"></i>
+      </div>
     </nav>
 
     <div id="SideMenu" class="sideMenu">
-        <ul class="menu">
-            <%- include partials/sidemenu %>
-            
-        </ul>
-        <p class="loggedInAs"></p>
+      <ul class="menu">
+        <%- include partials/sidemenu %>
+      </ul>
+      <p class="loggedInAs"></p>
     </div>
 
     <div class="container body-content">
-
-        <div id="Filter" class="filter">
-            <i class="fas fa-th-list" id="gridDisplayBtn" onclick="vehicleDisplay()"></i>
-            <div class="sortFilter">
-                <i class="fas fa-sort-amount-up-alt sortBtn" onclick="slideSortMenu()"></i>
-                <p class="filterBtn" onclick="slideFilterMenu()">Filter</p>
-            </div>
+      <div id="Filter" class="filter">
+        <i
+          class="fas fa-th-list"
+          id="gridDisplayBtn"
+          onclick="vehicleDisplay()"
+        ></i>
+        <div class="sortFilter">
+          <i
+            class="fas fa-sort-amount-up-alt sortBtn"
+            onclick="slideSortMenu()"
+          ></i>
+          <p class="filterBtn" onclick="slideFilterMenu()">Filter</p>
         </div>
-        <div class="breadCrumbs">
-            <p class="filterBreadCrumbs">Filtered by : <span>None</span></p>
+      </div>
+      <div class="breadCrumbs">
+        <p class="filterBreadCrumbs">Filtered by : <span>None</span></p>
+      </div>
+      <aside id="FilterSettings" class="filterSettings">
+        <div class="filterSettingContainer">
+          <div class="ModelSearchContainer" style="display: none">
+            <label for="ModelSearch" class="ModelSearchLabel">Model :</label>
+            <input type="text" id="ModelSearch" />
+          </div>
+          <div class="MakeSearchContainer">
+            <label for="MakeSearch" class="MakeSearchLabel">Make :</label>
+
+            <select name="MakeSearch" id="MakeSearch">
+              <option value=""></option>
+              <option value="Ford">Ford</option>
+              <option value="Toyota">Toyota</option>
+              <option value="Honda">Honda</option>
+              <option value="Chevrolet">Chevrolet</option>
+              <option value="Hyundai">Hyundai</option>
+              <option value="Nissan">Nissan</option>
+              <option value="Ram">Ram</option>
+              <option value="Gmc">Gmc</option>
+              <option value="Kia">Kia</option>
+              <option value="Volkswagen">Volkswagen</option>
+              <option value="Jeep">Jeep</option>
+              <option value="Mazda">Mazda</option>
+              <option value="Subaru">Subaru</option>
+              <option value="Dodge">Dodge</option>
+              <option value="Mercedes-Benz">Mercedes-Benz</option>
+              <option value="Bmw">Bmw</option>
+              <option value="Audi">Audi</option>
+              <option value="Lexus">Lexus</option>
+              <option value="Mitsubishi">Mitsubishi</option>
+              <option value="Acura">Acura</option>
+              <option value="Buick">Buick</option>
+              <option value="Cadillac">Cadillac</option>
+              <option value="Tesla">Tesla</option>
+              <option value="Infiniti">Infiniti</option>
+              <option value="Land Rover">Land Rover</option>
+              <option value="Volvo">Volvo</option>
+              <option value="Lincoln">Lincoln</option>
+              <option value="Porsche">Porsche</option>
+              <option value="Chrysler">Chrysler</option>
+              <option value="Mini">Mini</option>
+              <option value="Jaguar">Jaguar</option>
+              <option value="Genesis">Genesis</option>
+              <option value="AlfaRomeo">AlfaRomeo</option>
+              <option value="Maserati">Maserati</option>
+              <option value="Fiat">Fiat</option>
+            </select>
+          </div>
+          <div class="YearMinContainer" style="display: none">
+            <label for="YearMin" class="YearMinLabel">Year Min :</label>
+            <input type="text" id="YearMinSearch" value="0" />
+          </div>
+          <div class="YearMaxContainer" style="display: none">
+            <label for="YearMax" class="YearMaxLabel">Year Max :</label>
+            <input type="text" id="YearMaxSearch" value="0" />
+          </div>
+          <div class="VehicleTypeContainer">
+            <label for="VehicleType" class="VehicleTypeLabel"
+              >Vehicle Type :</label
+            >
+
+            <select name="VehicleTypeSearch" id="VehicleTypeSearch">
+              <option value=""></option>
+              <option value="sedan">Sedan</option>
+              <option value="coupe">Coupe</option>
+              <option value="hatchback">Hatchback</option>
+              <option value="van">Van</option>
+              <option value="truck">Truck</option>
+              <option value="suv">SUV</option>
+              <option value="convertible">Convertible</option>
+              <option value="wagon">Wagon</option>
+              <option value="crossover">Crossover</option>
+            </select>
+          </div>
+          <div class="IsSoldContainer" style="display: none">
+            <label for="IsSold" class="IsSoldLabel">Model :</label>
+            <select id="IsSoldSelect">
+              <option value="0">False</option>
+              <option value="1">True</option>
+            </select>
+          </div>
+          <div class="PriceMinContainer" style="display: none">
+            <label for="PriceMin" class="PriceMinLabel">Price Min :</label>
+            <input type="text" id="PriceMinSearch" value="0" />
+          </div>
+          <div class="PriceMaxContainer" style="display: none">
+            <label for="PriceMax" class="PriceMaxLabel">Price Max :</label>
+            <input type="text" id="PriceMaxSearch" value="0" />
+          </div>
+          <div class="PriceTypeContainer" style="display: none">
+            <label for="PriceType" class="PriceTypeLabel">Price Type :</label>
+            <select id="PriceTypeSearch">
+              <option value=""></option>
+              <option value="msrp">MSRP</option>
+              <option value="wholeSalePrice">Whole Sale Price</option>
+            </select>
+          </div>
+
+          <input
+            type="button"
+            value="Search"
+            id="searchButton"
+            onclick="SearchVehicles();"
+          />
+          <input
+            type="button"
+            value="Clear"
+            id="searchButton"
+            onclick="location.reload();"
+          />
         </div>
-        <aside id="FilterSettings" class="filterSettings">
-            <div class="filterSettingContainer">
-                <div class="ModelSearchContainer" style="display:none;">
-                    <label for="ModelSearch" class="ModelSearchLabel">Model :</label>
-                    <input type="text" id="ModelSearch" />
-                </div>
-                <div class="MakeSearchContainer">
-                    <label for="MakeSearch" class="MakeSearchLabel">Make :</label>
+      </aside>
 
-                    <select name="MakeSearch" id="MakeSearch">
-                        <option value=""></option>
-                        <option value="Ford">Ford</option>
-                        <option value="Toyota">Toyota</option>
-                        <option value="Honda">Honda</option>
-                        <option value="Chevrolet">Chevrolet</option>
-                        <option value="Hyundai">Hyundai</option>
-                        <option value="Nissan">Nissan</option>
-                        <option value="Ram">Ram</option>
-                        <option value="Gmc">Gmc</option>
-                        <option value="Kia">Kia</option>
-                        <option value="Volkswagen">Volkswagen</option>
-                        <option value="Jeep">Jeep</option>
-                        <option value="Mazda">Mazda</option>
-                        <option value="Subaru">Subaru</option>
-                        <option value="Dodge">Dodge</option>
-                        <option value="Mercedes-Benz">Mercedes-Benz</option>
-                        <option value="Bmw">Bmw</option>
-                        <option value="Audi">Audi</option>
-                        <option value="Lexus">Lexus</option>
-                        <option value="Mitsubishi">Mitsubishi</option>
-                        <option value="Acura">Acura</option>
-                        <option value="Buick">Buick</option>
-                        <option value="Cadillac">Cadillac</option>
-                        <option value="Tesla">Tesla</option>
-                        <option value="Infiniti">Infiniti</option>
-                        <option value="Land Rover">Land Rover</option>
-                        <option value="Volvo">Volvo</option>
-                        <option value="Lincoln">Lincoln</option>
-                        <option value="Porsche">Porsche</option>
-                        <option value="Chrysler">Chrysler</option>
-                        <option value="Mini">Mini</option>
-                        <option value="Jaguar">Jaguar</option>
-                        <option value="Genesis">Genesis</option>
-                        <option value="AlfaRomeo">AlfaRomeo</option>
-                        <option value="Maserati">Maserati</option>
-                        <option value="Fiat">Fiat</option>
-                    </select>
-                </div>
-                <div class="YearMinContainer" style="display:none;">
-                    <label for="YearMin" class="YearMinLabel">Year Min :</label>
-                    <input type="text" id="YearMinSearch" value="0" />
-                </div>
-                <div class="YearMaxContainer" style="display:none;">
-                    <label for="YearMax" class="YearMaxLabel">Year Max :</label>
-                    <input type="text" id="YearMaxSearch" value="0" />
-                </div>
-                <div class="VehicleTypeContainer">
-                    <label for="VehicleType" class="VehicleTypeLabel">Vehicle Type :</label>
+      <aside id="SortSettings" class="sortSettings">
+        <div class="sortSettingContainer">
+          <p class="sortBreadCrumbs">Sort by : <span>Dafault</span></p>
+          <ul>
+            <li onclick="sort('default')">Default</li>
+            <li onclick="sort('lowToHigh')">Price : Low to High</li>
+            <li onclick="sort('highToLow')">Price : High to Low</li>
+            <li onclick="sort('kilometers')">Kilometers</li>
+          </ul>
+        </div>
+      </aside>
 
-                    <select name="VehicleTypeSearch" id="VehicleTypeSearch">
-                        <option value=""></option>
-                        <option value="sedan">Sedan</option>
-                        <option value="coupe">Coupe</option>
-                        <option value="hatchback">Hatchback</option>
-                        <option value="van">Van</option>
-                        <option value="truck">Truck</option>
-                        <option value="suv">SUV</option>
-                        <option value="convertible">Convertible</option>
-                        <option value="wagon">Wagon</option>
-                        <option value="crossover">Crossover</option>
-                    </select>
-                </div>
-                <div class="IsSoldContainer" style="display:none;">
-                    <label for="IsSold" class="IsSoldLabel">Model :</label>
-                    <select id="IsSoldSelect"><option value="0">False</option><option value="1">True</option></select>
-                </div>
-                <div class="PriceMinContainer" style="display:none;">
-                    <label for="PriceMin" class="PriceMinLabel">Price Min :</label>
-                    <input type="text" id="PriceMinSearch" value="0" />
-                </div>
-                <div class="PriceMaxContainer" style="display:none;">
-                    <label for="PriceMax" class="PriceMaxLabel">Price Max :</label>
-                    <input type="text" id="PriceMaxSearch" value="0" />
-                </div>
-                <div class="PriceTypeContainer" style="display:none;">
-                    <label for="PriceType" class="PriceTypeLabel">Price Type :</label>
-                    <select id="PriceTypeSearch">
-                        <option value=""></option>
-                        <option value="msrp">MSRP</option>
-                        <option value="wholeSalePrice">Whole Sale Price</option>
-                    </select>
-                </div>
+      <!-- VEHICLE LIST -->
+      <section class="vehicles">
+        <div class="helperInfo">
+          <h3>
+            Can't decide what vehicle to get?<br />Ask a Tulu to assist you!
+          </h3>
+          <a href="/TuluList"><button>Hire a Tulu</button></a>
+        </div>
 
-                <input type="button" value="Search" id="searchButton" onclick="SearchVehicles();" />
-                <input type="button" value="Clear" id="searchButton" onclick="location.reload();" />
-            </div>
-        </aside>
-
-        <aside id="SortSettings" class="sortSettings">
-            <div class="sortSettingContainer">
-                <p class="sortBreadCrumbs">Sort by : <span>Dafault</span></p>
-                <ul>
-                    <li onclick="sort('default')">
-                        Default
-                    </li>
-                    <li onclick="sort('lowToHigh')">
-                        Price : Low to High
-                    </li>
-                    <li onclick="sort('highToLow')">
-                        Price : High to Low
-                    </li>
-                    <li onclick="sort('kilometers')">
-                        Kilometers
-                    </li>    
-                </ul>
-            </div>
-        </aside>
-
-        <!-- VEHICLE LIST -->
-        <section class="vehicles">
-            <div class="helperInfo">
-                <h3>Can't decide what vehicle to get?<br/>Ask a Tulu to assist you!</h3>
-                <a href="/TuluList"><button>Hire a Tulu</button></a>
-            </div>
-
-            <ul id="Vehicles" class="vehicleList">
-                <div class="loading">
-                    
-                    <p>Fetching Data.</p>
-                </div>
-                
-            </ul>
-        </section>
-
-
+        <ul id="Vehicles" class="vehicleList">
+          <div class="loading">
+            <p>Fetching Data.</p>
+          </div>
+        </ul>
+      </section>
     </div>
     <footer>
-        <ul class="footerList">
-            <li class="footerListItem">
-                <a href="/">
-                    <h4>Partners</h4>
-                </a>
-                <ul class="footerSubLinkList">
-                    <li class="SubLinkListItem">
-                        <a href="/DealershipList">Dealerships</a>
-                    </li>
-                </ul>
+      <ul class="footerList">
+        <li class="footerListItem">
+          <a href="/">
+            <h4>Partners</h4>
+          </a>
+          <ul class="footerSubLinkList">
+            <li class="SubLinkListItem">
+              <a href="/DealershipList">Dealerships</a>
             </li>
-            <li class="footerListItem">
-                <a href="/">
-                    <h4>Customer Support</h4>
-                </a>
-                <ul class="footerSubLinkList">
-                    <li class="SubLinkListItem">
-                        <a href="/faq">FAQ</a>
-                    </li>
-                   
-                </ul>
+          </ul>
+        </li>
+        <li class="footerListItem">
+          <a href="/">
+            <h4>Customer Support</h4>
+          </a>
+          <ul class="footerSubLinkList">
+            <li class="SubLinkListItem">
+              <a href="/faq">FAQ</a>
             </li>
-        </ul>
+            <li class="SubLinkListItem">
+              <a href="/Contact">Contact Us</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </footer>
-    
-</body>
-<script src="Js/sideMenu.js"></script>
-<script src="Js/filter.js"></script>
-<script src="Js/vehicleDisplay.js"></script>
-<script src="Js/loading.js"></script>
-<script src="Js/shop.js"></script>
-<script src="Js/privileges.js"></script>
-<script>
+  </body>
+  <script src="Js/sideMenu.js"></script>
+  <script src="Js/filter.js"></script>
+  <script src="Js/vehicleDisplay.js"></script>
+  <script src="Js/loading.js"></script>
+  <script src="Js/shop.js"></script>
+  <script src="Js/privileges.js"></script>
+  <script>
     var vehicleListDefault = <%-JSON.stringify(vehicles)%>;
     var vehicleList = vehicleListDefault;
     console.log(vehicleList);
     populateVehicle(vehicleList);
-</script>
+  </script>
 </html>
