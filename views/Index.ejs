@@ -17,17 +17,30 @@
     }
     img{
       width:150px;
-      filter:drop-shadow(0 10px 10px #0000003b);
+      filter:drop-shadow(0 10px 10px #00000052);
     }
     h1{
       color:white;
-      margin:20px 0 0 0;
+      margin:30px 0 0 0;
       filter:drop-shadow(0 10px 10px #0000003b);
     }
   </style>
+  <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
 </head>
 <body>
   <img src="images/tulu-logo_white.png" alt="">
   <h1>Coming Soon!</h1>
 </body>
+<script>
+  setTimeout(pulseIn, 500);
+  function pulseIn(){
+    document.querySelector('img').style = "transform:scale(1.08);transition:2s;filter:drop-shadow(0 15px 15px #00000013);"
+    setTimeout(pulseOut, 2000);
+  }
+
+  function pulseOut(){
+    document.querySelector('img').style = "transform:scale(1);transition:2s;filter:drop-shadow(0 10px 10px #00000052);"
+    setTimeout(pulseIn, 2000);
+  }
+</script>
 </html>
