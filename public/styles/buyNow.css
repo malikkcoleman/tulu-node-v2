@@ -17,7 +17,7 @@
 
 
 .container{
-    margin:20px 0 0 0;
+    margin:20px 0 50px 0;
     padding:0 20px;
     /* justify-content: center; */
     /* align-items: center; */
@@ -39,4 +39,21 @@
     color:white;
     justify-content: center;
     align-items: center;
+}
+
+@media screen and (min-width: 600px) {
+    .header{
+        padding:30px 20px;
+        margin:80px 0 0 0;
+        width:90vmin;
+        justify-self: center;
+        align-self: center;     
+        background:#79C6AC;
+    }
+
+    .container{
+        width:90vmin;
+        justify-self: center;
+        align-self: center;  
+    }
 }

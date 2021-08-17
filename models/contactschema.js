@@ -21,6 +21,10 @@ const contactschema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  timestamp: {
+    type: Date,
+    default:Date.now,
+  }
 });
 
 const contactschemas = mongoose.model("contact", contactschema);
