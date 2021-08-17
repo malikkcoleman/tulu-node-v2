@@ -97,20 +97,27 @@ router.get('/EditDealer',ensureAuthenticated,(req,res)=>
 
 router.post('/EditDealer',(req,res)=>{
     var myquery = { uuid: req.user.toObject().dealerId };
+    var myqueryAddress = { targetId: req.user.toObject().dealerId };
     const { name,logo,website,street,city,province,postal} = req.body;
     var newvalues = { 
         name: name,
-        logo: logo,
+        logo: logo
+    };
+
+    var newaddressvalues = { 
         website: website,
         street: street,
         city: city,
         province: province,
         postal: postal
-    };
+    }
         Dealer.updateOne(myquery, newvalues)
-        .then(user=>{
-            req.flash('success_msg', 'Changes Saved!');
-            res.redirect('/dealerships/EditDealer')  
+        .then(dealer=>{
+            Address.updateOne(myqueryAddress, newaddressvalues)
+            .then(address=>{
+                req.flash('success_msg', 'Changes Saved!');
+                res.redirect('/dealerships/EditDealer')  
+            })
         })
 });
 
