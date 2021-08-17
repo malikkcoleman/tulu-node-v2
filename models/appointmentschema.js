@@ -60,6 +60,10 @@ const appointmmentschema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  timestamp: {
+    type: Date,
+    default:Date.now,
+  }
 });
 
 const appointmmentschemas = mongoose.model("appointment", appointmmentschema);
