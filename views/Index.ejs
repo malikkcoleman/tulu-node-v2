@@ -11,7 +11,10 @@
   <style>
     body{
       height:100vh;
-      background: #79C6AC;
+      background: url('images/comingSoon.jpg'),linear-gradient(#79C6AC,rgba(121, 198, 172, 0.26));
+      background-blend-mode: soft-light;
+      background-size: cover;
+      background-position:center;
       justify-content: center;
       align-items: center;
     }
@@ -35,11 +38,13 @@
   setTimeout(pulseIn, 500);
   function pulseIn(){
     document.querySelector('img').style = "transform:scale(1.08);transition:2s;filter:drop-shadow(0 15px 15px #00000013);"
+    document.querySelector('h1').style = "transform:scale(1.08);transition:2s;filter:drop-shadow(0 15px 15px #00000013);"
     setTimeout(pulseOut, 2000);
   }
 
   function pulseOut(){
     document.querySelector('img').style = "transform:scale(1);transition:2s;filter:drop-shadow(0 10px 10px #00000052);"
+    document.querySelector('h1').style = "transform:scale(1);transition:2s;filter:drop-shadow(0 10px 10px #00000052);"
     setTimeout(pulseIn, 2000);
   }
 </script>
