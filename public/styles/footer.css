@@ -4,6 +4,7 @@ footer {
     padding: 20px 0;
     /* position: relative;
     bottom: 0px; */
+    flex-direction: column;
 }
 
 .footerList {
@@ -26,4 +27,14 @@ footer {
 
 .SubLinkListItem a {
     color: #8B9196;
+}
+
+footer p{
+    width:100%;
+    text-align: center;
+    margin:20px 0 0 0;
+    padding:30px 0 0 0;
+    border-top:1px solid #2b3b44;
+    color:#8B9196;
+    font-size: smaller;
 }
