@@ -1,76 +1,87 @@
-
-
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="icon" type="image/png" href="../images/favicon.png">
+  <head>
+    <link rel="icon" type="image/png" href="../images/favicon.png" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tulu Canada</title>
     <link rel="stylesheet" href="../styles/reset.css" />
     <link rel="stylesheet" href="../styles/css/all.css" />
     <link rel="stylesheet" href="../styles/nav.css" />
     <link rel="stylesheet" href="../styles/login.css" />
     <link rel="stylesheet" href="../styles/footer.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
     <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
-</head>
-<body>
+    <script type="text/javascript">
+      window.$crisp = [];
+      window.CRISP_WEBSITE_ID = "ed940b73-2279-4d2f-8f1b-60a14be30677";
+      (function () {
+        d = document;
+        s = d.createElement("script");
+        s.src = "https://client.crisp.chat/l.js";
+        s.async = 1;
+        d.getElementsByTagName("head")[0].appendChild(s);
+      })();
+    </script>
+  </head>
+  <body>
     <nav id="Nav">
-        <a href="/">
-            <img src="../images/tulu-logo_white.png" alt="">
-        </a>
-        <div class="menuButton" onclick="slideMenu()">
-            <i class="fas fa-bars fa-2x menuBtn"></i>
-            <i class="fas fa-times fa-2x closeMenuBtn"></i>
-        </div>
-    <%- include partials/navbar %>
+      <a href="/">
+        <img src="../images/tulu-logo_white.png" alt="" />
+      </a>
+      <div class="menuButton" onclick="slideMenu()">
+        <i class="fas fa-bars fa-2x menuBtn"></i>
+        <i class="fas fa-times fa-2x closeMenuBtn"></i>
+      </div>
+      <%- include partials/navbar %>
     </nav>
     <div class="dropDownMenu">
-        <ul>
-            <%- include partials/dropDownMenu %>
-        </ul>
+      <ul>
+        <%- include partials/dropDownMenu %>
+      </ul>
     </div>
 
     <div id="SideMenu" class="sideMenu">
-        <ul class="menu">
-            <%- include partials/sidemenu %>
-            
-        </ul>
-        <p class="loggedInAs"></p>
+      <ul class="menu">
+        <%- include partials/sidemenu %>
+      </ul>
+      <p class="loggedInAs"></p>
     </div>
 
     <div class="container">
-        <%- include partials/messages %>
-        <form action="/users/login" method="POST">
-          <h1>Sign In</h1>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              class="form-control"
-              placeholder="Enter Email"
-            />
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              class="form-control"
-              placeholder="Enter Password"
-            />
-          </div>
-          <button type="submit">Login</button>
-        </form>
-        <p class="lead mt-4">
-          Need an Account? <a href="/users/register">Sign Up</a>
-        </p>
-      </div>
-      </body>
-      <script src="../Js/sideMenu.js"></script>
-    </html>
+      <%- include partials/messages %>
+      <form action="/users/login" method="POST">
+        <h1>Sign In</h1>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            placeholder="Enter Email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="Enter Password"
+          />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+      <p class="lead mt-4">
+        Need an Account? <a href="/users/register">Sign Up</a>
+      </p>
+    </div>
+  </body>
+  <script src="../Js/sideMenu.js"></script>
+</html>
