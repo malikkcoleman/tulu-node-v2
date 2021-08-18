@@ -10,6 +10,11 @@
     margin:0 0 20px 0;
 }
 
+h1{
+    margin:0 0 10px 0;
+    color:#79C6AC;
+}
+
 label{
     margin:0 0 5px 0;
 }
@@ -64,10 +69,39 @@ button{
     width:80vmin;
     height:400px;
     background:white;
-    overflow: scroll;
+    overflow: scroll hidden;
     border-radius: 10px;
 }
 
 .popUp .wrapper button{
     margin:20px 0 0 0;
+}
+
+@media screen and (min-width: 600px) {
+    .container{
+        margin:120px 0;
+    }
+
+    h1{
+        margin:0 0 30px 0;
+    }
+
+    .privacyPolicy{
+        color:#79C6AC;
+        transition: 0.1s;
+    }
+    
+    .privacyPolicy:hover{
+        color:#35e7ac;
+        transition: 0.5s;
+    }
+
+    .popUp .wrapper button{
+        transition: 0.5s;
+    }
+    
+    .popUp .wrapper button:hover{
+        transition: 0.5s;
+        background:#35e7ac;
+    }
 }

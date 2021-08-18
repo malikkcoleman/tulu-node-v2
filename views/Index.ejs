@@ -59,7 +59,7 @@
       <!-- First Section -->
       <section class="firstSection">
         <div class="getApproved">
-          <a href="https://tulucanada.com/web/financep">
+          <a href="">
             <img src="images/approve.jpg" alt="" />
             <h2>Get Approved Now!</h2>
           </a>
@@ -74,7 +74,7 @@
 
       <!-- Second Section -->
       <section class="secondSection">
-        <h2 class="dealershipHeading">TOP DEALERSHIPS</h2>
+        <h2 class="dealershipHeading">OUR TOP DEALERSHIPS</h2>
 
         <ul class="partnerList">
           <li class="partnerListItems">
@@ -108,11 +108,14 @@
             </a>
           </li>
         </ul>
+        <a href="/DealershipList">
+          <button>VIEW ALL DEALERSHIPS</button>
+        </a>
       </section>
 
       <!-- Third Section -->
       <section class="thirdSection">
-        <h2 class="influencerHeading">TOP TULUS</h2>
+        <h2 class="influencerHeading">TOP TULU'S</h2>
         <ul class="influencerList">
           <li class="influencerListItems">
             <div class="influencerImage">
@@ -121,12 +124,26 @@
               </a>
             </div>
             <h3 class="influencerName">Tulu Jo</h3>
+            <div class="userRating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
           </li>
           <li class="influencerListItems">
             <div class="influencerImage">
               <img src="images/shae.jpg" alt="" />
             </div>
             <h3 class="influencerName">Tulu Shae</h3>
+            <div class="userRating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
           </li>
           <li class="influencerListItems">
             <div class="influencerImage">
@@ -135,6 +152,13 @@
               </a>
             </div>
             <h3 class="influencerName">Tulu Donny</h3>
+            <div class="userRating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
           </li>
         </ul>
       </section>
@@ -150,43 +174,15 @@
         </div>
       </section>
     </div>
-    <footer>
-      <ul class="footerList">
-        <li class="footerListItem">
-          <a href="/">
-            <h4>Partners</h4>
-          </a>
-          <ul class="footerSubLinkList">
-            <li class="SubLinkListItem">
-              <a href="/DealershipList">Dealerships</a>
-            </li>
-          </ul>
-        </li>
-        <li class="footerListItem">
-          <a href="/">
-            <h4>Customer Support</h4>
-          </a>
-          <ul class="footerSubLinkList">
-            <li class="SubLinkListItem">
-              <a href="/faq">FAQ</a>
-            </li>
-            <li class="SubLinkListItem">
-              <a href="/Contact">Contact Us</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </footer>
+    <%- include partials/footer %>
   </body>
   <script src="Js/sideMenu.js"></script>
   <script src="Js/privileges.js"></script>
-  <Script> GetUser(); // guestprivileges(); </Script>
 
   <script>
     function TestTuluList() {
       // console.log(results);
       // LoadTulus(results);
     }
-    TestTuluList();
-  </script>
+</script>
 </html>

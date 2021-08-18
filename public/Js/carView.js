@@ -54,3 +54,10 @@ function buyNow(){
 function bookAppointment(){
     location.replace("/appointment/booking/"+vin);
 }
+
+function fullScreen(){
+    document.querySelector('.slideshow-container').style ="position:fixed;width:100vw;height:100vh;background:#00000050;top:0;right:0;justify-content: center;align-items: center;z-index: 9999;padding:150px 0;margin:0;"
+
+    document.querySelector('.next').style = " right: 150px;border-radius: 3px 0 0 3px;"
+    document.querySelector('.prev').style = " left: 150px;border-radius: 3px 0 0 3px;"
+}

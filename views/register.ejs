@@ -43,14 +43,14 @@
       <div class="container">
       <%- include partials/messages %>
       <form action="/users/register" method="POST">
-
+        <h1>Sign Up For an Account</h1>
         <div class="form-group">
-          <label for="fName">Firstname</label>
-          <input type="name" id="fName" name="fName" class="form-control" placeholder="Enter Firstname" value="" />
+          <label for="fName">First name</label>
+          <input type="name" id="fName" name="fName" class="form-control" placeholder="Enter First name" value="" />
         </div>
         <div class="form-group">
-          <label for="name">Lastname</label>
-          <input type="name" id="lName" name="lName" class="form-control" placeholder="Enter Lastname" value="" />
+          <label for="name">Last name</label>
+          <input type="name" id="lName" name="lName" class="form-control" placeholder="Enter Last name" value="" />
         </div>
         <div class="form-group">
           <label for="email">Email</label>
@@ -121,7 +121,7 @@
           Register
         </button>
       </form>
-      <p class="lead mt-4">Have An Account? <a href="/users/login">Login</a></p>
+      <p class="lead mt-4">Already Have An Account? <a href="/users/login">Sign In</a></p>
     </div>
     <div class="popUp">
       <div class="wrapper">
