@@ -1,50 +1,187 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-  <link rel="icon" type="image/png" href="images/favicon.png" />
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tulu Canada</title>
-  <link rel="stylesheet" href="styles/reset.css" />
-  <style>
-    body{
-      height:100vh;
-      background: #79C6AC;
-      background: url('images/comingSoon.jpg'),linear-gradient(#79C6AC,rgba(121, 198, 172, 0.26));
-      background-blend-mode: soft-light;
-      background-size: cover;
-      background-position:center;
-      justify-content: center;
-      align-items: center;
-    }
-    img{
-      width:150px;
-      filter:drop-shadow(0 10px 10px #00000052);
-    }
-    h1{
-      color:white;
-      margin:30px 0 0 0;
-      filter:drop-shadow(0 10px 10px #0000003b);
-    }
-  </style>
-  <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
-</head>
-<body>
-  <img src="images/tulu-logo_white.png" alt="">
-  <h1>Coming Soon!</h1>
-</body>
-<script>
-  setTimeout(pulseIn, 500);
-  function pulseIn(){
-    document.querySelector('img').style = "transform:scale(1.08);transition:2s;filter:drop-shadow(0 15px 15px #00000013);"
-    document.querySelector('h1').style = "transform:scale(1.08);transition:2s;filter:drop-shadow(0 15px 15px #00000013);"
-    setTimeout(pulseOut, 2000);
-  }
-  function pulseOut(){
-    document.querySelector('img').style = "transform:scale(1);transition:2s;filter:drop-shadow(0 10px 10px #00000052);"
-    document.querySelector('h1').style = "transform:scale(1);transition:2s;filter:drop-shadow(0 10px 10px #00000052);"
-    setTimeout(pulseIn, 2000);
-  }
+<html>
+  <head>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tulu Canada</title>
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/css/all.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/home.css" />
+    <link rel="stylesheet" href="styles/footer.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+  </head>
+  <body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    <%- include partials/navbar %>
+    </nav>
+    <div class="dropDownMenu">
+        <ul>
+            <%- include partials/dropDownMenu %>
+        </ul>
+    </div>
+
+    <div id="SideMenu" class="sideMenu">
+      <ul class="menu">
+        <%- include partials/sidemenu %>
+      </ul>
+      <p class="loggedInAs"></p>
+    </div>
+
+    <div class="container body-content">
+      <div class="header">
+        <img src="images/banner.png" class="desktop" alt="" />
+        <img src="images/bannerMobile.png" class="mobile" alt="" />
+        <img src="images/bannerTesla.png" class="bannerTesla" alt="" />
+      </div>
+
+      <!-- Search section  -->
+      <section class="searchSection" style="display: none">
+        <div class="wrapper">
+          <input type="text" value="search : year make model" />
+          <button>Find</button>
+        </div>
+      </section>
+
+      <!-- First Section -->
+      <section class="firstSection">
+        <div class="getApproved">
+          <a href="">
+            <img src="images/approve.jpg" alt="" />
+            <h2>Get Approved Now!</h2>
+          </a>
+        </div>
+        <div class="browse">
+          <a href="/Shop">
+            <img src="images/browse1.png" alt="" />
+            <h2>Browse the inventory</h2>
+          </a>
+        </div>
+      </section>
+
+      <!-- Second Section -->
+      <section class="secondSection">
+        <h2 class="dealershipHeading">OUR TOP DEALERSHIPS</h2>
+
+        <ul class="partnerList">
+          <li class="partnerListItems">
+            <a href="/DealerListing/978c71ce-e338-45ee-bd8d-e5eb9118017a">
+              <img src="images/company logo/1.png" alt="" />
+            </a>
+          </li>
+          <li class="partnerListItems">
+            <a href="/DealerListing/978c71ce-e338-45ee-bd8d-e5eb9118017d">
+              <img src="images/company logo/2.png" alt="" />
+            </a>
+          </li>
+          <li class="partnerListItems">
+            <a href="/DealerListing/978c71ce-e338-45ee-bd8d-e5eb9118017f">
+              <img src="images/company logo/3.png" alt="" />
+            </a>
+          </li>
+          <li class="partnerListItems">
+            <a href="/DealerListing/978c71ce-e338-45ee-bd8d-e5eb9118017e">
+              <img src="images/company logo/4.png" alt="" />
+            </a>
+          </li>
+          <li class="partnerListItems">
+            <a href="/DealerListing/978c71ce-e338-45ee-bd8d-e5eb9118017b">
+              <img src="images/company logo/5.png" alt="" />
+            </a>
+          </li>
+          <li class="partnerListItems">
+            <a href="/DealerListing/978c71ce-e338-45ee-bd8d-e5eb9118017c">
+              <img src="images/company logo/6.png" alt="" />
+            </a>
+          </li>
+        </ul>
+        <a href="/DealershipList">
+          <button>VIEW ALL DEALERSHIPS</button>
+        </a>
+      </section>
+
+      <!-- Third Section -->
+      <section class="thirdSection">
+        <h2 class="influencerHeading">TOP TULU'S</h2>
+        <ul class="influencerList">
+          <li class="influencerListItems">
+            <div class="influencerImage">
+              <a href="/tulu/viewTulu?tuluId=61170003ffd5b400231fac4b">
+                <img src="images/jolo.jpeg" alt="" />
+              </a>
+            </div>
+            <h3 class="influencerName">Tulu Jo</h3>
+            <div class="userRating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+          </li>
+          <li class="influencerListItems">
+            <div class="influencerImage">
+              <img src="images/shae.jpg" alt="" />
+            </div>
+            <h3 class="influencerName">Tulu Shae</h3>
+            <div class="userRating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </li>
+          <li class="influencerListItems">
+            <div class="influencerImage">
+              <a href="/tulu/viewTulu?tuluId=61168fe41cb4320023b5e88a">
+                <img src="images/donny.jpeg" alt="" />
+              </a>
+            </div>
+            <h3 class="influencerName">Tulu Donny</h3>
+            <div class="userRating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Fourth Section -->
+      <section class="fourthSection">
+        <div class="videoContainer">
+          <h2>HOW DOES IT WORK?</h2>
+          <video width="80%" controls preload="none" muted autoplay>
+            <source src="Videos/tulu_vid.mp4" type="video/mp4" />
+            Your browser does not support HTML video.
+          </video>
+        </div>
+      </section>
+    </div>
+    <%- include partials/footer %>
+  </body>
+  <script src="Js/sideMenu.js"></script>
+  <script src="Js/privileges.js"></script>
+
+  <script>
+    function TestTuluList() {
+      // console.log(results);
+      // LoadTulus(results);
 </script>
 </html>
