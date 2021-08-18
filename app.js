@@ -8,6 +8,31 @@ const expressLayouts = require("express-ejs-layouts");
 const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport");
+const https = require("https");
+
+const hostname = "tulucanada.com";
+const port = 3000;
+
+const cert = fs.readFileSync('./path/tulucanada_com.crt');
+const ca = fs.readFileSync('./path/tulucanada_com.ca-bundle');
+const key = fs.readFileSync('./path/tulucanada_com.key');
+
+
+
+let options = {
+  cert: cert, // fs.readFileSync('./ssl/example.crt');
+  ca: ca, // fs.readFileSync('./ssl/example.ca-bundle');
+  key: key // fs.readFileSync('./ssl/example.key');
+};
+
+// also okay: https.createServer({cert, ca, key}, (req, res) => { ...
+const httpsServer = https.createServer(options, (req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/html');
+  res.end("<h1>HTTPS server running</h1>");
+});
+
+httpsServer.listen(port,hostname);
 
 require("dotenv").config();
 
