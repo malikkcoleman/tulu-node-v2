@@ -10,7 +10,7 @@ const session = require("express-session");
 const passport = require("passport");
 const https = require("https");
 
-const hostname = "tulucanada.com";
+const hostname = "localhost";
 const port = 3000;
 
 const cert = fs.readFileSync('./path/tulucanada_com.crt');
