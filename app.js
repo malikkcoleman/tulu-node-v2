@@ -106,6 +106,7 @@ app.use("/tulu", require("./routes/tulu"));
 app.use("/appointment", require("./routes/booking"));
 app.use("/buynow", require("./routes/buynow"));
 app.use("/contact", require("./routes/contact"));
+app.use("/finance", require("./routes/finance"));
 // ---------------------------------
 
 app.use(express.static(__dirname + "/public"));

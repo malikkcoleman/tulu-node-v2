@@ -1,0 +1,333 @@
+*{
+    display:flex;
+    flex-direction: column;
+}
+
+input:focus{
+    outline: none;
+}
+
+script,link,style,head{
+    display:none !important;
+}
+
+body{
+    height:100vh;
+    background:url(../images/bg.png);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+section{
+    height:100vh;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+    background:white;
+    flex-wrap: wrap;
+    padding:0 50px;
+}
+
+section .left{
+    flex-direction: column;
+    /* padding:0 0 0 150px; */
+    z-index: 6;
+    position: relative;
+}
+
+section img{
+    width:1000px;
+    position:absolute;
+    z-index: 5;
+    right:-150px;
+    top:30vh;
+    opacity: 0.5;
+}
+
+@media only screen and (max-width: 770px) {
+    section img{
+        display:none;
+    } 
+}
+
+section .left h1{
+    margin:10px 0;
+    font-size:50px;
+}
+
+section .left p{
+    margin:5px 0;
+}
+
+section .left .buttonContainer{
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin:30px 0;
+}
+
+section .left .buttonContainer button{
+    margin:5px 30px 5px 0;
+}
+
+
+.wrapper{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+    /* height:100vh; */
+    z-index: 8;
+}
+
+.page{
+    /* height:100vh; */
+    /* justify-content: center; */
+    align-items: center;
+    position:absolute;
+    top:0;
+    padding:250px 20px;
+}
+
+.page h2{
+    text-align: center;
+}
+
+.page p{
+    font-size:small;
+    /* margin:10px 0 0 0; */
+    text-align: center;
+    width:300px;
+}
+
+
+.cardItems{
+    /* width:500px; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding:50px 0;
+}
+
+.cardItems li{
+    background:white;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    width:200px;
+    height:80px;
+    margin:20px;
+}
+
+.cardItems li{
+    border:2px solid #00000031;
+    border-bottom:5px solid #00000031;
+    /* color:#79c6ac; */
+    transition:0.5s;
+}
+
+
+.cardItems li:hover{
+    border:2px solid #14bf98;
+    border-bottom:5px solid #14bf98;
+    /* color:#79c6ac; */
+    transition:0.5s;
+}
+
+form button{
+    border:none;
+    background:#14bf98;
+    border-radius: 10px;
+    padding:25px 0;
+    text-align: center;
+    align-items: center;
+    color:white;
+    width:300px;
+    margin:0 0 20px 0;
+}
+
+form button{
+    transition:0.5s;
+    background:#14bf98;
+}
+
+
+
+#page0,#page1,#page2,#page3,#page4,#page5,#page6,#page7,#page8,#page9{
+    opacity:0;
+    display:none;
+}
+
+
+#page9 button{
+    margin:30px;
+}
+
+.hiddenInput{
+    display:none;
+}
+
+#page0{
+    justify-content: center;
+    align-items: center;
+}
+
+#page0 h2{
+
+}
+
+.infoContainer{
+    margin:30px 0;
+}
+
+.basicInfoContainer{
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin:10px 0;
+    width:100%;
+}
+
+.basicInfoContainer label{
+    font-size:16px;
+}
+
+.basicInfoContainer input,.basicInfoContainer select,.basicInfoContainer option{
+    /* border:1px solid #14bf98; */
+    border:none;
+    background:white;
+    width:224px;
+    height:32px;
+    justify-content: center;
+    align-items: center;
+    padding:0 0 0 10px;
+    border-radius:10px;
+    margin:0 0 0 10px;
+}
+
+.basicInfoContainer select,.basicInfoContainer option{
+padding:5px 10px;
+width:234px;
+}
+
+.inputWrapper{
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin:50px 0;
+}
+
+#radioPhone,#radioEmail{
+    width:unset;
+}
+
+.inputContainer{
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    padding:10px 10px;
+    /* border:2px solid #14bf98; */
+    border-radius: 10px;
+    margin:0 10px;
+    background:white;
+}
+
+.checkboxContainer{
+    margin:30px 0 0 0;
+    padding:20px;
+    border:1px solid #00000050;
+    background:white;
+}
+
+.consent{
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.consent input{
+    margin:0 10px 0 0;
+}
+
+.consent p{
+    text-align: left;
+}
+
+.inputContainer #hourly,.inputContainer #hoursPerWeek{
+    border:none;
+    font-size:16px;
+    margin:0 5px;
+}
+
+.inputContainer #employer{
+    border:none;
+    width:315px;
+    font-size:16px;
+    text-align: center;
+    margin:0 5px;
+}
+
+button:disabled,
+button[disabled]{
+    background:#7caa9b;
+}
+
+.congratPopUp{
+    height:100vh;
+    /* width:100vw; */
+    justify-content: center;
+    align-items: center;
+    background:#00000050;
+    display: none;
+}
+
+.congratPopUp .cardContainer{
+    background:white;
+    width:80vmin;
+    z-index: 9;
+    justify-content: center;
+    align-items: center;
+    padding:50px 50px;
+    border-radius: 10px;
+}
+
+.congratPopUp .cardContainer h3,.congratPopUp .cardContainer p{
+    text-align: center;
+}
+
+.congratPopUp .cardContainer h3{
+    margin:20px 0;
+}
+
+.congratPopUp .cardContainer p{
+    margin:10px 0;
+    font-size:14px;
+}
+
+.congratPopUp .cardContainer .title{
+    align-items: center;
+    justify-content: center;
+}
+
+.congratPopUp .cardContainer .title i{
+    color:#47c45c;
+}
+
+.congratPopUp .cardContainer .location{
+    border:1px solid #00000025;
+    color:#14bf98;
+    width:100%;
+    padding:30px 0;
+}
+
+#popUpBtn{
+    margin:30px 0 0 0;
+}
+
+#page9 img{
+    width:150px;
+    margin:0 0 50px 0;
+}

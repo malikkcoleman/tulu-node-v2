@@ -1,30 +1,30 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <head>
-    <link rel="icon" type="image/png" href="../images/favicon.png" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tulu Canada</title>
-    <link rel="stylesheet" href="../styles/reset.css" />
-    <link rel="stylesheet" href="../styles/css/all.css" />
-    <link rel="stylesheet" href="../styles/nav.css" />
-    <link rel="stylesheet" href="../styles/finance.css" />
-    <link rel="stylesheet" href="../styles/financeBase.css" />
-    <link rel="stylesheet" href="../styles/finance 2.css" />
-    <link rel="stylesheet" href="../styles/footer.css" />
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/css/all.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/finance.css" />
+    <link rel="stylesheet" href="styles/financeBase.css" />
+    <link rel="stylesheet" href="styles/.css" />
+    <link rel="stylesheet" href="styles/footer.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
 
-    <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
   <%- include partials/googleAnalytics %>
 </head>
   <body>
     <nav id="Nav">
         <a href="/">
-            <img src="../images/tulu-logo_white.png" alt="">
+            <img src="images/tulu-logo_white.png" alt="">
         </a>
         <div class="menuButton" onclick="slideMenu()">
             <i class="fas fa-bars fa-2x menuBtn"></i>
@@ -45,7 +45,7 @@
       <p class="loggedInAs"></p>
     </div>
 
-    <form method="post" action="/finance/finance">
+    <form method="post" action="php/action.php">
       <section class="landingSection">
           <div class="left">
               <h1>Pre-Qualify for the Car of Your Choice</h1>
@@ -68,7 +68,7 @@
               <input type="text" class="hiddenInput" id="condition" name="condition">
               <p>We have $0 down options available, making it even easier for you to get the car you want.</p>
           </div>
-          <img src="../images/car.png" alt="">
+          <img src="images/car.png" alt="">
       </section>
       
       <div class="wrapper">
@@ -293,7 +293,7 @@
               <p style="margin:20px 0 0 0;">Page 8 of 8</p>
           </div>
           <div class="page" id="page9">
-              <img src="../images/tulu-logo_RGB.png">
+              <img src="images/tulu-logo_RGB.png">
               <div class="checkboxContainer">
                   <div class="emailConsent consent"  onclick="emailConsent()">
                       <input type="checkbox"name="emailConsent" id="emailConsent" value="yes">
@@ -340,10 +340,10 @@
           </div>
       </div>
 
-    <!-- <%- include partials/footer %> -->
+    <%- include partials/footer %>
   </body>
-  <script src="../Js/sideMenu.js"></script>
-  <script src="../Js/privileges.js"></script>
-  <script src="../Js/financeUI.js"></script>
-  <script src="../Js/financeUI2.js"></script>
+  <script src="Js/sideMenu.js"></script>
+  <script src="Js/privileges.js"></script>
+  <script src="Js/financeUI.js"></script>
+  <script src="Js/financeUI2.js"></script>
 </html>

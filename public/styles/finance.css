@@ -1,0 +1,166 @@
+
+/* HEADER */
+
+header{
+    height:100%;
+    padding:200px 0 150px 0;
+    display:flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.financeForm{
+    width:60vmin;
+}
+
+h2.heading{
+    
+    text-align: center;
+    color:white;
+}
+
+p.subtext{
+    color:white;
+    margin:50px 0;
+    width:90vmin;
+    text-align: center;
+}
+
+.financeForm .employmentInfo,.financeForm .reviewInfo{
+    display:none;
+}
+
+.financeForm .basicInfo label,.financeForm .employmentInfo label{
+    color:white;
+}
+
+.financeForm .basicInfo input,.financeForm .employmentInfo input, .financeForm .basicInfo select,.financeForm .employmentInfo select{
+    padding:10px 15px;
+    margin:10px 0 15px 0;
+    background:white;
+    border:none;
+    border-radius: 0.25rem;
+}
+
+.financeForm .basicInfo button,.financeForm .employmentInfo button,.financeForm .reviewInfo button{
+    margin:20px 0 0 0;
+    align-items: center;
+    justify-content: center;
+    height: 3.125rem;
+    border: 0.125rem solid #14bf98;
+    border-radius: 0.25rem;
+    background-color: #14bf98;
+    color: #fff;
+    font: 700 0.75rem/1.75rem "Montserrat", sans-serif;
+}
+
+.financeForm .basicInfo .button,.financeForm .employmentInfo .button,.financeForm .reviewInfo .button{
+    margin:20px 0 0 0;
+    align-items: center;
+    justify-content: center;
+    height: 3.125rem;
+    border: 0.125rem solid #14bf98;
+    border-radius: 0.25rem;
+    background-color: #14bf98;
+    color: #fff;
+    font: 700 0.75rem/1.75rem "Montserrat", sans-serif;
+}
+
+
+.reviewInfo p{
+    margin:10px 0;
+    flex-direction: row;
+    color:white;
+}
+
+.reviewInfo p span{
+    color: #14bf98;
+    margin:0 0 0 10px;
+}
+
+.consentCheckbox{
+    margin-top:20px;
+    flex-direction: row;
+    align-items: center;   
+}
+
+.privacyCheckbox{
+    flex-direction: row;
+    align-items: center;   
+}
+
+ 
+    
+.consentCheckbox p,.privacyCheckbox p{
+    font-size: small;
+    color:white;
+    margin:0 0 0 10px;
+}
+
+.checkbox{
+    flex-direction:row;
+    align-items:center;
+}
+
+.viewPrivacyNotice{
+    font-size: small;
+    margin-left:10px !important;
+    color:#14bf98 !important;
+    text-decoration: underline;
+}
+
+.privacyNotice{
+    display:none;
+    font-size: smaller;
+}
+
+
+.scrollBtn{height:50px;width:50px;border-radius:50%;background:#14bf98;justify-content:center;align-items:center;position:fixed;bottom:10px;right:10px}#opacity-hide{opacity:0;transition:.5s}#opacity-show{opacity:1;transition:.5s}.scrollBtn i{color:#fff}
+
+
+@media only screen and (max-width: 768px) {
+
+.financeForm{
+        width:80vmin;
+    }
+    
+    .privacyCheckbox{
+        flex-direction: column;
+        justify-content: unset;
+        align-items: unset;
+    }
+
+    .privacyCheckbox .checkbox{
+        flex-direction: row;
+        justify-content: unset;
+        align-items: center;
+    }
+
+    
+    header{
+        display:flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    
+    .earlyAccess{
+        margin:25px 0;
+    }
+
+}
+
+
+.questions{
+    color:white;
+    flex-direction:row;
+}
+
+.questions span{
+    color:#14bf98;
+    margin:0 0 0 5px;
+}
+
+style,script,link,title,head{
+    display:none !important;
+}
