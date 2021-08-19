@@ -29,14 +29,5 @@ function populateUsers(index){
     $('#fName').val(userList[index].fName);
     $('#lName').val(userList[index].lName);
     $('#email').val(userList[index].email);
-    $('#bio').val(userList[index].bio);
-    $('#experience').val(userList[index].experience);
-    $('#specialty').val(userList[index].specialty);
-    $('#favoriteCar').val(userList[index].favoriteCar);
-    $('#currentCar').val(userList[index].currentCar);
     $('#phoneNumber').val(userList[index].phoneNumber);
-    $('#linkedin').val(userList[index].linkedin);
-    $('#instagram').val(userList[index].instagram);
-    $('#facebook').val(userList[index].facebook);
-    $('#role').val(userList[index].role);
 }
