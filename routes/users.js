@@ -57,7 +57,7 @@ router.post('/register',(req,res)=>{
 
     if(errors.length > 0){
         res.render('register',{
-            errors,fName,lName,phoneNumber, email, password, password2,street,city,province,postal,role
+            errors,fName,lName,phoneNumber, email, password, password2,street,city,province,postal,role,status
         });
     }else{
         // res.send('Pass');

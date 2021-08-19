@@ -50,12 +50,12 @@ router.get('/tuluRegistration',(req,res)=>
 router.post('/tuluRegistration',(req,res)=>{
     console.log(req.body);
     // res.send('hello');
-    const { email,fName,lName,password,password2,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber,street,city,province,postal,role,ratings,carsSold} = req.body;
+    const { email,fName,lName,password,password2,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber,street,city,province,postal,role,ratings,carsSold,status} = req.body;
 
     let errors = [];
 
     // Check required fields
-    if(!email||!fName||!lName||!password||!password2||!bio||!experience||!specialty||!favoriteCar||!currentCar||!phoneNumber||!street||!city||!province||!postal||!ratings||!carsSold){
+    if(!email||!fName||!lName||!password||!password2||!bio||!experience||!specialty||!favoriteCar||!currentCar||!phoneNumber||!street||!city||!province||!postal||!ratings||!carsSold||!status){
         errors.push({msg:'Please fill in all fields'});
     }
 
@@ -71,7 +71,7 @@ router.post('/tuluRegistration',(req,res)=>{
 
     if(errors.length > 0){
         res.render('tuluRegistration',{
-            errors,image,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2,street,city,province,postal,role,ratings,carsSold
+            errors,image,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2,street,city,province,postal,role,ratings,carsSold,status
         });
     }else{
         // res.send('Pass');
@@ -83,11 +83,11 @@ router.post('/tuluRegistration',(req,res)=>{
                 // user Exist
                 errors.push({msg:'Email already Exist'})
                 res.render('tuluRegistration',{
-                    errors,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2,street,city,province,postal,role,ratings,carsSold
+                    errors,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2,street,city,province,postal,role,ratings,carsSold,status
                 })
             }else{
                 const newUser = new User({
-                    uuid,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2,role,ratings,carsSold
+                    uuid,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2,role,ratings,carsSold,status
                 });
 
                 const newAddress = new Address({
@@ -116,6 +116,47 @@ router.post('/tuluRegistration',(req,res)=>{
             }
         });
     }
+});
+
+
+
+router.get('/EditTulu',ensureAuthenticated,(req,res)=>
+    Address.find({targetId:req.user.toObject().uuid})
+    .then(address=>{
+        res.render('EditTulu',{
+            user:req.user,
+            address:address
+        })
+    })
+);
+
+router.post('/EditTulu',(req,res)=>{
+    var myquery = { _id: req.user.toObject()._id };
+    var myqueryaddress = { _id: req.user.toObject()._id };
+    const { email,fName,lName,phoneNumber,street,city,province,postal} = req.body;
+    var newvalues = { 
+        email: email,
+        fName: fName,
+        lName: lName,
+        phoneNumber: phoneNumber
+    };
+
+    var newvaluesaddress = { 
+        street: street,
+        city: city,
+        province: province,
+        postal: postal,
+    };
+        User.updateOne(myquery, newvalues)
+        .then(user=>{
+            Address.updateOne(myqueryaddress, newvaluesaddress)
+            .then(address=>{
+                req.flash('success_msg', 'Changes Saved!');
+                res.redirect('/tulu/EditTulu')  
+            })
+        })
+
+        
 });
 
 module.exports = router;
