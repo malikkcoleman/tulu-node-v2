@@ -36,12 +36,12 @@ router.get('/register',(req,res)=>
 router.post('/register',(req,res)=>{
     console.log(req.body);
     // res.send('hello');
-    const { email,fName,lName,password,password2,phoneNumber,street,city,province,postal} = req.body;
+    const { email,fName,lName,password,password2,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,image,phoneNumber,street,city,province,postal} = req.body;
 
     let errors = [];
 
     // Check required fields
-    if(!email||!fName||!lName||!password||!password2||!phoneNumber||!street||!city||!province||!postal){
+    if(!email||!fName||!lName||!password||!password2||!bio||!experience||!specialty||!favoriteCar||!currentCar||!phoneNumber||!street||!city||!province||!postal){
         errors.push({msg:'Please fill in all fields'});
     }
 
@@ -57,7 +57,7 @@ router.post('/register',(req,res)=>{
 
     if(errors.length > 0){
         res.render('register',{
-            errors,fName,lName,phoneNumber, email, password, password2,street,city,province,postal
+            errors,image,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2,street,city,province,postal
         });
     }else{
         // res.send('Pass');
@@ -69,11 +69,11 @@ router.post('/register',(req,res)=>{
                 // user Exist
                 errors.push({msg:'Email already Exist'})
                 res.render('register',{
-                    errors,fName,lName,phoneNumber, email, password, password2,street,city,province,postal
+                    errors,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2,street,city,province,postal
                 })
             }else{
                 const newUser = new User({
-                    uuid,fName,lName,phoneNumber, email, password, password2
+                    uuid,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
                 });
 
                 const newAddress = new Address({
@@ -112,12 +112,12 @@ router.get('/addUser',(req,res)=>
 router.post('/addUser',(req,res)=>{
     console.log(req.body);
     // res.send('hello');
-    const { email,fName,lName,password,password2,phoneNumber,street,city,province,postal} = req.body;
+    const { email,fName,lName,password,password2,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,image,phoneNumber,street,city,province,postal} = req.body;
 
     let errors = [];
 
     // Check required fields
-    if(!email||!fName||!lName||!password||!password2||!phoneNumber||!street||!city||!province||!postal){
+    if(!email||!fName||!lName||!password||!password2||!bio||!experience||!specialty||!favoriteCar||!currentCar||!phoneNumber||!street||!city||!province||!postal){
         errors.push({msg:'Please fill in all fields'});
     }
 
@@ -133,7 +133,7 @@ router.post('/addUser',(req,res)=>{
 
     if(errors.length > 0){
         res.render('AddUser',{
-            errors,fName,lName,phoneNumber, email, password, password2,street,city,province,postal
+            errors,image,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2,street,city,province,postal
         });
     }else{
         // res.send('Pass');
@@ -145,11 +145,11 @@ router.post('/addUser',(req,res)=>{
                 // user Exist
                 errors.push({msg:'Email already Exist'})
                 res.render('AddUser',{
-                    errors,fName,lName,phoneNumber, email, password, password2
+                    errors,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
                 })
             }else{
                 const newUser = new User({
-                    uuid,fName,lName,phoneNumber, email, password, password2
+                    uuid,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2
                 });
 
                 const newAddress = new Address({
@@ -194,11 +194,19 @@ router.get('/editProfile',ensureAuthenticated,(req,res)=>
 router.post('/editProfile',(req,res)=>{
     var myquery = { _id: req.user.toObject()._id };
     var myqueryaddress = { _id: req.user.toObject()._id };
-    const { email,fName,lName,phoneNumber,street,city,province,postal} = req.body;
+    const { email,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber,street,city,province,postal} = req.body;
     var newvalues = { 
         email: email,
         fName: fName,
         lName: lName,
+        linkedin: linkedin,
+        instagram: instagram,
+        facebook: facebook,
+        bio: bio,
+        experience: experience,
+        specialty: specialty,
+        favoriteCar: favoriteCar,
+        currentCar: currentCar,
         phoneNumber: phoneNumber
     };
 
@@ -233,12 +241,28 @@ router.get('/DashboardSysAdminEditUser',ensureAuthenticated,(req,res)=>
 
 router.post('/DashboardSysAdminEditUser',(req,res)=>{
     
-    const { selectedId,email,fName,lName,phoneNumber} = req.body;
+
+
+
+
+
+
+
+    const { selectedId,email,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber,role} = req.body;
     var newvalues = { 
         email: email,
         fName: fName,
         lName: lName,
+        linkedin: linkedin,
+        instagram: instagram,
+        facebook: facebook,
+        bio: bio,
+        experience: experience,
+        specialty: specialty,
+        favoriteCar: favoriteCar,
+        currentCar: currentCar,
         phoneNumber: phoneNumber,
+        role: role
     };
         User.updateOne({_id:selectedId}, newvalues)
         .then(user=>{
@@ -259,12 +283,21 @@ router.get('/DashboardSysAdminEditTulu',ensureAuthenticated,(req,res)=>
 );
 
 router.post('/DashboardSysAdminEditTulu',(req,res)=>{
-    const { selectedId,email,fName,lName,phoneNumber,role} = req.body;
+    const { selectedId,email,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber,role} = req.body;
     var newvalues = { 
         email: email,
         fName: fName,
         lName: lName,
-        phoneNumber: phoneNumber
+        linkedin: linkedin,
+        instagram: instagram,
+        facebook: facebook,
+        bio: bio,
+        experience: experience,
+        specialty: specialty,
+        favoriteCar: favoriteCar,
+        currentCar: currentCar,
+        phoneNumber: phoneNumber,
+        role: role
     };
         User.updateOne({_id:selectedId}, newvalues)
         .then(user=>{
