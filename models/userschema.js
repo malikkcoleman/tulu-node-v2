@@ -65,7 +65,11 @@ const userschema = new mongoose.Schema(
     date:{
       type:Date,
       default: Date.now
-    }
+    },
+    uuid: {
+      type: String,
+      required: true
+    },
   }
 );
 
