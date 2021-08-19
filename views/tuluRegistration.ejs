@@ -43,7 +43,7 @@
     </div>
       <div class="container">
       <%- include partials/messages %>
-      <form action="/users/register" method="POST">
+      <form action="/tulu/tuluRegistration" method="POST">
         <h1>Sign Up For an Account</h1>
         <div class="form-group">
           <label for="fName">First name</label>
@@ -117,12 +117,15 @@
           <label for="postal">Postal</label>
           <input type="text" id="postal" name="postal" class="form-control" placeholder="Enter Postal" value=""/>
         </div>
+        <input type="hidden" id="role" name="role" class="form-control" value="tulu"/>
+        <input type="hidden" id="ratings" name="ratings" class="form-control" value="5"/>
+        <input type="hidden" id="carsSold" name="carsSold" class="form-control" value="0"/>
         <p onclick="popUp()" class="privacyPolicy">Please Read Privacy Policy and Terms and Condition</p>
         <button type="submit" disabled class="registerBtn">
           Register
         </button>
       </form>
-      <p class="lead mt-4">Already Have An Account? <a href="/users/login">Sign In</a></p>
+      <p class="lead mt-4">Already Have An Account? <a href="/tulu/tuluLogin">Sign In</a></p>
     </div>
     <div class="popUp">
       <div class="wrapper">

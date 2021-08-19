@@ -36,12 +36,12 @@ router.get('/register',(req,res)=>
 router.post('/register',(req,res)=>{
     console.log(req.body);
     // res.send('hello');
-    const { email,fName,lName,password,password2,phoneNumber,street,city,province,postal} = req.body;
+    const { email,fName,lName,password,password2,phoneNumber,street,city,province,postal,role} = req.body;
 
     let errors = [];
 
     // Check required fields
-    if(!email||!fName||!lName||!password||!password2||!phoneNumber||!street||!city||!province||!postal){
+    if(!email||!fName||!lName||!password||!password2||!phoneNumber||!street||!city||!province||!postal||!role){
         errors.push({msg:'Please fill in all fields'});
     }
 
@@ -57,7 +57,7 @@ router.post('/register',(req,res)=>{
 
     if(errors.length > 0){
         res.render('register',{
-            errors,fName,lName,phoneNumber, email, password, password2,street,city,province,postal
+            errors,fName,lName,phoneNumber, email, password, password2,street,city,province,postal,role
         });
     }else{
         // res.send('Pass');
@@ -69,11 +69,11 @@ router.post('/register',(req,res)=>{
                 // user Exist
                 errors.push({msg:'Email already Exist'})
                 res.render('register',{
-                    errors,fName,lName,phoneNumber, email, password, password2,street,city,province,postal
+                    errors,fName,lName,phoneNumber, email, password, password2,street,city,province,postal,role
                 })
             }else{
                 const newUser = new User({
-                    uuid,fName,lName,phoneNumber, email, password, password2
+                    uuid,fName,lName,phoneNumber, email, password, password2,role
                 });
 
                 const newAddress = new Address({
