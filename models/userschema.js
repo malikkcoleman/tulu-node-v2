@@ -59,8 +59,7 @@ const userschema = new mongoose.Schema(
     },
     role: {
       type: String,
-      required: true,
-      default:'user'
+      required: false
     },
     date:{
       type:Date,
@@ -69,6 +68,14 @@ const userschema = new mongoose.Schema(
     uuid: {
       type: String,
       required: true
+    },
+    ratings: {
+      type: Number,
+      required: false
+    },
+    carsSold: {
+      type: Number,
+      required: false
     },
   }
 );
