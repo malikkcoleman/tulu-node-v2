@@ -23,8 +23,12 @@ pgroutr.get("/EditDealer", ensureAuthenticated, (req, res) =>
 );
 
 pgroutr.get("/", (req, res) =>
-  res.render("Index", {
-    user: req.user,
+  User.find({ role: "tulu" })
+  .then((tulu) => {
+    res.render("Index", {
+      user: req.user,
+      tulu:tulu
+    })
   })
 );
 
