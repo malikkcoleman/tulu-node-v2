@@ -18,172 +18,229 @@
     <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
   <%- include partials/googleAnalytics %>
 </head>
-  <body>
-    <nav id="Nav">
-        <a href="/">
-            <img src="images/tulu-logo_white.png" alt="">
-        </a>
-        <div class="menuButton" onclick="slideMenu()">
-            <i class="fas fa-bars fa-2x menuBtn"></i>
-            <i class="fas fa-times fa-2x closeMenuBtn"></i>
-        </div>
-    <%- include partials/navbar %>
-    </nav>
-    <div class="dropDownMenu">
-        <ul>
-            <%- include partials/dropDownMenu %>
-        </ul>
-    </div>
+<body>
 
-    <div id="SideMenu" class="sideMenu">
-      <ul class="menu">
-        <%- include partials/sidemenu %>
-      </ul>
-      <p class="loggedInAs"></p>
-    </div>
-
-    <div class="container body-content">
-      <div class="header">
-        <img src="images/banner.png" class="desktop" alt="" />
-        <img src="images/bannerMobile.png" class="mobile" alt="" />
-        <img src="images/bannerTesla.png" class="bannerTesla" alt="" />
+  <nav id="Nav">
+      <a href="/">
+          <img src="images/tulu-logo_white.png" alt="">
+      </a>
+      <div class="menuButton" onclick="slideMenu()">
+          <i class="fas fa-bars fa-2x menuBtn"></i>
+          <i class="fas fa-times fa-2x closeMenuBtn"></i>
       </div>
+  <%- include partials/navbar %>
+  </nav>
 
-      <!-- Search section  -->
-      <section class="searchSection" style="display: none">
-        <div class="wrapper">
-          <input type="text" value="search : year make model" />
-          <button>Find</button>
-        </div>
-      </section>
+  <div class="dropDownMenu">
+      <ul>
+          <%- include partials/dropDownMenu %>
+      </ul>
+  </div>
 
-      <!-- First Section -->
-      <section class="firstSection">
-        <div class="getApproved">
-          <a href="">
-            <img src="images/approve.jpg" alt="" />
-            <h2>Get Approved Now!</h2>
-          </a>
-        </div>
-        <div class="browse">
-          <a href="/Shop">
-            <img src="images/browse1.png" alt="" />
-            <h2>Browse the inventory</h2>
-          </a>
-        </div>
-      </section>
+  <div id="SideMenu" class="sideMenu">
+    <ul class="menu">
+      <%- include partials/sidemenu %>
+    </ul>
+    <p class="loggedInAs"></p>
+  </div>
 
-      <!-- Second Section -->
-      <section class="secondSection">
-        <h2 class="dealershipHeading">OUR TOP DEALERSHIPS</h2>
-
-        <ul class="partnerList">
-          <li class="partnerListItems">
-            <a href="/DealerListing/978c71ce-e338-45ee-bd8d-e5eb9118017a">
-              <img src="images/company logo/1.png" alt="" />
-            </a>
-          </li>
-          <li class="partnerListItems">
-            <a href="/DealerListing/978c71ce-e338-45ee-bd8d-e5eb9118017d">
-              <img src="images/company logo/2.png" alt="" />
-            </a>
-          </li>
-          <li class="partnerListItems">
-            <a href="/DealerListing/978c71ce-e338-45ee-bd8d-e5eb9118017f">
-              <img src="images/company logo/3.png" alt="" />
-            </a>
-          </li>
-          <li class="partnerListItems">
-            <a href="/DealerListing/978c71ce-e338-45ee-bd8d-e5eb9118017e">
-              <img src="images/company logo/4.png" alt="" />
-            </a>
-          </li>
-          <li class="partnerListItems">
-            <a href="/DealerListing/978c71ce-e338-45ee-bd8d-e5eb9118017b">
-              <img src="images/company logo/5.png" alt="" />
-            </a>
-          </li>
-          <li class="partnerListItems">
-            <a href="/DealerListing/978c71ce-e338-45ee-bd8d-e5eb9118017c">
-              <img src="images/company logo/6.png" alt="" />
-            </a>
-          </li>
-        </ul>
-        <a href="/DealershipList">
-          <button>VIEW ALL DEALERSHIPS</button>
-        </a>
-      </section>
-
-      <!-- Third Section -->
-      <section class="thirdSection">
-        <h2 class="influencerHeading">TOP TULU'S</h2>
-        <ul class="influencerList">
-          <li class="influencerListItems">
-            <div class="influencerImage">
-              <a href="/tulu/viewTulu?tuluId=61170003ffd5b400231fac4b">
-                <img src="images/jolo.jpeg" alt="" />
-              </a>
-            </div>
-            <h3 class="influencerName">Tulu Jo</h3>
-            <div class="userRating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-          </li>
-          <li class="influencerListItems">
-            <div class="influencerImage">
-              <img src="images/shae.jpg" alt="" />
-            </div>
-            <h3 class="influencerName">Tulu Shae</h3>
-            <div class="userRating">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </li>
-          <li class="influencerListItems">
-            <div class="influencerImage">
-              <a href="/tulu/viewTulu?tuluId=61168fe41cb4320023b5e88a">
-                <img src="images/donny.jpeg" alt="" />
-              </a>
-            </div>
-            <h3 class="influencerName">Tulu Donny</h3>
-            <div class="userRating">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </li>
-        </ul>
-      </section>
-
-      <!-- Fourth Section -->
-      <section class="fourthSection">
-        <div class="videoContainer">
-          <h2>HOW DOES IT WORK?</h2>
-          <video width="80%" controls preload="none" muted autoplay>
-            <source src="Videos/tulu_vid.mp4" type="video/mp4" />
-            Your browser does not support HTML video.
-          </video>
-        </div>
-      </section>
+  <div class="container body-content">
+    <div class="header">
+      <img src="images/banner.png" class="desktop" alt="" />
+      <img src="images/bannerMobile.png" class="mobile" alt="" />
+      <img src="images/bannerTesla.png" class="bannerTesla" alt="" />
     </div>
-    <%- include partials/footer %>
-  </body>
-  <script src="Js/sideMenu.js"></script>
-  <script src="Js/privileges.js"></script>
+    <!-- Search section  -->
+    <section class="searchSection" style="display: none">
+      <div class="wrapper">
+        <input type="text" value="search : year make model" />
+        <button>Find</button>
+      </div>
+    </section>
+    <!-- First Section -->
+    <section class="firstSection">
+      <div class="getApproved">
+        <a href="">
+          <img src="images/approve.jpg" alt="" />
+          <h2>Get Approved Now!</h2>
+        </a>
+      </div>
+      <div class="browse">
+        <a href="/Shop">
+          <img src="images/browse1.png" alt="" />
+          <h2>Browse the inventory</h2>
+        </a>
+      </div>
+    </section>
+    <!-- Second Section -->
+    <section class="secondSection">
+      <h2 class="dealershipHeading">OUR TOP DEALERSHIPS</h2>
+      <ul class="partnerList">
+        <li class="partnerListItems">
+          <a href="/DealerListing/978c71ce-e338-45ee-bd8d-e5eb9118017a">
+            <img src="images/company logo/1.png" alt="" />
+          </a>
+        </li>
+        <li class="partnerListItems">
+          <a href="/DealerListing/978c71ce-e338-45ee-bd8d-e5eb9118017d">
+            <img src="images/company logo/2.png" alt="" />
+          </a>
+        </li>
+        <li class="partnerListItems">
+          <a href="/DealerListing/978c71ce-e338-45ee-bd8d-e5eb9118017f">
+            <img src="images/company logo/3.png" alt="" />
+          </a>
+        </li>
+        <li class="partnerListItems">
+          <a href="/DealerListing/978c71ce-e338-45ee-bd8d-e5eb9118017e">
+            <img src="images/company logo/4.png" alt="" />
+          </a>
+        </li>
+        <li class="partnerListItems">
+          <a href="/DealerListing/978c71ce-e338-45ee-bd8d-e5eb9118017b">
+            <img src="images/company logo/5.png" alt="" />
+          </a>
+        </li>
+        <li class="partnerListItems">
+          <a href="/DealerListing/978c71ce-e338-45ee-bd8d-e5eb9118017c">
+            <img src="images/company logo/6.png" alt="" />
+          </a>
+        </li>
+      </ul>
+      <a href="/DealershipList">
+        <button>VIEW ALL DEALERSHIPS</button>
+      </a>
+    </section>
+    <!-- Third Section -->
+    <section class="thirdSection">
+      <h2 class="influencerHeading">TOP TULU'S</h2>
+      <ul class="influencerList">
+        <li class="influencerListItems">
+          <div class="influencerImage">
+            <a href="/tulu/viewTulu?tuluId=61170003ffd5b400231fac4b">
+              <img src="images/jolo.jpeg" alt="" />
+            </a>
+          </div>
+          <h3 class="influencerName">Tulu Jo</h3>
+          <div class="userRating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+          </div>
+        </li>
+        <li class="influencerListItems">
+          <div class="influencerImage">
+            <img src="images/shae.jpg" alt="" />
+          </div>
+          <h3 class="influencerName">Tulu Shae</h3>
+          <div class="userRating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </li>
+        <li class="influencerListItems">
+          <div class="influencerImage">
+            <a href="/tulu/viewTulu?tuluId=61168fe41cb4320023b5e88a">
+              <img src="images/donny.jpeg" alt="" />
+            </a>
+          </div>
+          <h3 class="influencerName">Tulu Donny</h3>
+          <div class="userRating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- Fourth Section -->
+    <section class="fourthSection">
+      <div class="videoContainer">
+        <h2>HOW DOES IT WORK?</h2>
+        <video width="80%" controls preload="none" muted autoplay>
+          <source src="Videos/tulu_vid.mp4" type="video/mp4" />
+          Your browser does not support HTML video.
+        </video>
+      </div>
+    </section>
+  </div>
 
-  <script>
-    function TestTuluList() {
-      // console.log(results);
-      // LoadTulus(results);
-    }
+  <%- include partials/footer %>
+</body>
+
+<script src="Js/sideMenu.js"></script>
+<script src="Js/privileges.js"></script>
+<script>
+  function TestTuluList() {
+    // console.log(results);
+    // LoadTulus(results);
+  }
+
+  tuluList = <%-JSON.stringify(tulu)%>;
+  console.log(tuluList);
+
+  LoadTulus(tuluList)
+
+  function LoadTulus(tulu) {
+	var html = '';
+	for (i = 0; i != tuluList.length; i++) {
+        html+='<li class="influencerListItems">';
+        html+='  <div class="influencerImage">';
+        html+='    <a href="/tulu/viewTulu?tuluId='+tuluList[i]._id+'">';
+        html+='      <img src="/image/'+tuluList[i]._id+'" >';
+        html+='    </a>';
+        html+='  </div>';
+        html+='  <h3 class="influencerName">'+tuluList[i].fName +" "+tuluList[i].lName+'</h3>';
+        html+='  <div class="userRating">';
+
+        if(tulu[i].ratings == 5){
+          for(x=0;x!=5;x++){
+            html = html + '		    <i class="fas fa-star"></i>';
+          }
+        }else if(tulu[i].ratings == 4){
+          for(x=0;x!=4;x++){
+            html = html + '		    <i class="fas fa-star"></i>';
+          }
+          html = html + '		    <i class="far fa-star"></i>';
+        }else if(tulu[i].ratings == 3){
+          for(x=0;x!=3;x++){
+            html = html + '		    <i class="fas fa-star"></i>';
+          }
+          html = html + '		    <i class="far fa-star"></i>';
+          html = html + '		    <i class="far fa-star"></i>';
+        }else if(tulu[i].ratings == 2){
+          for(x=0;x!=2;x++){
+            html = html + '		    <i class="fas fa-star"></i>';
+          }
+          html = html + '		    <i class="far fa-star"></i>';
+          html = html + '		    <i class="far fa-star"></i>';
+          html = html + '		    <i class="far fa-star"></i>';
+        }else if(tulu[i].ratings == 1){
+          html = html + '		    <i class="fas fa-star"></i>';
+          html = html + '		    <i class="far fa-star"></i>';
+          html = html + '		    <i class="far fa-star"></i>';
+          html = html + '		    <i class="far fa-star"></i>';
+          html = html + '		    <i class="far fa-star"></i>';
+        }else{
+          html = html + '		    <i class="far fa-star"></i>';
+          html = html + '		    <i class="far fa-star"></i>';
+          html = html + '		    <i class="far fa-star"></i>';
+          html = html + '		    <i class="far fa-star"></i>';
+          html = html + '		    <i class="far fa-star"></i>';
+        }
+
+        html+='  </div>';
+        html+='</li>';
+  }
+	$(".influencerList").empty();
+	$(".influencerList").append(html);
+}
 </script>
 </html>
