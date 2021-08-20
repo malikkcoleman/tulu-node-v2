@@ -181,7 +181,7 @@ router.post('/addUser',(req,res)=>{
     }
 });
 
-router.get('/editProfile',ensureAuthenticated,(req,res)=>
+router.get('/editProfile' ,(req,res)=>
     Address.find({targetId:req.user.toObject().uuid})
     .then(address=>{
         res.render('EditProfile',{
@@ -221,7 +221,7 @@ router.post('/editProfile',(req,res)=>{
 });
 
 
-router.get('/DashboardSysAdminEditUser',ensureAuthenticated,(req,res)=>
+router.get('/DashboardSysAdminEditUser' ,(req,res)=>
     User.find()
     .then(users=>{
         res.render('DashboardSysAdminEditUser',{
@@ -248,7 +248,7 @@ router.post('/DashboardSysAdminEditUser',(req,res)=>{
 });
 
 
-router.get('/DashboardSysAdminEditTulu',ensureAuthenticated,(req,res)=>
+router.get('/DashboardSysAdminEditTulu' ,(req,res)=>
     User.find()
     .then(users=>{
         res.render('DashboardSysAdminEditTulu',{
