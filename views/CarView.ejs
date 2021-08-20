@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
   <head>
-    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="icon" type="image/png" href="../images/favicon.png" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/reset.css" />
@@ -99,9 +99,11 @@
             <p class="carReferralFee"></p>
           </div>
           <button class="buyNowBtn" onclick="buyNow()">Buy now!</button>
-          <button class="buyNowBtn" onclick="">Call To Inquire</button>
+          <a  href="tel:+18335808858">
+            <button class="buyNowBtn" onclick="">Call To Inquire</button>
+          </a>
           <button class="buyNowBtn" onclick="">Test Drive This Vehicle</button>
-          <button class="buyNowBtn" onclick="">Finance This Vehicle</button>
+          <button class="buyNowBtn" onclick="financeThis()">Finance This Vehicle</button>
 
           <% if(!user) {%>
 
@@ -203,7 +205,7 @@
             </script>
             <% }%> <% if(!user) {%>
             <div class="signInBtn">
-              <a href="/test">Sign In!</a>
+              <a href="/users/login">Sign In!</a>
             </div>
             <% }%>
           </div>
@@ -212,6 +214,67 @@
     </div>
     <%- include partials/footer %>
     <div id="fb-root"></div>
+
+
+    <div class="financePopUp">
+      <form method="post" action="/finance/financeVehicle">
+        <fieldset style="display:none;">
+          <div class="inputContainer">
+            <label for="vinNumber">VIN</label>
+            <input type="text" name="vinNumber" id="vinNumber" value="<%= vehicles[0].vin %>">
+          </div>
+          <div class="inputContainer">
+            <label for="dealershipName">Dealership</label>
+            <input type="text" name="dealershipName" id="dealershipName" value="<%= dealers[0].name %>">
+          </div>
+          </fieldset>
+        <fieldset>
+        <div class="inputContainer">
+          <label for="year">Year</label>
+          <input type="text" name="year" id="year" value="<%= vehicles[0].year %>">
+        </div>
+        <div class="inputContainer">
+          <label for="make">Make</label>
+          <input type="text" name="make" id="make" value="<%= vehicles[0].make %>">
+        </div>
+        <div class="inputContainer">
+          <label for="model">Model</label>
+          <input type="text" name="model" id="model" value="<%= vehicles[0].model %>">
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="inputContainer">
+          <label for="fname">First Name</label>
+          <input type="text" name="fname" id="fname" placeholder="Enter First Name" required>
+        </div>
+        <div class="inputContainer">
+          <label for="lname">Last Name</label>
+          <input type="text" name="lname" id="lname" placeholder="Enter First Name" required>
+        </div>
+        <div class="inputContainer">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Enter Phone Number" required>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="inputContainer">
+          <label for="email">Email</label>
+          <input type="text" name="email" id="email" placeholder="Enter Email" required>
+        </div>
+        <div class="inputContainer">
+          <label for="when">How soon do you want your vehicle</label>
+          <select name="when" id="when">
+            <option value="This Week">This Week</option>
+            <option value="This Month">This Month</option>
+            <option value="This Year">This Year</option>
+          </select>
+        </div>
+        </fieldset>
+        <button type="submit">SUBMIT</button>
+        <button type="button" onclick="cancelFinance()">CANCEL</button>
+      </form>
+    </div>
+
   </body>
 
   <script type="text/javascript">
@@ -222,6 +285,8 @@
     console.log(dealers)
     var dealerAdmin = <%- JSON.stringify(dealerAdmin)%>
     console.log(dealerAdmin)
+    var vehicles = <%- JSON.stringify(vehicles)%>
+    console.log(vehicles)
     var address = <%- JSON.stringify(address)%>
     console.log(address)
     var dealerId = dealers[0]._id;
