@@ -42,6 +42,14 @@ html+='<p>'+dealers[0].amvic+'</p>';
 html+='<p></p>';
 $('.userInfo').prepend(html)
 
+
+$('#vinNumber').val(vin);
+$('#dealershipName').val(dealers[0].name);
+$('#year').val(vehicles[0].year);
+$('#make').val(vehicles[0].make);
+$('#model').val(vehicles[0].model);
+
+
 function viewDealer(dealerId){
     location.replace("/DealerListing/"+dealerId);
 }
@@ -60,4 +68,14 @@ function fullScreen(){
 
     document.querySelector('.next').style = " right: 150px;border-radius: 3px 0 0 3px;"
     document.querySelector('.prev').style = " left: 150px;border-radius: 3px 0 0 3px;"
+}
+
+
+function financeThis(){
+    document.querySelector('.financePopUp').style="display:flex !important;";
+    console.log('test')
+}
+
+function cancelFinance(){
+    document.querySelector('.financePopUp').style="display:none;";
 }
