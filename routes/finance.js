@@ -154,13 +154,13 @@ router.post("/financeVehicle", (req, res) => {
       req.body.dealershipName
   };
 
-  // transporter.sendMail(mailOptions, function (error, info) {
-  //   if (error) {
-  //     console.log(error);
-  //   } else {
-  //     console.log("Email Send: " + info.response);
-  //   }
-  // });
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email Send: " + info.response);
+    }
+  });
 });
 
 module.exports = router;
