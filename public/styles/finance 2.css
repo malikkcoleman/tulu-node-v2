@@ -33,14 +33,14 @@ section{
 section .left{
     flex-direction: column;
     /* padding:0 0 0 150px; */
-    z-index: 6;
+    z-index: 2;
     position: relative;
 }
 
 section img{
     width:1000px;
     position:absolute;
-    z-index: 5;
+    z-index: 2;
     right:-150px;
     top:30vh;
     opacity: 0.5;
@@ -79,7 +79,7 @@ section .left .buttonContainer button{
     align-items: center;
     position:relative;
     /* height:100vh; */
-    z-index: 8;
+    z-index: 3;
 }
 
 .page{
