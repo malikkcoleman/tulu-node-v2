@@ -115,7 +115,7 @@ router.post("/financeVehicle", (req, res) => {
       .save()
       .then((finance) => {
         console.log(finance.vinNumber)
-        res.redirect("/carview/"+finance.vinNumber)
+        res.redirect("/CarView/"+finance.vinNumber)
       })
       .catch((err) => console.log(err));
   var mailOptions = {

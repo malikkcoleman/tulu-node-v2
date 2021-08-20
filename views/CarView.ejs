@@ -102,7 +102,7 @@
           <a  href="tel:+18335808858">
             <button class="buyNowBtn" onclick="">Call To Inquire</button>
           </a>
-          <button class="buyNowBtn" onclick="">Test Drive This Vehicle</button>
+          <button class="buyNowBtn" onclick="testDrive()">Test Drive This Vehicle</button>
           <button class="buyNowBtn" onclick="financeThis()">Finance This Vehicle</button>
 
           <% if(!user) {%>
@@ -268,6 +268,61 @@
             <option value="This Month">This Month</option>
             <option value="This Year">This Year</option>
           </select>
+        </div>
+        </fieldset>
+        <button type="submit">SUBMIT</button>
+        <button type="button" onclick="cancelFinance()">CANCEL</button>
+      </form>
+    </div>
+
+    <div class="testDrivePopUp">
+      <form method="post" action="/testDrive/testDrive">
+        <fieldset style="display:none;">
+          <div class="inputContainer">
+            <label for="vinNumber">VIN</label>
+            <input type="text" name="vinNumber" id="vinNumber" value="<%= vehicles[0].vin %>">
+          </div>
+          <div class="inputContainer">
+            <label for="dealershipName">Dealership</label>
+            <input type="text" name="dealershipName" id="dealershipName" value="<%= dealers[0].name %>">
+          </div>
+          </fieldset>
+        <fieldset>
+        <div class="inputContainer">
+          <label for="year">Year</label>
+          <input type="text" name="year" id="year" value="<%= vehicles[0].year %>">
+        </div>
+        <div class="inputContainer">
+          <label for="make">Make</label>
+          <input type="text" name="make" id="make" value="<%= vehicles[0].make %>">
+        </div>
+        <div class="inputContainer">
+          <label for="model">Model</label>
+          <input type="text" name="model" id="model" value="<%= vehicles[0].model %>">
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="inputContainer">
+          <label for="fname">First Name</label>
+          <input type="text" name="fname" id="fname" placeholder="Enter First Name" required>
+        </div>
+        <div class="inputContainer">
+          <label for="lname">Last Name</label>
+          <input type="text" name="lname" id="lname" placeholder="Enter First Name" required>
+        </div>
+        <div class="inputContainer">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Enter Phone Number" required>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="inputContainer">
+          <label for="email">Email</label>
+          <input type="text" name="email" id="email" placeholder="Enter Email" required>
+        </div>
+        <div class="inputContainer">
+          <label for="when">Select Date and Time of the Test Drive</label>
+          <input type="date" name="when" id="when">
         </div>
         </fieldset>
         <button type="submit">SUBMIT</button>

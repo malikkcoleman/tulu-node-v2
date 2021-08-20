@@ -565,6 +565,55 @@ img {vertical-align: middle;}
     border-radius: 10px;
 }
 
+.testDrivePopUp{
+    display: none;
+    position: fixed;
+    height:100vh;
+    width:100vw;
+    justify-content: center;
+    align-items: center;
+    background:#79C6AC50;
+}
+
+.testDrivePopUp form{
+    background:white;
+    padding:50px;
+    flex-direction: column;
+    filter: drop-shadow(0 10px 10px #0000002a);
+}
+
+.testDrivePopUp form fieldset{
+    flex-direction: row;
+    border:none;
+    margin:20px 0;
+}
+
+.testDrivePopUp form fieldset .inputContainer{
+    margin:0 20px;
+}
+
+.testDrivePopUp form label{
+    color:#79C6AC;
+    margin:0 0 5px 0;
+}
+
+.testDrivePopUp form input,.testDrivePopUp form select{
+    padding:10px 15px;
+    /* margin:0 0 0px 0; */
+    border-radius: 10px;
+    border:2px solid #79C6AC;
+}
+
+.testDrivePopUp form button{
+    border:none;
+    padding:15px;
+    color:white;
+    background:#79C6AC;
+    align-items: center;
+    margin:10px 0;
+    border-radius: 10px;
+}
+
 
 @media screen and (max-width: 600px) {
     .financePopUp{
@@ -589,4 +638,33 @@ img {vertical-align: middle;}
     .financePopUp form{
         padding:10px 50px;
     }
+
+    .testDrivePopUp{
+        margin:30px 0 0 0;
+    }
+
+    .testDrivePopUp form fieldset{
+        flex-direction: column;
+        margin:0;
+    }
+
+    .testDrivePopUp form fieldset .inputContainer{
+        margin:0;
+    }
+    
+    .testDrivePopUp form label{
+        color:#79C6AC;
+        margin:10px 0 5px 0;
+    }
+
+
+    .testDrivePopUp form{
+        padding:10px 50px;
+    }
+}
+
+
+#when{
+    flex-direction: row;
+    width:200px;
 }

@@ -79,3 +79,12 @@ function financeThis(){
 function cancelFinance(){
     document.querySelector('.financePopUp').style="display:none;";
 }
+
+function testDrive(){
+    document.querySelector('.testDrivePopUp').style="display:flex !important;";
+    console.log('test')
+}
+
+function cancelTestDrive(){
+    document.querySelector('.testDrivePopUp').style="display:none;";
+}

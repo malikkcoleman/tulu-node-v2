@@ -3,75 +3,43 @@ const mongoose = require('mongoose');
 const testdriveSchema = new mongoose.Schema({
     fname:{
         type:String,
-        required: true
+        required: false
     },
     lname:{
         type:String,
-        required: true
+        required: false
     },
     email:{
         type:String,
-        required: true
+        required: false
     },
-    email:{
+    phoneNumber:{
         type:String,
-        required: true
+        required: false
     },
-    number:{
+    year:{
         type:String,
-        required: true
+        required: false
     },
-    condition:{
+    make:{
         type:String,
-        required: true
+        required: false
     },
-    vehicleType:{
+    model:{
         type:String,
-        required: true
+        required: false
     },
-    budget:{
+    vinNumber:{
         type:String,
-        required: true
+        required: false
     },
-    trade:{
+    dealershipName:{
         type:String,
-        required: true
+        required: false
     },
-    creditScore:{
+    when:{
         type:String,
-        required: true
-    },
-    employment:{
-        type:String,
-        required: true
-    },
-    incomeDetails:{
-        type:String,
-        required: true
-    },
-    hourly:{
-        type:String,
-        required: true
-    },
-    employer:{
-        type:String,
-        required: true
-    },
-    privacyConsent:{
-        type:String,
-        required: true
-    },
-    emailConsent:{
-        type:String,
-        required: true
-    },
-    hourly:{
-        type:String,
-        required: true
-    },
-    hourly:{
-        type:String,
-        required: true
+        required: false
     },
     date:{
         type:Date,
@@ -80,6 +48,6 @@ const testdriveSchema = new mongoose.Schema({
 });
 
 
-const TestDrive = mongoose.model('Finance',testdriveSchema);
+const TestDrive = mongoose.model('TestDrive',testdriveSchema);
 
 module.exports = TestDrive;
