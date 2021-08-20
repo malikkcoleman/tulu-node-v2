@@ -22,13 +22,13 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-router.get("/finance", (req, res) =>
-  res.render("finance", {
+router.get("/Finance", (req, res) =>
+  res.render("Finance", {
     user: req.user,
   })
 );
 
-router.post("/finance", (req, res) => {
+router.post("/Finance", (req, res) => {
   const { fname, lname, email, number, condition, vehicleType,budget,trade,creditScore,employment,incomeDetails,hourly,employer,emailConsent,privacyConsent } = req.body;
 
 
