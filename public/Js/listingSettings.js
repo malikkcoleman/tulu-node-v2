@@ -1,8 +1,5 @@
 var toggleSetting="off";
 
-
-
-
 const listingSettings = (index) => {
     var html = "";
     html += '    <ul class="listingSettingsList">';
@@ -24,12 +21,6 @@ const listingSettings = (index) => {
     html += '                Edit Listing';
     html += '            </p>';
     html += '        </li>';
-    // html += '        <li class="settingsListItem" onclick="GetEditPriceVehicle('+index+')">';
-    // html += '            <i class="far fa-edit"></i>';
-    // html += '            <p>';
-    // html += '                Edit Pricing';
-    // html += '            </p>';
-    // html += '        </li>';
     html += '        <li class="settingsListItem">';
     html += '            <i class="far fa-check-circle"></i>';
     html += '            <p>';
@@ -81,5 +72,9 @@ function editVehicle(i){
 }
 
 function viewListing(i){
-    location.replace("/carview"+ "?id=" + i);
+    location.replace("/carview/"+ vehicleList[i].vin);
+}
+
+function GetDeleteVehicle(i){
+    location.replace("/vehicles/deleteVehicles/"+vehicleList[i].vin)
 }

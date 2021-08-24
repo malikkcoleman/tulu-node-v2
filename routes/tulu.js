@@ -83,7 +83,7 @@ router.post('/tuluRegistration',(req,res)=>{
                 // user Exist
                 errors.push({msg:'Email already Exist'})
                 res.render('tuluRegistration',{
-                    errors,fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2,street,city,province,postal,role,ratings,carsSold,status
+                    fName,lName,linkedin,instagram,facebook,bio,experience,specialty,favoriteCar,currentCar,phoneNumber, email, password, password2,street,city,province,postal,role,ratings,carsSold,status
                 })
             }else{
                 const newUser = new User({
@@ -91,7 +91,7 @@ router.post('/tuluRegistration',(req,res)=>{
                 });
 
                 const newAddress = new Address({
-                    errors,targetId,street,city,province,postal
+                    targetId,street,city,province,postal
                 });
 
                 // Hash Password
@@ -105,7 +105,7 @@ router.post('/tuluRegistration',(req,res)=>{
                         newAddress.save()
                         .then(address=>{
                             req.flash('success_msg', 'You are now registered and can log in.');
-                            res.redirect('/tulu/tuluLogin')
+                            res.redirect('/tuluLogin')
                         })
                     })
                     .catch(err => console.log(err));

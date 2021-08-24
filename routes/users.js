@@ -302,4 +302,55 @@ router.get('/logout',(req,res)=>{
     res.redirect('/users/login');
 });
 
+
+
+router.get('/ChangePassword' ,(req,res)=>
+    res.render('ChangePassword',{
+        user:req.user
+    })
+);
+
+router.post('/ChangePassword',(req,res)=>{
+    var myquery = { _id: req.user.toObject()._id };
+    const {oldPassword,password,password2} = req.body;
+    var newvalues = { 
+        password: password,
+    };
+    bcrypt.genSalt(10, (err, salt) =>bcrypt.hash(newvalues.password, salt, (err,hash) =>{
+        if(err)throw err;
+        //Set password to hashed 
+        newvalues.password = hash;
+        User.updateOne(myquery, newvalues)
+        .then(user=>{
+            req.flash('success_msg', 'Changes Saved!');
+            res.redirect('/users/ChangePassword') ;
+        })
+    })) 
+});
+
+router.get('/ForgetPassword' ,(req,res)=>
+    res.render('ForgetPassword',{
+        user:req.user
+    })
+);
+
+router.post('/ForgetPassword',(req,res)=>{
+    var myquery = { _id: req.user.toObject()._id };
+    const {password,password2} = req.body;
+    var newvalues = { 
+        password: password,
+    };
+    bcrypt.genSalt(10, (err, salt) =>bcrypt.hash(newvalues.password, salt, (err,hash) =>{
+        if(err)throw err;
+        //Set password to hashed 
+        newvalues.password = hash;
+        User.updateOne(myquery, newvalues)
+        .then(user=>{
+            req.flash('success_msg', 'Changes Saved!');
+            res.redirect('/users/ForgetPassword') ;
+        })
+    })) 
+});
+
+
 module.exports = router;
