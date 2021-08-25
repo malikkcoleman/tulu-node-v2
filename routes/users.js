@@ -354,5 +354,18 @@ router.post('/ForgetPassword',(req,res)=>{
     })) 
 });
 
+router.get('/delete' ,(req,res)=>{
+
+    var myquery = { _id: req.user.toObject()._id };
+    User.deleteOne(myquery)
+    .then(result => {
+        res.render('login',{
+            user: req.user
+        })
+    })
+
+});
+
+
 
 module.exports = router;
