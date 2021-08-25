@@ -87,16 +87,20 @@ pgroutr.get(
 );
 
 pgroutr.get("/shop", (req, res) => {
-  Vehicle.find({})
-    .then((vehicles) => {
-      res.render("Shop", {
-        vehicles: vehicles,
-        user: req.user,
+  Dealer.find({})
+  .then((dealershipList) => {
+    Vehicle.find({})
+      .then((vehicles) => {
+        res.render("Shop", {
+          vehicles: vehicles,
+          dealershipList: dealershipList,
+          user: req.user,
+        });
+      })
+      .catch((err) => {
+        res.status(500).send(error);
       });
-    })
-    .catch((err) => {
-      res.status(500).send(error);
-    });
+  });
 });
 pgroutr.get("/carview/:vin", (req, res) => {
   Vehicle.find({ vin: req.params.vin })

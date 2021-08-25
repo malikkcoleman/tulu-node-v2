@@ -58,8 +58,9 @@
       <section id="Vehicles" class="vehicles">
         <div class="carDetails">
           <div class="gallery">
+            <i class="fas fa-times fa-2x" id="closeGallery" onclick="closeGallery()"></i>
             <% if (images.length > 0){%>
-            <div class="slideshow-container" onclick="fullScreen()">
+            <div class="slideshow-container" onclick="gallery()">
             <!-- <div class="slideshow-container" > -->
               <% images.forEach(function(image){ %>
               <div class="mySlides fade">
@@ -71,8 +72,7 @@
               </div>
               <% }) %>
 
-              <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-              <a class="next" onclick="plusSlides(1)">&#10095;</a>
+              
               <br />
               <div
                 style="
@@ -92,6 +92,8 @@
             <br />
             <img src="../images/noimageavailable.jpg" alt="" />
             <% } %>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
           </div>
           <div class="carTitle">
             <h2 class="carName"></h2>
@@ -279,50 +281,50 @@
       <form method="post" action="/testDrive/testDrive">
         <fieldset style="display:none;">
           <div class="inputContainer">
-            <label for="vinNumber">VIN</label>
-            <input type="text" name="vinNumber" id="vinNumber" value="<%= vehicles[0].vin %>">
+            <label for="vinNumberTestDrive">VIN</label>
+            <input type="text" name="vinNumberTestDrive" id="vinNumberTestDrive" value="<%= vehicles[0].vin %>">
           </div>
           <div class="inputContainer">
-            <label for="dealershipName">Dealership</label>
-            <input type="text" name="dealershipName" id="dealershipName" value="<%= dealers[0].name %>">
+            <label for="dealershipNameTestDrive">Dealership</label>
+            <input type="text" name="dealershipNameTestDrive" id="dealershipNameTestDrive" value="<%= dealers[0].name %>">
           </div>
           </fieldset>
         <fieldset>
         <div class="inputContainer">
-          <label for="year">Year</label>
-          <input type="text" name="year" id="year" value="<%= vehicles[0].year %>">
+          <label for="yearTestDrive">Year</label>
+          <input type="text" name="yearTestDrive" id="yearTestDrive" value="<%= vehicles[0].year %>">
         </div>
         <div class="inputContainer">
-          <label for="make">Make</label>
-          <input type="text" name="make" id="make" value="<%= vehicles[0].make %>">
+          <label for="makeTestDrive">Make</label>
+          <input type="text" name="makeTestDrive" id="makeTestDrive" value="<%= vehicles[0].make %>">
         </div>
         <div class="inputContainer">
-          <label for="model">Model</label>
-          <input type="text" name="model" id="model" value="<%= vehicles[0].model %>">
-        </div>
-      </fieldset>
-      <fieldset>
-        <div class="inputContainer">
-          <label for="fname">First Name</label>
-          <input type="text" name="fname" id="fname" placeholder="Enter First Name" required>
-        </div>
-        <div class="inputContainer">
-          <label for="lname">Last Name</label>
-          <input type="text" name="lname" id="lname" placeholder="Enter First Name" required>
-        </div>
-        <div class="inputContainer">
-          <label for="phoneNumber">Phone Number</label>
-          <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Enter Phone Number" required>
+          <label for="modelTestDrive">Model</label>
+          <input type="text" name="modelTestDrive" id="modelTestDrive" value="<%= vehicles[0].model %>">
         </div>
       </fieldset>
       <fieldset>
         <div class="inputContainer">
-          <label for="email">Email</label>
-          <input type="text" name="email" id="email" placeholder="Enter Email" required>
+          <label for="fnameTestDrive">First Name</label>
+          <input type="text" name="fnameTestDrive" id="fnameTestDrive" placeholder="Enter First Name" required>
         </div>
         <div class="inputContainer">
-          <label for="when">Select Date and Time of the Test Drive</label>
-          <input type="date" name="when" id="when">
+          <label for="lnameTestDrive">Last Name</label>
+          <input type="text" name="lnameTestDrive" id="lnameTestDrive" placeholder="Enter First Name" required>
+        </div>
+        <div class="inputContainer">
+          <label for="phoneNumberTestDrive">Phone Number</label>
+          <input type="text" name="phoneNumberTestDrive" id="phoneNumberTestDrive" placeholder="Enter Phone Number" required>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="inputContainer">
+          <label for="emailTestDrive">Email</label>
+          <input type="text" name="emailTestDrive" id="emailTestDrive" placeholder="Enter Email" required>
+        </div>
+        <div class="inputContainer">
+          <label for="whenTestDrive">Select Date and Time of the Test Drive</label>
+          <input type="date" name="whenTestDrive" id="whenTestDrive">
         </div>
         </fieldset>
         <button type="submit">SUBMIT</button>
