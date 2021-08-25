@@ -27,7 +27,7 @@ function showSlides(n) {
         dots[i].className = dots[i].className.replace(" active", "");
     }
     
-    slides[slideIndex-1].style.display = "block";  
+    slides[slideIndex-1].style.display = "flex";  
     dots[slideIndex-1].className += " active";
 }
 
@@ -87,4 +87,27 @@ function testDrive(){
 
 function cancelTestDrive(){
     document.querySelector('.testDrivePopUp').style="display:none;";
+}
+
+
+function gallery(){
+    document.querySelector('.gallery').style="position:fixed;top:0;height:100vh;width:100vw;left:0;justify-content:center;align-items:center;background:black;";
+    document.querySelector('#closeGallery').style="display: flex;";
+    document.querySelector('.slideshow-container').style="align-items: center;";
+    var x = window.matchMedia("(max-width: 600px)")
+    if (x.matches) { // If media query matches
+        document.querySelector('.next').style="top:unset;bottom:50px !important;right:150px;transition:unset;";
+        document.querySelector('.prev').style="top:unset;bottom:50px !important;left:150px;";
+    } else {
+        document.querySelector('.next').style="right:150px;transition:unset;";
+        document.querySelector('.prev').style="left:150px;";
+    }
+}
+
+function closeGallery(){
+    document.querySelector('.gallery').style="";    
+    document.querySelector('#closeGallery').style="";
+    document.querySelector('.slideshow-container').style="";
+    document.querySelector('.next').style="";
+    document.querySelector('.prev').style="";
 }

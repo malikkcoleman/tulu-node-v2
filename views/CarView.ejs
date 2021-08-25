@@ -58,8 +58,9 @@
       <section id="Vehicles" class="vehicles">
         <div class="carDetails">
           <div class="gallery">
+            <i class="fas fa-times fa-2x" id="closeGallery" onclick="closeGallery()"></i>
             <% if (images.length > 0){%>
-            <div class="slideshow-container" onclick="fullScreen()">
+            <div class="slideshow-container" onclick="gallery()">
             <!-- <div class="slideshow-container" > -->
               <% images.forEach(function(image){ %>
               <div class="mySlides fade">
@@ -71,8 +72,7 @@
               </div>
               <% }) %>
 
-              <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-              <a class="next" onclick="plusSlides(1)">&#10095;</a>
+              
               <br />
               <div
                 style="
@@ -92,6 +92,8 @@
             <br />
             <img src="../images/noimageavailable.jpg" alt="" />
             <% } %>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
           </div>
           <div class="carTitle">
             <h2 class="carName"></h2>
