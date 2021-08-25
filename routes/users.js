@@ -285,7 +285,9 @@ router.post(
             res.redirect('/profile')
         }
         if (req.user.toObject().role === "tulu") {
-            res.redirect('/tulu')   
+            if(req.user.toObject().status === "active"){
+                res.redirect('/tulu')   
+            }else{res.redirect('/tuluPending')}
         }
         if (req.user.toObject().role === "dealeradmin") {
             res.redirect('/dashboard')
@@ -293,7 +295,7 @@ router.post(
         if (req.user.toObject().role === "sysadmin") {
             res.redirect('/dashboardsysadmin')
         }
-    });
+});
 
 // Logout Handle
 router.get('/logout',(req,res)=>{

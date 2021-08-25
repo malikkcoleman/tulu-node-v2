@@ -155,8 +155,7 @@ router.post('/EditTulu',(req,res)=>{
                 res.redirect('/tulu/EditTulu')  
             })
         })
-
-        
 });
+
 
 module.exports = router;
