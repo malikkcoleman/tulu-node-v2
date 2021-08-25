@@ -412,15 +412,21 @@ iframe button{
 }
 .mySlides {
     display: none; 
-    max-width: 40vw;
+    /* max-width: 40vw; */
 }
-img {vertical-align: middle;}
+img {
+    vertical-align: middle;
+}
 
 /* Slideshow container */
 .slideshow-container {
   position: relative;
   margin: 30px 0 0 0;
-  width: 80vmin;
+  width: 100%;
+}
+
+.gallery{
+    position: relative;
 }
 
 /* Next & previous buttons */
@@ -430,7 +436,6 @@ img {vertical-align: middle;}
   top: 50%;
   width: auto;
   padding: 16px;
-  margin-top: -22px;
   color: white;
   font-weight: bold;
   font-size: 18px;
@@ -439,12 +444,9 @@ img {vertical-align: middle;}
   user-select: none;
 }
 
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
+.next{
+    right:0;
 }
-
 
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
@@ -615,6 +617,15 @@ img {vertical-align: middle;}
 }
 
 
+#closeGallery{
+    position: absolute;
+    color:white;
+    right:120px;
+    top:120px;
+    display: none;
+}
+
+
 @media screen and (max-width: 600px) {
     .financePopUp{
         margin:30px 0 0 0;
@@ -660,6 +671,14 @@ img {vertical-align: middle;}
 
     .testDrivePopUp form{
         padding:10px 50px;
+    }
+
+    
+    #closeGallery{
+        position: absolute;
+        color:white;
+        right:30px;
+        top:80px;
     }
 }
 

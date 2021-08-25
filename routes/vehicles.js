@@ -404,4 +404,11 @@ router.post("/editvehicle", (req, res) => {
   });
 });
 
+router.get("/deleteVehicles/:vin", (req, res) => {
+  Vehicle.deleteOne({vin: req.params.vin}).then( async (vehicle) => {
+    res.redirect("back");
+  });
+});
+
+
 module.exports = router;

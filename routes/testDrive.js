@@ -23,18 +23,18 @@ const transporter = nodemailer.createTransport({
 
 
 router.post("/testDrive", (req, res) => {
-  const { fname, lname, email, phoneNumber, year, make,model,vinNumber,dealershipName,when} = req.body;
+  const { fnameTestDrive, lnameTestDrive, emailTestDrive, phoneNumberTestDrive, yearTestDrive, makeTestDrive,modelTestDrive,vinNumberTestDrive,dealershipNameTestDrive,whenTestDrive} = req.body;
 
 
     const newTestDrive = new TestDrive({
-        fname, lname, email, phoneNumber, year, make,model,vinNumber,dealershipName,when
+        fnameTestDrive, lnameTestDrive, emailTestDrive, phoneNumberTestDrive, yearTestDrive, makeTestDrive,modelTestDrive,vinNumberTestDrive,dealershipNameTestDrive,whenTestDrive
     });
     console.log(newTestDrive);
     newTestDrive
       .save()
       .then((finance) => {
-        console.log(finance.vinNumber)
-        res.redirect("/CarView/"+finance.vinNumber)
+        console.log(finance.vinNumberTestDrive)
+        res.redirect("/CarView/"+finance.vinNumberTestDrive)
       })
       .catch((err) => console.log(err));
   var mailOptions = {
@@ -44,33 +44,33 @@ router.post("/testDrive", (req, res) => {
     text:
       "Customer Information \n" +
       "Full Name: " +
-      req.body.fname +
+      req.body.fnameTestDrive +
       "Last Name" +
-      req.body.lname +
+      req.body.lnameTestDrive +
       "\n" +
       "Phone Number: " +
-      req.body.phoneNumber +
+      req.body.phoneNumberTestDrive +
       "\n" +
       "Email Address: " +
-      req.body.email +
+      req.body.emailTestDrive +
       "\n\n" +
       "Year: " +
-      req.body.year+
+      req.body.yearTestDrive+
       "\n" +
       "Make: " +
-      req.body.make+
+      req.body.makeTestDrive+
       "\n" +
       "Model: " +
-      req.body.model+
+      req.body.modelTestDrive+
       "\n" +
       "When: " +
-      req.body.when+
+      req.body.whenTestDrive+
       "\n" +
       "Vin: " +
-      req.body.vinNumber+
+      req.body.vinNumberTestDrive+
       "\n" +
       "Dealership: " +
-      req.body.dealershipName
+      req.body.dealershipNameTestDrive
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
