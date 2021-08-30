@@ -70,11 +70,14 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
 // Express Session
+const TWO_HOURS = 1000 * 60 * 60 * 2;
+
 app.use(
   session({
     secret: "Secret",
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: TWO_HOURS, secure: true },
   })
 );
 
