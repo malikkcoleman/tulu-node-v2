@@ -77,7 +77,7 @@ app.use(
     secret: "Secret",
     resave: true,
     saveUninitialized: true,
-    //cookie: { maxAge: TWO_HOURS, secure: true },
+    cookie: { maxAge: TWO_HOURS, secure: true },
   })
 );
 
