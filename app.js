@@ -76,7 +76,7 @@ app.use(
   session({
     secret: "Secret",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: { maxAge: TWO_HOURS, secure: true },
   })
 );
