@@ -75,9 +75,9 @@ const TWO_HOURS = 1000 * 60 * 60 * 2;
 app.use(
   session({
     secret: "Secret",
-    resave: false,
+    resave: true,
     saveUninitialized: true,
-    cookie: { maxAge: TWO_HOURS, sameSite: true, secure: true },
+    cookie: { secure: true },
   })
 );
 
