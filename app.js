@@ -75,7 +75,6 @@ app.use(
     secret: "Secret",
     resave: true,
     saveUninitialized: true,
-    cookie: { secure: true },
   })
 );
 
