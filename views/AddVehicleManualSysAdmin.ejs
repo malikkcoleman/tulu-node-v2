@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulu Canada</title>
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/css/all.css" />
+    <link rel="stylesheet" href="../styles/nav.css" />
+    <link rel="stylesheet" href="../styles/addVehicle.css" />
+    <link rel="stylesheet" href="../styles/footer.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    
+    <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
+<%- include partials/googleAnalytics %>
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="../images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    <%- include partials/navbar %>
+    </nav>
+    <div class="dropDownMenu">
+        <ul>
+            <%- include partials/dropDownMenu %>
+        </ul>
+    </div>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            <%- include partials/sidemenu %>
+            
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+
+
+    <div class="container">
+        <form action="/vehicles/DashboardSysAdminAddVehicle" method="POST">
+            <%- include partials/messages %>
+
+                <label for="dealerId">Dealer ID</label>
+                <select id="dealerId" name="dealerId">
+
+                </select>
+                <label for="isSold">Is Sold</label>
+                <input type="text" name="isSold" id="isSold" value="false">
+                <label for="vin">VIN</label>
+                <input type="text" name="vin" id="vin">
+                <label for="year">Year</label>
+                <input type="text" name="year" id="year">
+                <label for="make">Make</label>
+                <input type="text" name="make" id="make">
+                <label for="model">Model</label>
+                <input type="text" name="model" id="model">
+                <label for="vehicleType">Vehicle Type</label>
+                <select id="vehicleType" name="vehicleType">
+                    <option value="sedan">sedan</option>
+                    <option value="coupe">coupe</option>
+                    <option value="hatchback">hatchback</option>
+                    <option value="convertible">convertible</option>
+                    <option value="truck">truck</option>
+                    <option value="van">van</option>
+                    <option value="wagon">wagon</option>
+                    <option value="suv">suv</option>
+                    <option value="crossover">crossover</option>
+                </select>
+                <label for="trim">Trim</label>
+                <input type="text" name="trim" id="trim">
+                <label style="display:none;" for="modelNumber">Model Number</label>
+                <input style="display:none;" type="text" name="modelNumber" id="modelNumber">
+                <label for="engineName">Engine Name</label>
+                <input type="text" name="engineName" id="engineName">
+                <label style="display:none;" for="engineID">Engine ID</label>
+                <input style="display:none;" type="text" name="engineID" id="engineID">
+                <label style="display:none;" for="engineBrand">Engine Brand</label>
+                <input style="display:none;" type="text" name="engineBrand" id="engineBrand">
+                <label for="driveType">Drive Type</label>
+                <input type="text" name="driveType" id="driveType">
+                <label for="transmissionName">Transmission</label>
+                <select id="transmissionName" name="transmissionName">
+                    <option value="manual">manual</option>
+                    <option value="automatic">automatic</option>
+                    <option value="other">other</option>
+                </select>
+                <label for="fuelType">Fuel Type</label>
+                <input type="text" name="fuelType" id="fuelType">
+            
+                <label for="doors">No. of Doors</label>
+                <input type="text" name="doors" id="doors">
+                <label for="colorName">Color</label>
+                <input type="text" name="colorName" id="colorName">
+                <label style="display:none;" for="colorHex">Color Hex</label>
+                <input style="display:none;" type="text" name="colorHex" id="colorHex">
+                <label for="mileage">Mileage</label>
+                <input type="text" name="mileage" id="mileage">
+                <label style="display:none;" for="iceMaxHp">Ice Max Hp</label>
+                <input style="display:none;" type="text" name="iceMaxHp" id="iceMaxHp">
+                <label style="display:none;" for="iceMaxTorque">Ice Max Torque</label>
+                <input style="display:none;" type="text" name="iceMaxTorque" id="iceMaxTorque">
+                <label style="display:none;" for="maxPayLoad">Max Payload</label>
+                <input style="display:none;" type="text" name="maxPayLoad" id="maxPayLoad">
+                <label style="display:none;" for="baseTowingCapacity">Base Towing Capacity</label>
+                <input style="display:none;" type="text" name="baseTowingCapacity" id="baseTowingCapacity">
+                <label  style="display:none;"for="grossWeight">Gross Weight</label>
+                <input  style="display:none;"type="text" name="grossWeight" id="grossWeight">
+                <label  style="display:none;"for="fuelTankCapacity">Fuel Tank Capacity</label>
+                <input  style="display:none;"type="text" name="fuelTankCapacity" id="fuelTankCapacity">
+                <label style="display:none;" for="msrp">MSRP</label>
+                <input style="display:none;" type="text" name="msrp" id="msrp">
+                <label for="minPrice">Minimum Price</label>
+                <input type="number" name="minPrice" id="minPrice" onchange="calculate()" value="0">
+                <label for="maxPrice">Maximum Price</label>
+                <input type="number" name="maxPrice" id="maxPrice" onchange="calculate()" value="0">
+                <label for="refPercentage" style="flex-direction: row;">Referral Fee Percentage :<p class="percentage"style="margin:0 0 0 10px;">0.25%</p></label>
+                <input type="range" name="refPercentage" id="refPercentage" step=".05" min="0.25" max="0.50" oninput="sliderValue()" value="0.25" onchange="sliderValue()">
+
+                <label for="refFee">Referral Fee</label>
+                <input type="number" name="refFee" id="refFee">
+                <label for="notes">Notes</label>
+                <input type="text" name="notes" id="notes">
+                <label for="status">Status</label>
+                <select id="status" name="status">
+                    <option value="true">Listed</option>
+                    <option value="false">Unlisted</option>
+                </select>
+            <button type="submit" class="saveBtn" style="display:flex;">
+                Save Vehicle
+            </button>
+            <a href="/sysadminvehicles/DashboardSysAdminVehicle">
+                <button type="button" class="backBtn" >
+                Back
+                </button>
+            </a>
+          </form>
+    </div>
+</body>
+<script src="../Js/sideMenu.js"></script>
+<script src="../Js/privileges.js"></script>
+<script>
+    const dealer = <%-JSON.stringify(dealer)%>;
+    const user = <%-JSON.stringify(user)%>;
+</script>
+<script src="../Js/FuckingVin.js"></script>
+
+</html>
+
+    

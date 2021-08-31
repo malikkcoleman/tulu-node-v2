@@ -232,6 +232,24 @@ router.get("/FuckingVinDoesntWork", ensureAuthenticated, (req, res) => {
     });
   });
 });
+router.get("/FuckingVinDoesntWork", ensureAuthenticated, (req, res) => {
+  Dealer.find().then((dealer) => {
+    res.render("FuckingVin", {
+      user: req.user,
+      dealer: dealer,
+    });
+  });
+});
+
+router.get("/AddVehicleManualSysAdmin", ensureAuthenticated, (req, res) => {
+  Dealer.find().then((dealer) => {
+    res.render("AddVehicleManualSysAdmin", {
+      user: req.user,
+      dealer: dealer,
+    });
+  });
+});
+
 router.post("/AddVehicle", ensureAuthenticated, (req, res) => {
   decoder(req.body.vin).then((infoData) => {
     Dealer.find().then((dealer) => {
@@ -278,4 +296,14 @@ router.get("/flash", function (req) {
   req.flash("fuelTankCapacity", fuelTankCapacity);
   res.redirect("/Vehicles");
 });
+
+router.get("/AddVehicleManual", ensureAuthenticated, (req, res) => {
+  Dealer.find().then((dealer) => {
+    res.render("AddVehicleManual", {
+      user: req.user,
+      dealer: dealer,
+    });
+  });
+});
+
 module.exports = router;

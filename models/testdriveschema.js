@@ -37,11 +37,35 @@ const testdriveSchema = new mongoose.Schema({
         type:String,
         required: false
     },
-    whenTestDrive:{
+    dateTestDrive:{
         type:String,
         required: false
     },
-    dateTestDrive:{
+    timeTestDrive:{
+        type:String,
+        required: false
+    },
+    location:{
+        type:String,
+        required: false
+    },
+    street:{
+        type:String,
+        required: false
+    },
+    city:{
+        type:String,
+        required: false
+    },
+    province:{
+        type:String,
+        required: false
+    },
+    postalCode:{
+        type:String,
+        required: false
+    },
+    timestamp:{
         type:Date,
         default: Date.now
     }
