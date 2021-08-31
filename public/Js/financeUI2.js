@@ -383,7 +383,7 @@ function gtag_report_conversion(url) {
 
 function Done(){
     
-    gtag_report_converstion("https://www.tulucanada.com/web/finance");
+    // gtag_report_converstion("https://www.tulucanada.com/web/finance");
     
     const condition = document.querySelector("#condition").value;
     const fname = document.querySelector("#fname").value;

@@ -255,6 +255,7 @@
     border-radius: 10px;
     background:none;
     color:#79C6AC;
+    font-size:large;
 }
 
 /* Share Section */
@@ -320,7 +321,11 @@ iframe button{
     justify-content: center;
     align-items: center;
     padding:15px 0;
+    /* font-weight: bolder; */
+    font-size: large;
 }
+
+
 
 
 
@@ -389,6 +394,7 @@ iframe button{
     color:white;
     justify-content: center;
     align-items: center;
+    font-size: large;
 }
 
 .BookContainer p {
@@ -531,8 +537,27 @@ img {
 .financePopUp form{
     background:white;
     padding:50px;
+    width:80vmin;
     flex-direction: column;
+    /* justify-content: center;
+    align-items: center; */
     filter: drop-shadow(0 10px 10px #0000002a);
+}
+
+.financePopUp .finance{
+
+}
+
+
+.financePopUp .financeThankYou{
+    display: none;
+}
+
+.financePopUp form p{
+    /* width:500px; */
+    text-align: center;
+    align-self: center;
+    color: #79C6AC;
 }
 
 .financePopUp form fieldset{
@@ -561,11 +586,31 @@ img {
     border:none;
     padding:15px;
     color:white;
+    width:300px;
     background:#79C6AC;
     align-items: center;
     margin:10px 0;
     border-radius: 10px;
+    justify-self: center;
+    align-self: center;
 }
+
+
+.financePopUp .financeThankYou h2{
+    align-items: center;
+    color:#79C6AC;
+}
+
+.financePopUp .financeThankYou h3{
+    color:#79C6AC;
+    align-items: center;
+}
+
+.financePopUp .financeThankYou p{
+    color:unset;
+    margin:20px 0
+}
+
 
 .testDrivePopUp{
     display: none;
@@ -580,12 +625,30 @@ img {
 .testDrivePopUp form{
     background:white;
     padding:50px;
+    width:80vmin;
     flex-direction: column;
     filter: drop-shadow(0 10px 10px #0000002a);
 }
 
+.testDrivePopUp .testDrive{
+
+}
+
+
+.testDrivePopUp .testDriveThankYou{
+    display: none;
+}
+
+.testDrivePopUp form p{
+    /* width:500px; */
+    text-align: center;
+    align-self: center;
+    color: #79C6AC;
+}
+
 .testDrivePopUp form fieldset{
     flex-direction: row;
+    align-items: flex-end;
     border:none;
     margin:20px 0;
 }
@@ -615,6 +678,26 @@ img {
     margin:10px 0;
     border-radius: 10px;
 }
+/* 
+.testDrivePopUp .testDriveThankYou{
+    justify-content: center;
+    align-items: center;
+} */
+
+.testDrivePopUp .testDriveThankYou h2{
+    align-items: center;
+    color:#79C6AC;
+}
+
+.testDrivePopUp .testDriveThankYou h3{
+    color:#79C6AC;
+    align-items: center;
+}
+
+.testDrivePopUp .testDriveThankYou p{
+    color:unset;
+    margin:20px 0;
+}
 
 
 #closeGallery{
@@ -625,16 +708,64 @@ img {
     display: none;
 }
 
+#when{
+    flex-direction: row;
+    width:200px;
+}
+
+#dateTestDrive{
+    flex-direction: row;
+}
+
+#timeTestDrive{
+    flex-direction: row;
+}
+
+.financeSubmit,.testDriveSubmit{
+    opacity:0.5;
+}
+
+.messageTestDrive{
+    margin:20px 0;
+}
+
+.timeMessage{
+    font-size: small;
+    margin:0 0 20px 0;
+}
+
+.address{
+    display: none;
+    /* align-items: center; */
+}
 
 @media screen and (max-width: 600px) {
     .financePopUp{
         margin:30px 0 0 0;
     }
 
+    .financePopUp form{
+        padding:50px 20px;
+    }
+
+    .financePopUp form{
+        background:white;
+        /* padding:50px; */
+        width:80vw;
+        height:50vh;
+        overflow: scroll;
+        flex-direction: column;
+        /* justify-content: center;
+        align-items: center; */
+        filter: drop-shadow(0 10px 10px #0000002a);
+    }
+    
     .financePopUp form fieldset{
         flex-direction: column;
         margin:0;
     }
+
+    
 
     .financePopUp form fieldset .inputContainer{
         margin:0;
@@ -646,16 +777,33 @@ img {
     }
 
 
-    .financePopUp form{
-        padding:10px 50px;
-    }
+    
+
+
 
     .testDrivePopUp{
         margin:30px 0 0 0;
     }
 
+    .testDrivePopUp form{
+        padding:50px 20px;
+    }
+
+    .testDrivePopUp form{
+        background:white;
+        /* padding:50px; */
+        width:80vw;
+        height:50vh;
+        overflow: scroll;
+        flex-direction: column;
+        /* justify-content: center;
+        align-items: center; */
+        filter: drop-shadow(0 10px 10px #0000002a);
+    }
+
     .testDrivePopUp form fieldset{
         flex-direction: column;
+        align-items: unset;
         margin:0;
     }
 
@@ -669,10 +817,7 @@ img {
     }
 
 
-    .testDrivePopUp form{
-        padding:10px 50px;
-    }
-
+    
     
     #closeGallery{
         position: absolute;
@@ -680,10 +825,12 @@ img {
         right:30px;
         top:80px;
     }
+
+    #when{
+        flex-direction: row;
+        width:unset;
+    }
 }
 
 
-#when{
-    flex-direction: row;
-    width:200px;
-}
+

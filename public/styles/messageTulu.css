@@ -1,0 +1,117 @@
+
+
+
+.questions{
+    margin:75px 15px 0 15px;
+    padding:60px 0;
+    justify-content: center;
+    align-items: center;
+    background:#79c6ac;
+}
+
+.questions h2{
+    color:white;
+    margin:0 0 10px 0;
+}
+
+.questions p{
+    color:white;
+    flex-direction: row;
+}
+
+.questions p a {
+    color:white;
+    margin:0 5px 0 5px;
+    border-bottom: 1px solid white;
+    padding:0 0 1px 0;
+}
+
+.messages{
+    margin:50px 0 0 0;
+    padding:50px 0 0 0 ;
+    align-self: center;
+}
+
+h2{
+    margin: 0 0 0 20px;
+}
+
+label{
+    margin:15px 0 5px 0;
+}
+
+
+
+select,input,textarea{
+    /* margin:0 0 10px 0; */
+    padding:10px 10px;
+    border:1px solid #79c6ac;
+    border-radius:10px;
+}
+
+textarea {
+    resize: none;
+  }
+
+select{
+    margin:0 0 20px 0;
+}
+
+button{
+    margin:10px 0 0 0;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#79c6ac;
+    color:white;
+    align-items: center;
+}
+
+.date,.vehicle,.threads{
+    font-size:small;
+    margin:5px 0 0 0;
+}
+
+#MessagesList li {
+    padding: 10px 20px;
+    border-bottom: 1px solid #00000050;
+}
+
+    #MessagesList li h3 {
+        color: #79c6ac;
+    }
+
+.newMessage {
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+    padding: 20px 0;
+    background: #79c6ac;
+    color:white;
+}
+
+
+.newMessageContainer .wrapper{
+    padding:0 20px;
+    width:80vmin;
+}
+
+
+
+.boxContainer{
+    flex-direction: row;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.vehicle{
+    flex-direction: row;
+    color:#79c6ac;
+}
+
+.vehicle a{
+    margin:0 0 0 10px;
+    color:#79c6ac;
+}

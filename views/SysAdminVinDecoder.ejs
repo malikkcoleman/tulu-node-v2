@@ -46,7 +46,10 @@
       <form action="/vin/SysAdminAddVehicle" method="POST">
         <label for="vin">VIN</label>
         <input type="text" name="vin" id="vin" />
-        <button type="submit">Decode</button>
+        <button type="submit" disabled style="opacity:0.5;">Decode</button>
+        <a href="/vin/AddVehicleManualSysAdmin">
+          <button type="button">Add Vehicle Manually</button>
+        </a>
       </form>
     </div>
   </body>

@@ -1,5 +1,5 @@
 .heading{
-    margin:0px 10px 20px 10px;
+    margin:20px 10px 20px 10px;
     background:#79C6AC;
     padding:40px 20px 30px 20px;
     position: relative;
@@ -123,6 +123,7 @@
 
 #Filter{
     justify-content: flex-end;
+    margin:75px 0 0 0;
 }
 
 .address{

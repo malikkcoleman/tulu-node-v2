@@ -38,6 +38,7 @@ router.post("/email", (req, res) => {
     city,
     province,
     postal,
+    location
   } = req.body;
 
   let errors = [];
@@ -55,7 +56,8 @@ router.post("/email", (req, res) => {
     !street ||
     !city ||
     !province ||
-    !postal
+    !postal || 
+    !location
   ) {
     errors.push({ msg: "Please fill in all fields" });
   }
@@ -72,6 +74,7 @@ router.post("/email", (req, res) => {
       city,
       province,
       postal,
+      location
     });
   } else {
     const newBuyNow = new BuyNow({
@@ -86,6 +89,7 @@ router.post("/email", (req, res) => {
       city,
       province,
       postal,
+      location
     });
     console.log(newBuyNow);
     newBuyNow
@@ -134,7 +138,10 @@ router.post("/email", (req, res) => {
       req.body.vehicle +
       "\n" +
       "Vin: " +
-      req.body.vin,
+      req.body.vin+
+      "\n" +
+      "Location: " +
+      req.body.location,
   };
 
   transporter.sendMail(mailOptions, function (error, info) {

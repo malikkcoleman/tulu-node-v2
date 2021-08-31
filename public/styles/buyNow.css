@@ -23,7 +23,7 @@
     /* align-items: center; */
 }
 
-.container input{
+.container input,.container select{
     margin:5px 0 20px 0;
     padding:10px 15px;
     border-radius: 10px;

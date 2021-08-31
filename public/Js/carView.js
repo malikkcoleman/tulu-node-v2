@@ -49,6 +49,21 @@ $('#year').val(vehicles[0].year);
 $('#make').val(vehicles[0].make);
 $('#model').val(vehicles[0].model);
 
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+ if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+
+today = yyyy+'-'+mm+'-'+dd;
+console.log(today)
+document.getElementById("dateTestDrive").setAttribute("min", today);
+
 
 function viewDealer(dealerId){
     location.replace("/DealerListing/"+dealerId);
@@ -110,4 +125,77 @@ function closeGallery(){
     document.querySelector('.slideshow-container').style="";
     document.querySelector('.next').style="";
     document.querySelector('.prev').style="";
+}
+
+
+function testDriveNext(){
+    document.querySelector('.testDrive').style="display:none;"   
+    if(document.querySelector('#location').value == "home"){
+        document.querySelector('.address').style="display:flex !important;"
+    }else{
+        document.querySelector('.testDriveThankYou').style="display:flex;"
+    }
+    
+}
+
+function testDriveThankYou(){
+    document.querySelector('.address').style="display:none;"   
+    document.querySelector('.testDriveThankYou').style="display:flex;"
+    
+}
+
+function FinanceThankYou(){
+    document.querySelector('.finance').style="display:none;"   
+    document.querySelector('.financeThankYou').style="display:flex;"
+}
+
+
+function verifyTestDrive(){
+    const vinNumberTestDrive = document.querySelector('#vinNumberTestDrive').value;
+    const dealershipNameTestDrive = document.querySelector('#dealershipNameTestDrive').value;
+    const yearTestDrive = document.querySelector('#yearTestDrive').value;
+    const makeTestDrive = document.querySelector('#makeTestDrive').value;
+    const modelTestDrive = document.querySelector('#modelTestDrive').value;
+    const fnameTestDrive = document.querySelector('#fnameTestDrive').value;
+    const lnameTestDrive = document.querySelector('#lnameTestDrive').value;
+    const phoneNumberTestDrive = document.querySelector('#phoneNumberTestDrive').value;
+    const emailTestDrive = document.querySelector('#emailTestDrive').value;
+    const dateTestDrive = document.querySelector('#dateTestDrive').value;
+    const timeTestDrive = document.querySelector('#timeTestDrive').value;
+    const location = document.querySelector('#location').value;
+
+    if(vinNumberTestDrive!="" && dealershipNameTestDrive!="" && yearTestDrive!="" && makeTestDrive!="" && modelTestDrive!="" && fnameTestDrive!="" && lnameTestDrive!="" && phoneNumberTestDrive!="" && emailTestDrive!="" && dateTestDrive!="" && timeTestDrive!="" && location!=""){   
+        document.querySelector('.testDriveNext').disabled = false;
+        document.querySelector('.testDriveNext ').style = 'opacity:1';
+    }
+}
+
+function verifyFinance(){
+    const vinNumber = document.querySelector('#vinNumber').value;
+    const dealershipName = document.querySelector('#dealershipName').value;
+    const year = document.querySelector('#year').value;
+    const make = document.querySelector('#make').value;
+    const model = document.querySelector('#model').value;
+    const fname = document.querySelector('#fname').value;
+    const lname = document.querySelector('#lname').value;
+    const phoneNumber = document.querySelector('#phoneNumber').value;
+    const email = document.querySelector('#email').value;
+    const when = document.querySelector('#when').value;
+
+    if(vinNumber!="" ||dealershipName!="" || year!="" || make!="" || model!="" || fname!="" || lname!="" || phoneNumber!="" || email!="" || when!=""){   
+        document.querySelector('.financeSubmit').disabled = false;
+        document.querySelector('.financeSubmit').style = 'opacity:1';
+    }
+}
+
+function verifyAddress(){
+    const street = document.querySelector('#street').value;
+    const city = document.querySelector('#city').value;
+    const province = document.querySelector('#province').value;
+    const postalCode = document.querySelector('#postalCode').value;
+
+    if(street!=""||city!=""||province!=""||postalCode!=""){
+        document.querySelector('.testDriveSubmit').disabled = false;
+        document.querySelector('.testDriveSubmit').style = 'opacity:1';
+    }
 }
