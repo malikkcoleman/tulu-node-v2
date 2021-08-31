@@ -64,13 +64,23 @@ button{
     position: fixed;
 }
 
+.popUp .container{
+    overflow: hidden !important;
+    border-radius: 10px !important;
+    width:80vmin;
+    
+    padding:30px;
+    background:white;
+}
+
 .popUp .wrapper{
+    
     padding:30px;
     width:80vmin;
     height:400px;
-    background:white;
-    overflow: scroll hidden;
-    border-radius: 10px;
+    /* background:white; */
+    overflow: scroll;
+    /* border-radius: 10px; */
 }
 
 .popUp .wrapper button{

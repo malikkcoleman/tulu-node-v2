@@ -5,7 +5,7 @@
     padding:40px 20px;
 }
 
-.heading h2,.heading p{
+.heading h2,.heading p,.heading p a{
     color:white;
 }
 
@@ -13,7 +13,10 @@
     margin:5px 0 0 0;
 }
 
-
+.heading p a{
+    text-decoration: underline;
+    padding:5px 0;
+}
 
 .influencerContainer{
     margin:20px 0;

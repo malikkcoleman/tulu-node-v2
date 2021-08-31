@@ -3,75 +3,75 @@ const mongoose = require('mongoose');
 const FinanceSchema = new mongoose.Schema({
     fname:{
         type:String,
-        required: true
+        required: false
     },
     lname:{
         type:String,
-        required: true
+        required: false
     },
     email:{
         type:String,
-        required: true
+        required: false
     },
     email:{
         type:String,
-        required: true
+        required: false
     },
     number:{
         type:String,
-        required: true
+        required: false
     },
     condition:{
         type:String,
-        required: true
+        required: false
     },
     vehicleType:{
         type:String,
-        required: true
+        required: false
     },
     budget:{
         type:String,
-        required: true
+        required: false
     },
     trade:{
         type:String,
-        required: true
+        required: false
     },
     creditScore:{
         type:String,
-        required: true
+        required: false
     },
     employment:{
         type:String,
-        required: true
+        required: false
     },
     incomeDetails:{
         type:String,
-        required: true
+        required: false
     },
     hourly:{
         type:String,
-        required: true
+        required: false
     },
     employer:{
         type:String,
-        required: true
+        required: false
     },
     privacyConsent:{
         type:String,
-        required: true
+        required: false
     },
     emailConsent:{
         type:String,
-        required: true
+        required: false
     },
     hourly:{
         type:String,
-        required: true
+        required: false
     },
     hourly:{
         type:String,
-        required: true
+        required: false
     },
     date:{
         type:Date,

@@ -102,6 +102,17 @@ pgroutr.get("/shop", (req, res) => {
       });
   });
 });
+
+pgroutr.get("/MessageTulu/:id", (req, res) => {
+  User.find({ _id: req.params.id })
+  .then((tulu) => {
+    res.render("MessageTulu", {
+      user: req.user,
+      tulu:tulu
+    })
+  })
+})
+
 pgroutr.get("/carview/:vin", (req, res) => {
   Vehicle.find({ vin: req.params.vin })
     .then((vehicles) => {

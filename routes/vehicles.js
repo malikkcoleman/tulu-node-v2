@@ -111,8 +111,6 @@ router.post("/addvehicle", (req, res) => {
       // res.send('hello');
 });
 
-
-
 router.get("/DashboardSysAdminAddVehicle", (req, res) => {
   Dealer.find()
   .then(dealer=>{
@@ -124,10 +122,6 @@ router.get("/DashboardSysAdminAddVehicle", (req, res) => {
     })
   })
 });
-
-
-    
-
 
 // SysAdmin Add Vehicle
 router.post("/DashboardSysAdminAddVehicle", (req, res) => {
@@ -215,7 +209,102 @@ router.post("/DashboardSysAdminAddVehicle", (req, res) => {
 });
 
 
+router.get("/DashboardDealerVehicle", (req, res) => {
+  Dealer.find()
+  .then(dealer=>{
+    res.render('DashboardVehicle',{
+      vin:req.body.vin, 
+      infoData:infoData,
+      user:req.user,
+      dealer:dealer
+    })
+  })
+});
 
+// SysAdmin Add Vehicle
+router.post("/DashboardDealerVehicle", (req, res) => {
+  console.log(req.body);
+  // res.send('hello');
+  const {
+    vin,
+    year,
+    make,
+    model,
+    vehicleType,
+    trim,
+    dealerId,
+    isSold,
+    doors,
+    mileage,
+    modelNumber,
+    driveType,
+    msrp,
+    minPrice,
+    maxPrice,
+    refFee,
+    engineName,
+    engineBrand,
+    engineID,
+    fuelType,
+    iceMaxHp,
+    iceMaxTorque,
+    maxPayLoad,
+    transmissionName,
+    colorName,
+    colorHex,
+    baseTowingCapacity,
+    grossWeight,
+    fuelTankCapacity,
+    notes,
+    status
+  } = req.body;
+
+  let errors = [];
+        const newVehicle = new Vehicle({
+          vin,
+          year,
+          make,
+          model,
+          vehicleType,
+          trim,
+          dealerId,
+          isSold,
+          doors,
+          mileage,
+          modelNumber,
+          driveType,
+          msrp,
+          minPrice,
+          maxPrice,
+          refFee,
+          engineName,
+          engineBrand,
+          engineID,
+          fuelType,
+          iceMaxHp,
+          iceMaxTorque,
+          maxPayLoad,
+          transmissionName,
+          colorName,
+          colorHex,
+          baseTowingCapacity,
+          grossWeight,
+          fuelTankCapacity,
+          notes,
+          status
+        });
+
+        newVehicle
+          .save()
+          .then((vehicle) => {
+            // req.flash('success_msg', 'You are now registered and can log in.');
+            res.redirect("DashboardVehicle");
+          })
+          .catch((err) => console.log(err));
+
+        console.log(newVehicle);
+        // res.send('hello');
+});
 
 
 // SysAdmin Add Vehicle

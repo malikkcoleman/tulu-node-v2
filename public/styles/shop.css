@@ -176,16 +176,17 @@
     top:0px;
     right:0px;
 }
+
 .breadCrumbs{
     flex-direction: row;
-    padding:0px 15px 5px 15px;
+    /* padding:0px 15px 5px 15px; */
 }
 
 .breadCrumbs p{
     flex-direction: row;
     font-size: smaller;
     color:#79C6AC;
-    margin:0 15px 0 0;
+    margin:10px 15px 0 0;
 }
 
 .breadCrumbs p span{
@@ -209,6 +210,7 @@
     color:#79C6AC;
     margin:10px 0 0 0;
 }
+
 
 @media screen and (min-width: 720px) {
 

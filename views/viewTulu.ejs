@@ -98,7 +98,9 @@
                     </p> -->
                 </div>
             </div>
-            <!-- <button class="sendMessage" onclick="sendTuluMessage()">Send Message</button> -->
+            <a href = "mailto: <%= tulu[0].email %>">
+                <button class="sendMessage" onclick="sendTuluMessage()">Send Message</button>
+            </a>
         </div>
         
     </div>
@@ -132,11 +134,6 @@
                 var userImage = '<img src="/image/'+ tuluList[x]._id +'">'
                 $('.userImage').empty();
                 $('.userImage').append(userImage);
-                $('').append();
-                $('').append();
-                $('').append();
-                $('').append();
-                $('').append();
 
 
                 var html = "";
@@ -167,7 +164,7 @@
     };
 
     function sendTuluMessage(){
-        // window.location = "/Messages?TargetId=" + tuluId;
+        // window.location = "/MessageTulu/" + tuluId;
     }
 
 </script>

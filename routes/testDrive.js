@@ -23,11 +23,11 @@ const transporter = nodemailer.createTransport({
 
 
 router.post("/testDrive", (req, res) => {
-  const { fnameTestDrive, lnameTestDrive, emailTestDrive, phoneNumberTestDrive, yearTestDrive, makeTestDrive,modelTestDrive,vinNumberTestDrive,dealershipNameTestDrive,whenTestDrive} = req.body;
+  const { fnameTestDrive, lnameTestDrive, emailTestDrive, phoneNumberTestDrive, yearTestDrive, makeTestDrive,modelTestDrive,vinNumberTestDrive,dealershipNameTestDrive,dateTestDrive,timeTestDrive,location,street,city,province,postalCode} = req.body;
 
 
     const newTestDrive = new TestDrive({
-        fnameTestDrive, lnameTestDrive, emailTestDrive, phoneNumberTestDrive, yearTestDrive, makeTestDrive,modelTestDrive,vinNumberTestDrive,dealershipNameTestDrive,whenTestDrive
+        fnameTestDrive, lnameTestDrive, emailTestDrive, phoneNumberTestDrive, yearTestDrive, makeTestDrive,modelTestDrive,vinNumberTestDrive,dealershipNameTestDrive,dateTestDrive,timeTestDrive,location,street,city,province,postalCode
     });
     console.log(newTestDrive);
     newTestDrive
@@ -64,13 +64,28 @@ router.post("/testDrive", (req, res) => {
       req.body.modelTestDrive+
       "\n" +
       "When: " +
-      req.body.whenTestDrive+
+      req.body.dateTestDrive+ " " +req.body.timeTestDrive+
       "\n" +
       "Vin: " +
       req.body.vinNumberTestDrive+
       "\n" +
       "Dealership: " +
-      req.body.dealershipNameTestDrive
+      req.body.dealershipNameTestDrive+
+      "\n" +
+      "Location: " +
+      req.body.location+
+      "\n" +
+      "Street: " +
+      req.body.street+
+      "\n" +
+      "City: " +
+      req.body.city+
+      "\n" +
+      "Province: " +
+      req.body.province+
+      "\n" +
+      "Postal Code: " +
+      req.body.postalCode
   };
 
   transporter.sendMail(mailOptions, function (error, info) {

@@ -1,0 +1,84 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulu Canada</title>
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/css/all.css" />
+    <link rel="stylesheet" href="../styles/nav.css" />
+    <link rel="stylesheet" href="../styles/messageTulu.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
+<%- include partials/googleAnalytics %>
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="../images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    <%- include partials/navbar %>
+    </nav>
+    <div class="dropDownMenu">
+        <ul>
+            <%- include partials/dropDownMenu %>
+        </ul>
+    </div>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            <%- include partials/sidemenu %>
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+
+    <div class="questions">
+        <h2>Questions?</h2>
+        <p>Email us now at 
+        <a href="mailto: info.tulucanada.com">info.tulucanada.com</a>
+        !
+        </p>
+    </div>
+
+<!-- THIS NEEDS FIXING -->
+    <div class="container body-content messages" style="margin:50px 0 0 0;">
+        <h2>Messages</h2>
+        
+        <div class="newMessageContainer">
+            <div class="wrapper">
+                <form action="/sendEmail/">
+                    <label>Name:</label>
+                    <input type="text" id="name" value="" placeholder="Enter your name"/>
+                    <label>Email:</label>
+                    <input type="text" id="email" value="" placeholder="Enter your email"/>
+                    <label>Subject:</label>
+                    <input type="text" id="SubjectText" value="" />
+                    <label>Body:</label>
+                    <textarea type="text" id="BodyText" value="" rows="4" no-resize></textarea>
+                    <label>Is Read:</label>
+                    <select id="IsReadSelect" disabled>
+                        <option value="0">False</option>
+                        <option value="1">True</option>
+                    </select>
+                    <button type="submit" onclick="NewMessage();">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="../Js/sideMenu.js"></script>
+<script src="../Js/privileges.js"></script>
+<script>
+    var tuluList = <%- JSON.stringify(tulu)%>
+    console.log(tuluList)
+</script>
+</html>

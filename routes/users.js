@@ -285,7 +285,9 @@ router.post(
             res.redirect('/profile')
         }
         if (req.user.toObject().role === "tulu") {
-            res.redirect('/tulu')   
+            if(req.user.toObject().status === "active"){
+                res.redirect('/tulu')   
+            }else{res.redirect('/tuluPending')}
         }
         if (req.user.toObject().role === "dealeradmin") {
             res.redirect('/dashboard')
@@ -293,7 +295,7 @@ router.post(
         if (req.user.toObject().role === "sysadmin") {
             res.redirect('/dashboardsysadmin')
         }
-    });
+});
 
 // Logout Handle
 router.get('/logout',(req,res)=>{
@@ -351,6 +353,19 @@ router.post('/ForgetPassword',(req,res)=>{
         })
     })) 
 });
+
+router.get('/delete' ,(req,res)=>{
+
+    var myquery = { _id: req.user.toObject()._id };
+    User.deleteOne(myquery)
+    .then(result => {
+        res.render('login',{
+            user: req.user
+        })
+    })
+
+});
+
 
 
 module.exports = router;
