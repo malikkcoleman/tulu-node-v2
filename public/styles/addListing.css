@@ -1,9 +1,9 @@
 /* ADD POSTING */
 .addPostingContainer{
     position: fixed;
-    bottom:30px;
+    bottom:00px;
     width:100vw;
-    height:10vh;
+    height:8vh;
     background:#79C6AC ;
     align-items: center;
     /* z-index: 2; */

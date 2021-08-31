@@ -96,14 +96,14 @@
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
           </div>
           <div class="carTitle">
-            <h2 class="carName"></h2>
-            <p class="carPrice"></p>
+            <h2 class="carName"><%= vehicles[0].year%> <%= vehicles[0].make%> <%= vehicles[0].model%></h2>
+            <p class="carPrice">$ <%= vehicles[0].maxPrice%></p>
             <p class="carReferralFee"></p>
           </div>
           <button class="buyNowBtn" onclick="buyNow()">Buy now!</button>
-          <a  href="tel:+18335808858">
+          <!-- <a  href="tel:+18335808858">
             <button class="buyNowBtn" onclick="">Call To Inquire</button>
-          </a>
+          </a> -->
           <button class="buyNowBtn" onclick="testDrive()">Test Drive This Vehicle</button>
           <button class="buyNowBtn" onclick="financeThis()">Finance This Vehicle</button>
 
@@ -220,6 +220,8 @@
 
     <div class="financePopUp">
       <form method="post" action="/finance/financeVehicle">
+        <div class="finance">
+        <p>You’re about to inquire about a financing application for <%= vehicles[0].year%> <%= vehicles[0].make%> <%= vehicles[0].model%> . Please fill in the form below and one of our finance experts will contact you regarding a vehicle finance application.</p>
         <fieldset style="display:none;">
           <div class="inputContainer">
             <label for="vinNumber">VIN</label>
@@ -233,102 +235,187 @@
         <fieldset>
         <div class="inputContainer">
           <label for="year">Year</label>
-          <input type="text" name="year" id="year" value="<%= vehicles[0].year %>">
+          <input type="text" name="year" id="year" value="<%= vehicles[0].year %>" onchange="verifyFinance()">
         </div>
         <div class="inputContainer">
           <label for="make">Make</label>
-          <input type="text" name="make" id="make" value="<%= vehicles[0].make %>">
+          <input type="text" name="make" id="make" value="<%= vehicles[0].make %>" onchange="verifyFinance()">
         </div>
         <div class="inputContainer">
           <label for="model">Model</label>
-          <input type="text" name="model" id="model" value="<%= vehicles[0].model %>">
+          <input type="text" name="model" id="model" value="<%= vehicles[0].model %>" onchange="verifyFinance()">
         </div>
       </fieldset>
       <fieldset>
         <div class="inputContainer">
           <label for="fname">First Name</label>
-          <input type="text" name="fname" id="fname" placeholder="Enter First Name" required>
+          <input type="text" name="fname" id="fname" placeholder="Enter First Name" required onchange="verifyFinance()">
         </div>
         <div class="inputContainer">
           <label for="lname">Last Name</label>
-          <input type="text" name="lname" id="lname" placeholder="Enter First Name" required>
+          <input type="text" name="lname" id="lname" placeholder="Enter First Name" required onchange="verifyFinance()">
         </div>
         <div class="inputContainer">
           <label for="phoneNumber">Phone Number</label>
-          <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Enter Phone Number" required>
+          <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Enter Phone Number" required onchange="verifyFinance()">
         </div>
       </fieldset>
       <fieldset>
         <div class="inputContainer">
           <label for="email">Email</label>
-          <input type="text" name="email" id="email" placeholder="Enter Email" required>
+          <input type="text" name="email" id="email" placeholder="Enter Email" required onchange="verifyFinance()">
         </div>
         <div class="inputContainer">
           <label for="when">How soon do you want your vehicle</label>
-          <select name="when" id="when">
+          <select name="when" id="when" onchange="verifyFinance()">
             <option value="This Week">This Week</option>
             <option value="This Month">This Month</option>
             <option value="This Year">This Year</option>
           </select>
         </div>
         </fieldset>
-        <button type="submit">SUBMIT</button>
+        <button type="button" class="financeSubmit" onclick="FinanceThankYou()" disabled>SUBMIT</button>
         <button type="button" onclick="cancelFinance()">CANCEL</button>
+      </div>
+      <div class="financeThankYou">
+        <h2>
+          Congrats!
+        </h2> 
+        <p>
+          You’ve taken the first step to your new vehicle! Thank you for filling in the form with all your finance details. a Tulu Representative will be contacting you in a few hours. Happy driving!
+        </p>
+        <button type="submit">OK</button>
+      </div>
       </form>
     </div>
 
     <div class="testDrivePopUp">
       <form method="post" action="/testDrive/testDrive">
-        <fieldset style="display:none;">
+        <div class="testDrive">
+          <p>For our safety and yours we encourage all tulu members and customers to meet for test drive’s in a location where both parties are comfortable. Please be advised that test drive’s will be tracked and monitored by tulu Canada.</p>
+          <fieldset style="display:none;">
+            <div class="inputContainer">
+              <label for="vinNumberTestDrive">VIN</label>
+              <input type="text" name="vinNumberTestDrive" onchange="verifyTestDrive()" id="vinNumberTestDrive" value="<%= vehicles[0].vin %>">
+            </div>
+            <div class="inputContainer">
+              <label for="dealershipNameTestDrive">Dealership</label>
+              <input type="text" name="dealershipNameTestDrive" onchange="verifyTestDrive()" id="dealershipNameTestDrive" value="<%= dealers[0].name %>">
+            </div>
+            </fieldset>
+          <fieldset>
           <div class="inputContainer">
-            <label for="vinNumberTestDrive">VIN</label>
-            <input type="text" name="vinNumberTestDrive" id="vinNumberTestDrive" value="<%= vehicles[0].vin %>">
+            <label for="yearTestDrive">Year</label>
+            <input type="text" name="yearTestDrive" onchange="verifyTestDrive()" id="yearTestDrive" value="<%= vehicles[0].year %>">
           </div>
           <div class="inputContainer">
-            <label for="dealershipNameTestDrive">Dealership</label>
-            <input type="text" name="dealershipNameTestDrive" id="dealershipNameTestDrive" value="<%= dealers[0].name %>">
+            <label for="makeTestDrive">Make</label>
+            <input type="text" name="makeTestDrive" onchange="verifyTestDrive()" id="makeTestDrive" value="<%= vehicles[0].make %>">
+          </div>
+          <div class="inputContainer">
+            <label for="modelTestDrive">Model</label>
+            <input type="text" name="modelTestDrive" onchange="verifyTestDrive()" id="modelTestDrive" value="<%= vehicles[0].model %>">
+          </div>
+        </fieldset>
+        <fieldset>
+          <div class="inputContainer">
+            <label for="fnameTestDrive">First Name</label>
+            <input type="text" name="fnameTestDrive" onchange="verifyTestDrive()" id="fnameTestDrive" placeholder="Enter First Name" required>
+          </div>
+          <div class="inputContainer">
+            <label for="lnameTestDrive">Last Name</label>
+            <input type="text" name="lnameTestDrive" onchange="verifyTestDrive()" id="lnameTestDrive" placeholder="Enter First Name" required>
+          </div>
+          <div class="inputContainer">
+            <label for="phoneNumberTestDrive">Phone Number</label>
+            <input type="text" name="phoneNumberTestDrive" onchange="verifyTestDrive()" id="phoneNumberTestDrive" placeholder="Enter Phone Number" required>
+          </div>
+        </fieldset>
+        <fieldset>
+          <div class="inputContainer">
+            <label for="emailTestDrive">Email</label>
+            <input type="text" name="emailTestDrive" onchange="verifyTestDrive()" id="emailTestDrive" placeholder="Enter Email" required>
+          </div>
+          <div class="inputContainer">
+            <label for="dateTestDrive">Select Date of the Test Drive</label>
+            <input type="date" name="dateTestDrive" onchange="verifyTestDrive()" id="dateTestDrive">
+          </div>
+          <div class="inputContainer">
+            <label for="timeTestDrive">Select Time of the Test Drive </label>
+            <select name="timeTestDrive" id="timeTestDrive" onchange="verifyTestDrive()">
+              <option value=""></option>
+              <option value="9:00 am">9:00 am</option>
+              <option value="9:30 am">9:30 am</option>
+              <option value="10:00 am">10:00 am</option>
+              <option value="10:30 am">10:30 am</option>
+              <option value="11:00 am">11:00 am</option>
+              <option value="11:30 am">11:30 am</option>
+              <option value="12:00 pm">12:00 pm</option>
+              <option value="12:30 pm">12:30 pm</option>
+              <option value="1:00 pm">1:00 pm</option>
+              <option value="1:30 pm">1:30 pm</option>
+              <option value="2:00 pm">2:00 pm</option>
+              <option value="2:30 pm">2:30 pm</option>
+              <option value="3:00 pm">3:00 pm</option>
+              <option value="3:30 pm">3:30 pm</option>
+              <option value="4:00 pm">4:00 pm</option>
+              <option value="4:30 pm">4:30 pm</option>
+              <option value="5:00 pm">5:00 pm</option>
+              <option value="5:30 pm">5:30 pm</option>
+              <option value="6:00 pm">6:00 pm</option>
+            </select>
           </div>
           </fieldset>
-        <fieldset>
-        <div class="inputContainer">
-          <label for="yearTestDrive">Year</label>
-          <input type="text" name="yearTestDrive" id="yearTestDrive" value="<%= vehicles[0].year %>">
+          <fieldset>
+            <div class="inputContainer">
+              <label for="location">Location</label>
+              <select name="location" id="location" onchange="verifyTestDrive()">
+                <option value=""></option>
+                <option value="home">Home</option>
+                <option value="dealership">Dealership</option>
+              </select>
+            </div>
+          </fieldset>
+          
+          <!-- <p class="messageTestDrive">Please make sure all input fields are correct</p>
+          <p class="timeMessage">(Most Dealership Opens at 9am Closes at 6pm)</p> -->
+
+          <button type="button" class="testDriveNext" onclick="testDriveNext()" disabled>NEXT</button>
+          <button type="button" onclick="cancelTestDrive()">CANCEL</button>
         </div>
-        <div class="inputContainer">
-          <label for="makeTestDrive">Make</label>
-          <input type="text" name="makeTestDrive" id="makeTestDrive" value="<%= vehicles[0].make %>">
+        <div class="address">
+          <fieldset class="addressField" >
+            <div class="inputContainer">
+              <label for="street">Street</label>
+              <input type="text" name="street" id="street" onchange="verifyAddress()">
+            </div>
+            <div class="inputContainer">
+              <label for="city">City</label>
+              <input type="text" name="city" id="city" onchange="verifyAddress()">
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="inputContainer">
+              <label for="province">Province</label>
+              <input type="text" name="province" id="province" onchange="verifyAddress()">
+            </div>
+            <div class="inputContainer">
+              <label for="postalCode">Postal Code</label>
+              <input type="text" name="postalCode" id="postalCode" onchange="verifyAddress()">
+            </div>
+          </fieldset>
+          <button type="button" class="testDriveSubmit" onclick="testDriveThankYou()" disabled>SUBMIT</button>
+          <button type="button" onclick="backTestDrive()">BACK</button>
         </div>
-        <div class="inputContainer">
-          <label for="modelTestDrive">Model</label>
-          <input type="text" name="modelTestDrive" id="modelTestDrive" value="<%= vehicles[0].model %>">
+        <div class="testDriveThankYou">
+          <h2>
+            Congrats!
+          </h2> 
+          <p>
+              You’ve taken the first step to your new vehicle! Thank you for filling in the form with all your test drive details. a Tulu Representative will be contacting you in a few hours. Happy driving!
+          </p>
+          <button type="submit">SUBMIT</button>
         </div>
-      </fieldset>
-      <fieldset>
-        <div class="inputContainer">
-          <label for="fnameTestDrive">First Name</label>
-          <input type="text" name="fnameTestDrive" id="fnameTestDrive" placeholder="Enter First Name" required>
-        </div>
-        <div class="inputContainer">
-          <label for="lnameTestDrive">Last Name</label>
-          <input type="text" name="lnameTestDrive" id="lnameTestDrive" placeholder="Enter First Name" required>
-        </div>
-        <div class="inputContainer">
-          <label for="phoneNumberTestDrive">Phone Number</label>
-          <input type="text" name="phoneNumberTestDrive" id="phoneNumberTestDrive" placeholder="Enter Phone Number" required>
-        </div>
-      </fieldset>
-      <fieldset>
-        <div class="inputContainer">
-          <label for="emailTestDrive">Email</label>
-          <input type="text" name="emailTestDrive" id="emailTestDrive" placeholder="Enter Email" required>
-        </div>
-        <div class="inputContainer">
-          <label for="whenTestDrive">Select Date and Time of the Test Drive</label>
-          <input type="date" name="whenTestDrive" id="whenTestDrive">
-        </div>
-        </fieldset>
-        <button type="submit">SUBMIT</button>
-        <button type="button" onclick="cancelFinance()">CANCEL</button>
       </form>
     </div>
 

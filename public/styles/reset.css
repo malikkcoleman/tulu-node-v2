@@ -69,3 +69,7 @@ body {
     margin-top:80px;
     color:#79c6ac;
 }
+
+a,button{
+    cursor: pointer;
+}

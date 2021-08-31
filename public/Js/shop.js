@@ -86,10 +86,13 @@ function SearchVehicles(){
                 }
             }
         }else{
+            
             if($('#VehicleTypeSearch').val()!= ""){
                 if(vehicleListDefault[x].vehicleType == $('#VehicleTypeSearch').val()){
                     vehicleList.push(vehicleListDefault[x]);
                 }
+            }else{
+                vehicleList.push(vehicleListDefault[x]);
             }
         }
     }

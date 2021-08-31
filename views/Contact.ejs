@@ -47,9 +47,9 @@
     <div class="container body-content">
       <div class="questions">
         <h2>Questions?</h2>
-        <p>[message]</p>
+        <p>Didn’t find the information you were looking for? Fill out the form below and one of our team members will contact you shortly.</p>
       </div>
-      <div>
+      <div class="formContainer">
         <form id="my-form" action="/contact/email" method="POST">
           <label for="firstName">First Name:</label>
           <input type="text" name="firstName" id="firstName" required />
@@ -65,38 +65,33 @@
         </form>
       </div>
     </div>
+    <div class="keepInTouch">
+      <h1>Stay Connected with tulu</h1>
+      <!-- <h2>We're here to help with any questions.</h2> -->
+      <p>you can contact us directly by phone at 1-833-580-8858 or by email at info@tulucanada.com</p>
+      <ul>
+        <li>
+          <a href="" target="_blank">
+            <i class="fab fa-facebook fa-3x"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/tulucanada/" target="_blank">
+            <i class="fab fa-instagram fa-3x"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/company/tulu-inc/" target="_blank">
+            <i class="fab fa-linkedin-in fa-3x"></i>
+          </a>
+        </li>
+      </ul>
+      <!-- <p>you can contact us directly by phone at 1-833-580-8858 or by email at info@tulucanada.com</p> -->
+    </div>
     <%- include partials/footer %>
   </body>
 
   <script src="Js/sideMenu.js"></script>
-  <!--   <script>
-    var form = document.getElementById("my-form");
-
-    async function handleSubmit(event) {
-      event.preventDefault();
-      var status = document.getElementById("my-form-status");
-      var data = new FormData(event.target);
-      fetch(event.target.action, {
-        method: form.method,
-        body: data,
-        headers: {
-          Accept: "application/json",
-        },
-      })
-        .then((response) => {
-          status.innerHTML = "Thanks for your submission!";
-          form.reset();
-        })
-        .catch((error) => {
-          status.innerHTML = "Oops! There was a problem submitting your form";
-        });
-    }
-    form.addEventListener("submit", handleSubmit);
-  </script> -->
+  
   <script src="Js/privileges.js"></script>
-
-  <!-- <Script>
-            GetUser();
-        </Script>   -->
-  <Script> // guestprivileges(); </Script>
 </html>
