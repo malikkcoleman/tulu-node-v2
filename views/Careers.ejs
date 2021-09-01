@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tulu Canada</title>
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/css/all.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/careers.css" />
+    <link rel="stylesheet" href="styles/footer.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+  <%- include partials/googleAnalytics %>
+</head>
+  <body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    <%- include partials/navbar %>
+    </nav>
+    <div class="dropDownMenu">
+        <ul>
+            <%- include partials/dropDownMenu %>
+        </ul>
+    </div>
+
+    <div id="SideMenu" class="sideMenu">
+      <ul class="menu">
+        <%- include partials/sidemenu %>
+      </ul>
+      <p class="loggedInAs"></p>
+    </div>
+
+    <div class="header">
+      <h1>Careers</h1>
+    </div>
+
+    <div class="wrapper">
+      <img src="images/tulu-logo_RGB.png" alt="">
+
+      <div class="jobInfo">
+        <h1>Automotive Sales - tulu Member</h1>
+        <p>tulu Canada</p>
+        <p>Calgary, AB • Remote</p>
+        <p>Full-time, Part-time</p>
+      </div>
+
+      <div class="companyDescription">
+        <h2>
+          Company description
+        </h2>
+        <p>tulu Canada is a start-up company based in Calgary, AB. We are a revolutionary social marketplace catering to the automotive industry. tulu is partnering with local dealerships and creating a unique platform and automotive buying experience that allows customers to work with someone they know, like, and trust.</p>
+        <p>We are working on some of the biggest challenges facing the customer when purchasing a vehicle and we are looking for the right people to join us as we develop our technology and continue to scale. Our system will be transparent, and the customers will be working with someone they trust.</p>
+      </div>
+
+      <div class="jobDescription">
+        <h2>Job description</h2>
+        <p><strong>JOB DESCRIPTION:</strong></p>
+        <p>Are you a motivated individual looking to make your own schedule and some extra income?</p>
+      </div>
+
+      <div class="areYou">
+        <h2>Are you...</h2>
+        <ul>
+          <li>A vehicle mechanic or technician</li>
+          <li>A past or present car salesperson</li>
+          <li>The person that your friends and family turn to for car advice</li>
+          <li>A person with a passion for vehicles</li>
+        </ul>
+      </div>
+
+      <p>tulu Canada wants to hear from you! We are looking for applicants with a passion for helping others and enjoy working in the automotive industry.</p>
+
+      <p>Previous experience within the automotive industry and/or AMVIC certification is an asset.</p>
+
+      <p><strong>*AMVIC license is required*</strong></p>
+      <p>Is the idea of innovating the automotive industry exciting to you? We’d love to hear from you! To apply, please include a short message addressed to Donny Toledo along with your resume.</p>
+      <p>We particularly value diversity, and we know that experience comes in many forms. If your unique experience is close to what we are looking for, please still consider applying.</p>
+      <p class="jobType">Job Types: <span>Full-time</span><span> Part-time</span><span>Commission</span><span>Freelance</span></p>
+
+      <div class="experience">
+        <h2>Experience:</h2>
+        <ul>
+          <li>sales: 1 year (preferred)</li>
+        </ul>
+      </div>
+
+      <div class="certificate">
+        <h2>Licence/Certification:</h2>
+        <ul>
+          <li>AMVIC license (preferred)</li>
+        </ul>
+      </div>
+
+      <div class="work">
+        <h2>Work remotely:</h2>
+        <ul>
+          <li>Yes</li>
+        </ul>
+      </div>
+      
+      <a href="JobApplication">
+        <button class="applyNow">Apply Now</button>
+      </a>
+    </div>
+
+
+    <%- include partials/footer %>
+  </body>
+  <script src="Js/sideMenu.js"></script>
+  <script src="Js/privileges.js"></script>
+</html>

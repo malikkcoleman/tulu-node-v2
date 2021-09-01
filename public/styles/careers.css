@@ -1,0 +1,94 @@
+
+.header{
+    margin:50px 0 0 0;
+    background-color:#79C6AC;
+    height:20vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.header h1{
+    color:white;
+}
+
+.wrapper{
+    margin:100px 0 140px 0;
+    width:70vmin;
+    justify-self: center;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper img{
+    width:300px;
+    justify-self: center;
+    align-self: center;
+}
+
+
+.wrapper div{
+    margin:20px 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper p,.wrapper li{
+    margin:5px 0;
+    text-align: center;
+    flex-direction: row ;
+}
+
+.wrapper div ul{
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper div ul li{
+    display:list-item;
+    list-style-type: disc !important;
+    text-decoration: unset;
+}
+
+h1,h2,h3{
+    color:#79C6AC;
+    margin:0 0 10px 0;
+}
+
+
+.certificate,.work{
+    margin:5px 0 !important;
+}
+
+.experience{
+    margin:20px 0 5px 0 !important;
+}
+
+.jobType{
+    margin:30px 0 !important;
+    justify-content: center;
+    align-items: center;
+}
+
+span{
+    padding:5px 10px;
+    border-radius: 10px;
+    background:#79C6AC;
+    color:white;
+    margin: 0 5px;
+}
+
+
+button.applyNow{
+    width:70vmin;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    align-self: center;
+    padding:15px 0;
+    border-radius: 10px;
+    border: none;
+    background:#79C6AC;
+    color:white;
+    margin:50px 0 0 0;
+}

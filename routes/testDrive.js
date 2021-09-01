@@ -25,6 +25,7 @@ const transporter = nodemailer.createTransport({
 router.post("/testDrive", (req, res) => {
   const { fnameTestDrive, lnameTestDrive, emailTestDrive, phoneNumberTestDrive, yearTestDrive, makeTestDrive,modelTestDrive,vinNumberTestDrive,dealershipNameTestDrive,dateTestDrive,timeTestDrive,location,street,city,province,postalCode} = req.body;
 
+  console.log(req.body);
 
     const newTestDrive = new TestDrive({
         fnameTestDrive, lnameTestDrive, emailTestDrive, phoneNumberTestDrive, yearTestDrive, makeTestDrive,modelTestDrive,vinNumberTestDrive,dealershipNameTestDrive,dateTestDrive,timeTestDrive,location,street,city,province,postalCode
@@ -32,9 +33,10 @@ router.post("/testDrive", (req, res) => {
     console.log(newTestDrive);
     newTestDrive
       .save()
-      .then((finance) => {
-        console.log(finance.vinNumberTestDrive)
-        res.redirect("/CarView/"+finance.vinNumberTestDrive)
+      .then((testDrive) => {
+        
+        console.log(testDrive)
+        res.redirect("/UploadLicense/"+testDrive._id)
       })
       .catch((err) => console.log(err));
   var mailOptions = {

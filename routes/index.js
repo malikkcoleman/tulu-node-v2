@@ -9,6 +9,8 @@ const uploadController = require("../controllers/upload");
 const fetchImage = require("../middleware/getImages");
 const Address = require("../models/addressschema");
 const User = require("../models/userschema");
+const TestDrive = require("../models/testdriveschema");
+const Application = require("../models/applicationschema");
 
 pgroutr.get("/EditDealer", ensureAuthenticated, (req, res) =>
   Dealer.find({ uuid: req.user.toObject().dealerId }).then((dealer) => {
@@ -31,6 +33,44 @@ pgroutr.get("/", (req, res) =>
     })
   })
 );
+
+
+pgroutr.get("/TestDrive/:vin", (req, res) => {
+  Vehicle.find({ vin: req.params.vin })
+  .then((vehicles) => {
+    Dealer.find({ uuid: vehicles[0].dealerId })
+    .then((dealer) => {
+      res.render("TestDrive", {
+        user: req.user,
+        vehicles:vehicles,
+        dealer:dealer
+      })
+    })
+  })
+})
+
+pgroutr.get("/UploadLicense/:targetId", (req, res) => {
+  TestDrive.find({_id:req.params.targetId})
+  .then((appointment)=>{
+    res.render("UploadLicense", {
+      user: req.user,
+      targetId:req.params.targetId,
+      appointment:appointment
+    })
+  })
+})
+
+pgroutr.get("/UploadResume/:targetId", (req, res) => {
+  Application.find({_id:req.params.targetId})
+  .then((application)=>{
+    res.render("UploadResume", {
+      user: req.user,
+      targetId:req.params.targetId,
+      application:application
+    })
+  })
+})
+
 
 pgroutr.get("/404", (req, res) =>
   res.render("404", {
@@ -253,7 +293,7 @@ pgroutr.get("/DealerListing/:dealerId", (req, res) => {
 pgroutr.post("/upload/:type/:targetid", uploadController.uploadFile),
   (req, res) => {
     console.log(req);
-  };
+};
 
 pgroutr.get("/image/:targetid", (req, res) => {
   fetchImage.getImage(req, res);
