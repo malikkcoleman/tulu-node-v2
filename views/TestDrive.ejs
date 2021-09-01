@@ -1,0 +1,172 @@
+<html>
+<head>
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulu Canada</title>
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/css/all.css" />
+    <link rel="stylesheet" href="../styles/nav.css" />
+    <link rel="stylesheet" href="../styles/testDrive.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
+<%- include partials/googleAnalytics %>
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="../images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    <%- include partials/navbar %>
+    </nav>
+    <div class="dropDownMenu">
+        <ul>
+            <%- include partials/dropDownMenu %>
+        </ul>
+    </div>
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            <%- include partials/sidemenu %>
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+    <div class="container body-content">
+        <div class="header">
+            <h1>Book a Test Drive</h1>
+        </div>
+        <div class="testDrivePopUp">
+            <form method="post" action="/testDrive/testDrive">
+              <div class="testDrive">
+                <p>For our safety and yours we encourage all tulu members and customers to meet for test drive’s in a location where both parties are comfortable. Please be advised that test drive’s will be tracked and monitored by tulu Canada.</p>
+                <fieldset style="display:none;">
+                  <div class="inputContainer">
+                    <label for="vinNumberTestDrive">VIN</label>
+                    <input type="text" name="vinNumberTestDrive" onchange="verifyTestDrive()" id="vinNumberTestDrive" value="<%= vehicles[0].vin %>">
+                  </div>
+                  <div class="inputContainer">
+                    <label for="dealershipNameTestDrive">Dealership</label>
+                    <input type="text" name="dealershipNameTestDrive" onchange="verifyTestDrive()" id="dealershipNameTestDrive" value="<%= dealer[0].name %>">
+                  </div>
+                  </fieldset>
+                <fieldset>
+                <div class="inputContainer">
+                  <label for="yearTestDrive">Year</label>
+                  <input type="text" name="yearTestDrive" onchange="verifyTestDrive()" id="yearTestDrive" value="<%= vehicles[0].year %>">
+                </div>
+                <div class="inputContainer">
+                  <label for="makeTestDrive">Make</label>
+                  <input type="text" name="makeTestDrive" onchange="verifyTestDrive()" id="makeTestDrive" value="<%= vehicles[0].make %>">
+                </div>
+                <div class="inputContainer">
+                  <label for="modelTestDrive">Model</label>
+                  <input type="text" name="modelTestDrive" onchange="verifyTestDrive()" id="modelTestDrive" value="<%= vehicles[0].model %>">
+                </div>
+              </fieldset>
+              <fieldset>
+                <div class="inputContainer">
+                  <label for="fnameTestDrive">First Name</label>
+                  <input type="text" name="fnameTestDrive" onchange="verifyTestDrive()" id="fnameTestDrive" placeholder="Enter First Name" required>
+                </div>
+                <div class="inputContainer">
+                  <label for="lnameTestDrive">Last Name</label>
+                  <input type="text" name="lnameTestDrive" onchange="verifyTestDrive()" id="lnameTestDrive" placeholder="Enter First Name" required>
+                </div>
+                <div class="inputContainer">
+                  <label for="phoneNumberTestDrive">Phone Number</label>
+                  <input type="text" name="phoneNumberTestDrive" onchange="verifyTestDrive()" id="phoneNumberTestDrive" placeholder="Enter Phone Number" required>
+                </div>
+              </fieldset>
+              <fieldset>
+                <div class="inputContainer">
+                  <label for="emailTestDrive">Email</label>
+                  <input type="text" name="emailTestDrive" onchange="verifyTestDrive()" id="emailTestDrive" placeholder="Enter Email" required>
+                </div>
+                <div class="inputContainer">
+                  <label for="dateTestDrive">Select Date of the Test Drive</label>
+                  <input type="date" name="dateTestDrive" onchange="verifyTestDrive()" id="dateTestDrive">
+                </div>
+                <div class="inputContainer">
+                  <label for="timeTestDrive">Select Time of the Test Drive </label>
+                  <select name="timeTestDrive" id="timeTestDrive" onchange="verifyTestDrive()">
+                    <option value=""></option>
+                    <option value="9:00 am">9:00 am</option>
+                    <option value="9:30 am">9:30 am</option>
+                    <option value="10:00 am">10:00 am</option>
+                    <option value="10:30 am">10:30 am</option>
+                    <option value="11:00 am">11:00 am</option>
+                    <option value="11:30 am">11:30 am</option>
+                    <option value="12:00 pm">12:00 pm</option>
+                    <option value="12:30 pm">12:30 pm</option>
+                    <option value="1:00 pm">1:00 pm</option>
+                    <option value="1:30 pm">1:30 pm</option>
+                    <option value="2:00 pm">2:00 pm</option>
+                    <option value="2:30 pm">2:30 pm</option>
+                    <option value="3:00 pm">3:00 pm</option>
+                    <option value="3:30 pm">3:30 pm</option>
+                    <option value="4:00 pm">4:00 pm</option>
+                    <option value="4:30 pm">4:30 pm</option>
+                    <option value="5:00 pm">5:00 pm</option>
+                    <option value="5:30 pm">5:30 pm</option>
+                    <option value="6:00 pm">6:00 pm</option>
+                  </select>
+                </div>
+                </fieldset>
+                <fieldset>
+                  <div class="inputContainer">
+                    <label for="location">Location</label>
+                    <select name="location" id="location" onchange="verifyTestDrive()">
+                      <option value=""></option>
+                      <option value="home">Home</option>
+                      <option value="dealership">Dealership</option>
+                    </select>
+                  </div>
+                </fieldset>
+                
+                <!-- <p class="messageTestDrive">Please make sure all input fields are correct</p>
+                <p class="timeMessage">(Most Dealership Opens at 9am Closes at 6pm)</p> -->
+                <div class="address">
+                    <fieldset class="addressField" >
+                      <div class="inputContainer">
+                        <label for="street">Street</label>
+                        <input type="text" name="street" id="street" onchange="verifyTestDrive()">
+                      </div>
+                      <div class="inputContainer">
+                        <label for="city">City</label>
+                        <input type="text" name="city" id="city" onchange="verifyTestDrive()">
+                      </div>
+                    </fieldset>
+                    <fieldset>
+                      <div class="inputContainer">
+                        <label for="province">Province</label>
+                        <input type="text" name="province" id="province" onchange="verifyTestDrive()">
+                      </div>
+                      <div class="inputContainer">
+                        <label for="postalCode">Postal Code</label>
+                        <input type="text" name="postalCode" id="postalCode" onchange="verifyTestDrive()">
+                      </div>
+                    </fieldset>
+                </div>
+                <button type="submit" class="testDriveNext" disabled>NEXT</button>
+                <button type="button" onclick="cancelTestDrive()">CANCEL</button>
+              </div>
+              
+              
+            </form>
+          </div>
+    </div>
+</body>
+<script src="../Js/sideMenu.js"></script>
+<script src="../Js/privileges.js"></script>
+<script>
+    var vehicles = <%- JSON.stringify(vehicles)%>
+    console.log(vehicles)
+    var dealer = <%- JSON.stringify(dealer)%>
+    console.log(dealer)
+</script>
+<script src="../Js/testDrive.js"></script>
+</html>
