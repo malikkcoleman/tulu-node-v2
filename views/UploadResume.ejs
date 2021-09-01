@@ -55,23 +55,16 @@
                     <p>This browser does not support PDFs. Please download the PDF to view it: <a href="/image/<%= targetId %>">Download PDF</a>.</p>
                 </embed>
             </object> -->
-<a href="/image/<%=targetId%>" download>QWE</a>
-            <object
-        data='/image/<%= targetId %>'
-        type="application/pdf"
-        width="500"
-        height="678"
-      >
 
+
+            
         <iframe
-          src='/image/<%= targetId %>'
+          src='/file/<%= targetId %>'
           width="500"
           height="678"
         >
-        <p>This browser does not support PDF!</p>
+            <p>This browser does not support PDF!</p>
         </iframe>
-
-      </object>
 
 
           </div>
@@ -110,6 +103,7 @@
         <button type="button" onclick="finish()">OK</button>
       </div>
     </div>
+    <a href="/download/<%=targetId%>"><button>QWE</button></a>
 </body>
 <script src="../Js/sideMenu.js"></script>
 <script src="../Js/privileges.js"></script>
