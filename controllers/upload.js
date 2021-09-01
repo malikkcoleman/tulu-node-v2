@@ -37,6 +37,38 @@ const uploadFile = async (req, res) => {
         })
         res.redirect('/vehicles/EditVehicle/'+req.params.targetid) 
       })
+    }else if(req.params.type == 'license'){
+      await upload(req, res);
+      console.log(req.params)
+      imageType = "license"
+      Image.updateMany({target_id: req.params.targetid}, {is_deleted: true}).then(function(data){
+        const image = new Image({
+            image_type: imageType,
+            target_id: req.params.targetid,
+            is_deleted: false,
+            file_id: req.file.id,
+            is_display_photo: true
+        })
+        image.save().then(function(){
+        })
+        res.redirect('/UploadLicense/'+req.params.targetid) 
+      })
+    }else if(req.params.type == 'resume'){
+      await upload(req, res);
+      console.log(req.params)
+      imageType = "resume"
+      Image.updateMany({target_id: req.params.targetid}, {is_deleted: true}).then(function(data){
+        const image = new Image({
+            image_type: imageType,
+            target_id: req.params.targetid,
+            is_deleted: false,
+            file_id: req.file.id,
+            is_display_photo: true
+        })
+        image.save().then(function(){
+        })
+        res.redirect('/UploadResume/'+req.params.targetid) 
+      })
     }
 
     if (req.file == undefined) {
