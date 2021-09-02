@@ -211,6 +211,11 @@
     margin:10px 0 0 0;
 }
 
+.refFee{
+    color:#79C6AC;
+    font-size: smaller;
+    margin:10px 0;
+}
 
 @media screen and (min-width: 720px) {
 

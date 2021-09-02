@@ -206,11 +206,27 @@
     </div>
     <%- include partials/footer %>
   </body>
+
+  
   <script src="Js/sideMenu.js"></script>
   <script src="Js/filter.js"></script>
   <script src="Js/vehicleDisplay.js"></script>
   <script src="Js/loading.js"></script>
-  <script src="Js/shop.js"></script>
+  <%if(user){%>
+    <%if(user.toObject().role === 'tulu'){%>
+      <script src="Js/shopTulu.js"></script>
+      <script>
+        var user = <%-JSON.stringify(user)%>;
+        console.log(user);
+      </script>
+    <%}%>
+    <%if(user.toObject().role != 'tulu'){%>
+      <script src="Js/shop.js"></script>
+    <%}%>
+  <%}%>
+  <%if(!user){%>
+    <script src="Js/shop.js"></script>
+  <%}%>
   <script src="Js/privileges.js"></script>
   <script>
     var dealershipList = <%-JSON.stringify(dealershipList)%>;
@@ -220,4 +236,6 @@
     console.log(vehicleList);
     populateVehicle(vehicleList);
   </script>
+  
+  
 </html>

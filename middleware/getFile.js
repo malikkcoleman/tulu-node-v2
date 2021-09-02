@@ -39,9 +39,13 @@ function getFile(req, res){
                 })
             }
             if(file.contentType === 'application/pdf'){
-                const readstream = gfs.createReadStream(file.filename);
-                readstream.pipe(res)
-                console.log(file)
+                // const readstream = gfs.createReadStream(file.filename);
+                // readstream.pipe(res)
+                // console.log(file)
+
+                var img = fs.readFileSync('./public/images/resume.png');
+                res.writeHead(200, {'Content-Type': 'image/png' });
+                res.end(img, 'binary');
             } else {
                 res.status(404).json({
                     err: 'not an pdf'

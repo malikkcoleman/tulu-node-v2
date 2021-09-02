@@ -43,8 +43,7 @@
           <p>Please Upload your Resume</p>
           
           <div class="userImage" style="position: relative; height: 100px; width: 100px;">
-            <div class=" preview-images" style="height: 100px; width: 100px; position: absolute;">
-            </div>
+
 
             <!-- <iframe src="/image/<%= targetId %>" style="width:100%; height:700px;" frameborder="0"></iframe>
             <iframe src="/image/<%= targetId %>" frameborder="1"></iframe>
@@ -58,14 +57,15 @@
 
 
             
-        <iframe
+        <!-- <iframe
           src='/file/<%= targetId %>'
           width="500"
           height="678"
         >
             <p>This browser does not support PDF!</p>
-        </iframe>
+        </iframe> -->
 
+        <img class="image" src="/file/<%= targetId%>">
 
           </div>
             <div id="upload-photos">
@@ -103,7 +103,7 @@
         <button type="button" onclick="finish()">OK</button>
       </div>
     </div>
-    <a href="/download/<%=targetId%>"><button>QWE</button></a>
+    <!-- <a href="/download/<%=targetId%>"><button>QWE</button></a> -->
 </body>
 <script src="../Js/sideMenu.js"></script>
 <script src="../Js/privileges.js"></script>
