@@ -2,10 +2,8 @@
 <html>
   <head>
     <meta property="og:title" content="<%= vehicles[0].year%> <%= vehicles[0].make%> <%= vehicles[0].model%>">
-    <meta property="og:description" content="Offering tour packages for individuals or groups.">
-    <meta property="og:image" content="http://euro-travel-example.com/thumbnail.jpg">
-    <meta property="og:url" content="http://euro-travel-example.com/index.htm">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:description" content="<%= vehicles[0].notes%>">
+    <meta property="og:image" content="/image/<%= image.target_id %>/<%= image.file_id %>">
     <link rel="icon" type="image/png" href="../images/favicon.png" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
