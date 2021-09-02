@@ -196,23 +196,13 @@
         </div>
       </section>
       <!-- SHARE BUTTON -->
-      <div class="addthis_inline_share_toolbox"></div>
+      
       <section class="shareSection" id="shareSection">
         <div class="ShareContainer">
           <p>Share This Listing</p>
           <div class="shareBtnContainer" id="shareBtnContainer">
             <% if(user) {%>
-            <script>
-              var url = window.location.href;
-              var fbBtn = "";
-              fbBtn +=
-                '<a class="facebookButton"  onclick="ShareVehicle()" href="https://www.facebook.com/sharer/sharer.php?u=' +
-                url +
-                '" target="_blank">';
-              fbBtn += "     Share on Facebook";
-              fbBtn += "</a>";
-              $("#shareBtnContainer").append(fbBtn);
-            </script>
+              <div class="addthis_inline_share_toolbox"></div>
             <% }%> <% if(!user) {%>
             <div class="signInBtn">
               <a href="/users/login">Sign In!</a>

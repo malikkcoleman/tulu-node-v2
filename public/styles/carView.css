@@ -377,7 +377,40 @@ iframe button{
 }
 
 
+.at-share-btn-elements{
+    display:flex !important;
+    flex-direction: row !important  ;
+}
 
+#at_hover a{
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+.at-expanded-menu-close{
+    display: flex !important;
+    justify-content: center !important;
+    align-content: center !important;
+    padding:0 !important;
+    margin:0 !important;
+}
+
+button.at-expanded-menu-close span{
+    justify-self: center !important;
+    align-self: center !important;
+    height:100% !important;
+    line-height: unset !important;
+}
+
+#at-expanded-menu-top-service-list-container{
+    display:flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+}
+
+.at-branding-logo{
+    display: none !important;
+}
 /*.shareBtnContainer div{
     border:1px solid red;
     position:absolute;
