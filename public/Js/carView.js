@@ -152,3 +152,4 @@ function verifyFinance(){
         document.querySelector('.financeSubmit').style = 'opacity:1';
     }
 }
+
