@@ -1,7 +1,11 @@
 ﻿<!DOCTYPE html>
 <html>
   <head>
-    
+    <meta property="og:title" content="<%= vehicles[0].year%> <%= vehicles[0].make%> <%= vehicles[0].model%>">
+    <meta property="og:description" content="Offering tour packages for individuals or groups.">
+    <meta property="og:image" content="http://euro-travel-example.com/thumbnail.jpg">
+    <meta property="og:url" content="http://euro-travel-example.com/index.htm">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" type="image/png" href="../images/favicon.png" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -318,12 +322,7 @@
 
   <script>
     var html="";
-    html+='<meta property="og:title" content="'+vehicles[0].year +" "+ vehicles[0].make +" "+ vehicles[0].model+'">';
-
-    html+='<meta property="og:description" content="Offering tour packages for individuals or groups.">';
-    html+='<meta property="og:image" content="http://euro-travel-example.com/thumbnail.jpg">';
-    html+='<meta property="og:url" content="http://euro-travel-example.com/index.htm">';
-    html+='<meta name="twitter:card" content="summary_large_image">';
+    
 
 
     $('head').prepend(html);
