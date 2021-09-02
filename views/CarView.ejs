@@ -98,7 +98,11 @@
           <div class="carTitle">
             <h2 class="carName"><%= vehicles[0].year%> <%= vehicles[0].make%> <%= vehicles[0].model%></h2>
             <p class="carPrice">$ <%= vehicles[0].maxPrice%></p>
-            <p class="carReferralFee"></p>
+            <%if(user){%>
+              <%if(user.toObject().role === 'tulu'){%>
+            <p class="carReferralFee">Referral Fee : $<%= vehicles[0].refFee%></p>
+              <%}%>
+            <%}%>
           </div>
           <button class="buyNowBtn" onclick="buyNow()">Buy now!</button>
           <!-- <a  href="tel:+18335808858">

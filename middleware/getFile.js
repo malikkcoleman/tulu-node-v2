@@ -9,7 +9,7 @@ const methodOverride = require('method-override');
 const app = express();
 const bodyparser = require('body-parser')
 const path = require("path");
-const fetchImage = require("../models/imageschema");
+const fetchFile = require("../models/fileschema");
 const fs = require("fs");
 require("dotenv").config();
 
@@ -26,11 +26,11 @@ let gfs;
 
 conn.once('open', () => {
   gfs = Grid(conn.db, mongoose.mongo);
-  gfs.collection('photos')
+  gfs.collection('files')
 });
 
-function getImage(req, res){
-    fetchImage.find({target_id: req.params.targetid, is_deleted: false, is_display_photo: true}).then(function(data){
+function getFile(req, res){
+    fetchFile.find({target_id: req.params.targetid, is_deleted: false}).then(function(data){
         
         gfs.files.findOne({_id: data[0].file_id}, (err, file) => {
             if(!file || file.length === 0){
@@ -38,13 +38,17 @@ function getImage(req, res){
                     err: 'No file Exists'
                 })
             }
-            if(file.contentType === 'image/jpeg' || file.contentType === 'image/png'|| file.contentType === 'application/pdf'){
-                const readstream = gfs.createReadStream(file.filename);
-                readstream.pipe(res)
-                console.log(file)
+            if(file.contentType === 'application/pdf'){
+                // const readstream = gfs.createReadStream(file.filename);
+                // readstream.pipe(res)
+                // console.log(file)
+
+                var img = fs.readFileSync('./public/images/resume.png');
+                res.writeHead(200, {'Content-Type': 'image/png' });
+                res.end(img, 'binary');
             } else {
                 res.status(404).json({
-                    err: 'not an image'
+                    err: 'not an pdf'
                 })
             }
         })
@@ -83,4 +87,4 @@ async function getImagesArray(targetId){
 }
 
   
-module.exports = {getImage, getImagesArray, getCarImage};
+module.exports = {getFile, getImagesArray, getCarImage};
