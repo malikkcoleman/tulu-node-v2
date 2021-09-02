@@ -314,4 +314,14 @@
   </script>
   <script src="../Js/sideMenu.js"></script>
   <script src="../Js/carView.js"></script>
+
+  <script>
+    var html="";
+    html+='<meta property="og:title" content="<%= vehicles[0].year%> <%= vehicles[0].make%> <%= vehicles[0].model%>">';
+    // html+='<meta property="og:description" content="'++'">';
+    html+='<meta property="og:image" content="/image/<%= image.target_id %>/<%= image.file_id %>">';
+    // html+='<meta property="og:url" content="'++'">';
+
+    $('head').prepend(html);
+  </script>
 </html>
