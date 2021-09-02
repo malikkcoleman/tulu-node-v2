@@ -7,6 +7,8 @@ const Vehicle = require("../models/vehicleschema");
 const Dealer = require("../models/dealershipschema");
 const uploadController = require("../controllers/upload");
 const fetchImage = require("../middleware/getImages");
+const fetchFiles = require("../middleware/getFile");
+const downloadFile = require("../middleware/downloadfile")
 const Address = require("../models/addressschema");
 const User = require("../models/userschema");
 const TestDrive = require("../models/testdriveschema");
@@ -297,6 +299,14 @@ pgroutr.post("/upload/:type/:targetid", uploadController.uploadFile),
 
 pgroutr.get("/image/:targetid", (req, res) => {
   fetchImage.getImage(req, res);
+});
+
+pgroutr.get("/file/:targetid", (req, res) => {
+  fetchFiles.getFile(req, res);
+});
+
+pgroutr.get("/download/:targetid", (req, res) => {
+  downloadFile.downloadFile(req, res);
 });
 
 pgroutr.get("/image/:targetid/:fileId", (req, res) => {

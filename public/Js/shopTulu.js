@@ -8,6 +8,9 @@ function populateVehicle(vehicleList){
         html += '   <div class="carDetails">';
         html += '       <h2 class="carName">' + vehicleList[i].year + ' ' + vehicleList[i].make + ' ' + vehicleList[i].model + '</h2>';
         html += '       <p class="carPrice">$'+vehicleList[i].maxPrice + '</p>';
+        if(user.role = "tulu"){
+            html += '       <p class="refFee">Referral Fee : $'+vehicleList[i].refFee+'</p>'; 
+        }
         html += '       <p class="carMileage">'+vehicleList[i].mileage +'  Kms</p>';
         html += '       <div class="additionalCarInfo" id="vehicle' + i + '">';
         html += '           <p class="carTransmission">' + vehicleList[i].transmissionName + '</p>';
@@ -36,6 +39,9 @@ function smallView(){
         html+='    <div class="carDetails">';
         html+='        <h2 class="carName">' + vehicleList[i].year + ' ' + vehicleList[i].make + ' ' + vehicleList[i].model + '</h2>';
         html+='        <p class="carPrice">$'+vehicleList[i].maxPrice + '</p>';
+        if(user.role = "tulu"){
+            html += '       <p class="refFee">Referral Fee : $'+vehicleList[i].refFee+'</p>'; 
+        }
         html+='        <p class="carMileage">'+vehicleList[i].mileage +' Kms</p>';
         html+='        <a href="carview/'+ vehicleList[i].vin +'"><button class="moreInfo">View Vehicle</button></a>';
         html+='    </div>';
@@ -54,6 +60,9 @@ function bigView(){
         html += '   <div class="carDetails">';
         html += '       <h2 class="carName">' + vehicleList[i].year + ' ' + vehicleList[i].make + ' ' + vehicleList[i].model + '</h2>';
         html += '       <p class="carPrice">$'+vehicleList[i].maxPrice + '</p>';
+        if(user.role = "tulu"){
+            html += '       <p class="refFee">Referral Fee : $'+vehicleList[i].refFee+'</p>'; 
+        }
         html += '       <p class="carMileage">'+vehicleList[i].mileage +' Kms</p>';
         html += '       <div class="additionalCarInfo" id="vehicle' + i + '">';
         html += '           <p class="carTransmission">' + vehicleList[i].transmissionName + '</p>';

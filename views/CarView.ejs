@@ -1,6 +1,9 @@
 ﻿<!DOCTYPE html>
 <html>
   <head>
+    <meta property="og:title" content="<%= vehicles[0].year%> <%= vehicles[0].make%> <%= vehicles[0].model%>">
+    <meta property="og:description" content="<%= vehicles[0].notes%>">
+    <meta property="og:image" content="/image/<%= vehicles[0].vin %>">
     <link rel="icon" type="image/png" href="../images/favicon.png" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,6 +20,7 @@
     />
     <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
   <%- include partials/googleAnalytics %>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-61313fdb257ba90c"></script>
 </head>
   <body>
     <nav id="Nav">
@@ -98,7 +102,11 @@
           <div class="carTitle">
             <h2 class="carName"><%= vehicles[0].year%> <%= vehicles[0].make%> <%= vehicles[0].model%></h2>
             <p class="carPrice">$ <%= vehicles[0].maxPrice%></p>
-            <p class="carReferralFee"></p>
+            <%if(user){%>
+              <%if(user.toObject().role === 'tulu'){%>
+            <p class="carReferralFee">Referral Fee : $<%= vehicles[0].refFee%></p>
+              <%}%>
+            <%}%>
           </div>
           <button class="buyNowBtn" onclick="buyNow()">Buy now!</button>
           <!-- <a  href="tel:+18335808858">
@@ -188,23 +196,13 @@
         </div>
       </section>
       <!-- SHARE BUTTON -->
-
+      
       <section class="shareSection" id="shareSection">
         <div class="ShareContainer">
           <p>Share This Listing</p>
           <div class="shareBtnContainer" id="shareBtnContainer">
             <% if(user) {%>
-            <script>
-              var url = window.location.href;
-              var fbBtn = "";
-              fbBtn +=
-                '<a class="facebookButton"  onclick="ShareVehicle()" href="https://www.facebook.com/sharer/sharer.php?u=' +
-                url +
-                '" target="_blank">';
-              fbBtn += "     Share on Facebook";
-              fbBtn += "</a>";
-              $("#shareBtnContainer").append(fbBtn);
-            </script>
+              <div class="addthis_inline_share_toolbox"></div>
             <% }%> <% if(!user) {%>
             <div class="signInBtn">
               <a href="/users/login">Sign In!</a>
@@ -309,4 +307,12 @@
   </script>
   <script src="../Js/sideMenu.js"></script>
   <script src="../Js/carView.js"></script>
+
+  <script>
+    var html="";
+    
+
+
+    $('head').prepend(html);
+  </script>
 </html>
