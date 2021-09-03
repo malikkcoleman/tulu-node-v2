@@ -1,0 +1,33 @@
+
+.header{
+    margin:50px 0 0 0;
+    background-color:#79C6AC;
+    height:20vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.header h1{
+    color:white;
+}
+
+.wrapper{
+    width:80vmin;
+    margin:120px 0;
+    justify-self: center;
+    align-self: center;
+}
+
+h1,h2,h3{
+    color:#79C6AC;
+    margin:20px 0 10px 0;   
+}
+
+strong{
+    margin:10px 0 5px 0;
+    color: #79C6AC;
+}
+
+a{
+    flex-wrap: wrap;
+}

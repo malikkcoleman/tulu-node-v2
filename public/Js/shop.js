@@ -61,6 +61,11 @@ function bigView(){
         html += '       <div class="moreInfoContainer">';
         html += '               <a href="carview/'+ vehicleList[i].vin +'"><button class="moreInfo">View Vehicle</button></a>';
         html += '       </div>';
+        for(var z=0;z!=dealershipList.length;z++){
+            if(dealershipList[z].uuid == vehicleList[i].dealerId){
+                html += '<p class="dealership">' + dealershipList[z].name + '</p>';
+            }
+        }
         html += '   </div>';
         html += '</li>';
     }
@@ -86,10 +91,13 @@ function SearchVehicles(){
                 }
             }
         }else{
+            
             if($('#VehicleTypeSearch').val()!= ""){
                 if(vehicleListDefault[x].vehicleType == $('#VehicleTypeSearch').val()){
                     vehicleList.push(vehicleListDefault[x]);
                 }
+            }else{
+                vehicleList.push(vehicleListDefault[x]);
             }
         }
     }

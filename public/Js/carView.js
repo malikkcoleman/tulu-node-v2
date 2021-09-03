@@ -49,6 +49,21 @@ $('#year').val(vehicles[0].year);
 $('#make').val(vehicles[0].make);
 $('#model').val(vehicles[0].model);
 
+// var today = new Date();
+// var dd = today.getDate();
+// var mm = today.getMonth()+1; //January is 0!
+// var yyyy = today.getFullYear();
+//  if(dd<10){
+//         dd='0'+dd
+//     } 
+//     if(mm<10){
+//         mm='0'+mm
+//     } 
+
+// today = yyyy+'-'+mm+'-'+dd;
+// console.log(today)
+// document.getElementById("dateTestDrive").setAttribute("min", today);
+
 
 function viewDealer(dealerId){
     location.replace("/DealerListing/"+dealerId);
@@ -80,11 +95,6 @@ function cancelFinance(){
     document.querySelector('.financePopUp').style="display:none;";
 }
 
-function testDrive(){
-    document.querySelector('.testDrivePopUp').style="display:flex !important;";
-    console.log('test')
-}
-
 function cancelTestDrive(){
     document.querySelector('.testDrivePopUp').style="display:none;";
 }
@@ -111,3 +121,35 @@ function closeGallery(){
     document.querySelector('.next').style="";
     document.querySelector('.prev').style="";
 }
+
+
+function testDrive(){
+    location.replace("/TestDrive/"+vehicles[0].vin);
+}
+
+
+function FinanceThankYou(){
+    document.querySelector('.finance').style="display:none;"   
+    document.querySelector('.financeThankYou').style="display:flex;"
+}
+
+
+
+function verifyFinance(){
+    const vinNumber = document.querySelector('#vinNumber').value;
+    const dealershipName = document.querySelector('#dealershipName').value;
+    const year = document.querySelector('#year').value;
+    const make = document.querySelector('#make').value;
+    const model = document.querySelector('#model').value;
+    const fname = document.querySelector('#fname').value;
+    const lname = document.querySelector('#lname').value;
+    const phoneNumber = document.querySelector('#phoneNumber').value;
+    const email = document.querySelector('#email').value;
+    const when = document.querySelector('#when').value;
+
+    if(vinNumber!="" ||dealershipName!="" || year!="" || make!="" || model!="" || fname!="" || lname!="" || phoneNumber!="" || email!="" || when!=""){   
+        document.querySelector('.financeSubmit').disabled = false;
+        document.querySelector('.financeSubmit').style = 'opacity:1';
+    }
+}
+

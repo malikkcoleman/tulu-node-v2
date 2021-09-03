@@ -1,7 +1,7 @@
 
 .questions{
-    margin:75px 15px 30px 15px;
-    padding:60px 0;
+    margin:70px 15px 30px 15px;
+    padding:60px 20px;
     justify-content: center;
     align-items: center;
     background:#79c6ac;
@@ -15,6 +15,7 @@
 .questions p{
     color:white;
     flex-direction: row;
+    text-align: center;
 }
 
 .questions p a {
@@ -33,7 +34,13 @@
     /* padding:0 20px; */
 }
 
+.formContainer{
+    justify-content: center;
+    align-items: center;
+}
+
 form{
+    margin:20px 0 100px 0;
     border-radius: 10px;
     width:80vmin;
     padding:30px 20px;
@@ -60,4 +67,32 @@ form button{
     background: #79C6AC;
     color:white;
     border-radius: 10px;
+}
+
+.keepInTouch{
+    padding:100px 20px;
+    background:#79C6AC;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.keepInTouch h1,
+.keepInTouch p,
+.keepInTouch ul li a i{
+    color:white;
+    text-align: center;
+}
+
+.keepInTouch p{
+    margin:10px 0;
+}
+
+.keepInTouch ul{
+    flex-direction: row;
+    margin:15px 0;
+}
+
+.keepInTouch ul li{
+    margin:0 30px;
 }
