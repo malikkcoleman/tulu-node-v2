@@ -155,41 +155,5 @@
   console.log(vehicleList);
 </script>
 <script src="../../Js/EditVehicle.js"></script>
-<script>
-    $(document).ready(function() {
-      let imagesPreview = function(input, placeToInsertImagePreview) {
-        if (input.files) {
-          let filesAmount = input.files.length;
-          for (i = 0; i < filesAmount; i++) {
-            let reader = new FileReader();
-            reader.onload = function(event) {
-              $($.parseHTML("<img>"))
-                .attr("src", event.target.result)
-                .appendTo(placeToInsertImagePreview);
-            };
-            reader.readAsDataURL(input.files[i]);
-          }
-        }
-      };
-      $("#input-files").on("change", function() {
-        imagesPreview(this, "div.preview-images");
-        console.log(imagesPreview)
-      });
-    });
-    function clicked(fileid, vin) {
-       if (confirm('Do you want this photo to be a Display Photo?')) {
-        $.ajax({
-          url: "/vehicles/makedisplayphoto/" + fileid + "/" + vin,
-          method: "POST",
-          success: function(response){
-            console.log(response)
-            setInterval('location.reload()', 1000);
-          }
-        });
-       } else {
-           return false;
-       }
-    }
-  </script>
 </html>
 

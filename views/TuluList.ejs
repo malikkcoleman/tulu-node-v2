@@ -44,10 +44,13 @@
 
     <div class="container body-content">
       <div class="heading">
-        <h2>Here are the list of our Tulus!</h2>
+        <h2>Here are the list of our tulus!</h2>
         <p>
-          Each Tulu is here to help you through the process of purchasing a new
+          Each Tulu is here to help you through the process of purchasing your new
           vehicle.
+        </p>
+        <p class="">
+          <a href="/faq">What is a tulu?</a>
         </p>
       </div>
       <div class="influencerContainer">
@@ -59,7 +62,6 @@
   </body>
   <script src="Js/influencerList.js"></script>
   <script src="Js/sideMenu.js"></script>
-  <script src="Js/privileges.js"></script>
   <Script>
     var tuluList = <%-JSON.stringify(tulu)%>; console.log(tuluList);
     LoadTulus(tuluList);

@@ -285,7 +285,9 @@ router.post(
             res.redirect('/profile')
         }
         if (req.user.toObject().role === "tulu") {
-            res.redirect('/tulu')   
+            if(req.user.toObject().status === "active"){
+                res.redirect('/tulu')   
+            }else{res.redirect('/tuluPending')}
         }
         if (req.user.toObject().role === "dealeradmin") {
             res.redirect('/dashboard')
@@ -293,7 +295,7 @@ router.post(
         if (req.user.toObject().role === "sysadmin") {
             res.redirect('/dashboardsysadmin')
         }
-    });
+});
 
 // Logout Handle
 router.get('/logout',(req,res)=>{
@@ -301,5 +303,69 @@ router.get('/logout',(req,res)=>{
     req.flash('success_msg','You are logged out');
     res.redirect('/users/login');
 });
+
+
+
+router.get('/ChangePassword' ,(req,res)=>
+    res.render('ChangePassword',{
+        user:req.user
+    })
+);
+
+router.post('/ChangePassword',(req,res)=>{
+    var myquery = { _id: req.user.toObject()._id };
+    const {oldPassword,password,password2} = req.body;
+    var newvalues = { 
+        password: password,
+    };
+    bcrypt.genSalt(10, (err, salt) =>bcrypt.hash(newvalues.password, salt, (err,hash) =>{
+        if(err)throw err;
+        //Set password to hashed 
+        newvalues.password = hash;
+        User.updateOne(myquery, newvalues)
+        .then(user=>{
+            req.flash('success_msg', 'Changes Saved!');
+            res.redirect('/users/ChangePassword') ;
+        })
+    })) 
+});
+
+router.get('/ForgetPassword' ,(req,res)=>
+    res.render('ForgetPassword',{
+        user:req.user
+    })
+);
+
+router.post('/ForgetPassword',(req,res)=>{
+    var myquery = { _id: req.user.toObject()._id };
+    const {password,password2} = req.body;
+    var newvalues = { 
+        password: password,
+    };
+    bcrypt.genSalt(10, (err, salt) =>bcrypt.hash(newvalues.password, salt, (err,hash) =>{
+        if(err)throw err;
+        //Set password to hashed 
+        newvalues.password = hash;
+        User.updateOne(myquery, newvalues)
+        .then(user=>{
+            req.flash('success_msg', 'Changes Saved!');
+            res.redirect('/users/ForgetPassword') ;
+        })
+    })) 
+});
+
+router.get('/delete' ,(req,res)=>{
+
+    var myquery = { _id: req.user.toObject()._id };
+    User.deleteOne(myquery)
+    .then(result => {
+        res.render('login',{
+            user: req.user
+        })
+    })
+
+});
+
+
 
 module.exports = router;

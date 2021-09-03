@@ -17,7 +17,7 @@ function populateDealer(){
 			DealerUuid = dealerList[0].uuid;
 			var html ="";
 			html+="<h2>"+dealerList[0].name+"</h2>"
-			html+="<p>"+dealerList[0].website+"</p>"
+			html+="<a href='"+dealerList[0].website+"'target='_blank'><p>"+dealerList[0].website+"</p></a>"
 			html+="<p class='address'>"+address[0].street+" "+address[0].city+", "+address[0].province+"</p>"
 			html+="<p class='amvic'>"+dealerList[0].amvic+"</p>"
 			$('.heading').empty();

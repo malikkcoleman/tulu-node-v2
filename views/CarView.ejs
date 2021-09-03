@@ -1,9 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
   <head>
+    <meta property="og:title" content="<%= vehicles[0].year%> <%= vehicles[0].make%> <%= vehicles[0].model%>">
+    <meta property="og:description" content="<%= vehicles[0].notes%>">
+    <meta property="og:image" content="/image/<%= vehicles[0].vin %>">
     <link rel="icon" type="image/png" href="../images/favicon.png" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tulu Canada</title>
     <link rel="stylesheet" href="../styles/reset.css" />
     <link rel="stylesheet" href="../styles/css/all.css" />
     <link rel="stylesheet" href="../styles/nav.css" />
@@ -17,6 +21,7 @@
     />
     <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
   <%- include partials/googleAnalytics %>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-61313fdb257ba90c"></script>
 </head>
   <body>
     <nav id="Nav">
@@ -58,8 +63,9 @@
       <section id="Vehicles" class="vehicles">
         <div class="carDetails">
           <div class="gallery">
+            <i class="fas fa-times fa-2x" id="closeGallery" onclick="closeGallery()"></i>
             <% if (images.length > 0){%>
-            <div class="slideshow-container" onclick="fullScreen()">
+            <div class="slideshow-container" onclick="gallery()">
             <!-- <div class="slideshow-container" > -->
               <% images.forEach(function(image){ %>
               <div class="mySlides fade">
@@ -71,8 +77,7 @@
               </div>
               <% }) %>
 
-              <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-              <a class="next" onclick="plusSlides(1)">&#10095;</a>
+              
               <br />
               <div
                 style="
@@ -92,16 +97,22 @@
             <br />
             <img src="../images/noimageavailable.jpg" alt="" />
             <% } %>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
           </div>
           <div class="carTitle">
-            <h2 class="carName"></h2>
-            <p class="carPrice"></p>
-            <p class="carReferralFee"></p>
+            <h2 class="carName"><%= vehicles[0].year%> <%= vehicles[0].make%> <%= vehicles[0].model%></h2>
+            <p class="carPrice">$ <%= vehicles[0].maxPrice%></p>
+            <%if(user){%>
+              <%if(user.toObject().role === 'tulu'){%>
+            <p class="carReferralFee">Referral Fee : $<%= vehicles[0].refFee%></p>
+              <%}%>
+            <%}%>
           </div>
           <button class="buyNowBtn" onclick="buyNow()">Buy now!</button>
-          <a  href="tel:+18335808858">
+          <!-- <a  href="tel:+18335808858">
             <button class="buyNowBtn" onclick="">Call To Inquire</button>
-          </a>
+          </a> -->
           <button class="buyNowBtn" onclick="testDrive()">Test Drive This Vehicle</button>
           <button class="buyNowBtn" onclick="financeThis()">Finance This Vehicle</button>
 
@@ -186,23 +197,13 @@
         </div>
       </section>
       <!-- SHARE BUTTON -->
-
+      
       <section class="shareSection" id="shareSection">
         <div class="ShareContainer">
           <p>Share This Listing</p>
           <div class="shareBtnContainer" id="shareBtnContainer">
             <% if(user) {%>
-            <script>
-              var url = window.location.href;
-              var fbBtn = "";
-              fbBtn +=
-                '<a class="facebookButton"  onclick="ShareVehicle()" href="https://www.facebook.com/sharer/sharer.php?u=' +
-                url +
-                '" target="_blank">';
-              fbBtn += "     Share on Facebook";
-              fbBtn += "</a>";
-              $("#shareBtnContainer").append(fbBtn);
-            </script>
+              <div class="addthis_inline_share_toolbox"></div>
             <% }%> <% if(!user) {%>
             <div class="signInBtn">
               <a href="/users/login">Sign In!</a>
@@ -218,6 +219,8 @@
 
     <div class="financePopUp">
       <form method="post" action="/finance/financeVehicle">
+        <div class="finance">
+        <p>You’re about to inquire about a financing application for <%= vehicles[0].year%> <%= vehicles[0].make%> <%= vehicles[0].model%> . Please fill in the form below and one of our finance experts will contact you regarding a vehicle finance application.</p>
         <fieldset style="display:none;">
           <div class="inputContainer">
             <label for="vinNumber">VIN</label>
@@ -231,104 +234,61 @@
         <fieldset>
         <div class="inputContainer">
           <label for="year">Year</label>
-          <input type="text" name="year" id="year" value="<%= vehicles[0].year %>">
+          <input type="text" name="year" id="year" value="<%= vehicles[0].year %>" onchange="verifyFinance()">
         </div>
         <div class="inputContainer">
           <label for="make">Make</label>
-          <input type="text" name="make" id="make" value="<%= vehicles[0].make %>">
+          <input type="text" name="make" id="make" value="<%= vehicles[0].make %>" onchange="verifyFinance()">
         </div>
         <div class="inputContainer">
           <label for="model">Model</label>
-          <input type="text" name="model" id="model" value="<%= vehicles[0].model %>">
+          <input type="text" name="model" id="model" value="<%= vehicles[0].model %>" onchange="verifyFinance()">
         </div>
       </fieldset>
       <fieldset>
         <div class="inputContainer">
           <label for="fname">First Name</label>
-          <input type="text" name="fname" id="fname" placeholder="Enter First Name" required>
+          <input type="text" name="fname" id="fname" placeholder="Enter First Name" required onchange="verifyFinance()">
         </div>
         <div class="inputContainer">
           <label for="lname">Last Name</label>
-          <input type="text" name="lname" id="lname" placeholder="Enter First Name" required>
+          <input type="text" name="lname" id="lname" placeholder="Enter First Name" required onchange="verifyFinance()">
         </div>
         <div class="inputContainer">
           <label for="phoneNumber">Phone Number</label>
-          <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Enter Phone Number" required>
+          <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Enter Phone Number" required onchange="verifyFinance()">
         </div>
       </fieldset>
       <fieldset>
         <div class="inputContainer">
           <label for="email">Email</label>
-          <input type="text" name="email" id="email" placeholder="Enter Email" required>
+          <input type="text" name="email" id="email" placeholder="Enter Email" required onchange="verifyFinance()">
         </div>
         <div class="inputContainer">
           <label for="when">How soon do you want your vehicle</label>
-          <select name="when" id="when">
+          <select name="when" id="when" onchange="verifyFinance()">
             <option value="This Week">This Week</option>
             <option value="This Month">This Month</option>
             <option value="This Year">This Year</option>
           </select>
         </div>
         </fieldset>
-        <button type="submit">SUBMIT</button>
+        <button type="button" class="financeSubmit" onclick="FinanceThankYou()" disabled>SUBMIT</button>
         <button type="button" onclick="cancelFinance()">CANCEL</button>
+      </div>
+      <div class="financeThankYou">
+        <h2>
+          Congrats!
+        </h2> 
+        <p>
+          You’ve taken the first step to your new vehicle! Thank you for filling in the form with all your finance details. a Tulu Representative will be contacting you in a few hours. Happy driving!
+        </p>
+        <button type="submit">OK</button>
+      </div>
       </form>
     </div>
 
-    <div class="testDrivePopUp">
-      <form method="post" action="/testDrive/testDrive">
-        <fieldset style="display:none;">
-          <div class="inputContainer">
-            <label for="vinNumber">VIN</label>
-            <input type="text" name="vinNumber" id="vinNumber" value="<%= vehicles[0].vin %>">
-          </div>
-          <div class="inputContainer">
-            <label for="dealershipName">Dealership</label>
-            <input type="text" name="dealershipName" id="dealershipName" value="<%= dealers[0].name %>">
-          </div>
-          </fieldset>
-        <fieldset>
-        <div class="inputContainer">
-          <label for="year">Year</label>
-          <input type="text" name="year" id="year" value="<%= vehicles[0].year %>">
-        </div>
-        <div class="inputContainer">
-          <label for="make">Make</label>
-          <input type="text" name="make" id="make" value="<%= vehicles[0].make %>">
-        </div>
-        <div class="inputContainer">
-          <label for="model">Model</label>
-          <input type="text" name="model" id="model" value="<%= vehicles[0].model %>">
-        </div>
-      </fieldset>
-      <fieldset>
-        <div class="inputContainer">
-          <label for="fname">First Name</label>
-          <input type="text" name="fname" id="fname" placeholder="Enter First Name" required>
-        </div>
-        <div class="inputContainer">
-          <label for="lname">Last Name</label>
-          <input type="text" name="lname" id="lname" placeholder="Enter First Name" required>
-        </div>
-        <div class="inputContainer">
-          <label for="phoneNumber">Phone Number</label>
-          <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Enter Phone Number" required>
-        </div>
-      </fieldset>
-      <fieldset>
-        <div class="inputContainer">
-          <label for="email">Email</label>
-          <input type="text" name="email" id="email" placeholder="Enter Email" required>
-        </div>
-        <div class="inputContainer">
-          <label for="when">Select Date and Time of the Test Drive</label>
-          <input type="date" name="when" id="when">
-        </div>
-        </fieldset>
-        <button type="submit">SUBMIT</button>
-        <button type="button" onclick="cancelFinance()">CANCEL</button>
-      </form>
-    </div>
+    
 
   </body>
 

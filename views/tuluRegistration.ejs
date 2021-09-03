@@ -55,7 +55,7 @@
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="text" id="email" name="email" class="form-control" placeholder="Enter Email" value="" />
+          <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email" value="" />
         </div>
         <div class="form-group">
           <label for="bio">Bio</label>
@@ -117,9 +117,12 @@
           <label for="postal">Postal</label>
           <input type="text" id="postal" name="postal" class="form-control" placeholder="Enter Postal" value=""/>
         </div>
-        <input type="hidden" id="role" name="role" class="form-control" value="tulu"/>
-        <input type="hidden" id="ratings" name="ratings" class="form-control" value="5"/>
-        <input type="hidden" id="carsSold" name="carsSold" class="form-control" value="0"/>
+        <div class="hidden" style="display: none;">
+          <input type="text" id="role" name="role" class="form-control" value="tulu"/>
+          <input type="text" id="ratings" name="ratings" class="form-control" value="5"/>
+          <input type="text" id="carsSold" name="carsSold" class="form-control" value="0"/>
+          <input type="text" id="status" name="status" class="form-control" value="pending"/>
+        </div>
         <p onclick="popUp()" class="privacyPolicy">Please Read Privacy Policy and Terms and Condition</p>
         <button type="submit" disabled class="registerBtn">
           Register
@@ -136,6 +139,5 @@
     </div>
   </body>
   <script src="../Js/sideMenu.js"></script>
-  <script src="../Js/privileges.js"></script>
   <script src="../Js/register.js"></script>
 </html>

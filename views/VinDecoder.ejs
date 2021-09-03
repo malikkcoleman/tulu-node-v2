@@ -46,10 +46,12 @@
       <form action="/vin/AddVehicle" method="POST">
         <label for="vin">VIN</label>
         <input type="text" name="vin" id="vin" />
-        <button type="submit">Decode</button>
+        <button type="submit" disabled style="opacity:0.5;">Decode</button>
+        <a href="/vin/AddVehicleManual">
+          <button type="button">Add Vehicle Manually</button>
+        </a>
       </form>
     </div>
   </body>
   <script src="Js/sideMenu.js"></script>
-  <script src="Js/privileges.js"></script>
 </html>

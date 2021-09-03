@@ -73,6 +73,14 @@
         <input type="text" name="phoneNumber" id="phoneNumber" required />
         <label for="email">Email address:</label>
         <input type="text" name="email" id="email" required />
+
+        <label for="location">Pick up Location:</label>
+        <select name="location" id="location">
+          <option value=""></option>
+          <option value="Home">Home</option>
+          <option value="Dealership">Dealership</option>
+        </select>
+
         <p><strong>Home Address:</strong></p>
         <br />
         <label for="street">Street:</label>
@@ -83,13 +91,12 @@
         <input type="text" name="province" id="province" required />
         <label for="postal">Postal Code:</label>
         <input type="text" name="postal" id="postal" required />
-
+        
         <button>Submit</button>
       </form>
     </div>
   </body>
   <script src="../Js/sideMenu.js"></script>
-  <script src="../Js/privileges.js"></script>
   <script>
     var vehicle = <%-JSON.stringify(vehicle)%>
     var dealer = <%-JSON.stringify(dealer)%>

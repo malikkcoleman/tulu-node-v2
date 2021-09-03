@@ -60,7 +60,7 @@
     <!-- First Section -->
     <section class="firstSection">
       <div class="getApproved">
-        <a href="">
+        <a href="/Finance/Finance">
           <img src="images/approve.jpg" alt="" />
           <h2>Get Approved Now!</h2>
         </a>
@@ -115,49 +115,7 @@
     <section class="thirdSection">
       <h2 class="influencerHeading">TOP TULU'S</h2>
       <ul class="influencerList">
-        <li class="influencerListItems">
-          <div class="influencerImage">
-            <a href="/tulu/viewTulu?tuluId=61170003ffd5b400231fac4b">
-              <img src="images/jolo.jpeg" alt="" />
-            </a>
-          </div>
-          <h3 class="influencerName">Tulu Jo</h3>
-          <div class="userRating">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-          </div>
-        </li>
-        <li class="influencerListItems">
-          <div class="influencerImage">
-            <img src="images/shae.jpg" alt="" />
-          </div>
-          <h3 class="influencerName">Tulu Shae</h3>
-          <div class="userRating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-        </li>
-        <li class="influencerListItems">
-          <div class="influencerImage">
-            <a href="/tulu/viewTulu?tuluId=61168fe41cb4320023b5e88a">
-              <img src="images/donny.jpeg" alt="" />
-            </a>
-          </div>
-          <h3 class="influencerName">Tulu Donny</h3>
-          <div class="userRating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-        </li>
+        
       </ul>
     </section>
     <!-- Fourth Section -->
@@ -190,7 +148,8 @@
 
   function LoadTulus(tulu) {
 	var html = '';
-	for (i = 0; i != tuluList.length; i++) {
+	for (i = 0; i != 4; i++) {
+      if(tuluList[i].status="active"){
         html+='<li class="influencerListItems">';
         html+='  <div class="influencerImage">';
         html+='    <a href="/tulu/viewTulu?tuluId='+tuluList[i]._id+'">';
@@ -238,6 +197,7 @@
 
         html+='  </div>';
         html+='</li>';
+      }
   }
 	$(".influencerList").empty();
 	$(".influencerList").append(html);

@@ -39,9 +39,16 @@
             My Account
         </a>
     </li>  
-    <li>
-        <a href="/tulu/tuluRegistration">
-            <Button>Become a Tulu</Button>
-        </a>
-    </li>
+
+    <%if(user){%>
+        <%if(user.toObject().role){%>
+            <%if(user.toObject().role != 'tulu'){%>
+                <li>
+                    <a href="/tulu/tuluRegistration">
+                        <Button>Become a Tulu</Button>
+                    </a>
+                </li>
+            <%}%>
+        <%}%>
+    <%}%>
 </ul>

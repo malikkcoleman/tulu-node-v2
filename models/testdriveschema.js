@@ -1,47 +1,71 @@
 const mongoose = require('mongoose');
 
 const testdriveSchema = new mongoose.Schema({
-    fname:{
+    fnameTestDrive:{
         type:String,
         required: false
     },
-    lname:{
+    lnameTestDrive:{
         type:String,
         required: false
     },
-    email:{
+    emailTestDrive:{
         type:String,
         required: false
     },
-    phoneNumber:{
+    phoneNumberTestDrive:{
         type:String,
         required: false
     },
-    year:{
+    yearTestDrive:{
         type:String,
         required: false
     },
-    make:{
+    makeTestDrive:{
         type:String,
         required: false
     },
-    model:{
+    modelTestDrive:{
         type:String,
         required: false
     },
-    vinNumber:{
+    vinNumberTestDrive:{
         type:String,
         required: false
     },
-    dealershipName:{
+    dealershipNameTestDrive:{
         type:String,
         required: false
     },
-    when:{
+    dateTestDrive:{
         type:String,
         required: false
     },
-    date:{
+    timeTestDrive:{
+        type:String,
+        required: false
+    },
+    location:{
+        type:String,
+        required: false
+    },
+    street:{
+        type:String,
+        required: false
+    },
+    city:{
+        type:String,
+        required: false
+    },
+    province:{
+        type:String,
+        required: false
+    },
+    postalCode:{
+        type:String,
+        required: false
+    },
+    timestamp:{
         type:Date,
         default: Date.now
     }
