@@ -17,7 +17,9 @@ var events = [{
 
 // PUT THE EVENTS HERE! ^^^^
 
-
+window.onload = function () {
+    loadEvents();
+  };
 
 
 function loadEvents(){
@@ -42,7 +44,7 @@ function viewEvents(index){
     // window.location = "/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
 }
 
-function loadAEven(){
+function loadAEvent(){
     var html = "";
     
     // events[eventId]4
