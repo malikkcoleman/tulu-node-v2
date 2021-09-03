@@ -9,30 +9,31 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport");
 const https = require("https");
+const cookieParser = require("cookie-parser");
+
+const MongoDBSession = require("connect-mongodb-session")(session);
 
 const hostname = "localhost";
 const port = 3000;
 
-const cert = fs.readFileSync('./path/tulucanada_com.crt');
-const ca = fs.readFileSync('./path/tulucanada_com.ca-bundle');
-const key = fs.readFileSync('./path/tulucanada_com.key');
-
-
+const cert = fs.readFileSync("./path/tulucanada_com.crt");
+const ca = fs.readFileSync("./path/tulucanada_com.ca-bundle");
+const key = fs.readFileSync("./path/tulucanada_com.key");
 
 let options = {
   cert: cert, // fs.readFileSync('./ssl/example.crt');
   ca: ca, // fs.readFileSync('./ssl/example.ca-bundle');
-  key: key // fs.readFileSync('./ssl/example.key');
+  key: key, // fs.readFileSync('./ssl/example.key');
 };
 
 // also okay: https.createServer({cert, ca, key}, (req, res) => { ...
 const httpsServer = https.createServer(options, (req, res) => {
   res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html');
+  res.setHeader("Content-Type", "text/html");
   res.end("<h1>HTTPS server running</h1>");
 });
 
-httpsServer.listen(port,hostname);
+httpsServer.listen(port, hostname);
 
 require("dotenv").config();
 
@@ -59,6 +60,17 @@ db.once("open", function () {
   console.log("DB Connected!!!");
 });
 
+//MongoDB Store
+const store = new MongoDBSession({
+  uri: process.env.DB_CONNECTION,
+  collection: "mySessions",
+});
+
+//MongoDB Store Catch Errors
+store.on("error", function (error) {
+  console.log(error);
+});
+
 app.use(function (req, res, next) {
   res.locals.customerInfo = null;
   next();
@@ -72,16 +84,22 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
 // Express Session
-app.use(
-  session({
-    secret: "Secret",
-    resave: true,
-    saveUninitialized: true,
-  })
-);
 
 // Passport Middleware
 app.use(passport.initialize());
+//app.use(cookieParser());
+app.use(
+  session({
+    secret: "Secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+      secure: true, // 1 week
+    },
+    store: store,
+  })
+);
 app.use(passport.session());
 
 // Connect Flash

@@ -1,371 +1,498 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const bcrypt = require('bcryptjs');
-const passport = require('passport');
-const {v4: uuidv4} = require('uuid');
-const {ensureAuthenticated, authRole} = require('../config/auth');
+const bcrypt = require("bcryptjs");
+const passport = require("passport");
+const { v4: uuidv4 } = require("uuid");
+const { ensureAuthenticated, authRole } = require("../config/auth");
 var uuid = uuidv4();
 var targetId = uuid;
+const mongoose = require("mongoose");
+const session = require("express-session");
+const MongoDBSession = require("connect-mongodb-session")(session);
+
+const store = new MongoDBSession({
+  uri: process.env.DB_CONNECTION,
+  collection: "mySessions",
+});
+
+//MongoDB Store Catch Errors
+store.on("error", function (error) {
+  console.log(error);
+});
 
 // User Model
-const User = require('../models/userschema');
-const Address = require('../models/addressschema');
+const User = require("../models/userschema");
+const Address = require("../models/addressschema");
 
 // Login Page
-router.get('/login',(req,res)=>
-    res.render('login',{
-        user: req.user
-}));
+router.get("/login", (req, res) =>
+  res.render("login", {
+    user: req.user,
+  })
+);
 
 function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) {
-       req.isLogged = true
-       return next();
-    }
-    res.redirect('/');
+  if (req.isAuthenticated()) {
+    req.isLogged = true;
+    return next();
+  }
+  res.redirect("/");
 }
 
-
 // Register Page
-router.get('/register',(req,res)=>
-    res.render('register',{
-    user:req.user
-}));
+router.get("/register", (req, res) =>
+  res.render("register", {
+    user: req.user,
+  })
+);
 
 // Register Handle
-router.post('/register',(req,res)=>{
-    console.log(req.body);
-    // res.send('hello');
-    const { email,fName,lName,password,password2,phoneNumber,street,city,province,postal,role} = req.body;
+router.post("/register", (req, res) => {
+  console.log(req.body);
+  // res.send('hello');
+  const {
+    email,
+    fName,
+    lName,
+    password,
+    password2,
+    phoneNumber,
+    street,
+    city,
+    province,
+    postal,
+    role,
+  } = req.body;
 
-    let errors = [];
+  let errors = [];
 
-    // Check required fields
-    if(!email||!fName||!lName||!password||!password2||!phoneNumber||!street||!city||!province||!postal||!role){
-        errors.push({msg:'Please fill in all fields'});
-    }
+  // Check required fields
+  if (
+    !email ||
+    !fName ||
+    !lName ||
+    !password ||
+    !password2 ||
+    !phoneNumber ||
+    !street ||
+    !city ||
+    !province ||
+    !postal ||
+    !role
+  ) {
+    errors.push({ msg: "Please fill in all fields" });
+  }
 
-    // Check passwords match
-    if(password !== password2){
-        errors.push({msg:'Passwords do not match'});
-    }
+  // Check passwords match
+  if (password !== password2) {
+    errors.push({ msg: "Passwords do not match" });
+  }
 
-    // Check pass length
-    if(password.length < 6){
-        errors.push({msg:'Password should be at least 6 characters'});
-    }
+  // Check pass length
+  if (password.length < 6) {
+    errors.push({ msg: "Password should be at least 6 characters" });
+  }
 
-    if(errors.length > 0){
-        res.render('register',{
-            errors,fName,lName,phoneNumber, email, password, password2,street,city,province,postal,role,status
+  if (errors.length > 0) {
+    res.render("register", {
+      errors,
+      fName,
+      lName,
+      phoneNumber,
+      email,
+      password,
+      password2,
+      street,
+      city,
+      province,
+      postal,
+      role,
+      status,
+    });
+  } else {
+    // res.send('Pass');
+
+    // Validation Passed
+    User.findOne({ email: email }).then((user) => {
+      if (user) {
+        // user Exist
+        errors.push({ msg: "Email already Exist" });
+        res.render("register", {
+          errors,
+          fName,
+          lName,
+          phoneNumber,
+          email,
+          password,
+          password2,
+          street,
+          city,
+          province,
+          postal,
+          role,
         });
-    }else{
-        // res.send('Pass');
-
-        // Validation Passed
-        User.findOne({email:email})
-        .then(user=>{
-            if(user){
-                // user Exist
-                errors.push({msg:'Email already Exist'})
-                res.render('register',{
-                    errors,fName,lName,phoneNumber, email, password, password2,street,city,province,postal,role
-                })
-            }else{
-                const newUser = new User({
-                    uuid,fName,lName,phoneNumber, email, password, password2,role
-                });
-
-                const newAddress = new Address({
-                    errors,targetId,street,city,province,postal
-                });
-
-                // Hash Password
-                bcrypt.genSalt(10, (err, salt) =>bcrypt.hash(newUser.password, salt, (err,hash) =>{
-                    if(err)throw err;
-                    //Set password to hashed 
-                    newUser.password = hash;
-                    // Save User
-                    newUser.save()
-                    .then(user => {
-                        newAddress.save()
-                        .then(address=>{
-                            req.flash('success_msg', 'You are now registered and can log in.');
-                            res.redirect('/users/login')
-                        })
-                    })
-                    .catch(err => console.log(err));
-                }))
-
-                // console.log(newUser)
-                // res.send('hello');
-            }
+      } else {
+        const newUser = new User({
+          uuid,
+          fName,
+          lName,
+          phoneNumber,
+          email,
+          password,
+          password2,
+          role,
         });
-    }
+
+        const newAddress = new Address({
+          errors,
+          targetId,
+          street,
+          city,
+          province,
+          postal,
+        });
+
+        // Hash Password
+        bcrypt.genSalt(10, (err, salt) =>
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            //Set password to hashed
+            newUser.password = hash;
+            // Save User
+            newUser
+              .save()
+              .then((user) => {
+                newAddress.save().then((address) => {
+                  req.flash(
+                    "success_msg",
+                    "You are now registered and can log in."
+                  );
+                  res.redirect("/users/login");
+                });
+              })
+              .catch((err) => console.log(err));
+          })
+        );
+
+        // console.log(newUser)
+        // res.send('hello');
+      }
+    });
+  }
 });
 
-router.get('/addUser',(req,res)=>
-    res.render('AddUser',{
-    user:req.user
-}));
-
-router.post('/addUser',(req,res)=>{
-    console.log(req.body);
-    // res.send('hello');
-    const { email,fName,lName,password,password2,phoneNumber,street,city,province,postal} = req.body;
-
-    let errors = [];
-
-    // Check required fields
-    if(!email||!fName||!lName||!password||!password2||!phoneNumber||!street||!city||!province||!postal){
-        errors.push({msg:'Please fill in all fields'});
-    }
-
-    // Check passwords match
-    if(password !== password2){
-        errors.push({msg:'Passwords do not match'});
-    }
-
-    // Check pass length
-    if(password.length < 6){
-        errors.push({msg:'Password should be at least 6 characters'});
-    }
-
-    if(errors.length > 0){
-        res.render('AddUser',{
-            errors,fName,lName,phoneNumber, email, password, password2,street,city,province,postal
-        });
-    }else{
-        // res.send('Pass');
-
-        // Validation Passed
-        User.findOne({email:email})
-        .then(user=>{
-            if(user){
-                // user Exist
-                errors.push({msg:'Email already Exist'})
-                res.render('AddUser',{
-                    errors,fName,lName,phoneNumber, email, password, password2
-                })
-            }else{
-                const newUser = new User({
-                    uuid,fName,lName,phoneNumber, email, password, password2
-                });
-
-                const newAddress = new Address({
-                    errors,targetId,street,city,province,postal
-                });
-
-
-                // Hash Password
-                bcrypt.genSalt(10, (err, salt) =>bcrypt.hash(newUser.password, salt, (err,hash) =>{
-                    if(err)throw err;
-                    //Set password to hashed 
-                    newUser.password = hash;
-                    // Save User
-                    newUser.save()
-                    .then(user => {
-                        newAddress.save()
-                        .then(address=>{
-                            req.flash('success_msg', 'You are now registered and can log in.');
-                            res.redirect('/DashboardSysAdminUser')
-                        })
-                    })
-                    .catch(err => console.log(err));
-                }))
-
-                // console.log(newUser)
-                // res.send('hello');
-            }
-        });
-    }
-});
-
-router.get('/editProfile' ,(req,res)=>
-    Address.find({targetId:req.user.toObject().uuid})
-    .then(address=>{
-        res.render('EditProfile',{
-            user:req.user,
-            address:address
-        })
-    })
+router.get("/addUser", (req, res) =>
+  res.render("AddUser", {
+    user: req.user,
+  })
 );
 
-router.post('/editProfile',(req,res)=>{
-    var myquery = { _id: req.user.toObject()._id };
-    var myqueryaddress = { _id: req.user.toObject()._id };
-    const { email,fName,lName,phoneNumber,street,city,province,postal} = req.body;
-    var newvalues = { 
-        email: email,
-        fName: fName,
-        lName: lName,
-        phoneNumber: phoneNumber
-    };
+router.post("/addUser", (req, res) => {
+  console.log(req.body);
+  // res.send('hello');
+  const {
+    email,
+    fName,
+    lName,
+    password,
+    password2,
+    phoneNumber,
+    street,
+    city,
+    province,
+    postal,
+  } = req.body;
 
-    var newvaluesaddress = { 
-        street: street,
-        city: city,
-        province: province,
-        postal: postal,
-    };
-        User.updateOne(myquery, newvalues)
-        .then(user=>{
-            Address.updateOne(myqueryaddress, newvaluesaddress)
-            .then(address=>{
-                req.flash('success_msg', 'Changes Saved!');
-                res.redirect('/users/editProfile')  
-            })
-        })
+  let errors = [];
 
-        
+  // Check required fields
+  if (
+    !email ||
+    !fName ||
+    !lName ||
+    !password ||
+    !password2 ||
+    !phoneNumber ||
+    !street ||
+    !city ||
+    !province ||
+    !postal
+  ) {
+    errors.push({ msg: "Please fill in all fields" });
+  }
+
+  // Check passwords match
+  if (password !== password2) {
+    errors.push({ msg: "Passwords do not match" });
+  }
+
+  // Check pass length
+  if (password.length < 6) {
+    errors.push({ msg: "Password should be at least 6 characters" });
+  }
+
+  if (errors.length > 0) {
+    res.render("AddUser", {
+      errors,
+      fName,
+      lName,
+      phoneNumber,
+      email,
+      password,
+      password2,
+      street,
+      city,
+      province,
+      postal,
+    });
+  } else {
+    // res.send('Pass');
+
+    // Validation Passed
+    User.findOne({ email: email }).then((user) => {
+      if (user) {
+        // user Exist
+        errors.push({ msg: "Email already Exist" });
+        res.render("AddUser", {
+          errors,
+          fName,
+          lName,
+          phoneNumber,
+          email,
+          password,
+          password2,
+        });
+      } else {
+        const newUser = new User({
+          uuid,
+          fName,
+          lName,
+          phoneNumber,
+          email,
+          password,
+          password2,
+        });
+
+        const newAddress = new Address({
+          errors,
+          targetId,
+          street,
+          city,
+          province,
+          postal,
+        });
+
+        // Hash Password
+        bcrypt.genSalt(10, (err, salt) =>
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            //Set password to hashed
+            newUser.password = hash;
+            // Save User
+            newUser
+              .save()
+              .then((user) => {
+                newAddress.save().then((address) => {
+                  req.flash(
+                    "success_msg",
+                    "You are now registered and can log in."
+                  );
+                  res.redirect("/DashboardSysAdminUser");
+                });
+              })
+              .catch((err) => console.log(err));
+          })
+        );
+
+        // console.log(newUser)
+        // res.send('hello');
+      }
+    });
+  }
 });
 
-
-router.get('/DashboardSysAdminEditUser' ,(req,res)=>
-    User.find()
-    .then(users=>{
-        res.render('DashboardSysAdminEditUser',{
-            users:users,
-            user:req.user
-        })
-    })
+router.get("/editProfile", (req, res) =>
+  Address.find({ targetId: req.user.toObject().uuid }).then((address) => {
+    res.render("EditProfile", {
+      user: req.user,
+      address: address,
+    });
+  })
 );
 
-router.post('/DashboardSysAdminEditUser',(req,res)=>{
-    
-    const { selectedId,email,fName,lName,phoneNumber} = req.body;
-    var newvalues = { 
-        email: email,
-        fName: fName,
-        lName: lName,
-        phoneNumber: phoneNumber,
-    };
-        User.updateOne({_id:selectedId}, newvalues)
-        .then(user=>{
-            req.flash('success_msg', 'Changes Saved!');
-            res.redirect('/DashboardSysAdminUser')  
-        })
+router.post("/editProfile", (req, res) => {
+  var myquery = { _id: req.user.toObject()._id };
+  var myqueryaddress = { _id: req.user.toObject()._id };
+  const {
+    email,
+    fName,
+    lName,
+    phoneNumber,
+    street,
+    city,
+    province,
+    postal,
+  } = req.body;
+  var newvalues = {
+    email: email,
+    fName: fName,
+    lName: lName,
+    phoneNumber: phoneNumber,
+  };
+
+  var newvaluesaddress = {
+    street: street,
+    city: city,
+    province: province,
+    postal: postal,
+  };
+  User.updateOne(myquery, newvalues).then((user) => {
+    Address.updateOne(myqueryaddress, newvaluesaddress).then((address) => {
+      req.flash("success_msg", "Changes Saved!");
+      res.redirect("/users/editProfile");
+    });
+  });
 });
 
-
-router.get('/DashboardSysAdminEditTulu' ,(req,res)=>
-    User.find()
-    .then(users=>{
-        res.render('DashboardSysAdminEditTulu',{
-            users:users,
-            user:req.user
-        })
-    })
+router.get("/DashboardSysAdminEditUser", (req, res) =>
+  User.find().then((users) => {
+    res.render("DashboardSysAdminEditUser", {
+      users: users,
+      user: req.user,
+    });
+  })
 );
 
-router.post('/DashboardSysAdminEditTulu',(req,res)=>{
-    const { selectedId,email,fName,lName,phoneNumber,role} = req.body;
-    var newvalues = { 
-        email: email,
-        fName: fName,
-        lName: lName,
-        phoneNumber: phoneNumber
-    };
-        User.updateOne({_id:selectedId}, newvalues)
-        .then(user=>{
-            req.flash('success_msg', 'Changes Saved!');
-            res.redirect('/DashboardSysAdminTulu')  
-        })
+router.post("/DashboardSysAdminEditUser", (req, res) => {
+  const { selectedId, email, fName, lName, phoneNumber } = req.body;
+  var newvalues = {
+    email: email,
+    fName: fName,
+    lName: lName,
+    phoneNumber: phoneNumber,
+  };
+  User.updateOne({ _id: selectedId }, newvalues).then((user) => {
+    req.flash("success_msg", "Changes Saved!");
+    res.redirect("/DashboardSysAdminUser");
+  });
 });
 
+router.get("/DashboardSysAdminEditTulu", (req, res) =>
+  User.find().then((users) => {
+    res.render("DashboardSysAdminEditTulu", {
+      users: users,
+      user: req.user,
+    });
+  })
+);
+
+router.post("/DashboardSysAdminEditTulu", (req, res) => {
+  const { selectedId, email, fName, lName, phoneNumber, role } = req.body;
+  var newvalues = {
+    email: email,
+    fName: fName,
+    lName: lName,
+    phoneNumber: phoneNumber,
+  };
+  User.updateOne({ _id: selectedId }, newvalues).then((user) => {
+    req.flash("success_msg", "Changes Saved!");
+    res.redirect("/DashboardSysAdminTulu");
+  });
+});
 
 // Login Handle
 router.post(
-    '/login',
-    passport.authenticate('local', {
-      failureRedirect: '/login'
-    }), (req, res) => {
-        console.log(req.user.toObject().role)
-        if (req.user.toObject().role === "user") {
-            res.redirect('/profile')
-        }
-        if (req.user.toObject().role === "tulu") {
-            if(req.user.toObject().status === "active"){
-                res.redirect('/tulu')   
-            }else{res.redirect('/tuluPending')}
-        }
-        if (req.user.toObject().role === "dealeradmin") {
-            res.redirect('/dashboard')
-        }
-        if (req.user.toObject().role === "sysadmin") {
-            res.redirect('/dashboardsysadmin')
-        }
-});
+  "/login",
+  passport.authenticate("local", {
+    failureRedirect: "/login",
+  }),
+  (req, res) => {
+    console.log(req.user.toObject().role);
+    req.sessionID = req.user.toObject()._id;
+    console.log(req.sessionID);
+    if (req.user.toObject().role === "user") {
+      res.redirect("/profile");
+    }
+    if (req.user.toObject().role === "tulu") {
+      if (req.user.toObject().status === "active") {
+        res.redirect("/tulu");
+      } else {
+        res.redirect("/tuluPending");
+      }
+    }
+    if (req.user.toObject().role === "dealeradmin") {
+      res.redirect("/dashboard");
+    }
+    if (req.user.toObject().role === "sysadmin") {
+      res.redirect("/dashboardsysadmin");
+    }
+  }
+);
 
 // Logout Handle
-router.get('/logout',(req,res)=>{
-    req.logout();
-    req.flash('success_msg','You are logged out');
-    res.redirect('/users/login');
+router.get("/logout", (req, res) => {
+  req.logout();
+  req.flash("success_msg", "You are logged out");
+  res.redirect("/users/login");
 });
 
-
-
-router.get('/ChangePassword' ,(req,res)=>
-    res.render('ChangePassword',{
-        user:req.user
-    })
+router.get("/ChangePassword", (req, res) =>
+  res.render("ChangePassword", {
+    user: req.user,
+  })
 );
 
-router.post('/ChangePassword',(req,res)=>{
-    var myquery = { _id: req.user.toObject()._id };
-    const {oldPassword,password,password2} = req.body;
-    var newvalues = { 
-        password: password,
-    };
-    bcrypt.genSalt(10, (err, salt) =>bcrypt.hash(newvalues.password, salt, (err,hash) =>{
-        if(err)throw err;
-        //Set password to hashed 
-        newvalues.password = hash;
-        User.updateOne(myquery, newvalues)
-        .then(user=>{
-            req.flash('success_msg', 'Changes Saved!');
-            res.redirect('/users/ChangePassword') ;
-        })
-    })) 
+router.post("/ChangePassword", (req, res) => {
+  var myquery = { _id: req.user.toObject()._id };
+  const { oldPassword, password, password2 } = req.body;
+  var newvalues = {
+    password: password,
+  };
+  bcrypt.genSalt(10, (err, salt) =>
+    bcrypt.hash(newvalues.password, salt, (err, hash) => {
+      if (err) throw err;
+      //Set password to hashed
+      newvalues.password = hash;
+      User.updateOne(myquery, newvalues).then((user) => {
+        req.flash("success_msg", "Changes Saved!");
+        res.redirect("/users/ChangePassword");
+      });
+    })
+  );
 });
 
-router.get('/ForgetPassword' ,(req,res)=>
-    res.render('ForgetPassword',{
-        user:req.user
-    })
+router.get("/ForgetPassword", (req, res) =>
+  res.render("ForgetPassword", {
+    user: req.user,
+  })
 );
 
-router.post('/ForgetPassword',(req,res)=>{
-    var myquery = { _id: req.user.toObject()._id };
-    const {password,password2} = req.body;
-    var newvalues = { 
-        password: password,
-    };
-    bcrypt.genSalt(10, (err, salt) =>bcrypt.hash(newvalues.password, salt, (err,hash) =>{
-        if(err)throw err;
-        //Set password to hashed 
-        newvalues.password = hash;
-        User.updateOne(myquery, newvalues)
-        .then(user=>{
-            req.flash('success_msg', 'Changes Saved!');
-            res.redirect('/users/ForgetPassword') ;
-        })
-    })) 
-});
-
-router.get('/delete' ,(req,res)=>{
-
-    var myquery = { _id: req.user.toObject()._id };
-    User.deleteOne(myquery)
-    .then(result => {
-        res.render('login',{
-            user: req.user
-        })
+router.post("/ForgetPassword", (req, res) => {
+  var myquery = { _id: req.user.toObject()._id };
+  const { password, password2 } = req.body;
+  var newvalues = {
+    password: password,
+  };
+  bcrypt.genSalt(10, (err, salt) =>
+    bcrypt.hash(newvalues.password, salt, (err, hash) => {
+      if (err) throw err;
+      //Set password to hashed
+      newvalues.password = hash;
+      User.updateOne(myquery, newvalues).then((user) => {
+        req.flash("success_msg", "Changes Saved!");
+        res.redirect("/users/ForgetPassword");
+      });
     })
-
+  );
 });
 
-
+router.get("/delete", (req, res) => {
+  var myquery = { _id: req.user.toObject()._id };
+  User.deleteOne(myquery).then((result) => {
+    res.render("login", {
+      user: req.user,
+    });
+  });
+});
 
 module.exports = router;
