@@ -1,22 +1,24 @@
-function populateVehicle(vehicleList){
-    sort('default');
+function populateVehicle(){
+    // sort('default');
     var html = "";
-    for (var i = 0; i != vehicleList.length; i++) {
+    for (var i = 0; i != gVehicle.length; i++) {
         html += '<li class="vehicleListItems">';
         var text = '';
-        html += '    <img src="/image/'+ vehicleList[i].vin +'" class="carImage" alt="car-image">';
+        html += '    <img src="/image/'+ gVehicle[i].vin +'" class="carImage" alt="car-image">';
         html += '   <div class="carDetails">';
-        html += '       <h2 class="carName">' + vehicleList[i].year + ' ' + vehicleList[i].make + ' ' + vehicleList[i].model + '</h2>';
-        html += '       <p class="carPrice">$'+vehicleList[i].maxPrice + '</p>';
-        html += '       <p class="carMileage">'+vehicleList[i].mileage +'  Kms</p>';
+        html += '       <h2 class="carName">' + gVehicle[i].year + ' ' + gVehicle[i].make + ' ' + gVehicle[i].model + '</h2>';
+        html += '       <p class="carPrice">$'+gVehicle[i].maxPrice + '</p>';
+        if(gVehicle[i].mileage != null){
+            html += '       <p class="carMileage">'+gVehicle[i].mileage +'  Kms</p>';
+        }
         html += '       <div class="additionalCarInfo" id="vehicle' + i + '">';
-        html += '           <p class="carTransmission">' + vehicleList[i].transmissionName + '</p>';
+        html += '           <p class="carTransmission">' + gVehicle[i].transmissionName + '</p>';
         html += '       </div>';
         html += '       <div class="moreInfoContainer">';
-        html += '              <a href="carview/'+ vehicleList[i].vin +'"><button class="moreInfo">View Vehicle</button></a>';
+        html += '              <a href="carview/'+ gVehicle[i].vin +'"><button class="moreInfo">View Vehicle</button></a>';
         html += '       </div>';
         for(var z=0;z!=dealershipList.length;z++){
-            if(dealershipList[z].uuid == vehicleList[i].dealerId){
+            if(dealershipList[z].uuid == gVehicle[i].dealerId){
                 html += '<p class="dealership">' + dealershipList[z].name + '</p>';
             }
         }
@@ -29,15 +31,22 @@ function populateVehicle(vehicleList){
 
 function smallView(){
     var html = "";
-    for (var i = 0; i != vehicleList.length; i++) {
+    for (var i = 0; i != gVehicle.length; i++) {
         html+='<li class="vehicleListItemsSmallView">';
         var text = '';
-        html+='    <img src="/image/'+ vehicleList[i].vin +'" class="carImage" alt="car-image"/>';
+        html+='    <img src="/image/'+ gVehicle[i].vin +'" class="carImage" alt="car-image"/>';
         html+='    <div class="carDetails">';
-        html+='        <h2 class="carName">' + vehicleList[i].year + ' ' + vehicleList[i].make + ' ' + vehicleList[i].model + '</h2>';
-        html+='        <p class="carPrice">$'+vehicleList[i].maxPrice + '</p>';
-        html+='        <p class="carMileage">'+vehicleList[i].mileage +' Kms</p>';
-        html+='        <a href="carview/'+ vehicleList[i].vin +'"><button class="moreInfo">View Vehicle</button></a>';
+        html+='        <h2 class="carName">' + gVehicle[i].year + ' ' + gVehicle[i].make + ' ' + gVehicle[i].model + '</h2>';
+        html+='        <p class="carPrice">$'+gVehicle[i].maxPrice + '</p>';
+        if(gVehicle[i].mileage != null){
+            html += '       <p class="carMileage">'+gVehicle[i].mileage +'  Kms</p>';
+        }
+        html+='        <a href="carview/'+ gVehicle[i].vin +'"><button class="moreInfo">View Vehicle</button></a>';
+        for(var z=0;z!=dealershipList.length;z++){
+            if(dealershipList[z].uuid == gVehicle[i].dealerId){
+                html += '<p class="dealership">' + dealershipList[z].name + '</p>';
+            }
+        }
         html+='    </div>';
         html+='</li>';
     }
@@ -47,22 +56,24 @@ function smallView(){
 
 function bigView(){
     var html = "";
-    for (var i = 0; i != vehicleList.length; i++) {
+    for (var i = 0; i != gVehicle.length; i++) {
         html += '<li class="vehicleListItems">';
         var text = '';
-        html += '    <img src="/image/'+ vehicleList[i].vin +'" class="carImage" alt="car-image">';
+        html += '    <img src="/image/'+ gVehicle[i].vin +'" class="carImage" alt="car-image">';
         html += '   <div class="carDetails">';
-        html += '       <h2 class="carName">' + vehicleList[i].year + ' ' + vehicleList[i].make + ' ' + vehicleList[i].model + '</h2>';
-        html += '       <p class="carPrice">$'+vehicleList[i].maxPrice + '</p>';
-        html += '       <p class="carMileage">'+vehicleList[i].mileage +' Kms</p>';
+        html += '       <h2 class="carName">' + gVehicle[i].year + ' ' + gVehicle[i].make + ' ' + gVehicle[i].model + '</h2>';
+        html += '       <p class="carPrice">$'+gVehicle[i].maxPrice + '</p>';
+        if(gVehicle[i].mileage != null){
+            html += '       <p class="carMileage">'+gVehicle[i].mileage +'  Kms</p>';
+        }
         html += '       <div class="additionalCarInfo" id="vehicle' + i + '">';
-        html += '           <p class="carTransmission">' + vehicleList[i].transmissionName + '</p>';
+        html += '           <p class="carTransmission">' + gVehicle[i].transmissionName + '</p>';
         html += '       </div>';
         html += '       <div class="moreInfoContainer">';
-        html += '               <a href="carview/'+ vehicleList[i].vin +'"><button class="moreInfo">View Vehicle</button></a>';
+        html += '               <a href="carview/'+ gVehicle[i].vin +'"><button class="moreInfo">View Vehicle</button></a>';
         html += '       </div>';
         for(var z=0;z!=dealershipList.length;z++){
-            if(dealershipList[z].uuid == vehicleList[i].dealerId){
+            if(dealershipList[z].uuid == gVehicle[i].dealerId){
                 html += '<p class="dealership">' + dealershipList[z].name + '</p>';
             }
         }
@@ -78,26 +89,26 @@ function carView(index){
 }
 
 function SearchVehicles(){
-    vehicleList = [];
-    for(var x=0;x!=vehicleListDefault.length;x++){
+    gVehicle = [];
+    for(var x=0;x!=arr.length;x++){
         if($('#MakeSearch').val()!=""){
-            if(vehicleListDefault[x].make == $('#MakeSearch').val()){
+            if(arr[x].make == $('#MakeSearch').val()){
                 if($('#VehicleTypeSearch').val()!= ""){
-                    if(vehicleListDefault[x].vehicleType == $('#VehicleTypeSearch').val()){
-                        vehicleList.push(vehicleListDefault[x]);
+                    if(arr[x].vehicleType == $('#VehicleTypeSearch').val()){
+                        gVehicle.push(arr[x]);
                     }
                 }else{
-                    vehicleList.push(vehicleListDefault[x]);
+                    gVehicle.push(arr[x]);
                 }
             }
         }else{
             
             if($('#VehicleTypeSearch').val()!= ""){
-                if(vehicleListDefault[x].vehicleType == $('#VehicleTypeSearch').val()){
-                    vehicleList.push(vehicleListDefault[x]);
+                if(arr[x].vehicleType == $('#VehicleTypeSearch').val()){
+                    gVehicle.push(arr[x]);
                 }
             }else{
-                vehicleList.push(vehicleListDefault[x]);
+                gVehicle.push(arr[x]);
             }
         }
     }
@@ -112,6 +123,6 @@ function SearchVehicles(){
         $('.filterBreadCrumbs span').append($('#VehicleTypeSearch').val().toUpperCase()+" ")
     }
     
-    console.log(vehicleList)
-    populateVehicle(vehicleList);
+    console.log(gVehicle)
+    populateVehicle(gVehicle);
 }
