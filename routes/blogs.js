@@ -8,26 +8,26 @@ const bodyParser = require("body-parser");
 const ROLE = require("../roles");
 const { ensureAuthenticated, authRole } = require("../config/auth");
 const middlewares = [bodyParser.urlencoded({ extended: true })];
-const Event = require("../models/eventschema");
+const Blog = require("../models/blogschema");
 const { decode } = require("punycode");
 const nodemailer = require("nodemailer");
 
 
 
 router.post("/AddBlog", (req, res) => {
-  const { eventName, date, description } = req.body;
+  const { blogName, date, description } = req.body;
   console.log(req.body);
 
-  const newEvent = new Event({
-    eventName, date, description 
+  const newBlog = new Blog({
+    blogName, date, description 
   });
 
-  console.log(newEvent);
+  console.log(newBlog);
   
-  newEvent.save()
-  .then((event) => {
-    console.log(event)
-    res.redirect("/UploadBlog/"+event._id)
+  newBlog.save()
+  .then((blog) => {
+    console.log(blog)
+    res.redirect("/UploadBlog/"+blog._id)
   })
   .catch((err) => console.log(err));
 
