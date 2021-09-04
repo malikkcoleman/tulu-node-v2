@@ -8,7 +8,9 @@ function populateVehicle(){
         html += '   <div class="carDetails">';
         html += '       <h2 class="carName">' + gVehicle[i].year + ' ' + gVehicle[i].make + ' ' + gVehicle[i].model + '</h2>';
         html += '       <p class="carPrice">$'+gVehicle[i].maxPrice + '</p>';
-        html += '       <p class="carMileage">'+gVehicle[i].mileage +'  Kms</p>';
+        if(gVehicle[i].mileage != null){
+            html += '       <p class="carMileage">'+gVehicle[i].mileage +'  Kms</p>';
+        }
         html += '       <div class="additionalCarInfo" id="vehicle' + i + '">';
         html += '           <p class="carTransmission">' + gVehicle[i].transmissionName + '</p>';
         html += '       </div>';
@@ -36,7 +38,9 @@ function smallView(){
         html+='    <div class="carDetails">';
         html+='        <h2 class="carName">' + gVehicle[i].year + ' ' + gVehicle[i].make + ' ' + gVehicle[i].model + '</h2>';
         html+='        <p class="carPrice">$'+gVehicle[i].maxPrice + '</p>';
-        html+='        <p class="carMileage">'+gVehicle[i].mileage +' Kms</p>';
+        if(gVehicle[i].mileage != null){
+            html += '       <p class="carMileage">'+gVehicle[i].mileage +'  Kms</p>';
+        }
         html+='        <a href="carview/'+ gVehicle[i].vin +'"><button class="moreInfo">View Vehicle</button></a>';
         for(var z=0;z!=dealershipList.length;z++){
             if(dealershipList[z].uuid == gVehicle[i].dealerId){
@@ -59,7 +63,9 @@ function bigView(){
         html += '   <div class="carDetails">';
         html += '       <h2 class="carName">' + gVehicle[i].year + ' ' + gVehicle[i].make + ' ' + gVehicle[i].model + '</h2>';
         html += '       <p class="carPrice">$'+gVehicle[i].maxPrice + '</p>';
-        html += '       <p class="carMileage">'+gVehicle[i].mileage +' Kms</p>';
+        if(gVehicle[i].mileage != null){
+            html += '       <p class="carMileage">'+gVehicle[i].mileage +'  Kms</p>';
+        }
         html += '       <div class="additionalCarInfo" id="vehicle' + i + '">';
         html += '           <p class="carTransmission">' + gVehicle[i].transmissionName + '</p>';
         html += '       </div>';

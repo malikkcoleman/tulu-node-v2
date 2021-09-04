@@ -13,6 +13,7 @@ const Address = require("../models/addressschema");
 const User = require("../models/userschema");
 const TestDrive = require("../models/testdriveschema");
 const Application = require("../models/applicationschema");
+const Event = require("../models/eventschema");
 
 pgroutr.get("/EditDealer", ensureAuthenticated, (req, res) =>
   Dealer.find({ uuid: req.user.toObject().dealerId }).then((dealer) => {
@@ -58,6 +59,28 @@ pgroutr.get("/UploadLicense/:targetId", (req, res) => {
       user: req.user,
       targetId:req.params.targetId,
       appointment:appointment
+    })
+  })
+})
+
+pgroutr.get("/UploadEvent/:targetId", (req, res) => {
+  Event.find({_id:req.params.targetId})
+  .then((event)=>{
+    res.render("UploadEvent", {
+      user: req.user,
+      targetId:req.params.targetId,
+      event:event
+    })
+  })
+})
+
+pgroutr.get("/UploadBlog/:targetId", (req, res) => {
+  Event.find({_id:req.params.targetId})
+  .then((blog)=>{
+    res.render("UploadBlog", {
+      user: req.user,
+      targetId:req.params.targetId,
+      blog:blog
     })
   })
 })
