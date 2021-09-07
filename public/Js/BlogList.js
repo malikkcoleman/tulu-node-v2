@@ -22,9 +22,21 @@ function loadEvents(){
 
     $('.blogList').empty();
     $('.blogList').append(html);
+    
+document.querySelector('.description').innerText = truncateText('.description', 107);
 }
 
 function deleteBlog(targetId){
     location.replace("/blogs/delete/"+targetId);
     // alert(targetId);
+}
+
+function truncateText(selector, maxLength) {
+    var element = document.querySelector(selector),
+        truncated = element.innerText;
+
+    if (truncated.length > maxLength) {
+        truncated = truncated.substr(0,maxLength) + '...';
+    }
+    return truncated;
 }
