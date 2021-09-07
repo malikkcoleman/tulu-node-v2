@@ -17,26 +17,3 @@ function loadBlog(){
     $('.blogContainer').append(html);
 }
 
-
-function viewEvents(index){
-    window.location = "/ViewEvents?id="+index;
-    // window.location = "/CarView?vin=" + listVehicles[index].vin + "&dealerId=" + listVehicles[index].dealerId;
-}
-
-function loadAEvent(){
-    var html = "";
-    
-    // events[eventId]4
-    console.log(eventId)
-
-    html+='<div class="banner" style="background:url(https://picsum.photos/300/150);">';
-    html+='    <h1 class="title">'+events[eventId].title+'</h1>';
-    html+='    <h2 class="date">'+events[eventId].eventDate+'</h2>';
-    html+='</div>';
-    html+='<p class="body">';
-    html+=events[eventId].body;
-    html+='</p>';
-
-    $('.event').empty();
-    $('.event').append(html);
-}

@@ -21,7 +21,7 @@
 }
 
 .blogContainer img{
-    width:300px;
+    width:600px;
     background:#79C6AC;
 }
 
@@ -37,4 +37,5 @@ p.date{
 p.description{
     margin:20px 0 0 0;
     text-align: center;
+    white-space: break-spaces;
 }
