@@ -8,25 +8,26 @@
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/css/all.css" />
     <link rel="stylesheet" href="styles/nav.css" />
-    <link rel="stylesheet" href="styles/addEvent.css" />
+    <link rel="stylesheet" href="styles/events.css" />
     <link rel="stylesheet" href="styles/footer.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
+
     <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
   <%- include partials/googleAnalytics %>
 </head>
   <body>
     <nav id="Nav">
-      <a href="/">
-        <img src="images/tulu-logo_white.png" alt="" />
-      </a>
-      <div class="menuButton" onclick="slideMenu()">
-        <i class="fas fa-bars fa-2x menuBtn"></i>
-        <i class="fas fa-times fa-2x closeMenuBtn"></i>
-      </div>
+        <a href="/">
+            <img src="images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
     <%- include partials/navbar %>
     </nav>
     <div class="dropDownMenu">
@@ -42,21 +43,17 @@
       <p class="loggedInAs"></p>
     </div>
 
-    <div class="container body-content">
-      <div class="formContainer">
-        <form id="my-form" action="/blogs/AddBlog" method="POST">
-          <label for="blogName">Blog Title:</label>
-          <input type="text" name="blogName" id="blogName">
-          <label for="date">Date:</label>
-          <input type="date" name="date" id="date">
-          <label for="description">Description</label>
-          <textarea name="description" id="description" cols="30" rows="10"></textarea>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+    <div class="header">
+      <h1>Blog</h1>
     </div>
-  </body>
 
+    <%- JSON.stringify(blog)%>
+
+    <%- include partials/footer %>
+  </body>
   <script src="Js/sideMenu.js"></script>
-  <script src="Js/addEvents.js"></script>
+  <script>
+    var blog = <%- JSON.stringify(blog)%>
+    console.log(blog)
+  </script>
 </html>

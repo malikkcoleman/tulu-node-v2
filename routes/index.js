@@ -14,6 +14,7 @@ const User = require("../models/userschema");
 const TestDrive = require("../models/testdriveschema");
 const Application = require("../models/applicationschema");
 const Event = require("../models/eventschema");
+const Blog = require("../models/blogschema");
 
 pgroutr.get("/EditDealer", ensureAuthenticated, (req, res) =>
   Dealer.find({ uuid: req.user.toObject().dealerId }).then((dealer) => {
@@ -33,6 +34,26 @@ pgroutr.get("/", (req, res) =>
     res.render("Index", {
       user: req.user,
       tulu:tulu
+    })
+  })
+);
+
+pgroutr.get("/Events", (req, res) =>
+  Event.find({})
+  .then((event) => {
+    res.render("Events", {
+      user: req.user,
+      event:event
+    })
+  })
+);
+
+pgroutr.get("/EventList", (req, res) =>
+  Event.find({})
+  .then((eventList) => {
+    res.render("EventList", {
+      user: req.user,
+      eventList:eventList
     })
   })
 );
@@ -96,6 +117,15 @@ pgroutr.get("/UploadResume/:targetId", (req, res) => {
   })
 })
 
+pgroutr.get("/Blog", (req, res) =>
+  Blog.find({_id:req.params.targetId})
+  .then((blog)=>{
+    res.render("Blog", {
+      user: req.user,
+      blog:blog,
+    })
+  })
+);
 
 pgroutr.get("/404", (req, res) =>
   res.render("404", {

@@ -1,0 +1,63 @@
+
+.header{
+    margin:50px 0 0 0;
+    background-color:#79C6AC;
+    height:20vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.header h1{
+    color:white;
+}
+
+
+.eventList{
+    width:80vmin;
+    padding:120px 0;
+    justify-content: center;
+    justify-self: center;
+    align-self: center;
+}
+
+.eventList li{
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding:20px;
+    border-bottom: 1px solid #0000002d;
+}
+
+.eventList li p{
+    color:#79C6AC;
+    justify-content: center;
+}
+
+
+
+.addButton{
+    padding:15px;
+    width:80vmin;
+    margin:20px 0 120px 0;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    align-self: center;
+    border-radius: 10px;
+    border:none;
+    background: #79C6AC;
+    color:white;
+}
+
+
+.eventList li button{
+    padding:10px 15px;
+    width:100px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border:none;
+    background: #79C6AC;
+    color:white;
+}
+
