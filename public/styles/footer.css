@@ -29,6 +29,21 @@ footer {
     color: #8B9196;
 }
 
+.socialMediaContainer{
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin:30px 0 0 0;
+}
+
+.socialMediaContainer li a i{
+    color:#8B9196;
+}
+
+.socialMediaContainer li{
+    margin:0 20px;
+}
+
 footer p{
     width:100%;
     text-align: center;

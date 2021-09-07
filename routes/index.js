@@ -117,12 +117,22 @@ pgroutr.get("/UploadResume/:targetId", (req, res) => {
   })
 })
 
-pgroutr.get("/Blog", (req, res) =>
+pgroutr.get("/Blog/:targetId", (req, res) =>
   Blog.find({_id:req.params.targetId})
   .then((blog)=>{
     res.render("Blog", {
       user: req.user,
       blog:blog,
+    })
+  })
+);
+
+pgroutr.get("/BlogList", (req, res) =>
+  Blog.find({})
+  .then((blogList) => {
+    res.render("BlogList", {
+      user: req.user,
+      blogList:blogList
     })
   })
 );
