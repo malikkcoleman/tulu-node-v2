@@ -33,4 +33,11 @@ router.post("/AddBlog", (req, res) => {
 
 });
 
+router.get("/delete/:targetId", (req, res) => {
+  Blog.deleteOne({_id: req.params.targetId}).then( async (result) => {
+    res.redirect('/BlogList')
+  });
+});
+
+
 module.exports = router;
