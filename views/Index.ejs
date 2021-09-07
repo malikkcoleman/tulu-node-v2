@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="styles/css/all.css" />
     <link rel="stylesheet" href="styles/nav.css" />
     <link rel="stylesheet" href="styles/home.css" />
+    <link rel="stylesheet" href="styles/season.css" />
     <link rel="stylesheet" href="styles/footer.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -46,9 +47,13 @@
 
   <div class="container body-content">
     <div class="header">
-      <img src="images/banner.png" class="desktop" alt="" />
-      <img src="images/bannerMobile.png" class="mobile" alt="" />
-      <img src="images/bannerTesla.png" class="bannerTesla" alt="" />
+      <div id="particles-js">
+        <img src="images/banner.png" class="desktop" alt="" />
+        <img src="images/bannerMobile.png" class="mobile" alt="" />
+    </div>
+      <!-- <img src="images/xc90Donny.png" class="bannerTesla" alt="" /> -->
+      <img src="images/xc90.webp" class="bannerTesla" alt="" />
+      
     </div>
     <!-- Search section  -->
     <section class="searchSection" style="display: none">
@@ -118,11 +123,20 @@
         
       </ul>
     </section>
+
+
+    <div class="blogSection">
+      <ul>
+        
+      </ul>
+    </div>
+
+
     <!-- Fourth Section -->
     <section class="fourthSection">
       <div class="videoContainer">
         <h2>HOW DOES IT WORK?</h2>
-        <video width="80%" controls preload="none" muted autoplay>
+        <video width="50%" controls preload="none" muted autoplay loop>
           <source src="Videos/tulu_vid.mp4" type="video/mp4" />
           Your browser does not support HTML video.
         </video>
@@ -130,77 +144,33 @@
     </section>
   </div>
 
+
+  <div class="career">
+    <img src="images/hiring.png" alt="">
+    <div class="jobInfo">
+      <h2 class="jobTitle">Automotive Sales - tulu Member</h2>
+      <p class="location">Calgary, AB • Remote</p>
+      <div class="jobDescription">
+        Are you a motivated individual looking to make your own schedule and some extra income?
+      </div>
+      <a href="/careers">
+        <button>Apply Now!</button>
+      </a>
+    </div>
+  </div>
+
   <%- include partials/footer %>
 </body>
 
 <script src="Js/sideMenu.js"></script>
-<script src="Js/privileges.js"></script>
 <script>
-  function TestTuluList() {
-    // console.log(results);
-    // LoadTulus(results);
-  }
-
-  tuluList = <%-JSON.stringify(tulu)%>;
+  var tuluList = <%-JSON.stringify(tulu)%>;
   console.log(tuluList);
 
-  LoadTulus(tuluList)
-
-  function LoadTulus(tulu) {
-	var html = '';
-	for (i = 0; i != 4; i++) {
-      if(tuluList[i].status="active"){
-        html+='<li class="influencerListItems">';
-        html+='  <div class="influencerImage">';
-        html+='    <a href="/tulu/viewTulu?tuluId='+tuluList[i]._id+'">';
-        html+='      <img src="/image/'+tuluList[i]._id+'" >';
-        html+='    </a>';
-        html+='  </div>';
-        html+='  <h3 class="influencerName">'+tuluList[i].fName +" "+tuluList[i].lName+'</h3>';
-        html+='  <div class="userRating">';
-
-        if(tulu[i].ratings == 5){
-          for(x=0;x!=5;x++){
-            html = html + '		    <i class="fas fa-star"></i>';
-          }
-        }else if(tulu[i].ratings == 4){
-          for(x=0;x!=4;x++){
-            html = html + '		    <i class="fas fa-star"></i>';
-          }
-          html = html + '		    <i class="far fa-star"></i>';
-        }else if(tulu[i].ratings == 3){
-          for(x=0;x!=3;x++){
-            html = html + '		    <i class="fas fa-star"></i>';
-          }
-          html = html + '		    <i class="far fa-star"></i>';
-          html = html + '		    <i class="far fa-star"></i>';
-        }else if(tulu[i].ratings == 2){
-          for(x=0;x!=2;x++){
-            html = html + '		    <i class="fas fa-star"></i>';
-          }
-          html = html + '		    <i class="far fa-star"></i>';
-          html = html + '		    <i class="far fa-star"></i>';
-          html = html + '		    <i class="far fa-star"></i>';
-        }else if(tulu[i].ratings == 1){
-          html = html + '		    <i class="fas fa-star"></i>';
-          html = html + '		    <i class="far fa-star"></i>';
-          html = html + '		    <i class="far fa-star"></i>';
-          html = html + '		    <i class="far fa-star"></i>';
-          html = html + '		    <i class="far fa-star"></i>';
-        }else{
-          html = html + '		    <i class="far fa-star"></i>';
-          html = html + '		    <i class="far fa-star"></i>';
-          html = html + '		    <i class="far fa-star"></i>';
-          html = html + '		    <i class="far fa-star"></i>';
-          html = html + '		    <i class="far fa-star"></i>';
-        }
-
-        html+='  </div>';
-        html+='</li>';
-      }
-  }
-	$(".influencerList").empty();
-	$(".influencerList").append(html);
-}
+  var blog = <%-JSON.stringify(blog)%>;
+  console.log(blog);
 </script>
+<script src="Js/home.js"></script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="js/particle.js"></script>
 </html>

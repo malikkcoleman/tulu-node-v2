@@ -7,6 +7,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    box-shadow:0 -25px 10px 0 white inset;
 }
 
 .header img{
@@ -25,8 +26,18 @@
 .header .bannerTesla{
     filter: drop-shadow(0 10px 10px #00000079); 
     opacity: 1;
-    height:500px;
+    height:350px;
 }
+
+/* .bannerTesla{
+    transform: scale(1)translateX(0px)translateY(0px);
+    transition: 0.5s;
+}
+
+.bannerTesla:hover{
+    transform: scale(1.05)translateX(-100px)translateY(20px);
+    transition: 0.5s;
+} */
 
 .header h1 {
     color: white;
@@ -225,6 +236,65 @@
     color:goldenrod;
 }
 
+/* Blog */
+
+
+.blogSection{
+    /* border:1px solid red; */
+}
+
+.blogSection ul{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    padding:20px 30px;
+}
+
+.blogSection ul li{
+    padding:30px;
+    width:300px;
+    margin:30px;
+    border-radius: 10px;
+    overflow: hidden;
+    filter:drop-shadow(0 10px 10px #00000050);
+    background:white;
+}
+
+.blogSection ul li img{
+    width:300px;
+}
+
+.blogSection ul li .tag{
+    flex-direction: row;
+    margin:20px 0 30px 0;
+    color:#79C6AC;
+}
+
+.blogSection ul li .title{
+    margin:0 0 20px 0;
+}
+
+.blogSection ul li .tag span{
+    color:#79C6AC;
+    /* margin:0 0 0 10px; */
+    /* padding:0 0 0 10px; */
+    /* border-left: 1px solid #00000050; */
+}
+
+.blogSection ul li a{
+    margin:20px 0 0 0;
+    flex-direction: row;
+    color:#79C6AC;
+}
+
+.blogSection ul li a i{
+    margin:0 0 0 10px ;
+    color:#79C6AC;
+}
+
+
+
 /* 4th Section */
 /* PopularCars */
 .fourthSection {
@@ -245,6 +315,49 @@
 
 .videoContainer video{
     margin:20px 0;
+}
+
+
+/* Career */
+.career{
+    justify-content: center;
+    align-items: center;
+    margin:0 0 60px 0;
+    flex-direction: row;
+}
+
+.career img{
+    width:500px;
+}
+
+.career .jobInfo{
+    padding:30px;
+    width:400px;
+}
+
+.career .jobInfo .jobTitle{
+    color:#79C6AC;
+}
+
+.career .jobInfo .location{
+    font-size:small;
+}
+
+.career .jobInfo .jobDescription{
+    margin:20px 0 0 0;
+    color:#79C6AC;
+    font-size: larger;
+}
+
+.career .jobInfo button{
+    padding:15px 20px;
+    border-radius: 10px;
+    color:white;
+    justify-content: center;
+    align-items: center;
+    background:#79C6AC;
+    border:none;
+    margin:20px 0 0 0;
 }
 
 
@@ -275,8 +388,10 @@
         position: absolute;
         z-index: -2;
         opacity: 0.2;
-        height:250px;
+        height:150px;
     }
+
+    
 
     .searchSection{
         padding:20px 15px;
