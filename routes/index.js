@@ -38,6 +38,26 @@ pgroutr.get("/", (req, res) =>
   })
 );
 
+pgroutr.get("/Events", (req, res) =>
+  Event.find({})
+  .then((event) => {
+    res.render("Events", {
+      user: req.user,
+      event:event
+    })
+  })
+);
+
+pgroutr.get("/EventList", (req, res) =>
+  Event.find({})
+  .then((eventList) => {
+    res.render("EventList", {
+      user: req.user,
+      eventList:eventList
+    })
+  })
+);
+
 
 pgroutr.get("/TestDrive/:vin", (req, res) => {
   Vehicle.find({ vin: req.params.vin })
