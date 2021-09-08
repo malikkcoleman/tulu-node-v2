@@ -53,6 +53,8 @@ router.post("/email", (req, res) => {
     vin,
     vehiclePrice,
     customer,
+    firstName,
+    lastName,
     phonenumber,
     email,
     street,
@@ -72,10 +74,10 @@ router.post("/email", (req, res) => {
 
   if (
     !dealerId ||
-    !userId ||
     !vin ||
     !vehiclePrice ||
-    !customer ||
+    !firstName ||
+    !lastName ||
     !phonenumber ||
     !email ||
     !street ||
@@ -93,6 +95,8 @@ router.post("/email", (req, res) => {
     res.render("BookingTest", {
       user: req.user,
       errors,
+      firstName,
+      lastName,
       phonenumber,
       email,
       street,
@@ -106,11 +110,11 @@ router.post("/email", (req, res) => {
   } else {
     const newAppointment = new Appointment({
       dealerId,
-      userId,
       tuluId,
       vin,
       vehiclePrice,
-      customer,
+      firstName,
+      lastName,
       phonenumber,
       email,
       street,
@@ -138,7 +142,7 @@ router.post("/email", (req, res) => {
     text:
       "Customer Information \n" +
       "Full Name: " +
-      req.body.customer +
+      req.body.firstName + " " +req.body.lastName +
       "\n" +
       "Phone Number: " +
       req.body.phonenumber +
