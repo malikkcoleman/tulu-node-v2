@@ -90,12 +90,12 @@ app.use(passport.initialize());
 //app.use(cookieParser());
 app.use(
   session({
-    secret: "Secret",
+    secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 7,
-      secure: true, // 1 week
+      maxAge: 1000 * 60 * 60 * 24,
+      httponly: false, // 1 week
     },
     store: store,
   })
