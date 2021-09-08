@@ -326,7 +326,14 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    background:#1A2A33;
+    /* background:#1A2A33; */
+    background: linear-gradient(#79C6AC,#ffffff),url('/images/reviews.jpg');
+    background-position: center;
+    background-blend-mode: multiply;
+    /* filter: drop-shadow(inset 0 10px 10px 10px #000000); */
+    box-shadow: inset 0px 0px 20px #00000050;
+    background-size: cover;
+    background-attachment: fixed;
     margin:0 0 50px 0;
 }
 
@@ -337,11 +344,21 @@
 .reviewCard{
     margin:0 20px ;
     width:60vmin;
-    background:#3c505c;
+    background:#ffffff;
     padding:30px;
     filter: drop-shadow(0 0 10px #00000050);
     /* color:white; */
     /* border-radius: 10px; */
+}
+
+.reviewCard{
+    transition:0.5s;
+    transform: scale(1);
+}
+
+.reviewCard:hover{
+    transition:0.5s;
+    transform: scale(1.03);
 }
 
 .clientName{
@@ -359,9 +376,9 @@
 }
 
 .review{
-    border-top: 1px solid white;
+    border-top: 1px solid #79C6AC;
     padding:10px 0 0 0;
-    color:white;
+    color:#79C6AC;
 }
 
 
@@ -526,6 +543,50 @@
 
     video{
         width:80vmin !important;
+    }
+
+
+    
+    .reviewsContainer{
+        background: linear-gradient(#79C6AC,#ffffff),url('/images/reviews.jpg');
+        background-position: center;
+        background-blend-mode: multiply;
+        background-size: cover;
+        margin:0 0 50px 0;
+    }
+
+    .reviewsContainer i{
+        color:white;
+    }
+
+    .reviewCard{
+        margin:0 20px ;
+        width:60vmin;
+        background:#ffffff;
+        padding:30px;
+        filter: drop-shadow(0 0 10px #00000050);
+        /* color:white; */
+        /* border-radius: 10px; */
+    }
+
+    .reviewCard{
+        transition:0.5s;
+        transform: scale(1);
+    }
+
+    .reviewCard:hover{
+        transition:0.5s;
+        transform: scale(1);
+    }
+
+    #arrow{
+        color:#ffffff;
+        transition: 0.5s;
+    }
+    
+    #arrow:hover{
+        color:#ffffff;
+        transition: 0.2s;
     }
 
     .career{
