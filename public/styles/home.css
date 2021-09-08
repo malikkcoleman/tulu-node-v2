@@ -318,6 +318,67 @@
 }
 
 
+/* Reviews */
+
+.reviewsContainer{
+    /* padding:150px 0; */
+    height:60vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background:#1A2A33;
+    margin:0 0 50px 0;
+}
+
+.reviewsContainer i{
+    color:white;
+}
+
+.reviewCard{
+    margin:0 20px ;
+    width:60vmin;
+    background:#3c505c;
+    padding:30px;
+    filter: drop-shadow(0 0 10px #00000050);
+    /* color:white; */
+    /* border-radius: 10px; */
+}
+
+.clientName{
+    color:#79C6AC;
+    /* margin:0 0 20px 0; */
+}
+
+.reviewCard .rating{
+    margin:10px 0;
+    flex-direction: row;
+}
+
+.rating i{
+    color:goldenrod;
+}
+
+.review{
+    border-top: 1px solid white;
+    padding:10px 0 0 0;
+    color:white;
+}
+
+
+#reviewTwo{
+    display:none;
+}
+
+#arrow{
+    color:#ffffff;
+    transition: 0.5s;
+}
+
+#arrow:hover{
+    color:#79C6AC;
+    transition: 0.2s;
+}
+
 /* Career */
 .career{
     justify-content: center;
@@ -457,6 +518,28 @@
     .partnerListItems img{
         width:150px;
     }
+
+
+    .blogSection ul li img{
+        width:unset !important;
+    }
+
+    video{
+        width:80vmin !important;
+    }
+
+    .career{
+        flex-direction: column !important;
+    }
+
+    .career img{
+        width:80vmin;
+    }
+
+    .career .jobInfo{
+        width:80vmin;
+    }
+
 }
 
 
@@ -515,4 +598,5 @@
         background:white;
         font-weight: bolder;
     }
+
 }

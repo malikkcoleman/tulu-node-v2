@@ -89,3 +89,27 @@ function truncateText(selector, maxLength) {
     return truncated;
 }
 
+var reviewCount=1;
+function backReview(){
+  if(reviewCount==1){
+    reviewCount =2;
+    document.querySelector('#reviewOne').style="display:none;";
+    document.querySelector('#reviewTwo').style="display:flex;";
+  }else if(reviewCount==2){
+    reviewCount--;
+    document.querySelector('#reviewOne').style="display:flex;";
+    document.querySelector('#reviewTwo').style="display:none;";
+  }
+}
+
+function nextReview(){
+  if(reviewCount==1){
+    reviewCount =2;
+    document.querySelector('#reviewOne').style="display:none;";
+    document.querySelector('#reviewTwo').style="display:flex;";
+  }else if(reviewCount==2){
+    reviewCount=1;
+    document.querySelector('#reviewOne').style="display:flex;";
+    document.querySelector('#reviewTwo').style="display:none;";
+  }
+}
