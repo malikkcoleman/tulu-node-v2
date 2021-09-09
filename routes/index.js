@@ -29,14 +29,22 @@ pgroutr.get("/EditDealer", ensureAuthenticated, (req, res) =>
 );
 
 pgroutr.get("/", (req, res) =>
-  Blog.find({})
-  .then((blog) => {
-    User.find({ role: "tulu" })
-    .then((tulu) => {
-      res.render("Index", {
-        user: req.user,
-        tulu:tulu,
-        blog:blog
+  User.find({ role: "dealeradmin" })
+  .then((dealerAdmin) => {
+    Dealer.find({})
+    .then((dealer) => {
+      Blog.find({})
+      .then((blog) => {
+        User.find({ role: "tulu" })
+        .then((tulu) => {
+          res.render("Index", {
+            user: req.user,
+            tulu:tulu,
+            blog:blog,
+            dealer:dealer,
+            dealershipList:dealerAdmin
+          })
+        })
       })
     })
   })

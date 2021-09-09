@@ -1,6 +1,7 @@
 
   LoadTulus(tuluList)
   LoadBlog(blog)
+  LoadDealer(blog)
 
   function LoadTulus(tulu) {
 	var html = '';
@@ -92,13 +93,18 @@ function truncateText(selector, maxLength) {
 var reviewCount=1;
 function backReview(){
   if(reviewCount==1){
-    reviewCount =2;
+    reviewCount =3;
     document.querySelector('#reviewOne').style="display:none;";
     document.querySelector('#reviewTwo').style="display:flex;";
   }else if(reviewCount==2){
     reviewCount--;
     document.querySelector('#reviewOne').style="display:flex;";
     document.querySelector('#reviewTwo').style="display:none;";
+  }
+  else if(reviewCount==3){
+    reviewCount--;
+    document.querySelector('#reviewTwo').style="display:flex;";
+    document.querySelector('#reviewThree').style="display:none;";
   }
 }
 
@@ -108,8 +114,24 @@ function nextReview(){
     document.querySelector('#reviewOne').style="display:none;";
     document.querySelector('#reviewTwo').style="display:flex;";
   }else if(reviewCount==2){
+    reviewCount=3;
+    document.querySelector('#reviewThree').style="display:flex;";
+    document.querySelector('#reviewTwo').style="display:none;";
+  }else if(reviewCount==3){
     reviewCount=1;
     document.querySelector('#reviewOne').style="display:flex;";
-    document.querySelector('#reviewTwo').style="display:none;";
+    document.querySelector('#reviewThree').style="display:none;";
   }
+}
+
+function LoadDealer(){
+  var html="";
+  for(var i=0;i!=dealershipList.length;i++){
+    html+='<li>';
+    html+='<img src="image/'+dealershipList[i]._id+'">';
+    html+='</li>';
+  }
+
+  $(".dealershipList").empty();
+	$(".dealershipList").append(html);
 }

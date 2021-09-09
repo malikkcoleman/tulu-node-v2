@@ -131,44 +131,77 @@
 /* 2nd Section */
 /* Partners */
 .secondSection {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     background:#79C6AC;
     padding:50px 0;
+    position: relative;
+    /* height:120px 0; */
+    overflow: hidden;
+    z-index: -3;
 }
 
-.partnerList {
-    width:100%;
+.secondSection .circle{
+    z-index: -2;
+    height:120vh;
+    width:120vh;
+    right:-120px;
+    border-radius: 50%;
+    position: absolute;
+    background:#ffffff50;
+    overflow: hidden;
+}
+
+.col-left{
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+
+.col-left,.col-right{
+    width:600px;
+    margin:0 100px;
+    position: relative;
+    /* height:60vh; */
+}
+
+.col-left h1,.col-left,h3{
+    color:white;
+}
+
+.col-left h1{
+    font-size: 40px;
+}
+
+.col-left h3{
+    margin:20px 0 0 0;
+}
+
+.col-right{
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.col-right img{
+    width:400px;
+}
+
+.col-right ul{
+    justify-content: center;
+    align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 0;
 }
 
-.partnerListItems {
-    margin: 10px 20px;
+.col-right ul li{
+    margin:20px;
+    overflow: hidden;
+    border-radius:10px;
 }
 
-.dealershipHeading {
-    color: white;
-    padding: 20px 0;
-}
-
-
-.partnerListItems img{
-    width:250px;
-}
-
-.secondSection button{
-    width:300px;
-    padding:15px 0;
-    align-items: center;
-    border-radius: 10px;
-    border:2px solid white;
-    color:white;
-    background:transparent;
+.col-right ul li img{
+    height:100px;
+    width:100px;
 }
 
 /* 3rd Section */
@@ -382,7 +415,7 @@
 }
 
 
-#reviewTwo{
+#reviewTwo,#reviewThree{
     display:none;
 }
 
