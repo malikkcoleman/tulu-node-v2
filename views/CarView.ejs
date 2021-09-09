@@ -36,7 +36,7 @@
     </nav>
     <div class="dropDownMenu">
         <ul>
-            <%- include partials/dropDownMenu %>
+            <!-- <%- include partials/dropDownMenu %> -->
         </ul>
     </div>
 
@@ -116,7 +116,7 @@
           <button class="buyNowBtn" onclick="testDrive()">Test Drive This Vehicle</button>
           <button class="buyNowBtn" onclick="financeThis()">Finance This Vehicle</button>
 
-          <% if(!user) {%>
+          <!-- <% if(!user) {%>
 
           <div class="BookContainer">
             <p>Book an appointment?</p>
@@ -128,7 +128,12 @@
           <button onclick="bookAppointment()" class="bookAppointment">
             Book an appointment
           </button>
-          <%}%>
+          <%}%> -->
+
+          <button onclick="bookAppointment()" class="bookAppointment">
+            Book an appointment
+          </button>
+
         </div>
         <div class="carSpecsBox">
           <div class="carSpecsCol">
@@ -202,13 +207,14 @@
         <div class="ShareContainer">
           <p>Share This Listing</p>
           <div class="shareBtnContainer" id="shareBtnContainer">
-            <% if(user) {%>
+            <div class="addthis_inline_share_toolbox"></div>
+            <!-- <% if(user) {%>
               <div class="addthis_inline_share_toolbox"></div>
             <% }%> <% if(!user) {%>
             <div class="signInBtn">
               <a href="/users/login">Sign In!</a>
             </div>
-            <% }%>
+            <% }%> -->
           </div>
         </div>
       </section>
