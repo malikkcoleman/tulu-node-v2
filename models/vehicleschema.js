@@ -20,7 +20,7 @@ const vehicleschema = new mongoose.Schema({
     required: false,
   },
   mileage: {
-    type: String,
+    type: Number,
     required: false,
   },
   vehicleType: {
