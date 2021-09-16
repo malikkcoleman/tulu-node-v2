@@ -60,6 +60,12 @@ pgroutr.get("/Events", (req, res) =>
   })
 );
 
+pgroutr.get("/TradeVehicle", (req, res) =>
+  res.render("TradeVehicle", {
+    user: req.user
+  })
+);
+
 pgroutr.get("/EventList", (req, res) =>
   Event.find({})
   .then((eventList) => {

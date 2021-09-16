@@ -166,3 +166,7 @@ function rotate(e){
     "transform": "rotateY("+currdeg+"deg)"
   });
 }
+
+setInterval(function(){ 
+  document.querySelector(".next").click();
+ }, 3000);
