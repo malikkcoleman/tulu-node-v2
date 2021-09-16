@@ -66,6 +66,12 @@ pgroutr.get("/TradeVehicle", (req, res) =>
   })
 );
 
+pgroutr.get("/CreditApplication", (req, res) =>
+  res.render("CreditApplication", {
+    user: req.user
+  })
+);
+
 pgroutr.get("/EventList", (req, res) =>
   Event.find({})
   .then((eventList) => {
