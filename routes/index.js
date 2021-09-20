@@ -195,22 +195,38 @@ pgroutr.get(
     })
 );
 
-pgroutr.get("/shop", (req, res) => {
+pgroutr.get("/shop/:start/:limit", (req, res) => {
   Dealer.find({})
   .then((dealershipList) => {
     Vehicle.find({})
-      .then((vehicles) => {
-        res.render("Shop", {
-          vehicles: vehicles,
+      .skip(parseInt(req.params.start))
+      .limit(parseInt(req.params.limit))
+      .then(async (vehicles) => {
+        var vehiclelist = []
+        await vehicles.forEach(function(vec){
+          vec = JSON.parse(JSON.stringify(vec));
+          vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
+          vehiclelist.push(vec)
+        })
+        res.send({
+          vehicles: vehiclelist,
           dealershipList: dealershipList,
           user: req.user,
         });
-      })
-      .catch((err) => {
-        res.status(500).send(error);
+      }).catch((err) => {
+        console.log(err)
       });
   });
 });
+
+pgroutr.get("/Shopage", (req, res) => {
+  console.log('tite')
+    res.render("Shop", {
+      vehicles: '',
+      dealershipList: '',
+      user: req.user,
+    })
+})
 
 pgroutr.get("/MessageTulu/:id", (req, res) => {
   User.find({ _id: req.params.id })

@@ -41,7 +41,6 @@ function getImage(req, res){
             if(file.contentType === 'image/jpeg' || file.contentType === 'image/png'|| file.contentType === 'application/pdf'){
                 const readstream = gfs.createReadStream(file.filename);
                 readstream.pipe(res)
-                console.log(file)
             } else {
                 res.status(404).json({
                     err: 'not an image'
