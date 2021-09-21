@@ -58,7 +58,7 @@
             </div>
             <div class="info">
               <p>Cars Uploaded</p>
-              <p class="uploadCount"></p>
+              <p class="uploadCount"><%- vehicle.length%></p>
             </div>
             <div class="viewCars">
               <i class="fas fa-list"></i>
@@ -78,22 +78,33 @@
               <p>Last 24 Hours</p>
             </div>
           </div>
-          <div class="card testDriveAppointments">
+          <div class="card appointments">
             <div class="icon">
               <i class="far fa-calendar-alt fa-4x"></i>
             </div>
             <div class="info">
-              <p>New Test Drive Appointments</p>
-              <p class="testDriveCount"></p>
+              <p>Appointments</p>
+              <p class="appointmentCount"><%- appointment.length%></p>
             </div>
             <div class="appointmentUpdate">
               <div>
                 <i class="far fa-calendar-alt"></i>
                 <!-- <a href="/test/testdrive"> Show Appointments </a> -->
               </div>
+            </div>
+          </div>
+          <div class="card testDriveAppointments">
+            <div class="icon">
+              <i class="fas fa-steering-wheel  fa-4x"></i>
+            </div>
+            <div class="info">
+              <p>Vehicle Test Drives</p>
+              <p class="testDriveCount"><%- testDrive.length%></p>
+            </div>
+            <div class="appointmentUpdate">
               <div>
                 <i class="far fa-calendar-alt"></i>
-                <!-- <a href="/test/testdrive"> View Calendar </a> -->
+                <!-- <a href="/test/testdrive"> Show Appointments </a> -->
               </div>
             </div>
           </div>
@@ -154,4 +165,17 @@
     <%- include partials/footer %>
   </body>
   <script src="Js/sideMenu.js"></script>
+  <script>
+    
+    var vehicle = <%- JSON.stringify(vehicle)%>
+    console.log(vehicle)
+    var user = <%- JSON.stringify(user)%>
+    console.log(user)
+    var dealer = <%- JSON.stringify(dealer)%>
+    console.log(dealer)
+    var appointment = <%- JSON.stringify(appointment)%>
+    console.log(appointment)
+    var testDrive = <%- JSON.stringify(testDrive)%>
+    console.log(testDrive)
+  </script>
 </html>
