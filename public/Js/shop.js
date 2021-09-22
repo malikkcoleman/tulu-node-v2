@@ -66,6 +66,7 @@ function renderPosts(resss){
             html += '              <a href="carview/'+ data.vin +'"><button class="moreInfo">View Vehicle</button></a>';
             html += '       </div>';
             html += '       <p class="dealership">' + data.dealer.name + '</p>';
+            html += '       <p class="views"><i class="far fa-eye"></i> '+data.views+' views</p>';
             html += '   </div>';
             html += '</li>';
         }

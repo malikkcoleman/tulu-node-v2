@@ -283,14 +283,24 @@ pgroutr.get("/carview/:vin", (req, res) => {
                   const images = await fetchImage.getImagesArray(
                     req.params.vin
                   );
-                  console.log(images);
-                  res.render("CarView", {
-                    vehicles: vehicles,
-                    user: req.user,
-                    dealers: dealers,
-                    dealerAdmin: dealerAdmin,
-                    address: address,
-                    images: images,
+                  var myquery = { vin: vehicles[0].vin };
+
+                  var newView = vehicles[0].views + 1;
+
+                  var newvalues = {
+                    views:newView
+                  }
+
+                  Vehicle.updateOne(myquery, newvalues).then((updatedVehicle) => {
+                    console.log(images);
+                    res.render("CarView", {
+                      vehicles: vehicles,
+                      user: req.user,
+                      dealers: dealers,
+                      dealerAdmin: dealerAdmin,
+                      address: address,
+                      images: images,
+                    });
                   });
                 }
               );

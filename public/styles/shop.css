@@ -77,6 +77,19 @@
     text-align: center;
 }
 
+.views{
+    flex-direction: row;
+    margin:20px 0 0 0;
+    font-size: smaller;
+    justify-content: center;
+    align-items: center;
+    color:#00000063;
+}
+
+.views i{
+    margin:0 5px 0 0;
+    color:#00000063;
+}
 
 .carName{
     text-align: center;
