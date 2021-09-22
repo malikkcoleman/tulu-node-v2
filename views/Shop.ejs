@@ -194,7 +194,7 @@
         </div>
 
         <ul id="Vehicles" class="vehicleList">
-          <div class="loading">
+          <div class="loading" id="loading">
             <p>Fetching Data.</p>
           </div>
         </ul>
@@ -224,25 +224,25 @@
     <script src="Js/shop.js"></script>
   <%}%>
   <script>
-    var dealershipList = <%-JSON.stringify(dealershipList)%>;
-    console.log(dealershipList);
-    var vehicleListDefault = <%-JSON.stringify(vehicles)%>;
-    var gVehicle = [];
+    // var dealershipList = <%-JSON.stringify(dealershipList)%>;
+    // console.log(dealershipList);
+    // var vehicleListDefault = <%-JSON.stringify(vehicles)%>;
+    // var gVehicle = [];
 
-    function shuffleArray(arr) {
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-    console.log(arr);
-    gVehicle=arr;
-    }
+    // function shuffleArray(arr) {
+    //   for (let i = arr.length - 1; i > 0; i--) {
+    //     const j = Math.floor(Math.random() * (i + 1));
+    //     [arr[i], arr[j]] = [arr[j], arr[i]];
+    //   }
+    // console.log(arr);
+    // gVehicle=arr;
+    // }
 
-    let arr = Array.prototype.slice.call(vehicleListDefault);
-    shuffleArray(arr);
+    // let arr = Array.prototype.slice.call(vehicleListDefault);
+    // shuffleArray(arr);
 
-    console.log(arr);
-    populateVehicle(gVehicle);
+    // console.log(arr);
+    // populateVehicle(gVehicle);
   </script>
 
 </html>
