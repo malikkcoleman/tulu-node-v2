@@ -124,14 +124,49 @@ function nextReview(){
   }
 }
 
+
 function LoadDealer(){
+  var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+
   var html="";
   for(var i=0;i!=dealershipList.length;i++){
-    html+='<li>';
-    html+='<img src="image/'+dealershipList[i]._id+'">';
+    html+='<li class="item '+alphabet[i]+'">';
+    for(var x=0;x!=dealer.length;x++){
+      if(dealer[x].uuid==dealershipList[i].dealerId){
+        html+='<a href="/DealerListing/'+dealer[x].uuid+'">';
+        html+='<img src="image/'+dealershipList[i]._id+'">';
+        html+='</a>';
+      }
+    }
     html+='</li>';
   }
 
-  $(".dealershipList").empty();
-	$(".dealershipList").append(html);
+  $(".carousel").empty();
+	$(".carousel").append(html);
 }
+
+
+var carousel = $(".carousel"),
+    currdeg  = 0;
+
+$(".next").on("click", { d: "n" }, rotate);
+$(".prev").on("click", { d: "p" }, rotate);
+
+function rotate(e){
+  if(e.data.d=="n"){
+    currdeg = currdeg - 60;
+  }
+  if(e.data.d=="p"){
+    currdeg = currdeg + 60;
+  }
+  carousel.css({
+    "-webkit-transform": "rotateY("+currdeg+"deg)",
+    "-moz-transform": "rotateY("+currdeg+"deg)",
+    "-o-transform": "rotateY("+currdeg+"deg)",
+    "transform": "rotateY("+currdeg+"deg)"
+  });
+}
+
+setInterval(function(){ 
+  document.querySelector(".next").click();
+ }, 3000);

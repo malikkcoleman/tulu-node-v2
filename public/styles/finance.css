@@ -66,7 +66,6 @@ p.subtext{
     font: 700 0.75rem/1.75rem "Montserrat", sans-serif;
 }
 
-
 .reviewInfo p{
     margin:10px 0;
     flex-direction: row;
@@ -117,6 +116,21 @@ p.subtext{
 
 .scrollBtn{height:50px;width:50px;border-radius:50%;background:#14bf98;justify-content:center;align-items:center;position:fixed;bottom:10px;right:10px}#opacity-hide{opacity:0;transition:.5s}#opacity-show{opacity:1;transition:.5s}.scrollBtn i{color:#fff}
 
+.readyToFinance{
+    margin:50px 0 10px 0 !important;
+}
+
+.creditAppBtn{
+    margin:20px 0 0 0;
+    align-items: center;
+    justify-content: center;
+    height: 3.125rem;
+    border: 0.125rem solid #14bf98;
+    border-radius: 0.25rem;
+    background-color: #14bf98;
+    color: #fff;
+    font: 700 0.75rem/1.75rem "Montserrat", sans-serif;
+}
 
 @media only screen and (max-width: 768px) {
 

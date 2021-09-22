@@ -13,6 +13,7 @@ const Address = require("../models/addressschema");
 const User = require("../models/userschema");
 const TestDrive = require("../models/testdriveschema");
 const Application = require("../models/applicationschema");
+const Appointment = require("../models/appointmentschema");
 const Event = require("../models/eventschema");
 const Blog = require("../models/blogschema");
 
@@ -57,6 +58,18 @@ pgroutr.get("/Events", (req, res) =>
       user: req.user,
       event:event
     })
+  })
+);
+
+pgroutr.get("/TradeVehicle", (req, res) =>
+  res.render("TradeVehicle", {
+    user: req.user
+  })
+);
+
+pgroutr.get("/CreditApplication", (req, res) =>
+  res.render("CreditApplication", {
+    user: req.user
   })
 );
 
@@ -170,8 +183,20 @@ function isLoggedIn(req, res, next) {
 }
 
 pgroutr.get("/dashboard", ensureAuthenticated, (req, res) =>
-  res.render("Dashboard", {
-    user: req.user,
+  Vehicle.find({dealerId:req.user.toObject().dealerId}).then((vehicle) => {
+    Dealer.find({uuid:req.user.toObject().dealerId}).then((dealer) => {
+      Appointment.find({dealerId:dealer[0]._id}).then((appointment) => {
+        TestDrive.find({dealershipNameTestDrive:dealer[0].name}).then((testDrive) => {
+          res.render("Dashboard", {
+            user: req.user,
+            vehicle: vehicle,
+            dealer: dealer,
+            appointment: appointment, 
+            testDrive: testDrive, 
+          })
+        })
+      })
+    })
   })
 );
 
