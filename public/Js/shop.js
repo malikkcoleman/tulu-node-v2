@@ -1,5 +1,5 @@
 var start = 0;
-var limit = 4;
+var limit = 10;
 $.ajax({
     url: "/shop/" + start + "/" + limit,
     method: "GET",
@@ -28,12 +28,34 @@ function getNext(){
 //     }
 //   });
 // }
+
+
+    
+    
+
+
+
+
 var view
 function renderPosts(resss){
   if (resss.vehicles.length > 0){
       console.log(resss)
     var html = "";
-    resss.vehicles.forEach(function(data){
+
+
+    function shuffleArray(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+      console.log(arr);
+      }
+  
+      let arr = Array.prototype.slice.call(resss.vehicles);
+      shuffleArray(arr);
+
+
+      arr.forEach(function(data){
         if(view == 'small'){
             html+='<li class="vehicleListItemsSmallView" id="vehicleHolder">';
             var text = '';
@@ -66,7 +88,7 @@ function renderPosts(resss){
             html += '              <a href="carview/'+ data.vin +'"><button class="moreInfo">View Vehicle</button></a>';
             html += '       </div>';
             html += '       <p class="dealership">' + data.dealer.name + '</p>';
-            html += '       <p class="views"><i class="far fa-eye"></i> '+data.views+' views</p>';
+            html += '       <p class="views"><i class="far fa-eye"></i> '+data.views+' views<p>';
             html += '   </div>';
             html += '</li>';
         }
