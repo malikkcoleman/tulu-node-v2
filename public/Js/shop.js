@@ -1,3 +1,4 @@
+
 var start = 0;
 var limit = 10;
 $.ajax({
@@ -29,13 +30,6 @@ function getNext(){
 //   });
 // }
 
-
-    
-    
-
-
-
-
 var view
 function renderPosts(resss){
   if (resss.vehicles.length > 0){
@@ -59,7 +53,9 @@ function renderPosts(resss){
         if(view == 'small'){
             html+='<li class="vehicleListItemsSmallView" id="vehicleHolder">';
             var text = '';
+            html+='<div class="imgContainer">';
             html+='    <img src="/image/'+ data.vin +'" class="carImage" alt="car-image"/>';
+            html+='</div>';
             html+='    <div class="carDetails">';
             html+='        <h2 class="carName">' + data.year + ' ' + data.make + ' ' + data.model + '</h2>';
             html+='        <p class="carPrice">$' + data.maxPrice + '</p>';
@@ -73,7 +69,9 @@ function renderPosts(resss){
         }else{
             html += '<li class="vehicleListItems" id="vehicleHolder">';
             var text = '';
-            html += '    <img src="/image/'+ data.vin +'" class="carImage" alt="car-image">';
+            html+='<div class="imgContainer">';
+            html+='    <img src="/image/'+ data.vin +'" class="carImage" alt="car-image"/>';
+            html+='</div>';
             html += '   <div class="carDetails">';
             html += '       <h2 class="carName">' + data.year + ' ' + data.make + ' ' + data.model + '</h2>';
             html += '       <p class="carPrice">$'+data.maxPrice + '</p>';

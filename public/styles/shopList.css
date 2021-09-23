@@ -36,54 +36,60 @@
     color:#79C6AC;
 }
 
-
 #Vehicles{
     justify-content: center;
-    /* flex-direction: column; */
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    /* flex-direction: row; */
+    /* flex-wrap: wrap; */
 }
 
 #Vehicles li{
-    border-left:1px solid #00000020;
-    border-right:1px solid #00000020;
-    border-radius: 10px;
-    filter: drop-shadow(0 20px 10px #00000028);
+    /* border-left:1px solid #00000020; */
+    /* border-right:1px solid #00000020; */
+    border-bottom:1px solid #00000020;
+    /* border-radius: 10px; */
+    /* filter: drop-shadow(0 20px 10px #00000028); */
     background:white;
-    justify-content: flex-end;
+    flex-direction: row ;
+    /* justify-content: flex-end; */
     align-items: center;
     padding:20px;
-    margin:30px;
-    width:300px;
+    position:relative;
+    /* margin:30px 0; */
+    width:80vw;
 }
 
+
 #Vehicles li .carImage{
-    width:300px !important;
+    width:200px !important;
 }
 
 #Vehicles li .carDetails{
-    justify-content: center;
+    /* justify-content: center; */
     /* align-items:center; */
-    margin:10px 0;
+    /* margin:10px 0; */
+    margin:0 0 0 20px;
 }
 
 #Vehicles li .carDetails .carName{
-    margin:20px 0 0 0;
+    /* margin:20px 0 0 0; */
 }
 
 #Vehicles li .carDetails h2,
 #Vehicles li .carDetails p{
-    text-align: center;
+    /* text-align: center; */
+    margin:5px 0 0 0;
 }
 
 #Vehicles li .carDetails p{
-    margin:5px 0 0 0;
+    /* margin:5px 0 0 0; */
 }
 
 
 #Vehicles li .carDetails .carPrice{
-    font-size: x-large;
-    margin:10px 0;
+    font-size: larger;
+    /* margin:10px 0; */
     color:#79C6AC;
 }
 
@@ -94,44 +100,26 @@
     border-radius: 10px;
     border:none;
     align-items: center;
-    margin:20px 0;
+    /* margin:20px 0; */
+    width:300px;
+    position: absolute;
+    right:20px;
+    top:40%;
 }
 
 #Vehicles li .dealership{
     color:#79C6AC;
-    margin:10px 0;
+    /* margin:10px 0; */
 }
 
 #Vehicles li .views{
     flex-direction: row;
-    justify-content: center;
-    margin:30px 0 0 0 !important;
+    /* justify-content: center; */
+    /* margin:30px 0 0 0 !important; */
     font-size: smaller;
     color:#00000079;
 }
 
 #Vehicles li .views i{
     margin:0 10px 0 0;
-}
-
-@media screen and (max-width: 600px) {
-
-    #gridDisplayBtn{
-        display:none;
-    }
-    
-    #Filter{
-        justify-content: flex-end;
-        /* align-items: flex-end; */
-    }
-    
-    #Vehicles{
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-
-    #Vehicles li{
-        margin:30px 0;
-    }
 }
