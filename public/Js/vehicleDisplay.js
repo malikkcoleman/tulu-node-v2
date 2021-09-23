@@ -17,9 +17,13 @@ const vehicleDisplay = () => {
 
 function myFunction(mq) {
     if (mq.matches) { // If media query matches
+        toggleDisplay="off";
+        bigView();
         document.querySelector('#displayStyle').setAttribute('href', 'styles/shop.css');
         document.querySelector('#gridDisplayBtn').className = "fas fa-th-list fa-2x";
     } else {
+        toggleDisplay="on";
+        smallView();
         document.querySelector('#displayStyle').setAttribute('href', 'styles/shopList.css');
         document.querySelector('#gridDisplayBtn').className = "fas fa-images fa-2x";
     }
