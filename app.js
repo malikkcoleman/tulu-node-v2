@@ -86,7 +86,7 @@ app.use(express.urlencoded({ extended: false }));
 // Express Session
 
 // Passport Middleware
-app.use(passport.initialize());
+
 //app.use(cookieParser());
 app.use(
   session({
@@ -95,12 +95,11 @@ app.use(
     saveUninitialized: true,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
-      httponly: false, // 1 week
+      secure: true,
     },
     store: store,
   })
 );
-app.use(passport.session());
 
 // Connect Flash
 app.use(flash());
@@ -112,6 +111,9 @@ app.use((req, res, next) => {
   res.locals.error = req.flash("error");
   next();
 });
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // ----------------------routes
 app.use("/", require("./routes/index"));

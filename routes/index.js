@@ -8,7 +8,7 @@ const Dealer = require("../models/dealershipschema");
 const uploadController = require("../controllers/upload");
 const fetchImage = require("../middleware/getImages");
 const fetchFiles = require("../middleware/getFile");
-const downloadFile = require("../middleware/downloadfile")
+const downloadFile = require("../middleware/downloadfile");
 const Address = require("../models/addressschema");
 const User = require("../models/userschema");
 const TestDrive = require("../models/testdriveschema");
@@ -27,52 +27,45 @@ pgroutr.get("/EditDealer", ensureAuthenticated, (req, res) =>
 );
 
 pgroutr.get("/", (req, res) =>
-  User.find({ role: "tulu" })
-  .then((tulu) => {
+  User.find({ role: "tulu" }).then((tulu) => {
     res.render("Index", {
       user: req.user,
-      tulu:tulu
-    })
+      tulu: tulu,
+    });
   })
 );
 
-
 pgroutr.get("/TestDrive/:vin", (req, res) => {
-  Vehicle.find({ vin: req.params.vin })
-  .then((vehicles) => {
-    Dealer.find({ uuid: vehicles[0].dealerId })
-    .then((dealer) => {
+  Vehicle.find({ vin: req.params.vin }).then((vehicles) => {
+    Dealer.find({ uuid: vehicles[0].dealerId }).then((dealer) => {
       res.render("TestDrive", {
         user: req.user,
-        vehicles:vehicles,
-        dealer:dealer
-      })
-    })
-  })
-})
+        vehicles: vehicles,
+        dealer: dealer,
+      });
+    });
+  });
+});
 
 pgroutr.get("/UploadLicense/:targetId", (req, res) => {
-  TestDrive.find({_id:req.params.targetId})
-  .then((appointment)=>{
+  TestDrive.find({ _id: req.params.targetId }).then((appointment) => {
     res.render("UploadLicense", {
       user: req.user,
-      targetId:req.params.targetId,
-      appointment:appointment
-    })
-  })
-})
+      targetId: req.params.targetId,
+      appointment: appointment,
+    });
+  });
+});
 
 pgroutr.get("/UploadResume/:targetId", (req, res) => {
-  Application.find({_id:req.params.targetId})
-  .then((application)=>{
+  Application.find({ _id: req.params.targetId }).then((application) => {
     res.render("UploadResume", {
       user: req.user,
-      targetId:req.params.targetId,
-      application:application
-    })
-  })
-})
-
+      targetId: req.params.targetId,
+      application: application,
+    });
+  });
+});
 
 pgroutr.get("/404", (req, res) =>
   res.render("404", {
@@ -129,8 +122,7 @@ pgroutr.get(
 );
 
 pgroutr.get("/shop", (req, res) => {
-  Dealer.find({})
-  .then((dealershipList) => {
+  Dealer.find({}).then((dealershipList) => {
     Vehicle.find({})
       .then((vehicles) => {
         res.render("Shop", {
@@ -146,14 +138,13 @@ pgroutr.get("/shop", (req, res) => {
 });
 
 pgroutr.get("/MessageTulu/:id", (req, res) => {
-  User.find({ _id: req.params.id })
-  .then((tulu) => {
+  User.find({ _id: req.params.id }).then((tulu) => {
     res.render("MessageTulu", {
       user: req.user,
-      tulu:tulu
-    })
-  })
-})
+      tulu: tulu,
+    });
+  });
+});
 
 pgroutr.get("/carview/:vin", (req, res) => {
   Vehicle.find({ vin: req.params.vin })
@@ -295,7 +286,7 @@ pgroutr.get("/DealerListing/:dealerId", (req, res) => {
 pgroutr.post("/upload/:type/:targetid", uploadController.uploadFile),
   (req, res) => {
     console.log(req);
-};
+  };
 
 pgroutr.get("/image/:targetid", (req, res) => {
   fetchImage.getImage(req, res);

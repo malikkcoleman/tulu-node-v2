@@ -408,8 +408,8 @@ router.post(
   }),
   (req, res) => {
     console.log(req.user.toObject().role);
-    req.sessionID = req.user.toObject()._id;
-    console.log(req.sessionID);
+    //req.sessionID = req.user.toObject()._id;
+    //console.log(req.sessionID);
     if (req.user.toObject().role === "user") {
       res.redirect("/profile");
     }

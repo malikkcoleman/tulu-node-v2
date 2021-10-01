@@ -8,6 +8,44 @@ const MongoDBSession = require("connect-mongodb-session")(session);
 //Load User Model
 const User = require("../models/User");
 
+/* const customFields = {
+  usernameField: "email",
+};
+
+const verifyCallback = (username, password, done) => {
+  User.findOne({ email: email })
+    .then((user) => {
+      if (!user) {
+        return done(null, false);
+      }
+
+      const isValid = bcrypt.compare(password, user.password);
+
+      if (isValid) {
+        render(null, user);
+      } else {
+        return done(null, false);
+      }
+    })
+    .catch((err) => console.log(err));
+};
+
+const strategy = new LocalStrategy(customFields, verifyCallback);
+
+module.exports = function (passport) {
+  passport.use(strategy);
+
+  passport.serializeUser((user, done) => {
+    done(null, user.id);
+  });
+
+  passport.deserializeUser((id, done) => {
+    User.findById(id, (err, user) => {
+      done(err, user);
+    });
+  });
+}; */
+
 module.exports = function (passport) {
   passport.use(
     new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
@@ -40,19 +78,8 @@ module.exports = function (passport) {
   });
 
   passport.deserializeUser(function (id, done) {
-    User.findById(id, function (err, user) {
+    User.findById(id, function (err, id) {
       done(err, user);
     });
   });
-
-  /*   passport.serializeUser((user, done) => {
-    done(null, user.id);
-  });
-
-  passport.deserializeUser((user, done) => {
-    User.findById(id, (err, user) => {
-      done(err, user);
-    });
-  }); */
-  //passport.session();
 };
