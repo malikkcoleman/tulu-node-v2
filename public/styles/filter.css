@@ -22,7 +22,7 @@
     color:white;
     background:#79c6ac;
     border-radius: 10px;
-    padding:5px 20px;
+    padding:15px 40px;
 }
 
 .sortBtn{
@@ -150,4 +150,18 @@ aside.sortSettings{
 .VehicleTypeLabel,.MakeSearchLabel{
     margin:20px 0 10px 0;
     color:white;
+}
+
+
+
+@media screen and (min-width: 720px) {
+    .filterSettingContainer{
+        position: absolute;
+        right:0;
+        background:#79C6AC ;
+        width:20vw;
+        height:100vh;
+        padding:20px;
+        filter: drop-shadow(-10px 0 10px #0000004d);
+    }
 }

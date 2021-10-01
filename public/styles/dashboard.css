@@ -41,8 +41,12 @@
     background: #69cf90;
 }
 
-.testDriveAppointments .icon {
+.appointments .icon {
     background: #78afcf;
+}
+
+.testDriveAppointments .icon {
+    background: #69cf90;
 }
 
 .unreadMessages .icon {
@@ -76,7 +80,7 @@
 
 
     .card .info .uploadCount {
-        color: #78afcf;
+        color: #79C6AC;
         font-size: xx-large;
     }
 
@@ -94,6 +98,12 @@
         color: #79C6AC;
         font-size: xx-large;
     }
+
+    .card .info .appointmentCount {
+        color: #79C6AC;
+        font-size: xx-large;
+    }
+
     .card .info .unreadMessageCount {
         color: #79C6AC;
         font-size: xx-large;

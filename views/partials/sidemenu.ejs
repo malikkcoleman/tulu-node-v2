@@ -19,10 +19,10 @@
             </li>
             <li class="menuItems">
                 <p class="menuDropDownTitle">
-                    <a href="/Shop">Inventory</a>
+                    <a href="/Shopage">Inventory</a>
                 </p>
             </li>
-            <li class="menuItems">
+            <!-- <li class="menuItems">
                 <p class="menuDropDownTitle" onclick="accountSubMenu()">
                     My Account
                     <i class="fas fa-sort-down accountDropMenuBtn"></i>
@@ -30,7 +30,7 @@
                 <ul class="accountSubMenuList">
                     <li class="subMenuListLink">
                         <a href="/Tulu">Profile</a>
-                    </li>
+                    </li> -->
                     <!-- <li class="subMenuListLink">
                         <a href="/messages">Messages</a>
                     </li>
@@ -40,14 +40,14 @@
                     <li class="subMenuListLink">
                         <a href="/clients">Clients</a>
                     </li> -->
-                    <li class="subMenuListLink">
+                    <!-- <li class="subMenuListLink">
                         <a href="/users/logout">Log Out</a>
                     </li>
                 </ul>
-            </li>
-            <li class="menuItems">
+            </li> -->
+            <!-- <li class="menuItems">
                 <a href="/Events">Events</a>
-            </li>
+            </li> -->
             <li class="menuItems">
                 <a href="/TuluList">Tulus</a>
             </li>
@@ -57,7 +57,7 @@
             <li class="menuItems">
                 <a href="/Finance/Finance">Finance</a>
             </li>
-            <p class="loggedInAs">Logged in as : <%- user.toObject().fName%> <%- user.toObject().lName%> </p>
+            <!-- <p class="loggedInAs">Logged in as : <%- user.toObject().fName%> <%- user.toObject().lName%> </p> -->
         <%}%>
         <%if(user.toObject().role === 'user'){%>
             <%console.log('REGULAR USER')%>
@@ -73,10 +73,10 @@
             </li>
             <li class="menuItems">
                 <p class="menuDropDownTitle">
-                    <a href="/Shop">Inventory</a>
+                    <a href="/Shopage">Inventory</a>
                 </p>
             </li>
-            <li class="menuItems">
+            <!-- <li class="menuItems">
                 <p class="menuDropDownTitle" onclick="accountSubMenu()">
                     My Account
                     <i class="fas fa-sort-down accountDropMenuBtn"></i>
@@ -98,10 +98,10 @@
                         <a href="/users/delete" style="color:red !important; padding:5px !important;">Delete My Account</a>
                     </li>
                 </ul>
-            </li>
-            <li class="menuItems">
+            </li> -->
+            <!-- <li class="menuItems">
                 <a href="/Events">Events</a>
-            </li>
+            </li> -->
             <li class="menuItems">
                 <a href="/TuluList">Tulus</a>
             </li>
@@ -111,14 +111,14 @@
             <li class="menuItems">
                 <a href="/Finance/Finance">Finance</a>
             </li>
-            <li class="menuItems">
+            <!-- <li class="menuItems">
                 <a onclick="https://www.tulucanada.com/web/careers">
                 <a onclick="window.location.href= `https://www.tulucanada.com/web/careers`">
                 <a onclick="window.open(`https://www.tulucanada.com/web/careers`)">
                     <button class="influencerBtn">Become a Tulu</button>
                 </a>
-            </li>
-            <p class="loggedInAs">Logged in as : <%- user.toObject().fName%> <%- user.toObject().lName%> </p>
+            </li> -->
+            <!-- <p class="loggedInAs">Logged in as : <%- user.toObject().fName%> <%- user.toObject().lName%> </p> -->
         <%}%>
         <%if(user.toObject().role === 'sysadmin'){%>
             <%console.log('SYSADMIN')%>
@@ -134,7 +134,7 @@
             </li>
             <li class="menuItems">
                 <p class="menuDropDownTitle">
-                    <a href="/Shop">Inventory</a>
+                    <a href="/Shopage">Inventory</a>
                 </p>
             </li>
             <!-- <li class="menuItems">
@@ -142,7 +142,7 @@
                     <a href="/WholesaleMarketplace">Wholesale Marketplace</a>
                 </p>
             </li> -->
-            <li class="menuItems">
+            <!-- <li class="menuItems">
                 <p class="menuDropDownTitle" onclick="accountSubMenu()">
                     My Account
                     <i class="fas fa-sort-down accountDropMenuBtn"></i>
@@ -167,13 +167,19 @@
                         <a href="/DashboardSysAdminTulu">Tulu</a>
                     </li>
                     <li class="subMenuListLink">
+                        <a href="/AddBlog">Add Blog</a>
+                    </li>
+                    <li class="subMenuListLink">
+                        <a href="/AddEvents">Add Event</a>
+                    </li>
+                    <li class="subMenuListLink">
                         <a href="/users/logout">Log Out</a>
                     </li>
                 </ul>
-            </li>
-            <li class="menuItems">
+            </li> -->
+            <!-- <li class="menuItems">
                 <a href="/Events">Events</a>
-            </li>
+            </li> -->
             <li class="menuItems">
                 <a href="/TuluList">Tulus</a>
             </li>
@@ -183,7 +189,7 @@
             <li class="menuItems">
                 <a href="/Finance/Finance">Finance</a>
             </li>
-            <p class="loggedInAs">Logged in as : Sys Admin </p>
+            <!-- <p class="loggedInAs">Logged in as : Sys Admin </p> -->
         <%}%>
         <%if(user.toObject().role === 'dealeradmin'){%>    
             <%console.log('DEALERADMIN or DEALERUSER')%>
@@ -199,7 +205,7 @@
             </li>
             <li class="menuItems">
                 <p class="menuDropDownTitle">
-                    <a href="/Shop">Inventory</a>
+                    <a href="/Shopage">Inventory</a>
                 </p>
             </li>
             <!-- <li class="menuItems">
@@ -207,7 +213,7 @@
                     <a href="/WholesaleMarketplace">Wholesale Marketplace</a>
                 </p>
             </li> -->
-            <li class="menuItems">
+            <!-- <li class="menuItems">
                 <p class="menuDropDownTitle" onclick="accountSubMenu()">
                     My Account
                     <i class="fas fa-sort-down accountDropMenuBtn"></i>
@@ -221,7 +227,7 @@
                     </li>
                     <li class="subMenuListLink">
                         <a href="/vehicles/DashboardVehicle">Vehicles</a>
-                    </li>
+                    </li> -->
                     <!-- <li class="subMenuListLink">
                         <a href="/DashboardUser">Users</a>
                     </li> -->
@@ -231,14 +237,14 @@
                     <li class="subMenuListLink">
                         <a href="/appointment">Appointments</a>
                     </li> -->
-                    <li class="subMenuListLink">
+                    <!-- <li class="subMenuListLink">
                         <a href="/users/logout">Log Out</a>
                     </li>
                 </ul>
-            </li>
-            <li class="menuItems">
+            </li> -->
+            <!-- <li class="menuItems">
                 <a href="/Events">Events</a>
-            </li>
+            </li> -->
             <li class="menuItems">
                 <a href="/TuluList">Tulus</a>
             </li>
@@ -248,7 +254,7 @@
             <li class="menuItems">
                 <a href="/Finance/Finance">Finance</a>
             </li>
-            <p class="loggedInAs">Logged in as : <%- user.toObject().fName%> <%- user.toObject().lName%> </p>
+            <!-- <p class="loggedInAs">Logged in as : <%- user.toObject().fName%> <%- user.toObject().lName%> </p> -->
         <%}%>
         <%if(user.toObject().role === 'dealeruser'){%>    
             <%console.log('DEALERADMIN or DEALERUSER')%>
@@ -264,7 +270,7 @@
             </li>
             <li class="menuItems">
                 <p class="menuDropDownTitle">
-                    <a href="/Shop">Inventory</a>
+                    <a href="/Shopage">Inventory</a>
                 </p>
             </li>
             <!-- <li class="menuItems">
@@ -272,7 +278,7 @@
                     <a href="/WholesaleMarketplace">Wholesale Marketplace</a>
                 </p>
             </li> -->
-            <li class="menuItems">
+            <!-- <li class="menuItems">
                 <p class="menuDropDownTitle" onclick="accountSubMenu()">
                     My Account
                     <i class="fas fa-sort-down accountDropMenuBtn"></i>
@@ -283,7 +289,7 @@
                     </li>
                     <li class="subMenuListLink">
                         <a href="/vehicles/DashboardVehicle">Vehicles</a>
-                    </li>
+                    </li> -->
                     <!-- <li class="subMenuListLink">
                         <a href="/DashboardUser">Users</a>
                     </li> -->
@@ -293,14 +299,14 @@
                     <li class="subMenuListLink">
                         <a href="/appointment">Appointments</a>
                     </li> -->
-                    <li class="subMenuListLink">
+                    <!-- <li class="subMenuListLink">
                         <a href="/users/logout">Log Out</a>
                     </li>
                 </ul>
-            </li>
-            <li class="menuItems">
+            </li> -->
+            <!-- <li class="menuItems">
                 <a href="/Events">Events</a>
-            </li>
+            </li> -->
             <li class="menuItems">
                 <a href="/TuluList">Tulus</a>
             </li>
@@ -310,7 +316,7 @@
             <li class="menuItems">
                 <a href="/Finance/Finance">Finance</a>
             </li>
-            <p class="loggedInAs">Logged in as : <%- user.toObject().fName%> <%- user.toObject().lName%> </p>
+            <!-- <p class="loggedInAs">Logged in as : <%- user.toObject().fName%> <%- user.toObject().lName%> </p> -->
         <%}%>
     <%}%>
 <%}%>
@@ -329,10 +335,10 @@
     </li>
     <li class="menuItems">
         <p class="menuDropDownTitle">
-            <a href="/Shop">Inventory</a>
+            <a href="/Shopage">Inventory</a>
         </p>
     </li>
-    <li class="menuItems">
+    <!-- <li class="menuItems">
         <p class="menuDropDownTitle" onclick="accountSubMenu()">
             My Account
             <i class="fas fa-sort-down accountDropMenuBtn"></i>
@@ -345,10 +351,10 @@
                 <a href="/users/register">Sign Up</a>
             </li>
         </ul>
-    </li>
-    <li class="menuItems">
+    </li> -->
+    <!-- <li class="menuItems">
         <a href="/Events">Events</a>
-    </li>
+    </li> -->
     <li class="menuItems">
         <a href="/TuluList">Tulus</a>
     </li>
@@ -363,5 +369,5 @@
             <button class="influencerBtn">Become a Tulu</button>
         </a>
     </li>
-    <p class="loggedInAs">Logged in as Guest</p>
+    <!-- <p class="loggedInAs">Logged in as Guest</p> -->
 <%}%> 

@@ -1,0 +1,10 @@
+    iframe{
+        margin:120px 0 0 0;
+        border:1px solid #00000050;
+        height:80vh;
+        width:80vmin;
+        padding:10px;
+        justify-self: center;
+        align-self: center;
+    }
+

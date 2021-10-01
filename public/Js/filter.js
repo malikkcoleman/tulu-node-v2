@@ -2,7 +2,7 @@ var toggleFilter="off";
 var toggleSort="off";
 const filterMenu = document.querySelector('.filterSettings');
 const filterBtn = document.querySelector('.filterBtn');
-const sortMenu = document.querySelector('.sortSettings');
+const sortMenu = document.querySelector('.filterSettings');
 
 const slideFilterMenu = () => {
     
@@ -51,67 +51,75 @@ const slideSortMenu = () => {
 };
 
 function sort(sortType){
+    console.log(sortType)
     if(sortType == "default"){
-        const eitherSort = (vehicleList = []) => {
-            vehicleList.sort(function(a, b){
-                if(a.model < b.model) { return -1; }
-                if(a.model > b.model) { return 1; }
-                return 0;
-            })
-        };
-        eitherSort(vehicleList);
-        rearrange(vehicleList);
-
+        // const eitherSort = (arr = []) => {
+        //     arr.sort(function(a, b){
+        //         if(a.model < b.model) { return -1; }
+        //         if(a.model > b.model) { return 1; }
+        //         return 0;
+        //     })
+        // };
+        // eitherSort(arr);
+        // rearrange(arr);
+        shuffleArray(arr)
+        populateVehicle(arr);
         $('.sortBreadCrumbs span').empty();
         $('.sortBreadCrumbs span').append("Default");
 
         
     }else if(sortType == "lowToHigh"){
-        const eitherSort = (vehicleList = []) => {
+        const eitherSort = (gVehicle = []) => {
             const sorter = (a, b) => {
                 return +a.maxPrice - +b.maxPrice;
             };
-            vehicleList.sort(sorter);
+            gVehicle.sort(sorter);
+            rearrange(gVehicle);
+            console.log(gVehicle);
         };
-        eitherSort(vehicleList);
-        rearrange(vehicleList);
-
+        eitherSort(gVehicle);
         $('.sortBreadCrumbs span').empty();
         $('.sortBreadCrumbs span').append("Low To High");
 
     }else if(sortType == "highToLow"){
-        const eitherSort = (vehicleList = []) => {
+        const eitherSort = (gVehicle = []) => {
             const sorter = (a, b) => {
                 return +a.maxPrice - +b.maxPrice;
             };
-            vehicleList.reverse(sorter);
+            gVehicle.reverse(sorter);
+            rearrange(gVehicle);
+            console.log(gVehicle);
         };
-        eitherSort(vehicleList);
-        rearrange(vehicleList);
-
+        eitherSort(gVehicle); 
         $('.sortBreadCrumbs span').empty();
-        $('.sortBreadCrumbs span').append("highToLow");
+        $('.sortBreadCrumbs span').append("High To Low");
 
     }else if(sortType == "kilometers"){
-        const eitherSort = (vehicleList = []) => {
+        const eitherSort = (gVehicle = []) => {
             const sorter = (a, b) => {
+                if(a==null){
+                    a=0;
+                }
+                if(b==null){
+                    b=0;
+                }
                 return +a.mileage - +b.mileage;
             };
-            vehicleList.sort(sorter);
+            gVehicle.sort(sorter);
+            rearrange(gVehicle);
+            console.log(gVehicle);
         };
-        eitherSort(vehicleList);
-        rearrange(vehicleList);
-
+        eitherSort(gVehicle);
         $('.sortBreadCrumbs span').empty();
-        $('.sortBreadCrumbs span').append("kilometers");
+        $('.sortBreadCrumbs span').append("Kilometers");
     }
     
-    const sortMenu = document.querySelector('.sortSettings');
+    const sortMenu = document.querySelector('.filterSettings');
     sortMenu.style = "width:0vw;overflow:hidden;right:-430px;transition:0.5s ease-out;";
     toggleSort="off";
 }
 
-function rearrange(vehicleList){
+function rearrange(){
     if(toggleDisplay == "off"){
         bigView();
         document.querySelector('.vehicleList').style="align-items:center;";

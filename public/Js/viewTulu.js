@@ -1,6 +1,4 @@
-var tuluId = null;
-    var tuluList = <%-JSON.stringify(tulu)%>;
-    var addressList = <%-JSON.stringify(address)%>;
+
     window.onload = function () {
         var hash;
         var hashes = window.location.href.slice(window.location.href.indexOf("?") + 1).split("&");

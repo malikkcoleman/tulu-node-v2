@@ -29,7 +29,7 @@
     </nav>
     <div class="dropDownMenu">
         <ul>
-            <%- include partials/dropDownMenu %>
+            <!-- <%- include partials/dropDownMenu %> -->
         </ul>
     </div>
 
@@ -106,4 +106,9 @@
 </body>
 <script src="../Js/sideMenu.js"></script>
 <script src="../Js/viewTulu.js"></script>
+<script>
+    var tuluId = null;
+    var tuluList = <%-JSON.stringify(tulu)%>;
+    var addressList = <%-JSON.stringify(address)%>;
+</script>
 </html>

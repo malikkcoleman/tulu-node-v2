@@ -71,6 +71,38 @@ const uploadFile = async (req, res) => {
         })
         res.redirect('/UploadResume/'+req.params.targetid) 
       })
+    }else if(req.params.type == 'event'){
+      await upload(req, res);
+      console.log(req.params)
+      imageType = "event"
+      Image.updateMany({target_id: req.params.targetid}, {is_deleted: true}).then(function(data){
+        const image = new Image({
+            image_type: imageType,
+            target_id: req.params.targetid,
+            is_deleted: false,
+            file_id: req.file.id,
+            is_display_photo: true
+        })
+        image.save().then(function(){
+        })
+        res.redirect('/UploadEvent/'+req.params.targetid) 
+      })
+    }else if(req.params.type == 'blog'){
+      await upload(req, res);
+      console.log(req.params)
+      imageType = "blog"
+      Image.updateMany({target_id: req.params.targetid}, {is_deleted: true}).then(function(data){
+        const image = new Image({
+            image_type: imageType,
+            target_id: req.params.targetid,
+            is_deleted: false,
+            file_id: req.file.id,
+            is_display_photo: true
+        })
+        image.save().then(function(){
+        })
+        res.redirect('/UploadBlog/'+req.params.targetid) 
+      })
     }
 
     if (req.file == undefined) {

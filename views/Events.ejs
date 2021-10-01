@@ -32,7 +32,7 @@
     </nav>
     <div class="dropDownMenu">
         <ul>
-            <%- include partials/dropDownMenu %>
+            <!-- <%- include partials/dropDownMenu %> -->
         </ul>
     </div>
 
@@ -52,5 +52,9 @@
     <%- include partials/footer %>
   </body>
   <script src="Js/sideMenu.js"></script>
+  <script>    
+    var event = <%- JSON.stringify(event)%>
+    console.log(event)
+  </script>
   <script src="Js/events.js"></script>
 </html>

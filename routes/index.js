@@ -13,6 +13,9 @@ const Address = require("../models/addressschema");
 const User = require("../models/userschema");
 const TestDrive = require("../models/testdriveschema");
 const Application = require("../models/applicationschema");
+const Appointment = require("../models/appointmentschema");
+const Event = require("../models/eventschema");
+const Blog = require("../models/blogschema");
 
 pgroutr.get("/EditDealer", ensureAuthenticated, (req, res) =>
   Dealer.find({ uuid: req.user.toObject().dealerId }).then((dealer) => {
@@ -27,11 +30,64 @@ pgroutr.get("/EditDealer", ensureAuthenticated, (req, res) =>
 );
 
 pgroutr.get("/", (req, res) =>
+<<<<<<< HEAD
   User.find({ role: "tulu" }).then((tulu) => {
     res.render("Index", {
       user: req.user,
       tulu: tulu,
     });
+=======
+  User.find({ role: "dealeradmin" })
+  .then((dealerAdmin) => {
+    Dealer.find({})
+    .then((dealer) => {
+      Blog.find({})
+      .then((blog) => {
+        User.find({ role: "tulu" })
+        .then((tulu) => {
+          res.render("Index", {
+            user: req.user,
+            tulu:tulu,
+            blog:blog,
+            dealer:dealer,
+            dealershipList:dealerAdmin
+          })
+        })
+      })
+    })
+  })
+);
+
+pgroutr.get("/Events", (req, res) =>
+  Event.find({})
+  .then((event) => {
+    res.render("Events", {
+      user: req.user,
+      event:event
+    })
+  })
+);
+
+pgroutr.get("/TradeVehicle", (req, res) =>
+  res.render("TradeVehicle", {
+    user: req.user
+  })
+);
+
+pgroutr.get("/CreditApplication", (req, res) =>
+  res.render("CreditApplication", {
+    user: req.user
+  })
+);
+
+pgroutr.get("/EventList", (req, res) =>
+  Event.find({})
+  .then((eventList) => {
+    res.render("EventList", {
+      user: req.user,
+      eventList:eventList
+    })
+>>>>>>> main
   })
 );
 
@@ -57,15 +113,65 @@ pgroutr.get("/UploadLicense/:targetId", (req, res) => {
   });
 });
 
+pgroutr.get("/UploadEvent/:targetId", (req, res) => {
+  Event.find({_id:req.params.targetId})
+  .then((event)=>{
+    res.render("UploadEvent", {
+      user: req.user,
+      targetId:req.params.targetId,
+      event:event
+    })
+  })
+})
+
+pgroutr.get("/UploadBlog/:targetId", (req, res) => {
+  Event.find({_id:req.params.targetId})
+  .then((blog)=>{
+    res.render("UploadBlog", {
+      user: req.user,
+      targetId:req.params.targetId,
+      blog:blog
+    })
+  })
+})
+
 pgroutr.get("/UploadResume/:targetId", (req, res) => {
   Application.find({ _id: req.params.targetId }).then((application) => {
     res.render("UploadResume", {
       user: req.user,
+<<<<<<< HEAD
       targetId: req.params.targetId,
       application: application,
     });
   });
 });
+=======
+      targetId:req.params.targetId,
+      application:application
+    })
+  })
+})
+
+pgroutr.get("/Blog/:targetId", (req, res) =>
+  Blog.find({_id:req.params.targetId})
+  .then((blog)=>{
+    res.render("Blog", {
+      user: req.user,
+      blog:blog,
+    })
+  })
+);
+
+pgroutr.get("/BlogList", (req, res) =>
+  Blog.find({})
+  .then((blogList) => {
+    res.render("BlogList", {
+      user: req.user,
+      blogList:blogList
+    })
+  })
+);
+>>>>>>> main
 
 pgroutr.get("/404", (req, res) =>
   res.render("404", {
@@ -88,8 +194,20 @@ function isLoggedIn(req, res, next) {
 }
 
 pgroutr.get("/dashboard", ensureAuthenticated, (req, res) =>
-  res.render("Dashboard", {
-    user: req.user,
+  Vehicle.find({dealerId:req.user.toObject().dealerId}).then((vehicle) => {
+    Dealer.find({uuid:req.user.toObject().dealerId}).then((dealer) => {
+      Appointment.find({dealerId:dealer[0]._id}).then((appointment) => {
+        TestDrive.find({dealershipNameTestDrive:dealer[0].name}).then((testDrive) => {
+          res.render("Dashboard", {
+            user: req.user,
+            vehicle: vehicle,
+            dealer: dealer,
+            appointment: appointment, 
+            testDrive: testDrive, 
+          })
+        })
+      })
+    })
   })
 );
 
@@ -121,21 +239,38 @@ pgroutr.get(
     })
 );
 
-pgroutr.get("/shop", (req, res) => {
-  Dealer.find({}).then((dealershipList) => {
+pgroutr.get("/shop/:start/:limit", (req, res) => {
+  Dealer.find({})
+  .then((dealershipList) => {
     Vehicle.find({})
-      .then((vehicles) => {
-        res.render("Shop", {
-          vehicles: vehicles,
+      .skip(parseInt(req.params.start))
+      .limit(parseInt(req.params.limit))
+      .then(async (vehicles) => {
+        var vehiclelist = []
+        await vehicles.forEach(function(vec){
+          vec = JSON.parse(JSON.stringify(vec));
+          vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
+          vehiclelist.push(vec)
+        })
+        res.send({
+          vehicles: vehiclelist,
           dealershipList: dealershipList,
           user: req.user,
         });
-      })
-      .catch((err) => {
-        res.status(500).send(error);
+      }).catch((err) => {
+        console.log(err)
       });
   });
 });
+
+pgroutr.get("/Shopage", (req, res) => {
+  console.log('tite')
+    res.render("Shop", {
+      vehicles: '',
+      dealershipList: '',
+      user: req.user,
+    })
+})
 
 pgroutr.get("/MessageTulu/:id", (req, res) => {
   User.find({ _id: req.params.id }).then((tulu) => {
@@ -158,14 +293,24 @@ pgroutr.get("/carview/:vin", (req, res) => {
                   const images = await fetchImage.getImagesArray(
                     req.params.vin
                   );
-                  console.log(images);
-                  res.render("CarView", {
-                    vehicles: vehicles,
-                    user: req.user,
-                    dealers: dealers,
-                    dealerAdmin: dealerAdmin,
-                    address: address,
-                    images: images,
+                  var myquery = { vin: vehicles[0].vin };
+
+                  var newView = vehicles[0].views + 1;
+
+                  var newvalues = {
+                    views:newView
+                  }
+
+                  Vehicle.updateOne(myquery, newvalues).then((updatedVehicle) => {
+                    console.log(images);
+                    res.render("CarView", {
+                      vehicles: vehicles,
+                      user: req.user,
+                      dealers: dealers,
+                      dealerAdmin: dealerAdmin,
+                      address: address,
+                      images: images,
+                    });
                   });
                 }
               );

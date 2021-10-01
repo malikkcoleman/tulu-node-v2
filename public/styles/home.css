@@ -7,6 +7,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    box-shadow:0 -25px 10px 0 white inset;
 }
 
 .header img{
@@ -25,8 +26,18 @@
 .header .bannerTesla{
     filter: drop-shadow(0 10px 10px #00000079); 
     opacity: 1;
-    height:500px;
+    height:350px;
 }
+
+/* .bannerTesla{
+    transform: scale(1)translateX(0px)translateY(0px);
+    transition: 0.5s;
+}
+
+.bannerTesla:hover{
+    transform: scale(1.05)translateX(-100px)translateY(20px);
+    transition: 0.5s;
+} */
 
 .header h1 {
     color: white;
@@ -84,13 +95,13 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    padding: 50px 0;
+    padding: 0 0 50px 0;
 }
 
 .firstSection div {
     width: 500px;
-    height: 300px;
-    justify-content: center;
+    height: 450px;
+    justify-content: end;
     align-items: center;
     margin: 20px;
     border-radius: 20px;
@@ -107,11 +118,11 @@
     overflow: hidden;
 }
 
-.getApproved a img,.browse a img{
+.getApproved a img,.browse a img,.tradeInfo a img{
     width:350px;
 }
 
-.getApproved a h2,.browse a h2{
+.getApproved a h2,.browse a h2,.tradeInfo a h2{
     color:#83dabd;
     margin:20px 0 0 0;
 }
@@ -120,45 +131,232 @@
 /* 2nd Section */
 /* Partners */
 .secondSection {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     background:#79C6AC;
     padding:50px 0;
+    position: relative;
+    /* height:120px 0; */
+    overflow: hidden;
 }
 
-.partnerList {
-    width:100%;
+.secondSection .circle{
+    height:120vh;
+    width:120vh;
+    right:-120px;
+    border-radius: 50%;
+    position: absolute;
+    background:#ffffff50;
+    overflow: hidden;
+}
+
+.col-left{
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+
+.col-left,.col-right{
+    width:700px;
+    margin:0 100px;
+    position: relative;
+    /* height:60vh; */
+}
+
+.col-left h1,.col-left,h3{
+    color:white;
+}
+
+.col-left h1{
+    font-size: 40px;
+}
+
+.col-left h3{
+    margin:20px 0 0 0;
+}
+
+.col-right{
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.col-right img{
+    width:400px;
+}
+
+.col-right .carousel{
+    justify-content: center;
+    align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
+}
+
+.col-right .carousel li{
+    margin:20px;
+    overflow: hidden;
+    border-radius:10px;
+}
+
+.col-right .carousel li img{
+    height:120px;
+    width:120px;
+}
+  
+  .carouselContainer {
+    margin: 0 auto;
+    width: 300px;
+    height: 300px;
+    position: relative;
+    perspective: 1000px;
+  }
+  
+  .carousel {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+  }
+  
+  .item {
+    filter: drop-shadow(0 10px 50px #00000013);
+    display: flex;
+    position: absolute;
+    background: #000;
+    margin:0 50px;
+    /* width: 250px; */
+    /* height: 200px; */
     justify-content: center;
-    padding: 30px 0;
-}
-
-.partnerListItems {
-    margin: 10px 20px;
-}
-
-.dealershipHeading {
-    color: white;
-    padding: 20px 0;
-}
-
-
-.partnerListItems img{
-    width:250px;
-}
-
-.secondSection button{
-    width:300px;
-    padding:15px 0;
     align-items: center;
+    /* line-height: 200px; */
+    font-size: 5em;
+    text-align: center;
+    color: #FFF;
+    opacity: 0.95;
     border-radius: 10px;
-    border:2px solid white;
-    color:white;
-    background:transparent;
-}
+  }
+  
+  .a {
+    transform: rotateY(0deg) translateZ(250px);
+    background: #ed1c24;
+  }
+  .b {
+    transform: rotateY(60deg) translateZ(250px);
+    background: #0072bc;
+  }
+  .c {
+    transform: rotateY(120deg) translateZ(250px);
+    background: #39b54a;
+  }
+  .d {
+    transform: rotateY(180deg) translateZ(250px);
+    background: #f26522;
+  }
+  .e {
+    transform: rotateY(240deg) translateZ(250px);
+    background: #630460;
+  } 
+  .f {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .g {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .h {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .i {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .j {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .k {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .l {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .m {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .n {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .o {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .p {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .q {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .r {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .s {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .t {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .u {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .v {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .w {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .x {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .y {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  .z {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #8c6239;
+  }
+  
+  .next, .prev {
+    position: absolute;
+    display:none;
+    /* top: 100px; */
+    bottom:-10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: box-shadow 0.1s, top 0.1s;
+  }
+  .next { right: 5em; }
+  .prev { left: 5em; }
+
+  .next i,.prev i{
+      color:#ffffff;
+  }
+
 
 /* 3rd Section */
 /* Influencers */
@@ -225,6 +423,65 @@
     color:goldenrod;
 }
 
+/* Blog */
+
+
+.blogSection{
+    /* border:1px solid red; */
+}
+
+.blogSection ul{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    padding:20px 30px;
+}
+
+.blogSection ul li{
+    padding:30px;
+    width:300px;
+    margin:30px;
+    border-radius: 10px;
+    overflow: hidden;
+    filter:drop-shadow(0 10px 10px #00000050);
+    background:white;
+}
+
+.blogSection ul li img{
+    width:300px;
+}
+
+.blogSection ul li .tag{
+    flex-direction: row;
+    margin:20px 0 30px 0;
+    color:#79C6AC;
+}
+
+.blogSection ul li .title{
+    margin:0 0 20px 0;
+}
+
+.blogSection ul li .tag span{
+    color:#79C6AC;
+    /* margin:0 0 0 10px; */
+    /* padding:0 0 0 10px; */
+    /* border-left: 1px solid #00000050; */
+}
+
+.blogSection ul li a{
+    margin:20px 0 0 0;
+    flex-direction: row;
+    color:#79C6AC;
+}
+
+.blogSection ul li a i{
+    margin:0 0 0 10px ;
+    color:#79C6AC;
+}
+
+
+
 /* 4th Section */
 /* PopularCars */
 .fourthSection {
@@ -245,6 +502,127 @@
 
 .videoContainer video{
     margin:20px 0;
+}
+
+
+/* Reviews */
+
+.reviewsContainer{
+    /* padding:150px 0; */
+    height:60vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    /* background:#1A2A33; */
+    background: linear-gradient(#79C6AC,#ffffff),url('/images/reviews.jpg');
+    background-position: center;
+    background-blend-mode: multiply;
+    /* filter: drop-shadow(inset 0 10px 10px 10px #000000); */
+    box-shadow: inset 0px 0px 20px #00000050;
+    background-size: cover;
+    background-attachment: fixed;
+    margin:0 0 50px 0;
+}
+
+.reviewsContainer i{
+    color:white;
+}
+
+.reviewCard{
+    margin:0 20px ;
+    width:60vmin;
+    background:#ffffff;
+    padding:30px;
+    filter: drop-shadow(0 0 10px #00000050);
+    /* color:white; */
+    /* border-radius: 10px; */
+}
+
+.reviewCard{
+    transition:0.5s;
+    transform: scale(1);
+}
+
+.reviewCard:hover{
+    transition:0.5s;
+    transform: scale(1.03);
+}
+
+.clientName{
+    color:#79C6AC;
+    /* margin:0 0 20px 0; */
+}
+
+.reviewCard .rating{
+    margin:10px 0;
+    flex-direction: row;
+}
+
+.rating i{
+    color:goldenrod;
+}
+
+.review{
+    border-top: 1px solid #79C6AC;
+    padding:10px 0 0 0;
+    color:#79C6AC;
+}
+
+
+#reviewTwo,#reviewThree{
+    display:none;
+}
+
+#arrow{
+    color:#ffffff;
+    transition: 0.5s;
+}
+
+#arrow:hover{
+    color:#79C6AC;
+    transition: 0.2s;
+}
+
+/* Career */
+.career{
+    justify-content: center;
+    align-items: center;
+    margin:0 0 60px 0;
+    flex-direction: row;
+}
+
+.career img{
+    width:500px;
+}
+
+.career .jobInfo{
+    padding:30px;
+    width:400px;
+}
+
+.career .jobInfo .jobTitle{
+    color:#79C6AC;
+}
+
+.career .jobInfo .location{
+    font-size:small;
+}
+
+.career .jobInfo .jobDescription{
+    margin:20px 0 0 0;
+    color:#79C6AC;
+    font-size: larger;
+}
+
+.career .jobInfo button{
+    padding:15px 20px;
+    border-radius: 10px;
+    color:white;
+    justify-content: center;
+    align-items: center;
+    background:#79C6AC;
+    border:none;
+    margin:20px 0 0 0;
 }
 
 
@@ -275,8 +653,10 @@
         position: absolute;
         z-index: -2;
         opacity: 0.2;
-        height:250px;
+        height:150px;
     }
+
+    
 
     .searchSection{
         padding:20px 15px;
@@ -342,10 +722,172 @@
     .partnerListItems img{
         width:150px;
     }
+
+
+    .blogSection ul li img{
+        width:unset !important;
+    }
+
+    video{
+        width:80vmin !important;
+    }
+
+
+    
+    .reviewsContainer{
+        background: linear-gradient(#79C6AC,#ffffff),url('/images/reviews.jpg');
+        background-position: center;
+        background-blend-mode: multiply;
+        background-size: cover;
+        margin:0 0 50px 0;
+    }
+
+    .reviewsContainer i{
+        color:white;
+    }
+
+    .reviewCard{
+        margin:0 20px ;
+        width:60vmin;
+        background:#ffffff;
+        padding:30px;
+        filter: drop-shadow(0 0 10px #00000050);
+        /* color:white; */
+        /* border-radius: 10px; */
+    }
+
+    .reviewCard{
+        transition:0.5s;
+        transform: scale(1);
+    }
+
+    .reviewCard:hover{
+        transition:0.5s;
+        transform: scale(1);
+    }
+
+    #arrow{
+        color:#ffffff;
+        transition: 0.5s;
+    }
+    
+    #arrow:hover{
+        color:#ffffff;
+        transition: 0.2s;
+    }
+
+    .career{
+        flex-direction: column !important;
+    }
+
+    .career img{
+        width:80vmin;
+    }
+
+    .career .jobInfo{
+        width:80vmin;
+    }
+
+
+    .secondSection {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background:#79C6AC;
+        padding:50px 0;
+        position: relative;
+        /* height:120px 0; */
+        overflow: hidden;
+    }
+    
+    .secondSection .circle{
+        display: none !important;
+    }
+    
+    .col-left{
+        /* justify-content: center; */
+        /* align-items: center; */
+    }
+    
+    .col-left,.col-right{
+        width:80vmin;
+        margin:0 100px;
+        position: relative;
+        /* height:60vh; */
+    }
+    
+    .col-left h1,.col-left,h3{
+        color:white;
+    }
+    
+    .col-left h1{
+        font-size: 40px;
+        text-align: center;
+    }
+    
+    .col-left h3{
+        margin:20px 0 0 0;
+        text-align: center;
+    }
+    
+    .col-right{
+        /* justify-content: center; */
+        align-items: center;
+    }
+    
+    .col-right img{
+        display: none !important;
+    }
+    
+    .col-right ul{
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .col-right ul li{
+        margin:50px 20px 20px 20px;
+        overflow: hidden;
+        border-radius:10px;
+    }
+    
+    .col-right ul li img{
+        height:120px;
+        width:120px;
+        display: flex !important;
+    }
+
+    .next { right: 50px; }
+    .prev { left: 50px; }
 }
 
 
 @media screen and (min-width: 600px) {
+
+    .tradeInfo img{
+        transform: scale(1);
+        transition: 0.5s;
+    }
+
+    .tradeInfo h2{
+        transform: scale(1);
+        transition: 1s;
+    }
+
+    .tradeInfo:hover img{
+        transform: scale(1.05);
+        filter: drop-shadow(0 15px 15px #00000021);
+        transition: 0.5s;
+    }
+
+    .getApprtradeInfooved:hover h2{
+        transform: scale(1.05);
+        transition: 1s;
+        color:#3ae0a9;
+    }
+
+
     .getApproved img{
         transform: scale(1);
         transition: 0.5s;
@@ -390,14 +932,5 @@
         color:#3ae0a9;
     }
 
-    .secondSection button{
-        transition: 0.5s;
-    }
 
-    .secondSection button:hover{
-        border:2px solid white;
-        color:#79C6AC;
-        background:white;
-        font-weight: bolder;
-    }
 }

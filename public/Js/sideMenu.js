@@ -30,7 +30,7 @@ const shopSubMenu = () => {
     const shopSubMenuList = document.querySelector('.shopSubMenuList');
     const shopDropMenuBtn = document.querySelector('.shopDropMenuBtn');
     if(shopToggle=="off"){
-        shopSubMenuList.style = "height:80px; padding:10px 0; opacity:1; transition:0.5s ease-out;";
+        shopSubMenuList.style = "height:120px; padding:10px 0; opacity:1; transition:0.5s ease-out;";
         shopDropMenuBtn.style = "transform:rotateX(180deg); transition:0.5s;";
         shopToggle="on";
     }else{
@@ -49,7 +49,7 @@ const accountSubMenu = () => {
     if(accountToggle=="off"){
         accountSubMenuList.style = "display:flex !important;";
         setTimeout(function(){
-            accountSubMenuList.style = "display:flex !important; height:200px; padding: 10px 10px;transition:0.5s;";
+            accountSubMenuList.style = "display:flex !important; height:230px; padding: 10px 10px;transition:0.5s;";
         }, 100);
         accountDropMenuBtn.style = "transform:rotateX(180deg); transition:0.5s;";
         accountToggle="on";

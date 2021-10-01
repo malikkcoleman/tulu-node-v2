@@ -129,6 +129,8 @@ app.use("/contact", require("./routes/contact"));
 app.use("/finance", require("./routes/finance"));
 app.use("/testdrive", require("./routes/testDrive"));
 app.use("/application", require("./routes/application"));
+app.use("/events", require("./routes/events"));
+app.use("/blogs", require("./routes/blogs"));
 // ---------------------------------
 
 app.use(express.static(__dirname + "/public"));

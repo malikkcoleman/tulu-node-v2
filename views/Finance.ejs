@@ -34,7 +34,7 @@
     </nav>
     <div class="dropDownMenu">
         <ul>
-            <%- include partials/dropDownMenu %>
+            <!-- <%- include partials/dropDownMenu %> -->
         </ul>
     </div>
 
@@ -58,7 +58,11 @@
               </div>
               <input type="text" class="hiddenInput" id="condition" name="condition">
               <p>We have $0 down options available, making it even easier for you to get the car you want.</p>
-          </div>
+              <h1 class="readyToFinance">Ready to finance?</h1>
+              <a href="/CreditApplication" class="creditAppBtn">
+                Full Finance Application
+              </a>
+            </div>
           <img src="../images/car.png" alt="">
       </section>
       
@@ -331,7 +335,6 @@
           </div>
       </div>
 
-    <!-- <%- include partials/footer %> -->
   </body>
   <script src="../Js/sideMenu.js"></script>
   <script src="../Js/financeUI.js"></script>

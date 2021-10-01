@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="styles/css/all.css" />
     <link rel="stylesheet" href="styles/nav.css" />
     <link rel="stylesheet" href="styles/filter.css" />
-    <link rel="stylesheet" href="styles/shop.css" />
+    <link rel="stylesheet" id="displayStyle" href="styles/shop.css" />
     <link rel="stylesheet" href="styles/footer.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -34,7 +34,7 @@
     </nav>
     <div class="dropDownMenu">
         <ul>
-            <%- include partials/dropDownMenu %>
+            <!-- <%- include partials/dropDownMenu %> -->
         </ul>
     </div>
 
@@ -48,7 +48,7 @@
     <div class="container body-content">
       <div id="Filter" class="filter">
         <i
-          class="fas fa-th-list"
+          class="fas fa-th-list fa-2x"
           id="gridDisplayBtn"
           onclick="vehicleDisplay()"
         ></i>
@@ -67,7 +67,7 @@
             <label for="MakeSearch" class="MakeSearchLabel">Make :</label>
 
             <select name="MakeSearch" id="MakeSearch" onchange="SearchVehicles()">
-              <option value=""></option>
+              <option value="">Any</option>
               <option value="Acura">Acura</option>
               <option value="AlfaRomeo">AlfaRomeo</option>
               <option value="Audi">Audi</option>
@@ -119,7 +119,7 @@
             >
 
             <select name="VehicleTypeSearch" id="VehicleTypeSearch" onchange="SearchVehicles()">
-              <option value=""></option>
+              <option value="">Any</option>
               <option value="sedan">Sedan</option>
               <option value="coupe">Coupe</option>
               <option value="hatchback">Hatchback</option>
@@ -172,17 +172,13 @@
             id="searchButton"
             onclick="SearchVehicles();"
           />
-          <input
+          <!-- <input
             type="button"
             value="Clear"
             id="searchButton"
             onclick="location.reload();"
-          />
+          /> -->
         </div>
-      </aside>
-
-      <aside id="SortSettings" class="sortSettings">
-        
       </aside>
 
       <!-- VEHICLE LIST -->
@@ -198,7 +194,7 @@
         </div>
 
         <ul id="Vehicles" class="vehicleList">
-          <div class="loading">
+          <div class="loading" id="loading">
             <p>Fetching Data.</p>
           </div>
         </ul>
@@ -228,13 +224,25 @@
     <script src="Js/shop.js"></script>
   <%}%>
   <script>
-    var dealershipList = <%-JSON.stringify(dealershipList)%>;
-    console.log(dealershipList);
-    var vehicleListDefault = <%-JSON.stringify(vehicles)%>;
-    var vehicleList = vehicleListDefault;
-    console.log(vehicleList);
-    populateVehicle(vehicleList);
+    // var dealershipList = <%-JSON.stringify(dealershipList)%>;
+    // console.log(dealershipList);
+    // var vehicleListDefault = <%-JSON.stringify(vehicles)%>;
+    // var gVehicle = [];
+
+    // function shuffleArray(arr) {
+    //   for (let i = arr.length - 1; i > 0; i--) {
+    //     const j = Math.floor(Math.random() * (i + 1));
+    //     [arr[i], arr[j]] = [arr[j], arr[i]];
+    //   }
+    // console.log(arr);
+    // gVehicle=arr;
+    // }
+
+    // let arr = Array.prototype.slice.call(vehicleListDefault);
+    // shuffleArray(arr);
+
+    // console.log(arr);
+    // populateVehicle(gVehicle);
   </script>
-  
-  
+
 </html>

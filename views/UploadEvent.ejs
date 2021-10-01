@@ -1,0 +1,79 @@
+<html>
+<head>
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulu Canada</title>
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/css/all.css" />
+    <link rel="stylesheet" href="../styles/nav.css" />
+    <link rel="stylesheet" href="../styles/uploadEvent.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
+<%- include partials/googleAnalytics %>
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="../images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    <%- include partials/navbar %>
+    </nav>
+    <div class="dropDownMenu">
+        <ul>
+            <!-- <%- include partials/dropDownMenu %> -->
+        </ul>
+    </div>
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            <%- include partials/sidemenu %>
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+    <div class="container body-content">
+        <div class="uploadEvent">
+          <h1>Event Photo Uploader</h1>
+          
+          <div class="userImage" style="position: relative; height: 100px; width: 100px;">
+            <div class=" preview-images" style="height: 100px; width: 100px; position: absolute;">
+            </div>
+              <img src="/image/<%= targetId %>" alt="" class="face" width="100px" height="100px">
+          </div>
+            <div id="upload-photos">
+                <div class="form-group" style="display:none;">
+                	<label for="photos-input">Load Image</label>
+                	<input id="photos-input" type="file" name="photos[]" onchange="uploadImage()" multiple="multiple" accept="image/*" capture />
+                    <input class="btn btn-default" id="uploadBtn" style="display:none;" type="submit" name="Photo Uploads" value="Upload" />
+                </div>
+                <div id="thumbnailContainer">
+                
+                </div>
+            </div>
+            
+            <form class="mt-4" action="/upload/event/<%= targetId %>" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <input type="file" name="file" onchange="upload()" id="input-files" class="form-control-file border" accept=".png,.jpg,.jpeg"/>
+            </div>
+            <button type="submit" class="btn btn-primary" style="display:none;">Submit</button>
+            <a href="/events">
+                <button type="button" class="btn" id="complete">DONE</button>
+            </a>
+          </form>
+          </div>
+    </div>
+</body>
+<script src="../Js/sideMenu.js"></script>
+<script src="../Js/privileges.js"></script>
+<script src="../Js/uploadPhoto.js"></script>
+<script>
+    var targetId = <%- JSON.stringify(targetId)%>
+    console.log(targetId)
+    var event = <%- JSON.stringify(event)%>
+    console.log(event)
+</script>
+</html>

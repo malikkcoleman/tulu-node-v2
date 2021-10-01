@@ -30,7 +30,7 @@
     </nav>
     <div class="dropDownMenu">
         <ul>
-            <%- include partials/dropDownMenu %>
+            <!-- <%- include partials/dropDownMenu %> -->
         </ul>
     </div>
 
@@ -57,11 +57,7 @@
                     <%= user.toObject().role%>
                 </p>
                 <div class="userRating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="far fa-star"></i>
+                    
                 </div>
                 <p class="carsSold">Cars sold:<span>0</span></p>
                 <p class="userBio">
@@ -211,5 +207,58 @@
 
 </body>
 <script src="Js/sideMenu.js"></script>
-<script src="Js/privileges.js"></script>
+<script>
+
+    var user = <%- JSON.stringify(user)%>
+    console.log(user)
+
+    window.onload = function () {
+        populate();
+    }
+
+    function populate(){
+        var html="";
+		if(user.ratings == 5){
+			for(x=0;x!=5;x++){
+				html = html + '		    <i class="fas fa-star"></i>';
+			}
+		}else if(user.ratings == 4){
+			for(x=0;x!=4;x++){
+				html = html + '		    <i class="fas fa-star"></i>';
+			}
+			html = html + '		    <i class="far fa-star"></i>';
+		}else if(user.ratings == 3){
+			for(x=0;x!=3;x++){
+				html = html + '		    <i class="fas fa-star"></i>';
+			}
+			html = html + '		    <i class="far fa-star"></i>';
+			html = html + '		    <i class="far fa-star"></i>';
+		}else if(user.ratings == 2){
+			for(x=0;x!=2;x++){
+				html = html + '		    <i class="fas fa-star"></i>';
+			}
+			html = html + '		    <i class="far fa-star"></i>';
+			html = html + '		    <i class="far fa-star"></i>';
+			html = html + '		    <i class="far fa-star"></i>';
+		}else if(user.ratings == 1){
+			html = html + '		    <i class="fas fa-star"></i>';
+			html = html + '		    <i class="far fa-star"></i>';
+			html = html + '		    <i class="far fa-star"></i>';
+			html = html + '		    <i class="far fa-star"></i>';
+			html = html + '		    <i class="far fa-star"></i>';
+		}else{
+			html = html + '		    <i class="far fa-star"></i>';
+			html = html + '		    <i class="far fa-star"></i>';
+			html = html + '		    <i class="far fa-star"></i>';
+			html = html + '		    <i class="far fa-star"></i>';
+			html = html + '		    <i class="far fa-star"></i>';
+		}
+
+        $('.userRating').empty();
+        $('.userRating').append(html);
+
+        $('.carsSold span').empty();
+        $('.carsSold span').append(user.carsSold);
+    }		
+</script>
 </html>

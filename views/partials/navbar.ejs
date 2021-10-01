@@ -10,15 +10,15 @@
         </a>
     </li> 
     <li>
-        <a href="/Shop">
+        <a href="/Shopage">
             Inventory
         </a>
     </li>
-    <li>
+    <!-- <li>
         <a href="/Events">
             Events
         </a>
-    </li> 
+    </li>  -->
     <li>
         <a href="/TuluList">
             Tulus
@@ -34,13 +34,13 @@
             Finance
         </a>
     </li>
-    <li>
+    <!-- <li>
         <a class="dropDownMenuBtn"onclick="dropDownMenu()">
             My Account
         </a>
-    </li>  
+    </li>   -->
 
-    <%if(user){%>
+    <!-- <%if(user){%>
         <%if(user.toObject().role){%>
             <%if(user.toObject().role != 'tulu'){%>
                 <li>
@@ -51,4 +51,11 @@
             <%}%>
         <%}%>
     <%}%>
+    <%if(!user){%>
+        <li>
+            <a href="/tulu/tuluRegistration">
+                <Button>Become a Tulu</Button>
+            </a>
+        </li>
+    <%}%> -->
 </ul>
