@@ -1,69 +1,72 @@
-﻿
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-<head>
-    <link rel="icon" type="image/png" href="images/favicon.png">
+  <head>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tulu Canada</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tulu Canada TESTEST</title>
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/css/all.css" />
     <link rel="stylesheet" href="styles/nav.css" />
     <link rel="stylesheet" href="styles/about.css" />
     <link rel="stylesheet" href="styles/footer.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+
     <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
-<%- include partials/googleAnalytics %>
-</head>
-<body>
+    <%- include partials/googleAnalytics %>
+  </head>
+  <body>
     <nav id="Nav">
-        <a href="/">
-            <img src="images/tulu-logo_white.png" alt="">
-        </a>
-        <div class="menuButton" onclick="slideMenu()">
-            <i class="fas fa-bars fa-2x menuBtn"></i>
-            <i class="fas fa-times fa-2x closeMenuBtn"></i>
-        </div>
-    <%- include partials/navbar %>
+      <a href="/">
+        <img src="images/tulu-logo_white.png" alt="" />
+      </a>
+      <div class="menuButton" onclick="slideMenu()">
+        <i class="fas fa-bars fa-2x menuBtn"></i>
+        <i class="fas fa-times fa-2x closeMenuBtn"></i>
+      </div>
+      <%- include partials/navbar %>
     </nav>
     <div class="dropDownMenu">
-        <ul>
-            <!-- <%- include partials/dropDownMenu %> -->
-        </ul>
+      <ul>
+        <!-- <%- include partials/dropDownMenu %> -->
+      </ul>
     </div>
 
     <div id="SideMenu" class="sideMenu">
-        <ul class="menu">
-            <%- include partials/sidemenu %>
-            
-        </ul>
-        <p class="loggedInAs"></p>
+      <ul class="menu">
+        <%- include partials/sidemenu %>
+      </ul>
+      <p class="loggedInAs"></p>
     </div>
 
     <div class="container body-content">
+      <div class="header">
+        <h1>Who we are</h1>
+      </div>
 
-        <div class="header">
-            <h1>Who we are</h1>
-        </div>
-
-        <div class="wrapper">
-            <h2>
-                Did you know tulu is derived from the Filipino word Tulungan, which means “help”?
-            </h2>
-            <p>
-                That is exactly what we are here for! tulu Canada is revolutionizing the car buying experience by bringing transparency, trust and honesty back to an industry that seems to have lost these values.
-            </p>
-            <p>
-                Our motto at tulu is KNOW LIKE TRUST and these are the words we live by! We want you to work with someone you know, like, and trust to ensure that your next vehicle purchase is as seamless as possible.
-            </p>
-        </div>
+      <div class="wrapper">
+        <h2>
+          Did you know tulu is derived from the Filipino word Tulungan, which
+          means “help”?
+        </h2>
+        <p>
+          That is exactly what we are here for! tulu Canada is revolutionizing
+          the car buying experience by bringing transparency, trust and honesty
+          back to an industry that seems to have lost these values.
+        </p>
+        <p>
+          Our motto at tulu is KNOW LIKE TRUST and these are the words we live
+          by! We want you to work with someone you know, like, and trust to
+          ensure that your next vehicle purchase is as seamless as possible.
+        </p>
+      </div>
     </div>
     <%- include partials/footer %>
-</body>
-<script src="Js/sideMenu.js"></script>
-<script src="Js/privileges.js"></script>
+  </body>
+  <script src="Js/sideMenu.js"></script>
+  <script src="Js/privileges.js"></script>
 </html>
-
