@@ -1,25 +1,10 @@
 ﻿<!DOCTYPE html>
 <html>
   <head>
-    <link rel="icon" type="image/png" href="images/favicon.png" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tulu Canada</title>
-    <link rel="stylesheet" href="styles/reset.css" />
-    <link rel="stylesheet" href="styles/css/all.css" />
-    <link rel="stylesheet" href="styles/nav.css" />
-    <link rel="stylesheet" href="styles/filter.css" />
-    <link rel="stylesheet" id="displayStyle" href="styles/shop.css" />
-    <link rel="stylesheet" href="styles/footer.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
-      rel="stylesheet"
-    />
-    <script type="text/javascript" src="Js/Helpers/UploadHelper.js"></script>
-    <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
-  <%- include partials/googleAnalytics %>
-</head>
+     <%- include partials/inventoryhead %>
+     <%- include partials/googleAnalytics %>
+  </head>
+ 
   <body>
     <nav id="Nav">
         <a href="/">
@@ -58,15 +43,15 @@
       </div>
       
       <aside id="FilterSettings" class="filterSettings">
-        <div class="filterSettingContainer">
+        <form class="filterSettingContainer" action="/filter/" method="GET">
           <div class="ModelSearchContainer" style="display: none">
             <label for="ModelSearch" class="ModelSearchLabel">Model :</label>
             <input type="text" id="ModelSearch"/>
           </div>
           <div class="MakeSearchContainer">
-            <label for="MakeSearch" class="MakeSearchLabel">Make :</label>
+            <label for="make" class="MakeSearchLabel">Make :</label>
 
-            <select name="MakeSearch" id="MakeSearch" onchange="SearchVehicles()">
+            <select name="make" id="MakeSearch" onchange="SearchVehicles()">
               <option value="">Any</option>
               <option value="Acura">Acura</option>
               <option value="AlfaRomeo">AlfaRomeo</option>
@@ -114,11 +99,11 @@
             <input type="text" id="YearMaxSearch" value="0" />
           </div>
           <div class="VehicleTypeContainer">
-            <label for="VehicleType" class="VehicleTypeLabel"
+            <label for="vehicleType" class="VehicleTypeLabel"
               >Vehicle Type :</label
             >
 
-            <select name="VehicleTypeSearch" id="VehicleTypeSearch" onchange="SearchVehicles()">
+            <select name="vehicleType" id="VehicleTypeSearch" onchange="SearchVehicles()">
               <option value="">Any</option>
               <option value="sedan">Sedan</option>
               <option value="coupe">Coupe</option>
@@ -155,30 +140,28 @@
             </select>
           </div>
 
-          <div class="sortSettingContainer">
-            <p class="sortBreadCrumbs">Sort by : <span>Dafault</span></p>
-            <ul>
-              <li onclick="sort('default')">Default</li>
-              <li onclick="sort('lowToHigh')">Price : Low to High</li>
-              <li onclick="sort('highToLow')">Price : High to Low</li>
-              <li onclick="sort('kilometers')">Kilometers</li>
-            </ul>
-          </div>
+          <!-- <div class="sortSettingContainer">
+            <label for="VehicleSort" class="VehicleTypeLabel">Sort Vehicle:</label>
+            <select name="VehicleSort" id="VehicleSort">
+              <option value="">None</option>
+              <option value="lowToHigh">Price : Low to High</option>
+              <option value="highToLow">Price : High to Low</option>
+              <option value="kilometers">Kilometers</option>
+            </select>
+          </div> -->
 
-          <input
-            type="button"
-            value="Search"
+          <button
+            formaction="/filter"
             class="searchButton"
             id="searchButton"
-            onclick="SearchVehicles();"
-          />
+          >Search</button>
           <!-- <input
             type="button"
             value="Clear"
             id="searchButton"
             onclick="location.reload();"
           /> -->
-        </div>
+          </form>
       </aside>
 
       <!-- VEHICLE LIST -->
@@ -204,45 +187,6 @@
   </body>
 
   
-  <script src="Js/sideMenu.js"></script>
-  <script src="Js/filter.js"></script>
-  <script src="Js/vehicleDisplay.js"></script>
-  <script src="Js/loading.js"></script>
-  <%if(user){%>
-    <%if(user.toObject().role === 'tulu'){%>
-      <script src="Js/shopTulu.js"></script>
-      <script>
-        var user = <%-JSON.stringify(user)%>;
-        console.log(user);
-      </script>
-    <%}%>
-    <%if(user.toObject().role != 'tulu'){%>
-      <script src="Js/shop.js"></script>
-    <%}%>
-  <%}%>
-  <%if(!user){%>
-    <script src="Js/shop.js"></script>
-  <%}%>
-  <script>
-    // var dealershipList = <%-JSON.stringify(dealershipList)%>;
-    // console.log(dealershipList);
-    // var vehicleListDefault = <%-JSON.stringify(vehicles)%>;
-    // var gVehicle = [];
-
-    // function shuffleArray(arr) {
-    //   for (let i = arr.length - 1; i > 0; i--) {
-    //     const j = Math.floor(Math.random() * (i + 1));
-    //     [arr[i], arr[j]] = [arr[j], arr[i]];
-    //   }
-    // console.log(arr);
-    // gVehicle=arr;
-    // }
-
-    // let arr = Array.prototype.slice.call(vehicleListDefault);
-    // shuffleArray(arr);
-
-    // console.log(arr);
-    // populateVehicle(gVehicle);
-  </script>
+  <%- include partials/inventoryscripts %>
 
 </html>

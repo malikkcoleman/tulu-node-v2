@@ -1,0 +1,37 @@
+<script src="Js/sideMenu.js"></script>
+<script src="Js/filter.js"></script>
+<script src="Js/vehicleDisplay.js"></script>
+<script src="Js/loading.js"></script>
+<%if(user){%>
+  <%if(user.toObject().role === 'tulu'){%>
+    <script src="Js/shopTulu.js"></script>
+    <script>
+      var user = <%-JSON.stringify(user)%>;
+      console.log(user);
+    </script>
+  <%}%>
+  <%if(user.toObject().role != 'tulu'){%>
+    <script src="Js/shop.js"></script>
+  <%}%>
+<%}%>
+<%if(!user){%>
+  <script src="Js/shop.js"></script>
+<%}%>
+<script>
+  // var dealershipList = <%-JSON.stringify(dealershipList)%>;
+  // console.log(dealershipList);
+  // var vehicleListDefault = <%-JSON.stringify(vehicles)%>;
+  // var gVehicle = [];
+  // function shuffleArray(arr) {
+  //   for (let i = arr.length - 1; i > 0; i--) {
+  //     const j = Math.floor(Math.random() * (i + 1));
+  //     [arr[i], arr[j]] = [arr[j], arr[i]];
+  //   }
+  // console.log(arr);
+  // gVehicle=arr;
+  // }
+  // let arr = Array.prototype.slice.call(vehicleListDefault);
+  // shuffleArray(arr);
+  // console.log(arr);
+  // populateVehicle(gVehicle);
+</script>
