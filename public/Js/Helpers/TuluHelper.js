@@ -49,17 +49,17 @@ function populatePage(userInfo){
 
     var html = "";
     html+='<li>';
-    html+='    <a href="'+userInfo.facebook+'">';
+    html+='    <a href="'+userInfo.facebook+'" target="_blank">';
     html+='        <i class="fab fa-facebook fa-2x"></i>';
     html+='    </a>';
     html+='</li>';
     html+='<li>';
-    html+='    <a href="'+userInfo.instagram+'">';
+    html+='    <a href="'+userInfo.instagram+'" target="_blank">';
     html+='        <i class="fab fa-instagram fa-2x"></i>';
     html+='    </a>';
     html+='</li>';
     html+='<li>';
-    html+='    <a href="'+userInfo.linkedin+'">';
+    html+='    <a href="'+userInfo.linkedin+'" target="_blank">';
     html+='        <i class="fab fa-linkedin-in fa-2x"></i>';
     html+='    </a>';
     html+='</li>';

@@ -26,17 +26,17 @@
 
                 var html = "";
                 html+='<li>';
-                html+='    <a href="'+tuluList[x].facebook+'">';
+                html+='    <a href="'+tuluList[x].facebook+'" target="_blank">';
                 html+='        <i class="fab fa-facebook fa-2x"></i>';
                 html+='    </a>';
                 html+='</li>';
                 html+='<li>';
-                html+='    <a href="'+tuluList[x].instagram+'">';
+                html+='    <a href="'+tuluList[x].instagram+'" target="_blank">';
                 html+='        <i class="fab fa-instagram fa-2x"></i>';
                 html+='    </a>';
                 html+='</li>';
                 html+='<li>';
-                html+='    <a href="'+tuluList[x].linkedin+'">';
+                html+='    <a href="'+tuluList[x].linkedin+'" target="_blank">';
                 html+='        <i class="fab fa-linkedin-in fa-2x"></i>';
                 html+='    </a>';
                 html+='</li>';
@@ -48,7 +48,7 @@
                 $('.currentCar').append(tuluList[x].currentCar);
 
                 var emailBtn = "";
-                emailBtn+='<a href = "mailto: '+tuluList[x].email+'">';
+                emailBtn+='<a href = "mailto: '+tuluList[x].email+'" target="_blank">';
                 emailBtn+='    <button class="sendMessage" onclick="sendTuluMessage()">Send Message</button>';
                 emailBtn+='</a>';
 
