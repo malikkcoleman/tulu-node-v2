@@ -46,8 +46,10 @@ require("./config/passport")(passport);
 // .catch(err =>console.log(err));
 
 mongoose.connect(process.env.DB_CONNECTION, {
-  useUnifiedTopology: true,
   useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
 });
 
 const db = mongoose.connection;

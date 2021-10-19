@@ -25,6 +25,26 @@
     padding:15px 40px;
 }
 
+.srchButton{
+    width: 20%;
+}
+
+.srchInput{
+    margin: auto;
+    width: 20%;
+    height: 25px;
+    border: 0;
+    border-bottom: 2px solid black;
+    font-size: 16px;
+    font-weight: bold;
+    outline: none;
+}
+
+.srchForm{
+    display: flex;
+    flex-direction: row;
+}
+
 .sortBtn{
     margin:0 15px 0 0;
 }
