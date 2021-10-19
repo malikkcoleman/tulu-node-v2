@@ -306,6 +306,7 @@ pgroutr.get("/filter", async (req, res) => {
     user: req.user,
     searchQuery: searchq
   })
+  location.reload();
 });
 
 pgroutr.get("/search", async (req,res) => {
