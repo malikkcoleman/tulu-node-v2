@@ -180,17 +180,11 @@
         <div class="breadCrumbs">
           <p class="filterBreadCrumbs">Filtered by : <span>None</span></p>
         </div>
-        <% if(vehicles.length > 1){ %>
         <ul id="Vehicles" class="vehicleList">
           <div class="loading" id="loading">
             <p>Fetching Data.</p>
           </div>
         </ul>
-        <% }else{ %>
-          <div style="height: 50vh;">
-            <h3 style="margin: auto;">No result for "<%= searchQuery %>"</h3>
-          </div>
-        <% } %>
       </section>
     </div>
     <%- include partials/footer %>
