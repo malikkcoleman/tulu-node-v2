@@ -37,6 +37,11 @@
           id="gridDisplayBtn"
           onclick="vehicleDisplay()"
         ></i>
+        <div style="width: 100%;">
+          <form action="/search" method="GET" class="srchForm">
+            <input type="text" name="squery" class="srchInput" placeholder="Search Cars" value="<%= searchQuery %>">
+          </form>
+        </div>
         <div class="sortFilter">
           <p class="filterBtn" onclick="slideFilterMenu()">Filter</p>
         </div>
@@ -140,7 +145,7 @@
             </select>
           </div>
 
-          <!-- <div class="sortSettingContainer">
+          <div class="sortSettingContainer">
             <label for="VehicleSort" class="VehicleTypeLabel">Sort Vehicle:</label>
             <select name="VehicleSort" id="VehicleSort">
               <option value="">None</option>
@@ -148,7 +153,7 @@
               <option value="highToLow">Price : High to Low</option>
               <option value="kilometers">Kilometers</option>
             </select>
-          </div> -->
+          </div>
 
           <button
             formaction="/filter"
@@ -175,12 +180,17 @@
         <div class="breadCrumbs">
           <p class="filterBreadCrumbs">Filtered by : <span>None</span></p>
         </div>
-
+        <% if(vehicles.length > 1){ %>
         <ul id="Vehicles" class="vehicleList">
           <div class="loading" id="loading">
             <p>Fetching Data.</p>
           </div>
         </ul>
+        <% }else{ %>
+          <div style="height: 50vh;">
+            <h3 style="margin: auto;">No result for "<%= searchQuery %>"</h3>
+          </div>
+        <% } %>
       </section>
     </div>
     <%- include partials/footer %>

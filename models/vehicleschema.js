@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mongoose_fuzzy_searching = require('mongoose-fuzzy-searching');
 const vehicleschema = new mongoose.Schema({
   targetId: {
     type: String,
@@ -135,6 +136,8 @@ const vehicleschema = new mongoose.Schema({
     default: 0
   },
 });
+
+vehicleschema.plugin(mongoose_fuzzy_searching, { fields: ['make', 'year', 'model'] });
 
 const vehicleschemas = mongoose.model("vehicles", vehicleschema);
 
