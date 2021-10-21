@@ -290,7 +290,7 @@ pgroutr.get("/filter", async (req, res) => {
   }else{
     sortzz = "{}"
   }
-  var vehiclelist = []
+  var vehiclelistFilter = []
   var vehicleFilter = undefined
   vehicleFilter = await Vehicle.find(filterQ)
   .sort(sortzz)
@@ -299,10 +299,10 @@ pgroutr.get("/filter", async (req, res) => {
   await vehicleFilter.forEach(function(vec){
     vec = JSON.parse(JSON.stringify(vec));
     vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
-    vehiclelist.push(vec)
+    vehiclelistFilter.push(vec)
   })
   res.render("Shop", {
-    vehicles: vehiclelist,
+    vehicles: vehiclelistFilter,
     dealershipList: dealershipList,
     user: req.user,
     searchQuery: searchq
@@ -312,7 +312,7 @@ pgroutr.get("/filter", async (req, res) => {
 
 pgroutr.get("/search", async (req,res) => {
   queryfilterz = undefined
-  var vehiclelist = []
+  var vehiclelistSearch = []
   searchq = req.query.squery
   try{
     var vehiclesSearch = undefined
@@ -323,10 +323,10 @@ pgroutr.get("/search", async (req,res) => {
     await vehiclesSearch.forEach(function(vec){
       vec = JSON.parse(JSON.stringify(vec));
       vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
-      vehiclelist.push(vec)
+      vehiclelistSearch.push(vec)
     })
     res.render("Shop", {
-      vehicles: vehiclelist,
+      vehicles: vehiclelistSearch,
       dealershipList: dealershipList,
       user: req.user,
       searchQuery: searchq
