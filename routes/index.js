@@ -243,7 +243,7 @@ function clean(obj) { //for cleaning filter when other field is blank
 pgroutr.get("/shop/:start/:limit", (req, res) => {
   Dealer.find({})
   .then(async (dealershipList) => {
-    var vehicles
+    var vehicles = undefined
     if(queryfilterz != undefined){
       var filterQ = clean(queryfilterz)
       delete filterQ["VehicleSort"]
@@ -291,12 +291,12 @@ pgroutr.get("/filter", async (req, res) => {
     sortzz = "{}"
   }
   var vehiclelist = []
-  
-  const vehicles = await Vehicle.find(filterQ)
+  var vehicleFilter = undefined
+  vehicleFilter = await Vehicle.find(filterQ)
   .sort(sortzz)
   .limit(10);
   const dealershipList = await Dealer.find({})
-  await vehicles.forEach(function(vec){
+  await vehicleFilter.forEach(function(vec){
     vec = JSON.parse(JSON.stringify(vec));
     vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
     vehiclelist.push(vec)
@@ -315,11 +315,12 @@ pgroutr.get("/search", async (req,res) => {
   var vehiclelist = []
   searchq = req.query.squery
   try{
-    const vehicles = await Vehicle.fuzzySearch({ query: searchq, prefixOnly: true })
+    var vehiclesSearch = undefined
+    vehiclesSearch = await Vehicle.fuzzySearch({ query: searchq, prefixOnly: true })
     .sort(sortzz)
     .limit(10);
     const dealershipList = await Dealer.find({})
-    await vehicles.forEach(function(vec){
+    await vehiclesSearch.forEach(function(vec){
       vec = JSON.parse(JSON.stringify(vec));
       vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
       vehiclelist.push(vec)
