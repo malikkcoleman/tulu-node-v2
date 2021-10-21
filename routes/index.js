@@ -292,20 +292,21 @@ pgroutr.get("/filter", async (req, res) => {
   }
   var vehiclelistFilter = []
   var vehicleFilter = undefined
-  vehicleFilter = await Vehicle.find(filterQ)
+  await Vehicle.find(filterQ)
   .sort(sortzz)
-  .limit(10);
-  const dealershipList = await Dealer.find({})
-  await vehicleFilter.forEach(function(vec){
-    vec = JSON.parse(JSON.stringify(vec));
-    vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
-    vehiclelistFilter.push(vec)
-  })
-  res.render("Shop", {
-    vehicles: vehiclelistFilter,
-    dealershipList: dealershipList,
-    user: req.user,
-    searchQuery: searchq
+  .limit(10).then(async function(data){
+    const dealershipList = await Dealer.find({})
+    await data.forEach(function(vec){
+      vec = JSON.parse(JSON.stringify(vec));
+      vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
+      vehiclelistFilter.push(vec)
+    })
+    res.render("Shop", {
+      vehicles: vehiclelistFilter,
+      dealershipList: dealershipList,
+      user: req.user,
+      searchQuery: searchq
+    })
   })
   location.reload();
 });
@@ -316,11 +317,11 @@ pgroutr.get("/search", async (req,res) => {
   searchq = req.query.squery
   try{
     var vehiclesSearch = undefined
-    vehiclesSearch = await Vehicle.fuzzySearch({ query: searchq, prefixOnly: true })
+    await Vehicle.fuzzySearch({ query: searchq, prefixOnly: true })
     .sort(sortzz)
-    .limit(10);
-    const dealershipList = await Dealer.find({})
-    await vehiclesSearch.forEach(function(vec){
+    .limit(10).then(async function(data){
+      const dealershipList = await Dealer.find({})
+    await data.forEach(function(vec){
       vec = JSON.parse(JSON.stringify(vec));
       vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
       vehiclelistSearch.push(vec)
@@ -331,6 +332,8 @@ pgroutr.get("/search", async (req,res) => {
       user: req.user,
       searchQuery: searchq
     })
+    })
+    
   }catch(e){
     console.log(e)
   }
@@ -340,16 +343,18 @@ pgroutr.get("/search", async (req,res) => {
 pgroutr.get("/Shopage", async (req, res) => {
   queryfilterz = undefined
   searchq = undefined
-  vehicles = await Vehicle.find({})
+  await Vehicle.find({})
       .skip(parseInt(req.params.start))
-      .limit(parseInt(req.params.limit))
-  queryfilterz = undefined;
-    res.render("Shop", {
-      vehicles: vehicles,
-      dealershipList: '',
-      user: req.user,
-      searchQuery: searchq
-    })
+      .limit(parseInt(req.params.limit)).then(function(data){
+        queryfilterz = undefined;
+        res.render("Shop", {
+          vehicles: data,
+          dealershipList: '',
+          user: req.user,
+          searchQuery: searchq
+        })
+      })
+  
 })
 
 pgroutr.get("/MessageTulu/:id", (req, res) => {
