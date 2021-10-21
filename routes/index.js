@@ -277,6 +277,7 @@ pgroutr.get("/shop/:start/:limit", (req, res) => {
 });
 
 pgroutr.get("/filter", async (req, res) => {
+  searchq = undefined;
   queryfilterz = req.query
   var filterQ = clean(queryfilterz)
   delete filterQ["VehicleSort"]
@@ -310,6 +311,7 @@ pgroutr.get("/filter", async (req, res) => {
 });
 
 pgroutr.get("/search", async (req,res) => {
+  queryfilterz = undefined
   var vehiclelist = []
   searchq = req.query.squery
   try{
@@ -331,7 +333,7 @@ pgroutr.get("/search", async (req,res) => {
   }catch(e){
     console.log(e)
   }
-  
+  location.reload();
 })
 
 pgroutr.get("/Shopage", async (req, res) => {
