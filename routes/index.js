@@ -243,7 +243,7 @@ function clean(obj) { //for cleaning filter when other field is blank
 pgroutr.get("/shop/:start/:limit", (req, res) => {
   Dealer.find({})
   .then(async (dealershipList) => {
-    var vehicles = undefined
+    var vehicles
     if(queryfilterz != undefined){
       var filterQ = clean(queryfilterz)
       delete filterQ["VehicleSort"]
@@ -292,9 +292,10 @@ pgroutr.get("/filter", async (req, res) => {
   }
   var vehiclelistFilter = []
   var vehicleFilter = undefined
-  await Vehicle.find(filterQ)
+  Vehicle.find(filterQ)
   .sort(sortzz)
-  .limit(10).then(async function(data){
+  .limit(10)
+  .then(async function(data){
     const dealershipList = await Dealer.find({})
     await data.forEach(function(vec){
       vec = JSON.parse(JSON.stringify(vec));
@@ -317,9 +318,10 @@ pgroutr.get("/search", async (req,res) => {
   searchq = req.query.squery
   try{
     var vehiclesSearch = undefined
-    await Vehicle.fuzzySearch({ query: searchq, prefixOnly: true })
+    Vehicle.fuzzySearch({ query: searchq, prefixOnly: true })
     .sort(sortzz)
-    .limit(10).then(async function(data){
+    .limit(10)
+    .then(async function(data){
       const dealershipList = await Dealer.find({})
     await data.forEach(function(vec){
       vec = JSON.parse(JSON.stringify(vec));
@@ -343,9 +345,10 @@ pgroutr.get("/search", async (req,res) => {
 pgroutr.get("/Shopage", async (req, res) => {
   queryfilterz = undefined
   searchq = undefined
-  await Vehicle.find({})
+  Vehicle.find({})
       .skip(parseInt(req.params.start))
-      .limit(parseInt(req.params.limit)).then(function(data){
+      .limit(parseInt(req.params.limit))
+      .then(function(data){
         queryfilterz = undefined;
         res.render("Shop", {
           vehicles: data,
