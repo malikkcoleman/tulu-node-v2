@@ -309,7 +309,7 @@ pgroutr.get("/filter", async (req, res) => {
       searchQuery: searchq
     })
   })
-  location.reload();
+  res.redirect(req.originalUrl);
 });
 
 pgroutr.get("/search", async (req,res) => {
@@ -339,7 +339,7 @@ pgroutr.get("/search", async (req,res) => {
   }catch(e){
     console.log(e)
   }
-  location.reload();
+  res.redirect(req.originalUrl)
 })
 
 pgroutr.get("/Shopage", async (req, res) => {
