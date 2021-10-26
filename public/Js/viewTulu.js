@@ -47,16 +47,29 @@
                 $('.favouriteCar').append(tuluList[x].favoriteCar);
                 $('.currentCar').append(tuluList[x].currentCar);
 
-                var emailBtn = "";
-                emailBtn+='<a href = "mailto: '+tuluList[x].email+'" target="_blank">';
-                emailBtn+='    <button class="sendMessage" onclick="sendTuluMessage()">Send Message</button>';
-                emailBtn+='</a>';
+                // var emailBtn = "";
+                // emailBtn+='<a href = "mailto: '+tuluList[x].email+'" target="_blank">';
+                // emailBtn+='    <button class="sendMessage" onclick="sendTuluMessage()">Send Message</button>';
+                // emailBtn+='</a>';
 
-                $('.wrapper').append(emailBtn);
+                
+                // $('.wrapper').append(emailBtn);
+
+                var messengerBtn = "";
+                messengerBtn+='<button onclick="goToMessenger()" class="sendMessage">';
+                messengerBtn+='Send Message';
+                messengerBtn+='</button>';
+                messengerBtn+='';
+ 
+                $('.wrapper').append(messengerBtn);
             }
         }
     };
 
     function sendTuluMessage(){
         // window.location = "/MessageTulu/" + tuluId;
+    }
+
+    function goToMessenger(){
+        window.location = "/messenger/?tuluId="+tuluId;
     }

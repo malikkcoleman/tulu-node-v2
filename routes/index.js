@@ -16,6 +16,8 @@ const Application = require("../models/applicationschema");
 const Appointment = require("../models/appointmentschema");
 const Event = require("../models/eventschema");
 const Blog = require("../models/blogschema");
+const Message = require("../models/messagetestschema");
+const Thread = require("../models/messagethreadschema");
 
 pgroutr.get("/EditDealer", ensureAuthenticated, (req, res) =>
   Dealer.find({ uuid: req.user.toObject().dealerId }).then((dealer) => {
@@ -61,8 +63,32 @@ pgroutr.get("/Events", (req, res) =>
   })
 );
 
+pgroutr.get("/Messenger", ensureAuthenticated, (req, res) =>
+  User.find({ role: "tulu" })
+  .then((tulu) => {
+    Thread.find({})
+    .then((thread) => {
+      Message.find({})
+      .then((messages) => {
+        res.render("Messenger", {
+          user: req.user,
+          tulu: tulu,
+          thread: thread,
+          messages: messages,
+        })
+      })
+    })
+  })
+);
+
 pgroutr.get("/TradeVehicle", (req, res) =>
   res.render("TradeVehicle", {
+    user: req.user
+  })
+);
+
+pgroutr.get("/message", ensureAuthenticated, (req, res) =>
+  res.render("message", {
     user: req.user
   })
 );
@@ -199,6 +225,7 @@ pgroutr.get("/dashboard", ensureAuthenticated, (req, res) =>
     })
   })
 );
+
 
 pgroutr.get("/vindecoder", ensureAuthenticated, (req, res) =>
   res.render("VinDecoder", {

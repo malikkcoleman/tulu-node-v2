@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/png" href="../../images/favicon.png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulu Canada</title>
+    <link rel="stylesheet" href="../../styles/reset.css" />
+    <link rel="stylesheet" href="../../styles/css/all.css" />
+    <link rel="stylesheet" href="../../styles/nav.css" />
+    <link rel="stylesheet" href="../../styles/messenger.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="../../jquery/dist/jquery.min.js"></script>
+<%- include partials/googleAnalytics %>
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="../../images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    <%- include partials/navbar %>
+    </nav>
+    <div class="dropDownMenu">
+        <ul>
+            <%- include partials/dropDownMenu %>
+        </ul>
+    </div>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            <%- include partials/sidemenu %>
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+
+<!-- THIS NEEDS FIXING -->
+    <div class="container body-content messages" style="margin:50px 0 0 0;">
+        <div class="header">
+            
+        </div>
+        <div class="messageBox">
+            <!-- <div class="participantOne">
+                <div class="image">
+
+                </div>
+                <p>
+                    Test
+                </p>
+            </div>
+            <div class="participantTwo">
+                <p>
+                    Test
+                </p>
+                <div class="image">
+
+                </div>
+            </div> -->
+        </div>
+        <div class="newMessageContainer">
+            <form action="/message/send" method="POST">
+                <input type="text" class="exist" name="exist">
+                <input type="text" class="senderId" name="senderId" value="<%= user.toObject()._id%>">
+                <input type="text" class="tuluId" name="tuluId">
+                <input type="text" class="targetId" name="targetId">
+                <input type="text" class="message" name="message" placeholder="Enter Message">
+                <button type="submit">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+</body>
+<script src="../../Js/sideMenu.js"></script>
+<script src="../../Js/privileges.js"></script>
+<script>
+    var tuluId = "";
+    var tulu = <%-JSON.stringify(tulu)%>;
+    console.log(tulu);
+    var thread = <%-JSON.stringify(thread)%>;
+    console.log(thread);
+    var user = <%-JSON.stringify(user)%>;
+    console.log(user);
+    var messages = <%-JSON.stringify(messages)%>;
+    console.log(messages);
+</script>
+<script src="../../Js/messenger.js"></script>
+</html>
