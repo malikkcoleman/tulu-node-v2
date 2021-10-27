@@ -71,5 +71,5 @@
     }
 
     function goToMessenger(){
-        window.location = "/messenger/?tuluId="+tuluId;
+        window.location = "/messenger/?recipientId="+tuluId;
     }

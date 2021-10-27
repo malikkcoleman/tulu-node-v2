@@ -480,7 +480,12 @@
     color:#79C6AC;
 }
 
-
+.blogSection ul li .description{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 200px;
+    /* white-space: nowrap; */
+}
 
 /* 4th Section */
 /* PopularCars */

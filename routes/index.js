@@ -16,7 +16,7 @@ const Application = require("../models/applicationschema");
 const Appointment = require("../models/appointmentschema");
 const Event = require("../models/eventschema");
 const Blog = require("../models/blogschema");
-const Message = require("../models/messagetestschema");
+const Message = require("../models/messageschema");
 const Thread = require("../models/messagethreadschema");
 
 pgroutr.get("/EditDealer", ensureAuthenticated, (req, res) =>
@@ -64,17 +64,36 @@ pgroutr.get("/Events", (req, res) =>
 );
 
 pgroutr.get("/Messenger", ensureAuthenticated, (req, res) =>
-  User.find({ role: "tulu" })
-  .then((tulu) => {
+  User.find({})
+  .then((userList) => {
     Thread.find({})
     .then((thread) => {
       Message.find({})
       .then((messages) => {
         res.render("Messenger", {
           user: req.user,
-          tulu: tulu,
+          userList: userList,
           thread: thread,
           messages: messages,
+        })
+      })
+    })
+  })
+);
+
+
+pgroutr.get("/Inbox", ensureAuthenticated, (req, res) =>
+  User.find({})
+  .then((userList) => {
+    Thread.find({})
+    .then((thread) => {
+      Message.find({})
+      .then((message) => {
+        res.render("Inbox", {
+          user: req.user,
+          message:message,
+          thread:thread,
+          userList:userList,
         })
       })
     })
@@ -190,6 +209,12 @@ pgroutr.get("/BlogList", (req, res) =>
 
 pgroutr.get("/404", (req, res) =>
   res.render("404", {
+    user: req.user,
+  })
+);
+
+pgroutr.get("/Store", (req, res) =>
+  res.render("Store", {
     user: req.user,
   })
 );

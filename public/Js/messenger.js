@@ -6,8 +6,8 @@ window.onload = function () {
 	
 	for (var i = 0; i < hashes.length; i++) {
 		hash = hashes[i].split("=");
-		if (hash[0] === "tuluId") {
-			tuluId = hash[1];
+		if (hash[0] === "recipientId") {
+			recipientId = hash[1];
 			
 		}
 	}
@@ -18,24 +18,24 @@ var exist = 0;
 
 function populatePage(){
 
-	$('.tuluId').val(tuluId);
-	for(x=0;x!=tulu.length;x++){
-		if(tulu[x]._id == tuluId){
-			console.log(tulu[x]._id);
+	$('.recipientId').val(recipientId);
+	for(x=0;x!=userList.length;x++){
+		if(userList[x]._id == recipientId){
+			console.log(userList[x]._id);
 
 			var html ="";
-			html+="<div class='userImage' style='background:url(/image/"+tuluId+");background-size:contain;background-position:center;'>";
+			html+="<div class='userImage' style='background:url(/image/"+recipientId+");background-size:contain;background-position:center;'>";
 			html+="</div>";
-			html+="<p class='messengerName'>"+tulu[x].fName+" "+tulu[x].lName+"</p>";
+			html+="<p class='messengerName'>"+userList[x].fName+" "+userList[x].lName+"</p>";
 			$('.header').append(html);
 		}
 	}
 
 	for(x=0;x!=thread.length;x++){
-		if(thread[x].participants[0] == tuluId){
-			console.log('Tulu Matched')
+		if(thread[x].participants[0] == recipientId){
+			console.log('Recipient Matched')
 			if(thread[x].participants[1]== user._id){
-				console.log('tulu and user matched');
+				console.log('Recipient and user matched');
 				exist = 1;
 				$('.exist').val('1');
 				$('.targetId').val(thread[x]._id);
@@ -47,8 +47,8 @@ function populatePage(){
 			}
 		}else if(thread[x].participants[0] == user._id){
 			console.log('User Matched')
-			if(thread[x].participants[1] == tuluId){
-				console.log('tulu and user matched')
+			if(thread[x].participants[1] == recipientId){
+				console.log('Recipient and user matched')
 				exist = 1;
 				$('.exist').val('1');
 				$('.targetId').val(thread[x]._id);
@@ -86,4 +86,10 @@ function populateInbox(threadId){
 			$('.messageBox').append(html);
 		}
 	}
+	messageBoxScrollDown();
+}
+
+function messageBoxScrollDown(){
+	var objDiv = document.querySelector(".messageBox");
+	objDiv.scrollTop = objDiv.scrollHeight;
 }

@@ -35,14 +35,14 @@ router.post("/AddMessage", (req, res) => {
 
 
 router.post("/send", (req, res) => {
-  const { exist,message,senderId,targetId,tuluId} = req.body;
+  const { exist,message,senderId,targetId,recipientId} = req.body;
   console.log(req.body);
   console.log(senderId);
-  console.log(tuluId);
+  console.log(recipientId);
 
   if(exist=="0"){
     var participants = [
-      senderId,tuluId
+      senderId,recipientId
      ]
    
      const newThread = new Thread({
@@ -67,7 +67,7 @@ router.post("/send", (req, res) => {
       newMessage.save()
       .then((message) => {
         console.log(message)
-        res.redirect("/messenger/?tuluId="+tuluId)
+        res.redirect("/messenger/?recipientId="+recipientId)
       })
       .catch((err) => console.log(err));
 
@@ -84,7 +84,7 @@ router.post("/send", (req, res) => {
     newMessage.save()
     .then((message) => {
       console.log(message)
-      res.redirect("/messenger/?tuluId="+tuluId)
+      res.redirect("/messenger/?recipientId="+recipientId)
     })
     .catch((err) => console.log(err));
 
@@ -123,15 +123,7 @@ router.post("/message", (req, res) => {
 
 
 
-router.get("/inbox", (req, res) =>
-Message.find({})
-  .then((message) => {
-    res.render("inbox", {
-      user: req.user,
-      message:message
-    })
-  })
-);
+
 
 router.get("/thread", (req, res) =>
   res.render("thread", {
