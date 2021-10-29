@@ -31,6 +31,32 @@ pgroutr.get("/EditDealer", ensureAuthenticated, (req, res) =>
   })
 );
 
+pgroutr.get("/HomeRemake", (req, res) =>
+  Vehicle.find({ })
+  .then((vehicles) => {
+    User.find({ role: "dealeradmin" })
+    .then((dealerAdmin) => {
+      Dealer.find({})
+      .then((dealer) => {
+        Blog.find({})
+        .then((blog) => {
+          User.find({ role: "tulu" })
+          .then((tulu) => {
+            res.render("IndexRemake", {
+              user: req.user,
+              tulu:tulu,
+              blog:blog,
+              dealer:dealer,
+              dealershipList:dealerAdmin,
+              vehicles:vehicles,
+            })
+          })
+        })
+      })
+    })
+  })
+);
+
 pgroutr.get("/", (req, res) =>
   User.find({ role: "dealeradmin" })
   .then((dealerAdmin) => {
