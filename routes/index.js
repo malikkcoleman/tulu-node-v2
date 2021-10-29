@@ -16,7 +16,8 @@ const Application = require("../models/applicationschema");
 const Appointment = require("../models/appointmentschema");
 const Event = require("../models/eventschema");
 const Blog = require("../models/blogschema");
-const { query } = require("express");
+const Message = require("../models/messageschema");
+const Thread = require("../models/messagethreadschema");
 
 pgroutr.get("/EditDealer", ensureAuthenticated, (req, res) =>
   Dealer.find({ uuid: req.user.toObject().dealerId }).then((dealer) => {
@@ -30,6 +31,32 @@ pgroutr.get("/EditDealer", ensureAuthenticated, (req, res) =>
   })
 );
 
+pgroutr.get("/HomeRemake", (req, res) =>
+  Vehicle.find({ })
+  .then((vehicles) => {
+    User.find({ role: "dealeradmin" })
+    .then((dealerAdmin) => {
+      Dealer.find({})
+      .then((dealer) => {
+        Blog.find({})
+        .then((blog) => {
+          User.find({ role: "tulu" })
+          .then((tulu) => {
+            res.render("IndexRemake", {
+              user: req.user,
+              tulu:tulu,
+              blog:blog,
+              dealer:dealer,
+              dealershipList:dealerAdmin,
+              vehicles:vehicles,
+            })
+          })
+        })
+      })
+    })
+  })
+);
+
 pgroutr.get("/", (req, res) =>
   User.find({ role: "dealeradmin" })
   .then((dealerAdmin) => {
@@ -39,7 +66,7 @@ pgroutr.get("/", (req, res) =>
       .then((blog) => {
         User.find({ role: "tulu" })
         .then((tulu) => {
-          res.render("Index", {
+          res.render("IndexRemake", {
             user: req.user,
             tulu:tulu,
             blog:blog,
@@ -62,8 +89,51 @@ pgroutr.get("/Events", (req, res) =>
   })
 );
 
+pgroutr.get("/Messenger", ensureAuthenticated, (req, res) =>
+  User.find({})
+  .then((userList) => {
+    Thread.find({})
+    .then((thread) => {
+      Message.find({})
+      .then((messages) => {
+        res.render("Messenger", {
+          user: req.user,
+          userList: userList,
+          thread: thread,
+          messages: messages,
+        })
+      })
+    })
+  })
+);
+
+
+pgroutr.get("/Inbox", ensureAuthenticated, (req, res) =>
+  User.find({})
+  .then((userList) => {
+    Thread.find({})
+    .then((thread) => {
+      Message.find({})
+      .then((message) => {
+        res.render("Inbox", {
+          user: req.user,
+          message:message,
+          thread:thread,
+          userList:userList,
+        })
+      })
+    })
+  })
+);
+
 pgroutr.get("/TradeVehicle", (req, res) =>
   res.render("TradeVehicle", {
+    user: req.user
+  })
+);
+
+pgroutr.get("/message", ensureAuthenticated, (req, res) =>
+  res.render("message", {
     user: req.user
   })
 );
@@ -169,6 +239,12 @@ pgroutr.get("/404", (req, res) =>
   })
 );
 
+pgroutr.get("/Store", (req, res) =>
+  res.render("Store", {
+    user: req.user,
+  })
+);
+
 pgroutr.get("/Contact", (req, res) =>
   res.render("Contact", {
     user: req.user,
@@ -201,6 +277,7 @@ pgroutr.get("/dashboard", ensureAuthenticated, (req, res) =>
   })
 );
 
+
 pgroutr.get("/vindecoder", ensureAuthenticated, (req, res) =>
   res.render("VinDecoder", {
     user: req.user,
@@ -229,32 +306,18 @@ pgroutr.get(
     })
 );
 
-var queryfilterz, sortzz, searchq
-
-function clean(obj) { //for cleaning filter when other field is blank
-  for (var propName in obj) {
-    if (obj[propName] === null || obj[propName] === undefined || obj[propName] === '') {
-      delete obj[propName];
-    }
-  }
-  return obj
-}
+var queryfilterz
 
 pgroutr.get("/shop/:start/:limit", (req, res) => {
+  
   Dealer.find({})
   .then(async (dealershipList) => {
     var vehicles
     if(queryfilterz != undefined){
-      var filterQ = clean(queryfilterz)
-      delete filterQ["VehicleSort"]
-      vehicles = await Vehicle.find(filterQ)
-      .sort(sortzz)
+      vehicles = await Vehicle.find({})
+      .or([{make: queryfilterz.make},{vehicleType: queryfilterz.vehicleType}])
       .skip(parseInt(req.params.start))
       .limit(parseInt(req.params.limit))
-    }else if(searchq != undefined){
-      vehicles = await Vehicle.fuzzySearch({ query: searchq, prefixOnly: true })
-      .skip(parseInt(req.params.start))
-      .limit(parseInt(req.params.limit));
     }else{
       vehicles = await Vehicle.find({})
       .skip(parseInt(req.params.start))
@@ -271,28 +334,15 @@ pgroutr.get("/shop/:start/:limit", (req, res) => {
       vehicles: vehiclelist,
       dealershipList: dealershipList,
       user: req.user,
-      searchQuery: searchq
     });
   });
 });
 
 pgroutr.get("/filter", async (req, res) => {
   queryfilterz = req.query
-  var filterQ = clean(queryfilterz)
-  delete filterQ["VehicleSort"]
-  if(req.query.VehicleSort == 'kilometers'){
-    sortzz = "{'mileage': 1}"
-  }else if(req.query.VehicleSort = 'lowToHigh'){
-    sortzz = "{'maxPrice': -1}"
-  }else if(req.query.VehicleSort = 'highToLow'){
-    sortzz = "{'maxPrice': 1}"
-  }else{
-    sortzz = "{}"
-  }
   var vehiclelist = []
-  
-  const vehicles = await Vehicle.find(filterQ)
-  .sort(sortzz)
+  const vehicles = await Vehicle.find()
+  .or([{make:  req.query.make},{vehicleType:req.query.vehicleType}])
   .limit(10);
   const dealershipList = await Dealer.find({})
   await vehicles.forEach(function(vec){
@@ -300,51 +350,21 @@ pgroutr.get("/filter", async (req, res) => {
     vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
     vehiclelist.push(vec)
   })
+  console.log(vehiclelist)
   res.render("Shop", {
     vehicles: vehiclelist,
     dealershipList: dealershipList,
     user: req.user,
-    searchQuery: searchq
   })
 });
 
-pgroutr.get("/search", async (req,res) => {
-  var vehiclelist = []
-  searchq = req.query.squery
-  try{
-    const vehicles = await Vehicle.fuzzySearch({ query: searchq, prefixOnly: true })
-    .sort(sortzz)
-    .limit(10);
-    const dealershipList = await Dealer.find({})
-    await vehicles.forEach(function(vec){
-      vec = JSON.parse(JSON.stringify(vec));
-      vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
-      vehiclelist.push(vec)
-    })
-    res.render("Shop", {
-      vehicles: vehiclelist,
-      dealershipList: dealershipList,
-      user: req.user,
-      searchQuery: searchq
-    })
-  }catch(e){
-    console.log(e)
-  }
-  
-})
-
-pgroutr.get("/Shopage", async (req, res) => {
-  queryfilterz = undefined
-  searchq = undefined
-  vehicles = await Vehicle.find({})
-      .skip(parseInt(req.params.start))
-      .limit(parseInt(req.params.limit))
+pgroutr.get("/Shopage", (req, res) => {
+  console.log('tite')
   queryfilterz = undefined;
     res.render("Shop", {
-      vehicles: vehicles,
+      vehicles: '',
       dealershipList: '',
       user: req.user,
-      searchQuery: searchq
     })
 })
 

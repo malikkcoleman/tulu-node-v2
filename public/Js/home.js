@@ -76,7 +76,7 @@ function LoadBlog(){
   }
   $('.blogSection ul').empty();
   $('.blogSection ul').append(html);
-  document.querySelector('.description').innerText = truncateText('.description', 107);
+  document.querySelectorAll('.description').innerText = truncateText('.description', 107);
 }
 
 
