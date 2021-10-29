@@ -55,8 +55,8 @@
     <!-- Search Section -->
     <div class="searchSection">  
       <div class="searchContainer">
-        <input type="text" placeholder="Search Make or Model">
-        <button>SEARCH</button>
+        <input type="text" class="searchBar"placeholder="Search Make or Model">
+        <button onclick="searchThis()">SEARCH</button>
       </div>
     </div>
 
@@ -424,7 +424,10 @@ function truncateText(selector, maxLength) {
     return truncated;
 }
 
-
+function searchThis(){
+  var searchQuery = $('.searchBar').val();
+  window.location = "/search?squery=" + searchQuery;
+}
 
 </script>
 </html>
