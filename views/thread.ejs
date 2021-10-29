@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulu Canada</title>
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/css/all.css" />
+    <link rel="stylesheet" href="../styles/nav.css" />
+    <link rel="stylesheet" href="../styles/messageTulu.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="../jquery/dist/jquery.min.js"></script>
+<%- include partials/googleAnalytics %>
+</head>
+<body>
+    <nav id="Nav">
+        <a href="/">
+            <img src="../images/tulu-logo_white.png" alt="">
+        </a>
+        <div class="menuButton" onclick="slideMenu()">
+            <i class="fas fa-bars fa-2x menuBtn"></i>
+            <i class="fas fa-times fa-2x closeMenuBtn"></i>
+        </div>
+    <%- include partials/navbar %>
+    </nav>
+    <div class="dropDownMenu">
+        <ul>
+            <%- include partials/dropDownMenu %>
+        </ul>
+    </div>
+
+    <div id="SideMenu" class="sideMenu">
+        <ul class="menu">
+            <%- include partials/sidemenu %>
+        </ul>
+        <p class="loggedInAs"></p>
+    </div>
+
+    <div class="questions">
+        <h2>Questions?</h2>
+        <p>Email us now at 
+        <a href="mailto: info.tulucanada.com">info.tulucanada.com</a>
+        !
+        </p>
+    </div>
+
+<!-- THIS NEEDS FIXING -->
+    <div class="container body-content messages" style="margin:50px 0 0 0;">
+        <h2>Messages</h2>
+        
+        <div class="newMessageContainer">
+            <div class="wrapper">
+                <form action="/message/message" method="POST">
+                    <label for="">Reciever:</label>
+                    <input type="text" name="recieverId" id="recieverId" value="60f08c69ccba89637081c061">
+                    <label for="">Sender:</label>
+                    <input type="text" name="senderId" id="senderId">
+                    <button type="submit" >Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="../Js/sideMenu.js"></script>
+<script src="../Js/privileges.js"></script>
+<script>
+    var user = <%- JSON.stringify(user)%>
+    console.log(user)
+    console.log(user._id)
+    $('#senderId').val(user._id)
+
+</script>
+</html>

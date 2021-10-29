@@ -1,0 +1,430 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tulu Canada</title>
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/css/all.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/indexRemake.css" />
+    <link rel="stylesheet" href="styles/season.css" />
+    <link rel="stylesheet" href="styles/footer.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script type="text/javascript" src="jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <%- include partials/googleAnalytics %>
+</head>
+<body>
+
+  <nav id="Nav">
+      <a href="/">
+          <img src="images/tulu-logo_white.png" alt="">
+      </a>
+      <div class="menuButton" onclick="slideMenu()">
+          <i class="fas fa-bars fa-2x menuBtn"></i>
+          <i class="fas fa-times fa-2x closeMenuBtn"></i>
+      </div>
+  <%- include partials/navbar %>
+  </nav>
+
+  <div class="dropDownMenu">
+      <ul>
+          <%- include partials/dropDownMenu %>
+      </ul>
+  </div>
+
+  <div id="SideMenu" class="sideMenu">
+    <ul class="menu">
+      <%- include partials/sidemenu %>
+    </ul>
+    <p class="loggedInAs"></p>
+  </div>
+
+  <div class="container body-content">
+    <header>
+      <img src="images/tuluCanada-logo.png" class="headerLogo" alt="" />
+    </header>
+
+
+    <!-- Search Section -->
+    <div class="searchSection">  
+      <div class="searchContainer">
+        <input type="text" placeholder="Search Make or Model">
+        <button>SEARCH</button>
+      </div>
+    </div>
+
+    <!-- Body Type -->
+    <div class="bodyTypeSection">
+      <h3>SEARCH BY BODY TYPE</h3>
+      <p>Search cars by selecting your favourite body type.</p>
+      <ul class="bodyTypeList">
+        <a href="filter?make=&vehicleType=convertible">
+          <li class="bodyTypeListItem">
+            <img src="images/icon/convertible.png" alt="">
+            <p>Convertible</p>
+          </li>
+        </a>
+        <a href="filter?make=&vehicleType=coupe">
+          <li class="bodyTypeListItem">
+            <img src="images/icon/coupe.png" alt="">
+            <p>Coupe</p>
+          </li>
+            
+        </a>
+        <a href="filter?make=&vehicleType=hatchback">
+          <li class="bodyTypeListItem">
+            <img src="images/icon/hatch.png" alt="">
+            <p>Hatchback</p>
+          </li>
+        </a>
+        <a href="filter?make=&vehicleType=sedan">
+          <li class="bodyTypeListItem">
+            <img src="images/icon/sedan.png" alt="">
+            <p>Sedan</p>
+          </li>
+        </a>
+        <a href="filter?make=&vehicleType=van">
+          <li class="bodyTypeListItem">
+            <img src="images/icon/van.png" alt="">
+            <p>Van</p>
+          </li>
+        </a>
+        <a href="filter?make=&vehicleType=suv">
+          <li class="bodyTypeListItem">
+            <img src="images/icon/suv.png" alt="">
+            <p>SUV</p>
+          </li>
+        </a>
+        <a href="filter?make=&vehicleType=truck">
+          <li class="bodyTypeListItem">
+            <img src="images/icon/truck.png" alt="">
+            <p>Truck</p>
+          </li>
+        </a>
+      </ul>
+    </div>
+
+    <!-- Vehicle Display -->
+    <div class="vehicleDisplaySection">
+      <ul class="vehicleDisplayList">
+
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="callToActionButton">
+    <h1>EXPLORE TULUCANADA.COM</h1>
+    <ul class="callToActionButtonList">
+      <a href="/TradeVehicle">
+        <li class="callToActionButtonListItem">
+            <h3>Trade In Your Vehicle</h3>
+          
+        </li>
+      </a>
+      <a href="/Finance/Finance">
+        <li class="callToActionButtonListItem">
+          <h3>Get Approved Now</h3>
+        </li>
+      </a>
+      <a href="/Shop">
+        <li class="callToActionButtonListItem">
+          <h3>Browse The Inventory</h3>
+        </li>
+      </a>
+    </ul>
+  </div>
+
+  <section class="secondSection">
+    <div class="circle"></div>
+    <div class="col-left">
+      <h1>Featured Dealerships</h1>
+      <h3>tulu Canada is thrilled to be working with some of your favourite local dealerships.
+        These are the dealers that power tulu!</h3>
+    </div>
+    <div class="col-right">
+      <img src="images/umbrella.png" alt="">
+      <div class="carouselContainer">
+        <ul class="carousel">
+
+        </ul>
+      </div>
+      <div class="next"><i class="fas fa-caret-right fa-2x"></i></div>
+      <div class="prev"><i class="fas fa-caret-left fa-2x"></i></div>
+    </div>
+  </section>
+
+  <div class="tuluSection">
+    <h2>TOP TULU'S</h2>
+    <ul class="tuluList">
+
+    </ul>
+  </div>
+
+
+  <div class="reviewsContainer">
+    <h2>SOCIAL REVIEWS</h2>
+    <ul class="reviewsList">
+      <li class="reviewsListItem">
+        <p class="review">
+          <i class="fas fa-quote-left fa-2x"></i>
+          I’m in love with my new car thanks to Lord, Elina and the team at Tulu, who paired with with Roger at the dealership. The members of Tulu were exceptional with their care for me, they made sure to know what exactly I was looking for and catered my whole experience to the very specifics of what I was looking for. They made car shopping peaceful when in the past I’ve hated my experiences. I’m so happy to have worked with Tulu. I can’t wait until I am ready for my next car and get to go through them again!! Thank you so much guys !
+        </p>
+        <strong class="clientName">
+          - Jessica King
+        </strong>
+      </li>
+      <li class="reviewsListItem">
+        <p class="review">
+          <i class="fas fa-quote-left fa-2x"></i>
+          These Guys are a pleasure to work with. Their product offering is revolutionary for car dealerships and the team works hard to make everything perfect. They came and spoke with us multiple times,  photographed each unit individually, and have taken our feedback into consideration every time. I highly recommend listing your vehicles on Tulu.
+        </p>
+        <strong class="clientName">
+          - Dominik Pula
+        </strong>
+      </li>
+      <li class="reviewsListItem">
+        <p class="review">
+          <i class="fas fa-quote-left fa-2x"></i>
+          tulu Canada is a completely different system and I 100% support it as it goes through dealers and is transparent and has people that have been in the industry for over 20 years supporting and moulding it to help the people.  
+        </p>
+        <strong class="clientName">
+          - Johnny Meneray
+        </strong>
+      </li>
+    </ul>
+  </div>
+
+  <div class="videoContainer">
+    <video width="50%" controls preload="none" muted autoplay loop>
+      <source src="Videos/tulu_vid.mp4" type="video/mp4" />
+      Your browser does not support HTML video.
+    </video>
+  </div>
+
+  <div class="blogSection">
+    <ul>
+
+    </ul>
+  </div>
+  
+  <div class="career">
+    <img src="images/hiring.png" alt="">
+    <div class="jobInfo">
+      <h2 class="jobTitle">Automotive Sales - tulu Member</h2>
+      <p class="location">Calgary, AB • Remote</p>
+      <div class="jobDescription">
+        Are you a motivated individual looking to make your own schedule and some extra income?
+      </div>
+      <a href="/Careers">
+        <button>Apply Now!</button>
+      </a>
+    </div>
+  </div>
+
+  <%- include partials/footer %>
+</body>
+
+<script src="Js/sideMenu.js"></script>
+<script>
+  var tuluList = <%-JSON.stringify(tulu)%>;
+  console.log(tuluList);
+  var blog = <%-JSON.stringify(blog)%>;
+  console.log(blog);
+  var dealer = <%-JSON.stringify(dealer)%>;
+  console.log(dealer);
+  var dealershipList = <%-JSON.stringify(dealershipList)%>;
+  console.log(dealershipList);
+  var vehicles = <%-JSON.stringify(vehicles)%>;
+  console.log(vehicles);
+
+
+    function shuffleArray(array) {
+    let curId = array.length;
+    // There remain elements to shuffle
+    while (0 !== curId) {
+      // Pick a remaining element
+      let randId = Math.floor(Math.random() * curId);
+      curId -= 1;
+      // Swap it with the current element.
+      let tmp = array[curId];
+      array[curId] = array[randId];
+      array[randId] = tmp;
+    }
+    return array;
+  }
+  // Usage of shuffle
+  // let arr = [1, 2, 3, 4, 5];
+  vehicles = shuffleArray(vehicles);
+  console.log(vehicles);
+
+  populateVehicles();
+
+  function populateVehicles(){
+    var price,mileage;
+    var html="";
+    for(x=0;x!=9;x++){
+      html+='';
+      html+='<a href="carview/'+vehicles[x].vin+'">';
+      html+='<li  class="vehicleDisplayListItem" style="background:linear-gradient(#ffffff00,#000000bb 70%),url(/image/'+vehicles[x].vin+');background-position:center;background-size:cover;background-repeat:no-repeat;">';
+      html+='    <h3 class="carTitle">'+vehicles[x].year+' '+vehicles[x].make+' '+vehicles[x].model+'</h3>';
+      mileage = vehicles[x].mileage;
+      price = vehicles[x].maxPrice;
+      html+='    <p class="mileage">'+mileage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+' Kms</p>';
+      html+='    <p class="price">$ '+price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'</p>';
+      html+='</li>';
+    }
+    $('.vehicleDisplayList').empty();
+    $('.vehicleDisplayList').append(html);
+  }
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+  LoadDealer()
+  function LoadDealer(){
+    var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+
+    var html="";
+    for(var i=0;i!=dealershipList.length;i++){
+      html+='<li class="item '+alphabet[i]+'">';
+      for(var x=0;x!=dealer.length;x++){
+        if(dealer[x].uuid==dealershipList[i].dealerId){
+          html+='<a href="/DealerListing/'+dealer[x].uuid+'">';
+          html+='<img src="image/'+dealershipList[i]._id+'">';
+          html+='</a>';
+        }
+      }
+      html+='</li>';
+    }
+
+    $(".carousel").empty();
+    $(".carousel").append(html);
+  }
+
+  var carousel = $(".carousel"),
+    currdeg  = 0;
+
+  $(".next").on("click", { d: "n" }, rotate);
+  $(".prev").on("click", { d: "p" }, rotate);
+
+  function rotate(e){
+    if(e.data.d=="n"){
+      currdeg = currdeg - 60;
+    }
+    if(e.data.d=="p"){
+      currdeg = currdeg + 60;
+    }
+    carousel.css({
+      "-webkit-transform": "rotateY("+currdeg+"deg)",
+      "-moz-transform": "rotateY("+currdeg+"deg)",
+      "-o-transform": "rotateY("+currdeg+"deg)",
+      "transform": "rotateY("+currdeg+"deg)"
+    });
+  }
+
+  setInterval(function(){ 
+    document.querySelector(".next").click();
+  }, 3000);
+
+
+  loadTulus()
+  function loadTulus(){
+    var html = '';
+      for (i = 0; i != 4; i++) {
+          if(tuluList[i].status="active"){
+            html+='<li class="influencerListItems">';
+            html+='  <a href="/tulu/viewTulu?tuluId='+tuluList[i]._id+'">';
+            html+='   <div class="influencerImage"style="background:url(/image/'+tuluList[i]._id+'); background-size:cover;background-position:center;">';
+            html+='   </div>';
+            html+='  <h3 class="influencerName">'+tuluList[i].fName +" "+tuluList[i].lName+'</h3>';
+            html+='  <div class="userRating">';
+
+            if(tuluList[i].ratings == 5){
+              for(x=0;x!=5;x++){
+                html = html + '		    <i class="fas fa-star"></i>';
+              }
+            }else if(tuluList[i].ratings == 4){
+              for(x=0;x!=4;x++){
+                html = html + '		    <i class="fas fa-star"></i>';
+              }
+              html = html + '		    <i class="far fa-star"></i>';
+            }else if(tuluList[i].ratings == 3){
+              for(x=0;x!=3;x++){
+                html = html + '		    <i class="fas fa-star"></i>';
+              }
+              html = html + '		    <i class="far fa-star"></i>';
+              html = html + '		    <i class="far fa-star"></i>';
+            }else if(tuluList[i].ratings == 2){
+              for(x=0;x!=2;x++){
+                html = html + '		    <i class="fas fa-star"></i>';
+              }
+              html = html + '		    <i class="far fa-star"></i>';
+              html = html + '		    <i class="far fa-star"></i>';
+              html = html + '		    <i class="far fa-star"></i>';
+            }else if(tuluList[i].ratings == 1){
+              html = html + '		    <i class="fas fa-star"></i>';
+              html = html + '		    <i class="far fa-star"></i>';
+              html = html + '		    <i class="far fa-star"></i>';
+              html = html + '		    <i class="far fa-star"></i>';
+              html = html + '		    <i class="far fa-star"></i>';
+            }else{
+              html = html + '		    <i class="far fa-star"></i>';
+              html = html + '		    <i class="far fa-star"></i>';
+              html = html + '		    <i class="far fa-star"></i>';
+              html = html + '		    <i class="far fa-star"></i>';
+              html = html + '		    <i class="far fa-star"></i>';
+            }
+
+            html+='  </div>';
+            // html+='<p class="bio">';
+            // html+=tuluList[i].bio;
+            // html+='</p>';
+            
+            html+='  </a>';
+            html+='</li>';
+          }
+      }
+      $(".tuluList").empty();
+      $(".tuluList").append(html);
+    }
+
+    LoadBlog()
+function LoadBlog(){
+  var html='';
+  for(var x=0;x!=blog.length;x++){
+      html+='<li>';
+      html+='<img src="/image/'+blog[x]._id+'">'
+      // html+='<p class="tag">'+blogList[x].tag+'<span>'+blogList[x].date+'</span></p>';
+      html+='<p class="tag"><span>'+blog[x].date+'</span></p>';
+      html+='<h2 class="title">'+blog[x].blogName+'</h2>';
+      html+='<p class="description">'+blog[x].description+'</p>';
+      html+='<a href="/Blog/'+blog[x]._id+'">Read this Story<i class="fas fa-arrow-right"></i></a>';
+      
+      html+='</li>';
+  }
+  $('.blogSection ul').empty();
+  $('.blogSection ul').append(html);
+  document.querySelectorAll('.description').innerText = truncateText('.description', 107);
+}
+function truncateText(selector, maxLength) {
+    var element = document.querySelector(selector),
+        truncated = element.innerText;
+
+    if (truncated.length > maxLength) {
+        truncated = truncated.substr(0,maxLength) + '...';
+    }
+    return truncated;
+}
+
+
+
+</script>
+</html>
