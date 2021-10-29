@@ -66,7 +66,7 @@ pgroutr.get("/", (req, res) =>
       .then((blog) => {
         User.find({ role: "tulu" })
         .then((tulu) => {
-          res.render("Index", {
+          res.render("IndexRemake", {
             user: req.user,
             tulu:tulu,
             blog:blog,
