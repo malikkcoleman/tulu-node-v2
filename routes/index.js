@@ -342,6 +342,15 @@ pgroutr.get("/shop/:start/:limit", (req, res) => {
   });
 });
 
+function clean(obj) { //for cleaning filter when other field is blank
+  for (var propName in obj) {
+    if (obj[propName] === null || obj[propName] === undefined || obj[propName] === '') {
+      delete obj[propName];
+    }
+  }
+  return obj
+}
+
 pgroutr.get("/filter", async (req, res) => {
   searchq = undefined;
   queryfilterz = req.query;
