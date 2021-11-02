@@ -1,7 +1,7 @@
 var start = 0;
 var limit = 10;
 $.ajax({
-    url: "/shop/" + start + "/" + limit,
+    url: "/inventory/shop/" + start + "/" + limit,
     method: "GET",
     success: function(res){
       renderPosts(res);
@@ -11,7 +11,7 @@ $.ajax({
 function getNext(){
   start = start + limit;
   $.ajax({
-    url: "/shop/" + start + "/" + limit,
+    url: "/inventory/shop/" + start + "/" + limit,
     method: "GET",
     success: function(res){
       renderPosts(res);

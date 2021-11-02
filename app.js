@@ -115,6 +115,7 @@ app.use("/application", require("./routes/application"));
 app.use("/events", require("./routes/events"));
 app.use("/blogs", require("./routes/blogs"));
 app.use("/message", require("./routes/message"));
+app.use("/inventory", require("./routes/inventory"));
 // ---------------------------------
 
 app.use(express.static(__dirname + "/public"));
