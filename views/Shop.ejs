@@ -38,7 +38,7 @@
           onclick="vehicleDisplay()"
         ></i>
         <div style="width: 100%;">
-          <form action="/inventory/search" method="GET" class="srchForm">
+          <form action="/inventory/search" method="GET" class="srchForm" onsubmit="location.reload(true)">
             <input type="text" name="squery" class="srchInput" placeholder="Search Cars" value="<%= searchQuery %>">
           </form>
         </div>
@@ -56,7 +56,7 @@
           <div class="MakeSearchContainer">
             <label for="make" class="MakeSearchLabel">Make :</label>
 
-            <select name="make" id="MakeSearch" onchange="SearchVehicles()">
+            <select name="make" id="MakeSearch">
               <option value="">Any</option>
               <option value="Acura">Acura</option>
               <option value="AlfaRomeo">AlfaRomeo</option>
@@ -108,7 +108,7 @@
               >Vehicle Type :</label
             >
 
-            <select name="vehicleType" id="VehicleTypeSearch" onchange="SearchVehicles()">
+            <select name="vehicleType" id="VehicleTypeSearch">
               <option value="">Any</option>
               <option value="sedan">Sedan</option>
               <option value="coupe">Coupe</option>
@@ -159,6 +159,7 @@
             formaction="/inventory/filter"
             class="searchButton"
             id="searchButton"
+            onclick="location.reload(true)"
           >Search</button>
           <!-- <input
             type="button"
