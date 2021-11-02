@@ -161,16 +161,3 @@ function SearchVehicles(){
     console.log(gVehicle)
     populateVehicle(gVehicle);
 }
-
-var something = (function() {
-  var executed = false;
-  return function() {
-      if (!executed) {
-          executed = true;
-          location.reload(true);
-      }
-  };
-})();
-
-something(); // "do something" happens
-something(); // nothing happens
