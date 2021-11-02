@@ -522,7 +522,7 @@ pgroutr.get("/DealershipList", (req, res) => {
 });
 
 pgroutr.get("/about", function (req, res) {
-  res.render("about", {
+  res.render("About", {
     user: req.user,
   });
 });
@@ -534,13 +534,13 @@ pgroutr.get("/faq", function (req, res) {
 });
 
 pgroutr.get("/careers", function (req, res) {
-  res.render("careers", {
+  res.render("Careers", {
     user: req.user,
   });
 });
 
 pgroutr.get("/privacypolicy", function (req, res) {
-  res.render("privacypolicy", {
+  res.render("PrivacyPolicy", {
     user: req.user,
   });
 });
