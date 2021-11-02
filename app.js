@@ -121,16 +121,16 @@ app.use("/inventory", require("./routes/inventory"));
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(path.join(__dirname, "assets")));
 
-// app.use(function (err, req, res, next) {
-//   res.render("404", {
-//     user: req.user,
-//   });
-// });
-// app.use(function (req, res) {
-//   res.status(404).render("404", {
-//     user: req.user,
-//   });
-// });
+app.use(function (err, req, res, next) {
+  res.render("404", {
+    user: req.user,
+  });
+});
+app.use(function (req, res) {
+  res.status(404).render("404", {
+    user: req.user,
+  });
+});
 
 const PORT = process.env.PORT || 3000;
 

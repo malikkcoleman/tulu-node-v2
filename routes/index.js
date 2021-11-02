@@ -522,7 +522,7 @@ pgroutr.get("/DealershipList", (req, res) => {
 });
 
 pgroutr.get("/about", function (req, res) {
-  res.render("about", {
+  res.render("About", {
     user: req.user,
   });
 });
