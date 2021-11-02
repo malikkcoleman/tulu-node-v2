@@ -38,7 +38,7 @@
           onclick="vehicleDisplay()"
         ></i>
         <div style="width: 100%;">
-          <form action="/search" method="GET" class="srchForm">
+          <form action="/inventory/search" method="GET" class="srchForm">
             <input type="text" name="squery" class="srchInput" placeholder="Search Cars" value="<%= searchQuery %>">
           </form>
         </div>
@@ -48,7 +48,7 @@
       </div>
       
       <aside id="FilterSettings" class="filterSettings">
-        <form class="filterSettingContainer" action="/filter/" method="GET">
+        <form class="filterSettingContainer" action="/inventory/filter/" method="GET">
           <div class="ModelSearchContainer" style="display: none">
             <label for="ModelSearch" class="ModelSearchLabel">Model :</label>
             <input type="text" id="ModelSearch"/>
@@ -156,7 +156,7 @@
           </div>
 
           <button
-            formaction="/filter"
+            formaction="/inventory/filter"
             class="searchButton"
             id="searchButton"
           >Search</button>
