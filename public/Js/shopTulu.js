@@ -61,7 +61,7 @@ function renderPosts(resss){
             if(data.mileage != null){
                 html += '       <p class="carMileage">'+data.mileage +'  Kms</p>';
             }
-            html+='        <a href="carview/'+ data.vin +'"><button class="moreInfo">View Vehicle</button></a>';
+            html+='        <a href="/carview/'+ data.vin +'"><button class="moreInfo">View Vehicle</button></a>';
             html += '       <p class="dealership">' + data.dealer.name + '</p>';
             html+='    </div>';
             html+='</li>';
@@ -81,7 +81,7 @@ function renderPosts(resss){
             html += '           <p class="carTransmission">' + data.transmissionName + '</p>';
             html += '       </div>';
             html += '       <div class="moreInfoContainer">';
-            html += '              <a href="carview/'+ data.vin +'"><button class="moreInfo">View Vehicle</button></a>';
+            html += '              <a href="/carview/'+ data.vin +'"><button class="moreInfo">View Vehicle</button></a>';
             html += '       </div>';
             html += '       <p class="dealership">' + data.dealer.name + '</p>';
             html += '       <p class="views"><i class="far fa-eye"></i> '+data.views+' views</p>';
