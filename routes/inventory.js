@@ -8,6 +8,7 @@ const Dealer = require("../models/dealershipschema");
 
 var queryfilterz
 var queryfilterz, sortzz, searchq;
+var vehiclelist = []
 
 router.get("/",async (req, res) => {
   queryfilterz = undefined
@@ -48,7 +49,6 @@ router.get("/shop/:start/:limit", (req, res) => {
       .limit(parseInt(req.params.limit))
     }
     console.log(vehicles)
-    var vehiclelist = []
     await vehicles.forEach(function(vec){
       vec = JSON.parse(JSON.stringify(vec));
       vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
@@ -73,6 +73,7 @@ function clean(obj) { //for cleaning filter when other field is blank
 }
 
 router.get("/filter", async (req, res) => {
+  vehiclelist = []
   searchq = undefined;
   queryfilterz = req.query;
   var filterQ = clean(queryfilterz)
@@ -108,6 +109,7 @@ router.get("/filter", async (req, res) => {
 });
 
 router.get("/search", async (req,res) => {
+  vehiclelist = []
   queryfilterz = undefined
   var vehiclelistSearch = []
   searchq = req.query.squery
