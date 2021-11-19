@@ -64,40 +64,35 @@ function populatePage(){
 	}
 }
 
-// setTimeout(function(){ window.location.reload(); }, 10000);
+setTimeout(function(){ window.location.reload(); }, 10000);
 
 function populateInbox(threadId){
 	
-
-	$('#messageBox').empty();
-	var html;
-	html='<iframe src="/messengerBox/?recipientId='+recipientId+'" frameborder="0"></iframe>';
-	$('#messageBox').append(html);
-	// $('.messageBox').empty();
-	// for(z=0;z!=messages.length;z++){
-	// 	if(messages[z].targetId == threadId){
-	// 		var html="";
-	// 		if(messages[z].senderId == user._id){
-	// 			html+='<div class="participantTwo">';
-	// 			html+='	<p>';
-	// 			html+=messages[z].message;
-	// 			html+='	</p>';
-	// 			html+='	<div class="image" style="background:url(/image/'+messages[z].senderId+');background-size:contain;background-position:center;">';
-	// 			html+='	</div>';
-	// 			html+='</div>';
-	// 		}else{
-	// 			html+='<div class="participantOne">';
-	// 			html+='	<div class="image" style="background:url(/image/'+messages[z].senderId+');background-size:contain;background-position:center;">';
-	// 			html+='	</div>';
-	// 			html+='	<p>';
-	// 			html+=messages[z].message;
-	// 			html+='	</p>';
-	// 			html+='</div>';
-	// 		}
-	// 		$('.messageBox').append(html);
-	// 	}
-	// }
-	// messageBoxScrollDown();
+	$('.messageBox').empty();
+	for(z=0;z!=messages.length;z++){
+		if(messages[z].targetId == threadId){
+			var html="";
+			if(messages[z].senderId == user._id){
+				html+='<div class="participantTwo">';
+				html+='	<p>';
+				html+=messages[z].message;
+				html+='	</p>';
+				html+='	<div class="image" style="background:url(/image/'+messages[z].senderId+');background-size:contain;background-position:center;">';
+				html+='	</div>';
+				html+='</div>';
+			}else{
+				html+='<div class="participantOne">';
+				html+='	<div class="image" style="background:url(/image/'+messages[z].senderId+');background-size:contain;background-position:center;">';
+				html+='	</div>';
+				html+='	<p>';
+				html+=messages[z].message;
+				html+='	</p>';
+				html+='</div>';
+			}
+			$('.messageBox').append(html);
+		}
+	}
+	messageBoxScrollDown();
 }
 
 function messageBoxScrollDown(){

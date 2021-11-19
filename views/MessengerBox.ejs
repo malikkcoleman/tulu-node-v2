@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" type="image/png" href="../../images/favicon.png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulu Canada</title>
+    <link rel="stylesheet" href="../../styles/reset.css" />
+    <link rel="stylesheet" href="../../styles/css/all.css" />
+    <link rel="stylesheet" href="../../styles/nav.css" />
+    <link rel="stylesheet" href="../../styles/messengerBox.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="../../jquery/dist/jquery.min.js"></script>
+<%- include partials/googleAnalytics %>
+</head>
+<body>
+<!-- THIS NEEDS FIXING -->
+    <div class="container body-content messages" style="margin:50px 0 0 0;">
+        <div class="messageBox">
+            <!-- <div class="participantOne">
+                <div class="image">
+
+                </div>
+                <p>
+                    Test
+                </p>
+            </div>
+            <div class="participantTwo">
+                <p>
+                    Test
+                </p>
+                <div class="image">
+
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+</body>
+<script>
+    var recipientId = "";
+    var userList = <%-JSON.stringify(userList)%>;
+    console.log(userList);
+    var thread = <%-JSON.stringify(thread)%>;
+    console.log(thread);
+    var user = <%-JSON.stringify(user)%>;
+    console.log(user);
+    var messages = <%-JSON.stringify(messages)%>;
+    console.log(messages);
+</script>
+<script src="../../Js/messengerBox.js"></script>
+</html>

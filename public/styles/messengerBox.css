@@ -1,0 +1,53 @@
+.messages{
+    margin:0 !important;
+}
+
+.messageBox{
+    height:100vh;
+    /* height:73vh; */
+    overflow:scroll;
+    padding:20px 15px;
+    /* margin:20px 0 0 0 !important; */
+}
+
+.participantOne,
+.participantTwo{
+    padding:10px 0;
+    flex-direction: row;
+}
+
+.participantTwo{
+    /* align-items: flex-end; */
+    justify-content: flex-end;
+}
+
+.participantOne .image,
+.participantTwo .image{
+    border:4px solid #79C6AC;
+    border-radius: 50%;
+    height:40px;
+    width:40px;
+}
+
+.participantOne .image{
+    margin:0 10px 0 0;
+}
+
+.participantTwo .image{
+    margin:0 0 0 10px;
+}
+
+.participantOne p,
+.participantTwo p{
+    font-size: small;
+    padding:0px 10px;
+    justify-content: center;
+    color:white;
+    background: #8B9196;
+    border-radius: 10px;
+}
+
+
+.crisp-client{
+    display:none !important;
+}

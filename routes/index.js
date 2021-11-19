@@ -113,6 +113,24 @@ pgroutr.get("/Messenger", ensureAuthenticated, (req, res) =>
   })
 );
 
+pgroutr.get("/MessengerBox", ensureAuthenticated, (req, res) =>
+  User.find({})
+  .then((userList) => {
+    Thread.find({})
+    .then((thread) => {
+      Message.find({})
+      .then((messages) => {
+        res.render("MessengerBox", {
+          user: req.user,
+          userList: userList,
+          thread: thread,
+          messages: messages,
+        })
+      })
+    })
+  })
+);
+
 
 pgroutr.get("/Inbox", ensureAuthenticated, (req, res) =>
   User.find({})
