@@ -48,7 +48,6 @@ function renderPosts(resss){
       }
   
       let arr = Array.prototype.slice.call(resss.vehicles);
-      shuffleArray(arr);
 
 
       arr.forEach(function(data){

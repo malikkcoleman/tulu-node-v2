@@ -10,6 +10,19 @@ var queryfilterz
 var queryfilterz, sortzz, searchq;
 var vehiclelist = []
 
+function sorter(sortQuery){
+  console.log(sortQuery)
+  if(sortQuery == 'kilometers'){
+    return {mileage: 1}
+  }else if(sortQuery == 'lowToHigh'){
+    return {maxPrice: 1}
+  }else if(sortQuery == 'highToLow'){
+    return {maxPrice: -1}
+  }else{
+    return "{}"
+  }
+}
+
 router.get("/",async (req, res) => {
   queryfilterz = undefined
   searchq = undefined
@@ -29,6 +42,7 @@ router.get("/",async (req, res) => {
 })
 
 router.get("/shop/:start/:limit", (req, res) => {
+  console.log(sorter(sortzz))
   Dealer.find({})
   .then(async (dealershipList) => {
     var vehicles
@@ -36,19 +50,20 @@ router.get("/shop/:start/:limit", (req, res) => {
       var filterQ = clean(queryfilterz)
       delete filterQ["VehicleSort"]
       vehicles = await Vehicle.find(filterQ)
-      .sort(sortzz)
+      .sort(sorter(sortzz))
       .skip(parseInt(req.params.start))
       .limit(parseInt(req.params.limit))
     }else if(searchq != undefined){
       vehicles = await Vehicle.fuzzySearch({ query: searchq, prefixOnly: true })
       .skip(parseInt(req.params.start))
-      .limit(parseInt(req.params.limit));
+      .limit(parseInt(req.params.limit))
     }else{
       vehicles = await Vehicle.find({})
       .skip(parseInt(req.params.start))
       .limit(parseInt(req.params.limit))
     }
     console.log(vehicles)
+    var vehiclelist = []
     await vehicles.forEach(function(vec){
       vec = JSON.parse(JSON.stringify(vec));
       vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
@@ -72,33 +87,23 @@ function clean(obj) { //for cleaning filter when other field is blank
   return obj
 }
 
-router.get("/filter", async (req, res) => {
+router.get("/filter", (req, res) => {
   vehiclelist = []
   searchq = undefined;
   queryfilterz = req.query;
   var filterQ = clean(queryfilterz)
-  delete filterQ["VehicleSort"]
-  if(req.query.VehicleSort == 'kilometers'){
-    sortzz = "{'mileage': 1}"
-  }else if(req.query.VehicleSort = 'lowToHigh'){
-    sortzz = "{'maxPrice': -1}"
-  }else if(req.query.VehicleSort = 'highToLow'){
-    sortzz = "{'maxPrice': 1}"
-  }else{
-    sortzz = "{}"
-  }
-  var vehiclelistFilter = []
-  var vehicleFilter = undefined
-  Vehicle.find(filterQ)
-  .sort(sortzz)
-  .limit(10)
-  .then(async function(data){
+  sortzz = req.query.VehicleSort;
+  let vez = Vehicle.find(filterQ).sort(sorter(req.query.VehicleSort))
+  let promiss = vez.exec();
+  vehiclelistFilter = []
+  promiss.then(async function(data){
     const dealershipList = await Dealer.find({})
     await data.forEach(function(vec){
       vec = JSON.parse(JSON.stringify(vec));
       vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
       vehiclelistFilter.push(vec)
     })
+
     res.render("Shop", {
       vehicles: vehiclelistFilter,
       dealershipList: dealershipList,
@@ -106,6 +111,7 @@ router.get("/filter", async (req, res) => {
       searchQuery: searchq
     })
   })
+
 });
 
 router.get("/search", async (req,res) => {
@@ -116,8 +122,7 @@ router.get("/search", async (req,res) => {
   try{
     var vehiclesSearch = undefined
     Vehicle.fuzzySearch({ query: searchq, prefixOnly: true })
-    .sort(sortzz)
-    .limit(10)
+    .sort(sorter(req.query.VehicleSort))
     .then(async function(data){
       const dealershipList = await Dealer.find({})
       // console.log(data)
