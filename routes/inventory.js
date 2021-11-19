@@ -93,7 +93,8 @@ router.get("/filter", (req, res) => {
   queryfilterz = req.query;
   var filterQ = clean(queryfilterz)
   sortzz = req.query.VehicleSort;
-  let vez = Vehicle.find(filterQ).sort(sorter(req.query.VehicleSort))
+  vez = null;
+  vez = Vehicle.find(filterQ).sort(sorter(req.query.VehicleSort)).limit(10)
   let promiss = vez.exec();
   vehiclelistFilter = []
   promiss.then(async function(data){
@@ -123,6 +124,7 @@ router.get("/search", async (req,res) => {
     var vehiclesSearch = undefined
     Vehicle.fuzzySearch({ query: searchq, prefixOnly: true })
     .sort(sorter(req.query.VehicleSort))
+    .limit(10)
     .then(async function(data){
       const dealershipList = await Dealer.find({})
       // console.log(data)
