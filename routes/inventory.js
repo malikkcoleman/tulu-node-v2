@@ -45,7 +45,7 @@ router.get("/shop/:start/:limit", (req, res) => {
   console.log(sorter(sortzz))
   Dealer.find({})
   .then(async (dealershipList) => {
-    var vehicles
+    var vehicles = null;
     if(queryfilterz != undefined){
       var filterQ = clean(queryfilterz)
       delete filterQ["VehicleSort"]
