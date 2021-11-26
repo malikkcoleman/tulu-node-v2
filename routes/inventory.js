@@ -59,7 +59,6 @@ router.get("/shop/:start/:limit", (req, res) => {
   var execVec = vehicles.exec();
   var vehiclelistFilter = []
   execVec.then(async function(data){
-    console.log(data)
     const dealershipList = await Dealer.find({})
     await data.forEach(function(vec){
       vec = JSON.parse(JSON.stringify(vec));
@@ -92,8 +91,6 @@ router.get("/filter", (req, res) => {
   queryfilterz = req.query;
   filterQ = clean(queryfilterz)
   delete filterQ["VehicleSort"]
-  console.log(sortzz)
-  console.log("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
   vez = null;
   vez = Vehicle.find(filterQ).sort(sortzz).limit(10)
   let promiss = vez.exec();
@@ -106,7 +103,7 @@ router.get("/filter", (req, res) => {
       vehiclelistFilter.push(vec)
     })
 
-    res.render("Shop", {
+    res.send({
       vehicles: vehiclelistFilter,
       dealershipList: dealershipList,
       user: req.user,

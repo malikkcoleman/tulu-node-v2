@@ -34,15 +34,13 @@ function filter(formData){
       link += `${key}=${value}&`
     }
   }
-
-  window.location.replace(window.location.origin+"/inventory/filter?"+link)
-  // $.ajax({
-  //   url: "/inventory/filter?"+link,
-  //   method: "GET",
-  //   success: function(res){
-  //     renderPosts(res);
-  //   }
-  // });
+  $.ajax({
+    url: "/inventory/filter?"+link,
+    method: "GET",
+    success: function(res){
+      renderPosts(res);
+    }
+  });
 
   return false;
 }
