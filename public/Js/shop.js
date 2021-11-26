@@ -6,7 +6,6 @@ $.ajax({
     method: "GET",
     success: function(res){
       renderPosts(res);
-      console.log('teoptspoeitsepo')
     }
   });
 function getNext(){

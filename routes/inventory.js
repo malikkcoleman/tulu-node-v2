@@ -103,7 +103,7 @@ router.get("/filter", (req, res) => {
       vehiclelistFilter.push(vec)
     })
 
-    res.render('Shop',{
+    res.send({
       vehicles: vehiclelistFilter,
       dealershipList: dealershipList,
       user: req.user,
