@@ -41,7 +41,7 @@ router.get("/",async (req, res) => {
 })
 
 router.get("/shop/:start/:limit", (req, res) => {
-  var vehicles
+  var vehicles = null;
   if(queryfilterz != undefined){
     vehicles = Vehicle.find(filterQ)
     .sort(sortzz)
@@ -57,17 +57,18 @@ router.get("/shop/:start/:limit", (req, res) => {
     .limit(parseInt(req.params.limit))
   }
   var execVec = vehicles.exec();
-  var vehiclelistFilterzzz = []
+  var vehiclelistFilter = null;
+  vehiclelistFilter = []
   execVec.then(async function(data){
     const dealershipList = await Dealer.find({})
     await data.forEach(function(vec){
       vec = JSON.parse(JSON.stringify(vec));
       vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
-      vehiclelistFilterzzz.push(vec)
+      vehiclelistFilter.push(vec)
     })
 
     res.send({
-      vehicles: vehiclelistFilterzzz,
+      vehicles: vehiclelistFilter,
       dealershipList: dealershipList,
       user: req.user,
       searchQuery: searchq
@@ -91,7 +92,6 @@ router.get("/filter", (req, res) => {
   queryfilterz = req.query;
   filterQ = clean(queryfilterz)
   delete filterQ["VehicleSort"]
-  console.log(filterQ)
   vez = null;
   vez = Vehicle.find(filterQ).sort(sortzz).limit(10)
   let promiss = vez.exec();
@@ -103,8 +103,8 @@ router.get("/filter", (req, res) => {
       vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
       vehiclelistFilter.push(vec)
     })
-    console.log(vehiclelistFilter)
-    res.render("Shop",{
+
+    res.render('Shop',{
       vehicles: vehiclelistFilter,
       dealershipList: dealershipList,
       user: req.user,
