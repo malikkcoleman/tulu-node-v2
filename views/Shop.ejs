@@ -48,7 +48,7 @@
       </div>
       
       <aside id="FilterSettings" class="filterSettings">
-        <form class="filterSettingContainer" onsubmit="return filter(this)">
+        <form class="filterSettingContainer" action="/inventory/filter/" method="GET">
           <div class="ModelSearchContainer" style="display: none">
             <label for="ModelSearch" class="ModelSearchLabel">Model :</label>
             <input type="text" id="ModelSearch"/>
@@ -154,8 +154,13 @@
               <option value="kilometers">Kilometers</option>
             </select>
           </div>
-          <input type="submit" class="searchButton"
-          id="searchButton" value="Seach">
+
+          <button
+            formaction="/inventory/filter"
+            class="searchButton"
+            id="searchButton"
+            onclick="location.reload(true)"
+          >Search</button>
           <!-- <input
             type="button"
             value="Clear"

@@ -91,6 +91,7 @@ router.get("/filter", (req, res) => {
   queryfilterz = req.query;
   filterQ = clean(queryfilterz)
   delete filterQ["VehicleSort"]
+  console.log(filterQ)
   vez = null;
   vez = Vehicle.find(filterQ).sort(sortzz).limit(10)
   let promiss = vez.exec();
@@ -103,7 +104,7 @@ router.get("/filter", (req, res) => {
       vehiclelistFilter.push(vec)
     })
 
-    res.send({
+    res.render("Shop",{
       vehicles: vehiclelistFilter,
       dealershipList: dealershipList,
       user: req.user,
