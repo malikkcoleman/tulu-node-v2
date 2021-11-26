@@ -57,17 +57,17 @@ router.get("/shop/:start/:limit", (req, res) => {
     .limit(parseInt(req.params.limit))
   }
   var execVec = vehicles.exec();
-  var vehiclelistFilter = []
+  var vehiclelistFilterzzz = []
   execVec.then(async function(data){
     const dealershipList = await Dealer.find({})
     await data.forEach(function(vec){
       vec = JSON.parse(JSON.stringify(vec));
       vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
-      vehiclelistFilter.push(vec)
+      vehiclelistFilterzzz.push(vec)
     })
 
     res.send({
-      vehicles: vehiclelistFilter,
+      vehicles: vehiclelistFilterzzz,
       dealershipList: dealershipList,
       user: req.user,
       searchQuery: searchq
