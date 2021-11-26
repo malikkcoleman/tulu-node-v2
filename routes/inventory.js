@@ -41,7 +41,7 @@ router.get("/",async (req, res) => {
 })
 
 router.get("/shop/:start/:limit", (req, res) => {
-  var vehicles = null;
+  var vehicles
   if(queryfilterz != undefined){
     vehicles = Vehicle.find(filterQ)
     .sort(sortzz)
@@ -57,8 +57,7 @@ router.get("/shop/:start/:limit", (req, res) => {
     .limit(parseInt(req.params.limit))
   }
   var execVec = vehicles.exec();
-  var vehiclelistFilter = null;
-  vehiclelistFilter = []
+  var vehiclelistFilter = []
   execVec.then(async function(data){
     const dealershipList = await Dealer.find({})
     await data.forEach(function(vec){

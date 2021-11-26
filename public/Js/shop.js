@@ -10,14 +10,14 @@ $.ajax({
     }
   });
 function getNext(){
-  start = start + limit;
-  $.ajax({
-    url: "/inventory/shop/" + start + "/" + limit,
-    method: "GET",
-    success: function(res){
-      renderPosts(res);
-    }
-  });
+  // start = start + limit;
+  // $.ajax({
+  //   url: "/inventory/shop/" + start + "/" + limit,
+  //   method: "GET",
+  //   success: function(res){
+  //     renderPosts(res);
+  //   }
+  // });
 }
 
 function filter(formData){
