@@ -20,6 +20,31 @@ function getNext(){
   });
 }
 
+function filter(formData){
+  start = 0;
+  limit = 10;
+  $("#Vehicles").empty();
+  var formDataObject = Object.fromEntries(new FormData(formData))
+  let iterations = Object.keys(formDataObject).length
+  var link = ''
+  for (const [key, value] of Object.entries(formDataObject)) {
+    if (!--iterations){
+      link += `${key}=${value}`
+    }else{
+      link += `${key}=${value}&`
+    }
+  }
+  $.ajax({
+    url: "/inventory/filter?"+link,
+    method: "GET",
+    success: function(res){
+      renderPosts(res);
+    }
+  });
+
+  return false;
+}
+
 
 // function getPrevious(){
 //   start = start - limit;
