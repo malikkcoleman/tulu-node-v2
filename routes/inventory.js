@@ -103,7 +103,7 @@ router.get("/filter", (req, res) => {
       vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
       vehiclelistFilter.push(vec)
     })
-
+    console.log(vehiclelistFilter)
     res.render("Shop",{
       vehicles: vehiclelistFilter,
       dealershipList: dealershipList,
