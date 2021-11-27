@@ -29,36 +29,43 @@ router.get("/",async (req, res) => {
     vehicles: [],
     dealershipList: '',
     user: req.user,
-    searchQuery: searchq
+    searchQuery: searchq,
+    shopagetype: "shop"
   })
 })
 
 router.get("/shop/:start/:limit", (req, res) => {
-  var vehicles
-  if(queryfilterz != undefined){
-    vehicles = Vehicle.find(filterQ)
-    .sort(sortzz)
-    .skip(parseInt(req.params.start))
-    .limit(parseInt(req.params.limit))
-  // }else if(searchq != undefined){
-  //   vehicles = await Vehicle.fuzzySearch({ query: searchq, prefixOnly: true })
-  //   .skip(parseInt(req.params.start))
-  //   .limit(parseInt(req.params.limit))
-  }else{
-    vehicles = Vehicle.find({})
-    .skip(parseInt(req.params.start))
-    .limit(parseInt(req.params.limit))
-  }
-  var execVec = vehicles.exec();
   var vehiclelistFilter = []
-  execVec.then(async function(data){
+  Vehicle.find({})
+    .skip(parseInt(req.params.start))
+    .limit(parseInt(req.params.limit)).then(async function(data){
     const dealershipList = await Dealer.find({})
     await data.forEach(function(vec){
       vec = JSON.parse(JSON.stringify(vec));
       vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
       vehiclelistFilter.push(vec)
     })
+    res.send({
+      vehicles: vehiclelistFilter,
+      dealershipList: dealershipList,
+      user: req.user,
+      searchQuery: searchq
+    })
+  })
+});
 
+router.get("/shopfilter/:start/:limit", (req, res) => {
+  var vehiclelistFilter = []
+  Vehicle.find(filterQ)
+    .sort(sortzz)
+    .skip(parseInt(req.params.start))
+    .limit(parseInt(req.params.limit)).then(async function(data){
+    const dealershipList = await Dealer.find({})
+    await data.forEach(function(vec){
+      vec = JSON.parse(JSON.stringify(vec));
+      vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
+      vehiclelistFilter.push(vec)
+    })
     res.send({
       vehicles: vehiclelistFilter,
       dealershipList: dealershipList,
@@ -87,7 +94,8 @@ router.get("/filter", (req, res) => {
     vehicles: [],
     dealershipList: '',
     user: req.user,
-    searchQuery: searchq
+    searchQuery: searchq,
+    shopagetype: "shopfilter"
   })
 });
 

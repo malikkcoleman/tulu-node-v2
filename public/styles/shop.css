@@ -114,6 +114,30 @@
     margin:0 10px 0 0;
 }
 
+.loadMore{
+    width: 200px;
+    height: 50px;
+    background-color: #79C6AC;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+
+.nextButtonHolder{
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media screen and (max-width: 600px) {
 
     #gridDisplayBtn{

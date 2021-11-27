@@ -1,19 +1,28 @@
 
 var start = 0;
-var limit = 10;
-$.ajax({
-    url: "/inventory/shop/" + start + "/" + limit,
-    method: "GET",
-    success: function(res){
-      renderPosts(res);
-    }
-  });
-function getNext(){
+var limit = 15;
+function initialLoad(type){
+  $.ajax({
+      url: "/inventory/"+type+"/" + start + "/" + limit,
+      method: "GET",
+      success: function(res){
+        if(res.vehicles.length < 15){
+          removeNextButton();
+        }
+        renderPosts(res);
+      }
+    });
+}
+
+function getNext(type){
   start = start + limit;
   $.ajax({
-    url: "/inventory/shop/" + start + "/" + limit,
+    url: "/inventory/"+type+"/" + start + "/" + limit,
     method: "GET",
     success: function(res){
+      if(res.vehicles.length < 15){
+        removeNextButton();
+      }
       renderPosts(res);
     }
   });
@@ -21,7 +30,7 @@ function getNext(){
 
 function filter(formData){
   start = 0;
-  limit = 10;
+  limit = 15;
   $("#Vehicles").empty();
   var formDataObject = Object.fromEntries(new FormData(formData))
   let iterations = Object.keys(formDataObject).length
@@ -44,6 +53,10 @@ function filter(formData){
   return false;
 }
 
+function removeNextButton(){
+  $("#nextButtonHolder").empty();
+  $("#nextButtonHolder").append("<p>END OF RESULTS</p>")
+}
 
 // function getPrevious(){
 //   start = start - limit;
@@ -122,23 +135,7 @@ function renderPosts(resss){
   }
 }
 
-function smallView(){
-    view = 'small'
-    getNext()
-}
 
-function bigView(){
-    view = 'big'
-    getNext()
-}
-
-$(window).scroll(function(){
-  if($(window).scrollTop() >= $(document).height() - $(window).height() - 
-  30
-  ){
-    getNext();
-  }
-})
 
 
 
