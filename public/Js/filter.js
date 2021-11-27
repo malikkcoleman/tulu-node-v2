@@ -5,7 +5,7 @@ const filterBtn = document.querySelector('.filterBtn');
 const sortMenu = document.querySelector('.filterSettings');
 
 const slideFilterMenu = () => {
-    
+    z
     if(toggleFilter=="off"){
         filterMenu.style = "width:100vw;overflow:hidden;right:0px;transition:0.5s ease-out;";
         toggleFilter="on";
@@ -25,6 +25,13 @@ const slideFilterMenu = () => {
     }, false);
 
 };
+
+function selectedFilter(){
+    var filterval = Object.fromEntries(new URLSearchParams(location.search))
+    $('#MakeSearch').val(filterval.make)
+    $('#VehicleTypeSearch').val(filterval.vehicleType)
+    $('#VehicleSort').val(filterval.VehicleSort)
+  }
 
 
 
