@@ -2,7 +2,7 @@ const express = require("express");
 const pgroutr = express.Router();
 const ROLE = require("../roles");
 const { ensureAuthenticated, authRole } = require("../config/auth");
-
+const { spawn } = require('child_process')
 const Vehicle = require("../models/vehicleschema");
 const Dealer = require("../models/dealershipschema");
 const uploadController = require("../controllers/upload");
@@ -20,6 +20,12 @@ const Message = require("../models/messageschema");
 const Thread = require("../models/messagethreadschema");
 
 
+
+pgroutr.get("/sync", (req, res) =>
+  res.render("sync", {
+    user: req.user
+  })
+);
 
 pgroutr.get("/EditDealer", ensureAuthenticated, (req, res) =>
   Dealer.find({ uuid: req.user.toObject().dealerId }).then((dealer) => {
@@ -95,6 +101,7 @@ pgroutr.get("/Events", (req, res) =>
   })
 );
 
+
 pgroutr.get("/Messenger", ensureAuthenticated, (req, res) =>
   User.find({})
   .then((userList) => {
@@ -149,6 +156,8 @@ pgroutr.get("/Inbox", ensureAuthenticated, (req, res) =>
     })
   })
 );
+
+
 
 pgroutr.get("/TradeVehicle", (req, res) =>
   res.render("TradeVehicle", {
