@@ -30,7 +30,8 @@ router.get("/",async (req, res) => {
     dealershipList: '',
     user: req.user,
     searchQuery: searchq,
-    shopagetype: "shop"
+    shopagetype: "shop",
+    filterby: 'None'
   })
 })
 
@@ -84,18 +85,32 @@ function clean(obj) { //for cleaning filter when other field is blank
   return obj
 }
 
+function capitalize(s){
+    return s && s[0].toUpperCase() + s.slice(1);
+}
+
 router.get("/filter", (req, res) => {
   searchq = undefined
   sortzz = sorter(req.query.VehicleSort);
   queryfilterz = req.query;
   filterQ = clean(req.query)
   delete filterQ["VehicleSort"]
+  let iterations = Object.keys(filterQ).length
+  var filters = ''
+  for (const [key, value] of Object.entries(filterQ)) {
+    if (!--iterations){
+      filters += `${capitalize(value)}`
+    }else{
+      filters += `${capitalize(value)}/`
+    }
+  }
   res.render("Shop", {
     vehicles: [],
     dealershipList: '',
     user: req.user,
     searchQuery: searchq,
-    shopagetype: "shopfilter"
+    shopagetype: "shopfilter",
+    filterby: filters
   })
 });
 
