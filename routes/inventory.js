@@ -25,19 +25,12 @@ function sorter(sortQuery){
 router.get("/",async (req, res) => {
   queryfilterz = undefined
   searchq = undefined
-  Vehicle.find({})
-      .skip(parseInt(req.params.start))
-      .limit(parseInt(req.params.limit))
-      .then(function(data){
-        queryfilterz = undefined;
-        res.render("Shop", {
-          vehicles: data,
-          dealershipList: '',
-          user: req.user,
-          searchQuery: searchq
-        })
-      })
-  
+  res.render("Shop", {
+    vehicles: [],
+    dealershipList: '',
+    user: req.user,
+    searchQuery: searchq
+  })
 })
 
 router.get("/shop/:start/:limit", (req, res) => {
@@ -85,32 +78,17 @@ function clean(obj) { //for cleaning filter when other field is blank
 }
 
 router.get("/filter", (req, res) => {
-  vehiclelist = []
-  searchq = undefined;
+  searchq = undefined
   sortzz = sorter(req.query.VehicleSort);
   queryfilterz = req.query;
-  filterQ = clean(queryfilterz)
+  filterQ = clean(req.query)
   delete filterQ["VehicleSort"]
-  vez = null;
-  vez = Vehicle.find(filterQ).sort(sortzz).limit(10)
-  let promiss = vez.exec();
-  var vehiclelistFilter = []
-  promiss.then(async function(data){
-    const dealershipList = await Dealer.find({})
-    await data.forEach(function(vec){
-      vec = JSON.parse(JSON.stringify(vec));
-      vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
-      vehiclelistFilter.push(vec)
-    })
-
-    res.send({
-      vehicles: vehiclelistFilter,
-      dealershipList: dealershipList,
-      user: req.user,
-      searchQuery: searchq
-    })
+  res.render("Shop", {
+    vehicles: [],
+    dealershipList: '',
+    user: req.user,
+    searchQuery: searchq
   })
-
 });
 
 // router.get("/search", async (req,res) => {
