@@ -19,6 +19,8 @@ const Blog = require("../models/blogschema");
 const Message = require("../models/messageschema");
 const Thread = require("../models/messagethreadschema");
 
+
+
 pgroutr.get("/EditDealer", ensureAuthenticated, (req, res) =>
   Dealer.find({ uuid: req.user.toObject().dealerId }).then((dealer) => {
     Address.find({ targetId: req.user.toObject().dealerId }).then((address) => {
@@ -310,68 +312,6 @@ pgroutr.get(
     })
 );
 
-var queryfilterz
-
-pgroutr.get("/shop/:start/:limit", (req, res) => {
-  
-  Dealer.find({})
-  .then(async (dealershipList) => {
-    var vehicles
-    if(queryfilterz != undefined){
-      vehicles = await Vehicle.find({})
-      .or([{make: queryfilterz.make},{vehicleType: queryfilterz.vehicleType}])
-      .skip(parseInt(req.params.start))
-      .limit(parseInt(req.params.limit))
-    }else{
-      vehicles = await Vehicle.find({})
-      .skip(parseInt(req.params.start))
-      .limit(parseInt(req.params.limit))
-    }
-    console.log(vehicles)
-    var vehiclelist = []
-    await vehicles.forEach(function(vec){
-      vec = JSON.parse(JSON.stringify(vec));
-      vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
-      vehiclelist.push(vec)
-    })
-    res.send({
-      vehicles: vehiclelist,
-      dealershipList: dealershipList,
-      user: req.user,
-    });
-  });
-});
-
-pgroutr.get("/filter", async (req, res) => {
-  queryfilterz = req.query
-  var vehiclelist = []
-  const vehicles = await Vehicle.find()
-  .or([{make:  req.query.make},{vehicleType:req.query.vehicleType}])
-  .limit(10);
-  const dealershipList = await Dealer.find({})
-  await vehicles.forEach(function(vec){
-    vec = JSON.parse(JSON.stringify(vec));
-    vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
-    vehiclelist.push(vec)
-  })
-  console.log(vehiclelist)
-  res.render("Shop", {
-    vehicles: vehiclelist,
-    dealershipList: dealershipList,
-    user: req.user,
-  })
-});
-
-pgroutr.get("/Shopage", (req, res) => {
-  console.log('tite')
-  queryfilterz = undefined;
-    res.render("Shop", {
-      vehicles: '',
-      dealershipList: '',
-      user: req.user,
-    })
-})
-
 pgroutr.get("/MessageTulu/:id", (req, res) => {
   User.find({ _id: req.params.id })
   .then((tulu) => {
@@ -581,10 +521,33 @@ pgroutr.get("/DealershipList", (req, res) => {
   });
 });
 
-pgroutr.get("/:page", function (req, res) {
-  res.render(req.params.page, {
+pgroutr.get("/about", function (req, res) {
+  res.render("About", {
     user: req.user,
   });
 });
 
+pgroutr.get("/faq", function (req, res) {
+  res.render("faq", {
+    user: req.user,
+  });
+});
+
+pgroutr.get("/careers", function (req, res) {
+  res.render("Careers", {
+    user: req.user,
+  });
+});
+
+pgroutr.get("/privacypolicy", function (req, res) {
+  res.render("PrivacyPolicy", {
+    user: req.user,
+  });
+});
+
+pgroutr.get("/JobApplication", function (req, res) {
+  res.render("JobApplication", {
+    user: req.user,
+  });
+});
 module.exports = pgroutr;

@@ -5,7 +5,7 @@
      <%- include partials/googleAnalytics %>
   </head>
  
-  <body>
+  <body onload="initialLoad('<%= shopagetype %>')">
     <nav id="Nav">
         <a href="/">
             <img src="images/tulu-logo_white.png" alt="">
@@ -35,20 +35,20 @@
         <i
           class="fas fa-th-list fa-2x"
           id="gridDisplayBtn"
-          onclick="vehicleDisplay()"
+          onclick="vehicleDisplay();"
         ></i>
-        <div style="width: 100%;">
-          <form action="/search" method="GET" class="srchForm">
+        <!-- <div style="width: 100%;">
+          <form action="/inventory/search" method="GET" class="srchForm" onsubmit="location.reload(true)">
             <input type="text" name="squery" class="srchInput" placeholder="Search Cars" value="<%= searchQuery %>">
           </form>
-        </div>
+        </div> -->
         <div class="sortFilter">
-          <p class="filterBtn" onclick="slideFilterMenu()">Filter</p>
+          <p class="filterBtn" onclick="slideFilterMenu(); selectedFilter();">Filter</p>
         </div>
       </div>
       
       <aside id="FilterSettings" class="filterSettings">
-        <form class="filterSettingContainer" action="/filter/" method="GET">
+        <form class="filterSettingContainer" action="/inventory/filter/" method="GET">
           <div class="ModelSearchContainer" style="display: none">
             <label for="ModelSearch" class="ModelSearchLabel">Model :</label>
             <input type="text" id="ModelSearch"/>
@@ -56,7 +56,7 @@
           <div class="MakeSearchContainer">
             <label for="make" class="MakeSearchLabel">Make :</label>
 
-            <select name="make" id="MakeSearch" onchange="SearchVehicles()">
+            <select name="make" id="MakeSearch">
               <option value="">Any</option>
               <option value="Acura">Acura</option>
               <option value="AlfaRomeo">AlfaRomeo</option>
@@ -108,7 +108,7 @@
               >Vehicle Type :</label
             >
 
-            <select name="vehicleType" id="VehicleTypeSearch" onchange="SearchVehicles()">
+            <select name="vehicleType" id="VehicleTypeSearch">
               <option value="">Any</option>
               <option value="sedan">Sedan</option>
               <option value="coupe">Coupe</option>
@@ -156,9 +156,10 @@
           </div>
 
           <button
-            formaction="/filter"
+            formaction="/inventory/filter"
             class="searchButton"
             id="searchButton"
+            onclick="location.reload(true)"
           >Search</button>
           <!-- <input
             type="button"
@@ -178,20 +179,19 @@
           <a href="/TuluList"><button>Hire a Tulu</button></a>
         </div>
         <div class="breadCrumbs">
-          <p class="filterBreadCrumbs">Filtered by : <span>None</span></p>
+          <p class="filterBreadCrumbs">Filtered by : <span>&nbsp;<%= filterby %></span></p>
         </div>
-        <% if(vehicles.length > 1){ %>
         <ul id="Vehicles" class="vehicleList">
           <div class="loading" id="loading">
             <p>Fetching Data.</p>
           </div>
         </ul>
-        <% }else{ %>
-          <div style="height: 50vh;">
-            <h3 style="margin: auto;">No result for "<%= searchQuery %>"</h3>
-          </div>
-        <% } %>
       </section>
+      <br>
+      <br>
+      <div id="nextButtonHolder" class="nextButtonHolder" ><button class="loadMore" onclick="getNext('<%= shopagetype %>')">LOAD MORE</button></div>
+      <br>
+      <br>
     </div>
     <%- include partials/footer %>
   </body>

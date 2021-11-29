@@ -1,7 +1,7 @@
 var start = 0;
 var limit = 10;
 $.ajax({
-    url: "/shop/" + start + "/" + limit,
+    url: "/inventory/shop/" + start + "/" + limit,
     method: "GET",
     success: function(res){
       renderPosts(res);
@@ -11,7 +11,7 @@ $.ajax({
 function getNext(){
   start = start + limit;
   $.ajax({
-    url: "/shop/" + start + "/" + limit,
+    url: "/inventory/shop/" + start + "/" + limit,
     method: "GET",
     success: function(res){
       renderPosts(res);
@@ -37,11 +37,6 @@ function renderPosts(resss){
     
 
     function shuffleArray(arr) {
-        for (let i = arr.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [arr[i], arr[j]] = [arr[j], arr[i]];
-        }
-      console.log(arr);
       }
   
       let arr = Array.prototype.slice.call(resss.vehicles);
@@ -61,7 +56,7 @@ function renderPosts(resss){
             if(data.mileage != null){
                 html += '       <p class="carMileage">'+data.mileage +'  Kms</p>';
             }
-            html+='        <a href="carview/'+ data.vin +'"><button class="moreInfo">View Vehicle</button></a>';
+            html+='        <a href="/carview/'+ data.vin +'"><button class="moreInfo">View Vehicle</button></a>';
             html += '       <p class="dealership">' + data.dealer.name + '</p>';
             html+='    </div>';
             html+='</li>';
@@ -81,7 +76,7 @@ function renderPosts(resss){
             html += '           <p class="carTransmission">' + data.transmissionName + '</p>';
             html += '       </div>';
             html += '       <div class="moreInfoContainer">';
-            html += '              <a href="carview/'+ data.vin +'"><button class="moreInfo">View Vehicle</button></a>';
+            html += '              <a href="/carview/'+ data.vin +'"><button class="moreInfo">View Vehicle</button></a>';
             html += '       </div>';
             html += '       <p class="dealership">' + data.dealer.name + '</p>';
             html += '       <p class="views"><i class="far fa-eye"></i> '+data.views+' views</p>';

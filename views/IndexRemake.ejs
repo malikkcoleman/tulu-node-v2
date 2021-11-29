@@ -53,62 +53,66 @@
 
 
     <!-- Search Section -->
-    <div class="searchSection">  
-      <div class="searchContainer">
-        <input type="text" placeholder="Search Make or Model">
-        <button>SEARCH</button>
-      </div>
-    </div>
+    <!-- <div class="searchSection">  
+      <form  class="searchContainer" action="/inventory/search" method="GET">
+        <input name="squery" type="text" class="searchBar"placeholder="Search Make or Model">
+        <button formaction="/inventory/search">SEARCH</button>
+      </form>
+    </div> -->
 
     <!-- Body Type -->
     <div class="bodyTypeSection">
-      <h3>SEARCH BY BODY TYPE</h3>
-      <p>Search cars by selecting your favourite body type.</p>
-      <ul class="bodyTypeList">
-        <a href="filter?make=&vehicleType=convertible">
-          <li class="bodyTypeListItem">
-            <img src="images/icon/convertible.png" alt="">
-            <p>Convertible</p>
-          </li>
-        </a>
-        <a href="filter?make=&vehicleType=coupe">
-          <li class="bodyTypeListItem">
-            <img src="images/icon/coupe.png" alt="">
-            <p>Coupe</p>
-          </li>
-            
-        </a>
-        <a href="filter?make=&vehicleType=hatchback">
-          <li class="bodyTypeListItem">
-            <img src="images/icon/hatch.png" alt="">
-            <p>Hatchback</p>
-          </li>
-        </a>
-        <a href="filter?make=&vehicleType=sedan">
-          <li class="bodyTypeListItem">
-            <img src="images/icon/sedan.png" alt="">
-            <p>Sedan</p>
-          </li>
-        </a>
-        <a href="filter?make=&vehicleType=van">
-          <li class="bodyTypeListItem">
-            <img src="images/icon/van.png" alt="">
-            <p>Van</p>
-          </li>
-        </a>
-        <a href="filter?make=&vehicleType=suv">
-          <li class="bodyTypeListItem">
-            <img src="images/icon/suv.png" alt="">
-            <p>SUV</p>
-          </li>
-        </a>
-        <a href="filter?make=&vehicleType=truck">
-          <li class="bodyTypeListItem">
-            <img src="images/icon/truck.png" alt="">
-            <p>Truck</p>
-          </li>
-        </a>
-      </ul>
+      <div class="bodyTypeSectionInner">
+        <br>
+        <br>
+        <h3>SEARCH BY BODY TYPE</h3>
+        <p>Search cars by selecting your favourite body type.</p>
+        <ul class="bodyTypeList">
+          <a href="/inventory/filter?make=&vehicleType=convertible">
+            <li class="bodyTypeListItem">
+              <img src="images/icon/convertible.png" alt="">
+              <p>Convertible</p>
+            </li>
+          </a>
+          <a href="/inventory/filter?make=&vehicleType=coupe">
+            <li class="bodyTypeListItem">
+              <img src="images/icon/coupe.png" alt="">
+              <p>Coupe</p>
+            </li>
+              
+          </a>
+          <a href="/inventory/filter?make=&vehicleType=hatchback">
+            <li class="bodyTypeListItem">
+              <img src="images/icon/hatch.png" alt="">
+              <p>Hatchback</p>
+            </li>
+          </a>
+          <a href="/inventory/filter?make=&vehicleType=sedan">
+            <li class="bodyTypeListItem">
+              <img src="images/icon/sedan.png" alt="">
+              <p>Sedan</p>
+            </li>
+          </a>
+          <a href="/inventory/filter?make=&vehicleType=van">
+            <li class="bodyTypeListItem">
+              <img src="images/icon/van.png" alt="">
+              <p>Van</p>
+            </li>
+          </a>
+          <a href="/inventory/filter?make=&vehicleType=suv">
+            <li class="bodyTypeListItem">
+              <img src="images/icon/suv.png" alt="">
+              <p>SUV</p>
+            </li>
+          </a>
+          <a href="/inventory/filter?make=&vehicleType=truck">
+            <li class="bodyTypeListItem">
+              <img src="images/icon/truck.png" alt="">
+              <p>Truck</p>
+            </li>
+          </a>
+        </ul>
+      </div>
     </div>
 
     <!-- Vehicle Display -->
@@ -134,7 +138,7 @@
           <h3>Get Approved Now</h3>
         </li>
       </a>
-      <a href="/Shop">
+      <a href="/inventory">
         <li class="callToActionButtonListItem">
           <h3>Browse The Inventory</h3>
         </li>
@@ -424,7 +428,10 @@ function truncateText(selector, maxLength) {
     return truncated;
 }
 
-
+function searchThis(){
+  var searchQuery = $('.searchBar').val();
+  window.location = "/inventory/search?squery=" + searchQuery;
+}
 
 </script>
 </html>

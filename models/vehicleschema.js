@@ -9,7 +9,7 @@ const vehicleschema = new mongoose.Schema({
     required: false,
   },
   year: {
-    type: String,
+    type: Number,
     required: false,
   },
   make: {
@@ -18,10 +18,6 @@ const vehicleschema = new mongoose.Schema({
   },
   model: {
     type: String,
-    required: false,
-  },
-  mileage: {
-    type: Number,
     required: false,
   },
   vehicleType: {
@@ -43,8 +39,9 @@ const vehicleschema = new mongoose.Schema({
   doors: {
     type: String,
     required: false,
-  },mileage: {
-    type: String,
+  },
+  mileage: {
+    type: Number,
     required: false,
   },
   modelNumber: {
@@ -60,11 +57,11 @@ const vehicleschema = new mongoose.Schema({
     required: false,
   },
   minPrice: {
-    type: String,
+    type: Number,
     required: false,
   },
   maxPrice: {
-    type: String,
+    type: Number,
     required: false,
   },
   refFee: {

@@ -1,24 +1,63 @@
 
 var start = 0;
-var limit = 10;
-$.ajax({
-    url: "/shop/" + start + "/" + limit,
-    method: "GET",
-    success: function(res){
-      renderPosts(res);
-      console.log('teoptspoeitsepo')
-    }
-  });
-function getNext(){
+var limit = 15;
+function initialLoad(type){
+  $.ajax({
+      url: "/inventory/"+type+"/" + start + "/" + limit,
+      method: "GET",
+      success: function(res){
+        if(res.vehicles.length < 15){
+          removeNextButton();
+        }
+        renderPosts(res);
+      }
+    });
+}
+
+function getNext(type){
   start = start + limit;
   $.ajax({
-    url: "/shop/" + start + "/" + limit,
+    url: "/inventory/"+type+"/" + start + "/" + limit,
     method: "GET",
     success: function(res){
+      if(res.vehicles.length < 15){
+        removeNextButton();
+      }
       renderPosts(res);
     }
   });
 }
+
+function filter(formData){
+  start = 0;
+  limit = 15;
+  $("#Vehicles").empty();
+  var formDataObject = Object.fromEntries(new FormData(formData))
+  let iterations = Object.keys(formDataObject).length
+  var link = ''
+  for (const [key, value] of Object.entries(formDataObject)) {
+    if (!--iterations){
+      link += `${key}=${value}`
+    }else{
+      link += `${key}=${value}&`
+    }
+  }
+  $.ajax({
+    url: "/inventory/filter?"+link,
+    method: "GET",
+    success: function(res){
+      renderPosts(res);
+    }
+  });
+
+  return false;
+}
+
+function removeNextButton(){
+  $("#nextButtonHolder").empty();
+  $("#nextButtonHolder").append("<p>END OF RESULTS</p>")
+}
+
 // function getPrevious(){
 //   start = start - limit;
 //   $.ajax({
@@ -46,7 +85,6 @@ function renderPosts(resss){
       }
   
       let arr = Array.prototype.slice.call(resss.vehicles);
-      shuffleArray(arr);
 
 
       arr.forEach(function(data){
@@ -62,7 +100,7 @@ function renderPosts(resss){
             if(data.mileage != null){
                 html += '       <p class="carMileage">'+data.mileage +'  Kms</p>';
             }
-            html+='        <a href="carview/'+ data.vin +'"><button class="moreInfo">View Vehicle</button></a>';
+            html+='        <a href="/carview/'+ data.vin +'"><button class="moreInfo">View Vehicle</button></a>';
             html += '       <p class="dealership">' + data.dealer.name + '</p>';
             html+='    </div>';
             html+='</li>';
@@ -83,7 +121,7 @@ function renderPosts(resss){
             html += '           <p class="carTransmission">' + data.transmissionName + '</p>';
             html += '       </div>';
             html += '       <div class="moreInfoContainer">';
-            html += '              <a href="carview/'+ data.vin +'"><button class="moreInfo">View Vehicle</button></a>';
+            html += '              <a href="/carview/'+ data.vin +'"><button class="moreInfo">View Vehicle</button></a>';
             html += '       </div>';
             html += '       <p class="dealership">' + data.dealer.name + '</p>';
             html += '       <p class="views"><i class="far fa-eye"></i> '+data.views+' views<p>';
@@ -97,23 +135,7 @@ function renderPosts(resss){
   }
 }
 
-function smallView(){
-    view = 'small'
-    getNext()
-}
 
-function bigView(){
-    view = 'big'
-    getNext()
-}
-
-$(window).scroll(function(){
-  if($(window).scrollTop() >= $(document).height() - $(window).height() - 
-  30
-  ){
-    getNext();
-  }
-})
 
 
 
