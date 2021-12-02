@@ -9,7 +9,7 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport");
 const https = require("https");
-
+const MongoDBSession = require("connect-mongodb-session")(session);
 const hostname = "localhost";
 const port = 3000;
 
@@ -69,23 +69,46 @@ app.use(function (req, res, next) {
 app.set("view engine", "ejs");
 
 // Read HTTP POST data //Body Parser
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 // Express Session
 const TWO_HOURS = 1000 * 60 * 60 * 2;
 
+//MongoDB Store
+const store = new MongoDBSession({
+  uri: process.env.DB_CONNECTION,
+  collection: "mySessions",
+});
+
+//MongoDB Store Catch Errors
+store.on("error", function (error) {
+  console.log(error);
+});
+
 app.use(
   session({
-    secret: "Secret",
-    resave: true,
+    secret: process.env.SESSION_SECRET,
+    resave: false,
     saveUninitialized: true,
-    //cookie: { secure: true },
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
+    },
+    store: store,
   })
 );
 
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use((req, res, next) => {
+  console.log(req.session);
+  console.log(req.user);
+  if (req.user) {
+    console.log(req.user.role);
+  }
+  next();
+});
 
 // Connect Flash
 app.use(flash());
