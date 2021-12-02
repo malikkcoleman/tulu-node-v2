@@ -1,0 +1,46 @@
+
+.header{
+    margin:50px 0 0 0;
+    background-color:#79C6AC;
+    height:20vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.header h1{
+    color:white;
+}
+
+.wrapper{
+    width:80vmin;
+    margin:130px 0;
+    justify-self: center;
+    align-self: center;
+}
+
+h1{
+    color: #79C6AC;
+    margin:0 0 20px 0;
+}
+
+label{
+    margin:5px 0;
+}
+
+input,select{
+    border:2px solid #79C6AC;
+    padding:10px 15px;
+    margin:0 0 10px 0;
+    border-radius: 10px;
+}
+
+button{
+    margin:20px 0 0 0;
+    padding:20px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: #79C6AC;
+    color: white;
+}

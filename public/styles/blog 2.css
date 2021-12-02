@@ -1,0 +1,41 @@
+
+.header{
+    margin:50px 0 0 0;
+    background-color:#79C6AC;
+    height:20vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.header h1{
+    color:white;
+}
+
+.blogContainer{
+    margin:120px 0;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    align-self: center;
+    width:80vmin;
+}
+
+.blogContainer img{
+    width:600px;
+    background:#79C6AC;
+}
+
+.blogContainer h1{
+    margin:20px 0 10px 0;
+    color:#79C6AC;
+}
+
+p.date{
+    color:#79C6AC;
+}
+
+p.description{
+    margin:20px 0 0 0;
+    text-align: center;
+    white-space: break-spaces;
+}
