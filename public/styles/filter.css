@@ -1,4 +1,5 @@
 
+
 /* Filter Buttons */
 .sortFilter{
     flex-direction: row;
@@ -30,14 +31,14 @@
 }
 
 .srchInput{
-    margin: auto;
-    width: 20%;
-    height: 25px;
+    margin: 0;
     border: 0;
     border-bottom: 2px solid black;
     font-size: 16px;
-    font-weight: bold;
-    outline: none;
+    width:80% !important;
+    border:2px solid #79c6ac;
+    border-radius: 10px;
+    padding:15px;
 }
 
 .srchForm{
@@ -173,6 +174,10 @@ aside.sortSettings{
 }
 
 
+.desktopFilter{
+    display:none;
+}
+
 
 @media screen and (min-width: 720px) {
     .filterSettingContainer{
@@ -183,5 +188,58 @@ aside.sortSettings{
         height:100vh;
         padding:20px;
         filter: drop-shadow(-10px 0 10px #0000004d);
+    }
+
+    aside#FilterSettings,.sortFilter,.srchForm{
+        display: none !important;
+    }
+
+    .filter{
+        position: fixed;
+        z-index: 9;
+        width:100%;
+        background:white;
+        margin:60px 0 0 0;
+        padding:15px 20px;
+        justify-content: center;
+        align-items: center;
+        filter: drop-shadow(0 5px 5px #7e7e7e27);
+    }
+    
+    .desktopFilter, .desktopFilter form{
+        display:flex;
+        flex-direction: row;
+        width:100%;
+    }
+
+    .desktopFilter form{
+        justify-content: center;
+        align-items: center;
+    }
+
+    .desktopFilter form div{
+        flex-direction: row;
+        margin:0 30px 0 0;
+        align-items: center;
+    }
+
+    .desktopFilter form div select{
+        border:2px solid #79c6ac;
+        margin:0 0 0 10px;
+        padding:10px 15px;
+        border-radius: 10px;
+        width:200px;
+    }
+
+    #searchButton{
+        margin:0;
+        padding:12px 15px;
+        border-radius: 10px;
+        width:250px;
+        border:none;
+    }
+
+    .vehicles{
+        margin:150px 0 0 0;
     }
 }
