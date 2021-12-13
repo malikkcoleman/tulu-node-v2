@@ -13,6 +13,7 @@ var targetId = uuid;
 // Dealer Model
 const Dealer = require('../models/dealershipschema');
 const Address = require('../models/addressschema');
+const Vehicle = require("../models/vehicleschema");
 
 // Add Dealership Page
 router.get('/dashboardSysAdminDealership',(req,res)=>
@@ -120,6 +121,20 @@ router.post('/EditDealer',(req,res)=>{
             })
         })
 });
+
+router.get('/delete/:uuid', function(req, res){
+    Vehicle.find({dealerId: req.params.uuid}).then(function(data){
+        if(data.length == 0){
+            Dealer.deleteOne({uuid: req.params.uuid}).then(function(data){
+                console.log(data)
+                res.redirect('/DealershipList')
+            })
+        }else{
+            res.redirect('/DealershipList?error=DealerNotEmpty')
+        }
+    })
+    
+})
 
 
 module.exports = router;

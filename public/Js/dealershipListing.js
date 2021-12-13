@@ -40,6 +40,7 @@ function populateVehicle(){
 			html+='        <p class="carMileage">'+vehicleList[x].mileage +' Kms</p>';
 			html+='        <a href="/carview/'+ vehicleList[x].vin +'"><button class="moreInfo">View Vehicle</button></a>';
 			html+='    </div>';
+			html+='	   <div><a href="/inventory/delete/'+ vehicleList[x].vin +'"><i class="far fa-trash-alt"></i></a></div>'
 			html+='</li>';
 	}
 	$("#dealershipListingList").empty();

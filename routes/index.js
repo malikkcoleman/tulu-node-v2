@@ -507,6 +507,12 @@ pgroutr.get("/tululist", (req, res) => {
 });
 
 pgroutr.get("/DealershipList", (req, res) => {
+  var errMes
+  if(req.query.error == "DealerNotEmpty"){
+    errMes = "Dealer is not Empty"
+  }else{
+    errMes = false;
+  }
   Dealer.find().then((dealer) => {
     Address.find().then((address) => {
       User.find({ role: "dealeradmin" }).then((dealerAdmin) => {
@@ -515,6 +521,7 @@ pgroutr.get("/DealershipList", (req, res) => {
           user: req.user,
           address: address,
           dealeradmin: dealerAdmin,
+          error: errMes
         });
       });
     });

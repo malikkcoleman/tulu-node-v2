@@ -4,6 +4,7 @@ const { ensureAuthenticated, authRole } = require("../config/auth");
 
 const Vehicle = require("../models/vehicleschema");
 const Dealer = require("../models/dealershipschema");
+const fetchImage = require("../middleware/getImages");
 
 
 var queryfilterz
@@ -113,6 +114,16 @@ router.get("/filter", (req, res) => {
     filterby: filters
   })
 });
+
+router.get("/delete/:vin", async function(req,res){
+  await fetchImage.deleteImages(req.params.vin).then(function(data){
+    console.log(data)
+    Vehicle.deleteOne({vin: req.params.vin}).then(function(vec){
+      console.log(vec)
+      res.redirect(req.get('referer'));
+    })
+  })
+})
 
 // router.get("/search", async (req,res) => {
 //   vehiclelist = []

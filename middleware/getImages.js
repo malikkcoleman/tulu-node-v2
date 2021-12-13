@@ -81,5 +81,12 @@ async function getImagesArray(targetId){
     return test
 }
 
+async function deleteImages(targetId){
+    let data = await fetchImage.deleteMany({target_id: targetId}).then(function(data){
+        return data
+    })
+    return data
+}
+
   
-module.exports = {getImage, getImagesArray, getCarImage};
+module.exports = {getImage, getImagesArray, getCarImage, deleteImages};

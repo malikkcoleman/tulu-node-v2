@@ -21,6 +21,7 @@ function LoadDealer() {
 		}
 		html = html + '		<p class="amvic">' + dealerList[i].amvic + '</p>';
 		html = html + '	</div>';
+		html = html + '	<div><a href="/dealerships/delete/'+ dealerList[i].uuid +'"><i class="far fa-trash-alt"></i></a></div>'
 		html = html + '</li>';
 	}
 	$("#dealershipList").empty();

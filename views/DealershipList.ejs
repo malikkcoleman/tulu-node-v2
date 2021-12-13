@@ -49,6 +49,9 @@
         <p>Here are the dealerships that power tulu Canada's inventory.</p>
       </div>
       <div class="influencerContainer">
+        <% if(error){%>
+          <div style="height: 50px; width: 100vw; background-color: chocolate;"><%= error %></div>
+        <%}%>
         <ul class="influencerList" id="influencerList"></ul>
       </div>
       <div class="dealershipContainer">
