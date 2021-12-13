@@ -7,60 +7,73 @@ const Dealer = require("../models/dealershipschema");
 
 
 var queryfilterz
-var queryfilterz, sortzz, searchq;
+var queryfilterz, sortzz, searchq, filterQ;
 var vehiclelist = []
+
+function sorter(sortQuery){
+  if(sortQuery == 'kilometers'){
+    return {mileage: 1}
+  }else if(sortQuery == 'lowToHigh'){
+    return {maxPrice: 1}
+  }else if(sortQuery == 'highToLow'){
+    return {maxPrice: -1}
+  }else{
+    return "{}"
+  }
+}
 
 router.get("/",async (req, res) => {
   queryfilterz = undefined
   searchq = undefined
-  Vehicle.find({})
-      .skip(parseInt(req.params.start))
-      .limit(parseInt(req.params.limit))
-      .then(function(data){
-        queryfilterz = undefined;
-        res.render("Shop", {
-          vehicles: data,
-          dealershipList: '',
-          user: req.user,
-          searchQuery: searchq
-        })
-      })
-  
+  res.render("Shop", {
+    vehicles: [],
+    dealershipList: '',
+    user: req.user,
+    searchQuery: searchq,
+    shopagetype: "shop",
+    filterby: 'None'
+  })
 })
 
 router.get("/shop/:start/:limit", (req, res) => {
-  Dealer.find({})
-  .then(async (dealershipList) => {
-    var vehicles
-    if(queryfilterz != undefined){
-      var filterQ = clean(queryfilterz)
-      delete filterQ["VehicleSort"]
-      vehicles = await Vehicle.find(filterQ)
-      .sort(sortzz)
-      .skip(parseInt(req.params.start))
-      .limit(parseInt(req.params.limit))
-    }else if(searchq != undefined){
-      vehicles = await Vehicle.fuzzySearch({ query: searchq, prefixOnly: true })
-      .skip(parseInt(req.params.start))
-      .limit(parseInt(req.params.limit));
-    }else{
-      vehicles = await Vehicle.find({})
-      .skip(parseInt(req.params.start))
-      .limit(parseInt(req.params.limit))
-    }
-    console.log(vehicles)
-    await vehicles.forEach(function(vec){
+  var vehiclelistFilter = []
+  Vehicle.find({})
+    .skip(parseInt(req.params.start))
+    .limit(parseInt(req.params.limit)).then(async function(data){
+    const dealershipList = await Dealer.find({})
+    await data.forEach(function(vec){
       vec = JSON.parse(JSON.stringify(vec));
       vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
-      vehiclelist.push(vec)
+      vehiclelistFilter.push(vec)
     })
     res.send({
-      vehicles: vehiclelist,
+      vehicles: vehiclelistFilter,
       dealershipList: dealershipList,
       user: req.user,
       searchQuery: searchq
-    });
-  });
+    })
+  })
+});
+
+router.get("/shopfilter/:start/:limit", (req, res) => {
+  var vehiclelistFilter = []
+  Vehicle.find(filterQ)
+    .sort(sortzz)
+    .skip(parseInt(req.params.start))
+    .limit(parseInt(req.params.limit)).then(async function(data){
+    const dealershipList = await Dealer.find({})
+    await data.forEach(function(vec){
+      vec = JSON.parse(JSON.stringify(vec));
+      vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
+      vehiclelistFilter.push(vec)
+    })
+    res.send({
+      vehicles: vehiclelistFilter,
+      dealershipList: dealershipList,
+      user: req.user,
+      searchQuery: searchq
+    })
+  })
 });
 
 function clean(obj) { //for cleaning filter when other field is blank
@@ -72,72 +85,65 @@ function clean(obj) { //for cleaning filter when other field is blank
   return obj
 }
 
-router.get("/filter", async (req, res) => {
-  vehiclelist = []
-  searchq = undefined;
+function capitalize(s){
+    return s && s[0].toUpperCase() + s.slice(1);
+}
+
+router.get("/filter", (req, res) => {
+  searchq = undefined
+  sortzz = sorter(req.query.VehicleSort);
   queryfilterz = req.query;
-  var filterQ = clean(queryfilterz)
+  filterQ = clean(req.query)
   delete filterQ["VehicleSort"]
-  if(req.query.VehicleSort == 'kilometers'){
-    sortzz = "{'mileage': 1}"
-  }else if(req.query.VehicleSort = 'lowToHigh'){
-    sortzz = "{'maxPrice': -1}"
-  }else if(req.query.VehicleSort = 'highToLow'){
-    sortzz = "{'maxPrice': 1}"
-  }else{
-    sortzz = "{}"
+  let iterations = Object.keys(filterQ).length
+  var filters = ''
+  for (const [key, value] of Object.entries(filterQ)) {
+    if (!--iterations){
+      filters += `${capitalize(value)}`
+    }else{
+      filters += `${capitalize(value)}/`
+    }
   }
-  var vehiclelistFilter = []
-  var vehicleFilter = undefined
-  Vehicle.find(filterQ)
-  .sort(sortzz)
-  .limit(10)
-  .then(async function(data){
-    const dealershipList = await Dealer.find({})
-    await data.forEach(function(vec){
-      vec = JSON.parse(JSON.stringify(vec));
-      vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
-      vehiclelistFilter.push(vec)
-    })
-    res.render("Shop", {
-      vehicles: vehiclelistFilter,
-      dealershipList: dealershipList,
-      user: req.user,
-      searchQuery: searchq
-    })
+  res.render("Shop", {
+    vehicles: [],
+    dealershipList: '',
+    user: req.user,
+    searchQuery: searchq,
+    shopagetype: "shopfilter",
+    filterby: filters
   })
 });
 
-router.get("/search", async (req,res) => {
-  vehiclelist = []
-  queryfilterz = undefined
-  var vehiclelistSearch = []
-  searchq = req.query.squery
-  try{
-    var vehiclesSearch = undefined
-    Vehicle.fuzzySearch({ query: searchq, prefixOnly: true })
-    .sort(sortzz)
-    .limit(10)
-    .then(async function(data){
-      const dealershipList = await Dealer.find({})
-      // console.log(data)
-    await data.forEach(function(vec){
-      vec = JSON.parse(JSON.stringify(vec));
-      vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
-      vehiclelistSearch.push(vec)
-    })
-    console.log(vehiclelistSearch)
-    res.render("Shop", {
-      vehicles: vehiclelistSearch,
-      dealershipList: dealershipList,
-      user: req.user,
-      searchQuery: searchq
-    })
-    })
+// router.get("/search", async (req,res) => {
+//   vehiclelist = []
+//   queryfilterz = undefined
+//   var vehiclelistSearch = []
+//   searchq = req.query.squery
+//   try{
+//     var vehiclesSearch = undefined
+//     Vehicle.fuzzySearch({ query: searchq, prefixOnly: true })
+//     .sort(sorter(req.query.VehicleSort))
+//     .limit(10)
+//     .then(async function(data){
+//       const dealershipList = await Dealer.find({})
+//       // console.log(data)
+//     await data.forEach(function(vec){
+//       vec = JSON.parse(JSON.stringify(vec));
+//       vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
+//       vehiclelistSearch.push(vec)
+//     })
+//     console.log(vehiclelistSearch)
+//     res.send({
+//       vehicles: vehiclelistSearch,
+//       dealershipList: dealershipList,
+//       user: req.user,
+//       searchQuery: searchq
+//     })
+//     })
     
-  }catch(e){
-    console.log(e)
-  }
-})
+//   }catch(e){
+//     console.log(e)
+//   }
+// })
 
 module.exports = router;
