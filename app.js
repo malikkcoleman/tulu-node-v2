@@ -9,7 +9,9 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport");
 const https = require("https");
+const MongoDBSession = require("connect-mongodb-session")(session);
 
+const { spawn } = require('child_process')
 const hostname = "localhost";
 const port = 3000;
 
@@ -69,23 +71,46 @@ app.use(function (req, res, next) {
 app.set("view engine", "ejs");
 
 // Read HTTP POST data //Body Parser
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 // Express Session
 const TWO_HOURS = 1000 * 60 * 60 * 2;
 
+//MongoDB Store
+const store = new MongoDBSession({
+  uri: process.env.DB_CONNECTION,
+  collection: "mySessions",
+});
+
+//MongoDB Store Catch Errors
+store.on("error", function (error) {
+  console.log(error);
+});
+
 app.use(
   session({
-    secret: "Secret",
-    resave: true,
+    secret: process.env.SESSION_SECRET,
+    resave: false,
     saveUninitialized: true,
-    //cookie: { secure: true },
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24,
+    },
+    store: store,
   })
 );
 
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use((req, res, next) => {
+  console.log(req.session);
+  console.log(req.user);
+  if (req.user) {
+    console.log(req.user.role);
+  }
+  next();
+});
 
 // Connect Flash
 app.use(flash());
@@ -118,6 +143,27 @@ app.use("/message", require("./routes/message"));
 app.use("/inventory", require("./routes/inventory"));
 // ---------------------------------
 
+
+
+// const { spawn } = require('child_process')
+app.get('/foo', function(req, res) {
+    // Call your python script here.
+    // I prefer using spawn from the child process module instead of the Python shell
+    const scriptPath = 'hello.py'
+    const process = spawn('python', [scriptPath, arg1, arg2])
+    process.stdout.on('data', (myData) => {
+        // Do whatever you want with the returned data.
+        // ...
+        res.send("Done!")
+        console.log(myData)
+        console.log(req)
+        console.log(res)
+    })
+    process.stderr.on('data', (myErr) => {
+        // If anything gets written to stderr, it'll be in the myErr variable
+    })
+})
+
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(path.join(__dirname, "assets")));
 
@@ -137,3 +183,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {
   console.log(`Listening on port ${PORT}`);
 });
+
+

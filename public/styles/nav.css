@@ -202,7 +202,7 @@ button.influencerBtn {
         height:30vh;
         width:230px;
         background:#1A2A33;
-        z-index:1 ;
+        z-index:2 ;
         border-bottom-left-radius: 10px;
         padding:70px 0 30px 30px;
         top:-35vh;

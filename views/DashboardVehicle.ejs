@@ -54,6 +54,8 @@
                 </div>
                 <h3 class="userName"></h3>
                 <p class="userActiveListingCount"><span></span>&nbsp Active Listing</p>
+                <button class="importBtn" onclick="makeCallToFoo()">Sync</button>
+                <p class="importNote">*You can update inventory by importing a CSV</p>
             </div>
         </div>
 
@@ -92,5 +94,13 @@
     var vehicleList = <%-JSON.stringify(vehicles)%>
     console.log(vehicleList)
     populateVehicles();
+
+    function makeCallToFoo() {
+        fetch('/foo').then(function(response) {
+            // Use the response sent here
+            console.log(response)
+        })
+    }
+
 </script>
 </html>

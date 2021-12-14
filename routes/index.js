@@ -2,13 +2,13 @@ const express = require("express");
 const pgroutr = express.Router();
 const ROLE = require("../roles");
 const { ensureAuthenticated, authRole } = require("../config/auth");
-
+const { spawn } = require('child_process')
 const Vehicle = require("../models/vehicleschema");
 const Dealer = require("../models/dealershipschema");
 const uploadController = require("../controllers/upload");
 const fetchImage = require("../middleware/getImages");
 const fetchFiles = require("../middleware/getFile");
-const downloadFile = require("../middleware/downloadfile")
+const downloadFile = require("../middleware/downloadfile");
 const Address = require("../models/addressschema");
 const User = require("../models/userschema");
 const TestDrive = require("../models/testdriveschema");
@@ -20,6 +20,12 @@ const Message = require("../models/messageschema");
 const Thread = require("../models/messagethreadschema");
 
 
+
+pgroutr.get("/sync", (req, res) =>
+  res.render("sync", {
+    user: req.user
+  })
+);
 
 pgroutr.get("/EditDealer", ensureAuthenticated, (req, res) =>
   Dealer.find({ uuid: req.user.toObject().dealerId }).then((dealer) => {
@@ -86,14 +92,14 @@ pgroutr.get("/", (req, res) =>
 );
 
 pgroutr.get("/Events", (req, res) =>
-  Event.find({})
-  .then((event) => {
+  Event.find({}).then((event) => {
     res.render("Events", {
       user: req.user,
-      event:event
-    })
+      event: event,
+    });
   })
 );
+
 
 pgroutr.get("/Messenger", ensureAuthenticated, (req, res) =>
   User.find({})
@@ -103,6 +109,24 @@ pgroutr.get("/Messenger", ensureAuthenticated, (req, res) =>
       Message.find({})
       .then((messages) => {
         res.render("Messenger", {
+          user: req.user,
+          userList: userList,
+          thread: thread,
+          messages: messages,
+        })
+      })
+    })
+  })
+);
+
+pgroutr.get("/MessengerBox", ensureAuthenticated, (req, res) =>
+  User.find({})
+  .then((userList) => {
+    Thread.find({})
+    .then((thread) => {
+      Message.find({})
+      .then((messages) => {
+        res.render("MessengerBox", {
           user: req.user,
           userList: userList,
           thread: thread,
@@ -132,6 +156,8 @@ pgroutr.get("/Inbox", ensureAuthenticated, (req, res) =>
   })
 );
 
+
+
 pgroutr.get("/TradeVehicle", (req, res) =>
   res.render("TradeVehicle", {
     user: req.user
@@ -151,91 +177,81 @@ pgroutr.get("/CreditApplication", (req, res) =>
 );
 
 pgroutr.get("/EventList", (req, res) =>
-  Event.find({})
-  .then((eventList) => {
+  Event.find({}).then((eventList) => {
     res.render("EventList", {
       user: req.user,
-      eventList:eventList
-    })
+      eventList: eventList,
+    });
   })
 );
 
-
 pgroutr.get("/TestDrive/:vin", (req, res) => {
-  Vehicle.find({ vin: req.params.vin })
-  .then((vehicles) => {
-    Dealer.find({ uuid: vehicles[0].dealerId })
-    .then((dealer) => {
+  Vehicle.find({ vin: req.params.vin }).then((vehicles) => {
+    Dealer.find({ uuid: vehicles[0].dealerId }).then((dealer) => {
       res.render("TestDrive", {
         user: req.user,
-        vehicles:vehicles,
-        dealer:dealer
-      })
-    })
-  })
-})
+        vehicles: vehicles,
+        dealer: dealer,
+      });
+    });
+  });
+});
 
 pgroutr.get("/UploadLicense/:targetId", (req, res) => {
-  TestDrive.find({_id:req.params.targetId})
-  .then((appointment)=>{
+  TestDrive.find({ _id: req.params.targetId }).then((appointment) => {
     res.render("UploadLicense", {
       user: req.user,
-      targetId:req.params.targetId,
-      appointment:appointment
-    })
-  })
-})
+      targetId: req.params.targetId,
+      appointment: appointment,
+    });
+  });
+});
 
 pgroutr.get("/UploadEvent/:targetId", (req, res) => {
-  Event.find({_id:req.params.targetId})
-  .then((event)=>{
+  Event.find({ _id: req.params.targetId }).then((event) => {
     res.render("UploadEvent", {
       user: req.user,
-      targetId:req.params.targetId,
-      event:event
-    })
-  })
-})
+      targetId: req.params.targetId,
+      event: event,
+    });
+  });
+});
 
 pgroutr.get("/UploadBlog/:targetId", (req, res) => {
-  Event.find({_id:req.params.targetId})
-  .then((blog)=>{
+  Event.find({ _id: req.params.targetId }).then((blog) => {
     res.render("UploadBlog", {
       user: req.user,
-      targetId:req.params.targetId,
-      blog:blog
-    })
-  })
-})
+      targetId: req.params.targetId,
+      blog: blog,
+    });
+  });
+});
 
 pgroutr.get("/UploadResume/:targetId", (req, res) => {
-  Application.find({_id:req.params.targetId})
-  .then((application)=>{
+  Application.find({ _id: req.params.targetId }).then((application) => {
     res.render("UploadResume", {
       user: req.user,
-      targetId:req.params.targetId,
-      application:application
-    })
-  })
-})
+      targetId: req.params.targetId,
+      application: application,
+    });
+  });
+});
 
 pgroutr.get("/Blog/:targetId", (req, res) =>
-  Blog.find({_id:req.params.targetId})
-  .then((blog)=>{
+  Blog.find({ _id: req.params.targetId }).then((blog) => {
     res.render("Blog", {
       user: req.user,
-      blog:blog,
-    })
+      blog: blog,
+    });
   })
 );
 
 pgroutr.get("/BlogList", (req, res) =>
-  Blog.find({})
-  .then((blogList) => {
+  Blog.find({}).then((blogList) => {
     res.render("BlogList", {
       user: req.user,
-      blogList:blogList
-    })
+      blogList: blogList,
+    });
   })
 );
 
@@ -313,14 +329,13 @@ pgroutr.get(
 );
 
 pgroutr.get("/MessageTulu/:id", (req, res) => {
-  User.find({ _id: req.params.id })
-  .then((tulu) => {
+  User.find({ _id: req.params.id }).then((tulu) => {
     res.render("MessageTulu", {
       user: req.user,
-      tulu:tulu
-    })
-  })
-})
+      tulu: tulu,
+    });
+  });
+});
 
 pgroutr.get("/carview/:vin", (req, res) => {
   Vehicle.find({ vin: req.params.vin })
@@ -472,7 +487,7 @@ pgroutr.get("/DealerListing/:dealerId", (req, res) => {
 pgroutr.post("/upload/:type/:targetid", uploadController.uploadFile),
   (req, res) => {
     console.log(req);
-};
+  };
 
 pgroutr.get("/image/:targetid", (req, res) => {
   fetchImage.getImage(req, res);
