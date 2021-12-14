@@ -21,11 +21,19 @@ function LoadDealer() {
 		}
 		html = html + '		<p class="amvic">' + dealerList[i].amvic + '</p>';
 		html = html + '	</div>';
-		html = html + '	<div><a href="/dealerships/delete/'+ dealerList[i].uuid +'"><i class="far fa-trash-alt"></i></a></div>'
+		html = html + '	<div><a href="#" onclick="AlertDelete(\''+dealerList[i].uuid+'\')"><i class="far fa-trash-alt"></i></a></div>'
 		html = html + '</li>';
 	}
 	$("#dealershipList").empty();
 	$("#dealershipList").append(html);
+}
+
+function AlertDelete(uuid){
+	if (confirm("DOING THIS WILL DELETE ALL VEHICLES UNDER THIS DEALERSHIP AND THE DEALERSHIP IT SELF") == true) {
+		window.location = '/dealerships/delete/'+ uuid ;
+	} else {
+		alert('Deletion got cancelled by user')
+	}
 }
 
 function ViewDealer(index){
