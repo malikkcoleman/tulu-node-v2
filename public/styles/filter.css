@@ -195,7 +195,7 @@ aside.sortSettings{
 
     .filter{
         position: fixed;
-        z-index: 9;
+        /* z-index: 9; */
         width:100%;
         background:white;
         margin:60px 0 0 0;
