@@ -82,10 +82,23 @@ async function getImagesArray(targetId){
 }
 
 async function deleteImages(targetId){
-    let data = await fetchImage.deleteMany({target_id: targetId}).then(function(data){
+    await fetchImage.find({target_id: targetId}).then(function(data){
+        data.forEach(async photos => {
+            const obj_id = new mongoose.Types.ObjectId(photos.file_id);
+            gfs.remove({_id: obj_id, root: 'photos'}, (err, gridStore) => {
+                if(err){
+                    return res.status(404).json({err: err})
+                }
+            })
+        });
+    })
+    
+    let deleteImageinfo = await fetchImage.deleteMany({target_id: targetId}).then(function(data){
         return data
     })
-    return data
+
+    return deleteImageinfo
+
 }
 
   
