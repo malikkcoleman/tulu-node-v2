@@ -10,6 +10,8 @@ const session = require("express-session");
 const passport = require("passport");
 const https = require("https");
 const MongoDBSession = require("connect-mongodb-session")(session);
+
+const { spawn } = require('child_process')
 const hostname = "localhost";
 const port = 3000;
 
@@ -138,7 +140,29 @@ app.use("/application", require("./routes/application"));
 app.use("/events", require("./routes/events"));
 app.use("/blogs", require("./routes/blogs"));
 app.use("/message", require("./routes/message"));
+app.use("/inventory", require("./routes/inventory"));
 // ---------------------------------
+
+
+
+// const { spawn } = require('child_process')
+app.get('/foo', function(req, res) {
+    // Call your python script here.
+    // I prefer using spawn from the child process module instead of the Python shell
+    const scriptPath = 'hello.py'
+    const process = spawn('python', [scriptPath, arg1, arg2])
+    process.stdout.on('data', (myData) => {
+        // Do whatever you want with the returned data.
+        // ...
+        res.send("Done!")
+        console.log(myData)
+        console.log(req)
+        console.log(res)
+    })
+    process.stderr.on('data', (myErr) => {
+        // If anything gets written to stderr, it'll be in the myErr variable
+    })
+})
 
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(path.join(__dirname, "assets")));
@@ -159,3 +183,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, function () {
   console.log(`Listening on port ${PORT}`);
 });
+
+
