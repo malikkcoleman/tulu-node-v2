@@ -129,7 +129,6 @@ router.get("/getModels",async function(req, res){
   }else{
     years = await Vehicle.find({make: req.query.make}).distinct('year')
   }
-  console.log(models)
   res.send({
     models: models,
     years: years

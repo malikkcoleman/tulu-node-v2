@@ -179,12 +179,17 @@ function SearchVehicles(){
     url: "/inventory/getModels?make=" + $('#makeSelect').val() + "&type="+ $('#VehicleTypeSearch').val(),
     method: "GET",
     success: function(res){
+      console.log(res)
       var html = "";
       var yearHtml = "";
-
-      res['models'].forEach(function(data){
-        html += '<option value="'+data+'">'+data+'</option>'
-      })
+      
+      if(res['models'] == undefined){
+        html += '<option value="">Any</option>'
+      }else{
+        res['models'].forEach(function(data){
+          html += '<option value="'+data+'">'+data+'</option>'
+        })
+      }
 
       res['years'].forEach(function(data){
         yearHtml += '<option value="'+data+'">'+data+'</option>'
@@ -205,7 +210,6 @@ function SearchVehicles(){
     }
   });
 }
-SearchVehicles();
 
 function SearchVehiclesMobile(){
   var filterval = Object.fromEntries(new URLSearchParams(location.search))
@@ -218,9 +222,13 @@ function SearchVehiclesMobile(){
       var html = "";
       var yearHtml = "";
 
-      res['models'].forEach(function(data){
-        html += '<option value="'+data+'">'+data+'</option>'
-      })
+      if(res['models'] == undefined){
+        html += '<option value="">Any</option>'
+      }else{
+        res['models'].forEach(function(data){
+          html += '<option value="'+data+'">'+data+'</option>'
+        })
+      }
 
       res['years'].forEach(function(data){
         yearHtml += '<option value="'+data+'">'+data+'</option>'
@@ -241,4 +249,6 @@ function SearchVehiclesMobile(){
     }
   });
 }
+
+SearchVehicles();
 SearchVehiclesMobile();
