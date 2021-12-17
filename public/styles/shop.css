@@ -138,6 +138,30 @@
     align-items: center;
 }
 
+.carListContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 1800px;
+    margin: auto;
+    position: relative;
+}
+
+.filterFormContainer{
+    position: fixed; 
+    margin-left: 50px; 
+    height: 300px; 
+    width: 300px; 
+    background-color: #79C6AC;
+}
+
+.filterFormDesktopContainer{
+    position: fixed; 
+    margin: auto;
+    height: auto; 
+    width: 350px; 
+    background-color: #79C6AC;
+}
 @media screen and (max-width: 600px) {
 
     #gridDisplayBtn{

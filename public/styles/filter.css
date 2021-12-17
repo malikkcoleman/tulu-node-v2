@@ -96,6 +96,29 @@ aside.filterSettings{
     padding:10px 5px;
 }
 
+.filterDesktopContainer{
+    background:#79C6AC ;
+    height:auto;
+    padding:20px;
+}
+
+.filterDesktopContainer div{
+    margin:10px 0 0 0;
+}
+
+.filterDesktopContainer input, .filterDesktopContainer select{
+    background:white;
+    border:none;
+    border-radius:10px;
+    padding:10px 5px;
+}
+
+.formFilterDesktopButton{
+    margin:20px 0 0 0 !important;
+    width: 100% !important;
+    
+}
+
 .sortLabel, .makeLabel, .modelLabel, .conditionLabel {
     color: white;
     margin-bottom: 10px;

@@ -102,7 +102,7 @@ router.get("/filter", (req, res) => {
       filters += `${capitalize(value)}`
     }else{
       filters += `${capitalize(value)}/`
-    }
+    } 
   }
   res.render("Shop", {
     vehicles: [],
@@ -113,6 +113,28 @@ router.get("/filter", (req, res) => {
     filterby: filters
   })
 });
+
+router.get("/getModels",async function(req, res){
+  var models
+  if(req.query.make != "" && req.query.type == ""){
+    models = await Vehicle.find({make: req.query.make}).distinct('model');
+  }else if(req.query.make != "" && req.query.type != ""){
+    models = await Vehicle.find({make: req.query.make, vehicleType: req.query.type}).distinct('model');
+  }else{
+    console.log("donothing")
+  }
+  var years = null
+  if(req.query.make == ""){
+    years = await Vehicle.find().distinct('year')
+  }else{
+    years = await Vehicle.find({make: req.query.make}).distinct('year')
+  }
+  console.log(models)
+  res.send({
+    models: models,
+    years: years
+  })
+})
 
 // router.get("/search", async (req,res) => {
 //   vehiclelist = []
