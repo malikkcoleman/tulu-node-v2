@@ -202,7 +202,7 @@ aside.sortSettings{
 }
 
 
-@media screen and (min-width: 720px) {
+@media screen and (min-width: 1638px) {
     .filterSettingContainer{
         position: absolute;
         right:0;
@@ -251,7 +251,7 @@ aside.sortSettings{
         margin:0 0 0 10px;
         padding:10px 15px;
         border-radius: 10px;
-        width:200px;
+        width:150px;
     }
 
     #searchButton{

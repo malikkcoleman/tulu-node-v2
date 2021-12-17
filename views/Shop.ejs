@@ -312,9 +312,15 @@
           </h3>
           <a href="/TuluList"><button>Hire a Tulu</button></a>
         </div>
-        <div class="breadCrumbs">
-          <p class="filterBreadCrumbs">Filtered by : <span>&nbsp;<%= filterby %></span></p>
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+          <div class="breadCrumbs">
+            <p class="filterBreadCrumbs">Filtered by : <span>&nbsp;<%= filterby %></span></p>
+          </div>
+          <div class="breadCrumbs" style="float: right;">
+            <p class="sortBreadCrumbs">Sorted by : <span id="sortedBy"></span></p>
+          </div>
         </div>
+        
         <ul id="Vehicles" class="vehicleList">
           <div class="loading" id="loading">
             <p>Fetching Data.</p>

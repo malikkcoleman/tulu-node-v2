@@ -152,8 +152,9 @@ function selectedFilter(){
   }else{
       $('#VehicleSort').val(filterval.VehicleSort)
   }
-
+  $('#sortedBy').text($("#VehicleSort option:selected").text())
   
+
   $('#makeSelect').val(filterval.make)
   $('#vehicleType').val(filterval.type)
   ////////////////////////////////////
@@ -164,7 +165,8 @@ function selectedFilter(){
   }else{
       $('#VehicleSortMobile').val(filterval.VehicleSort)
   }
-
+  
+  $('#sortedBy').text($("#VehicleSortMobile option:selected").text())
   
   $('#makeSelectMobile').val(filterval.make)
   $('#vehicleTypeMobile').val(filterval.type)

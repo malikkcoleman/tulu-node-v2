@@ -162,6 +162,89 @@
     width: 350px; 
     background-color: #79C6AC;
 }
+@media screen and (max-width: 1638px) {
+    #Vehicles{
+        justify-content: center;
+        /* flex-direction: column; */
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    #Vehicles li{
+        border-left:1px solid #00000020;
+        border-right:1px solid #00000020;
+        border-radius: 10px;
+        filter: drop-shadow(0 20px 10px #00000028);
+        background:white;
+        justify-content: flex-end;
+        align-items: center;
+        padding:25px;
+        margin:20px;
+        width:230px;
+    }
+    
+    #Vehicles li .carImage{
+        width:230px !important;
+    }
+    
+    #Vehicles li .carDetails{
+        justify-content: center;
+        /* align-items:center; */
+        width: 80%;
+    }
+    
+    #Vehicles li .carDetails .carName{
+        margin:20px 0 0 0;
+    }
+    
+    #Vehicles li .carDetails h2,
+    #Vehicles li .carDetails p{
+        text-align: center;
+    }
+
+    #Vehicles li .carDetails h2{
+        font-size: 18px;
+    }
+    
+    #Vehicles li .carDetails p{
+        margin:5px 0 0 0;
+    }
+    
+    
+    #Vehicles li .carDetails .carPrice{
+        font-size: 17px;
+        margin:10px 0;
+        color:#79C6AC;
+    }
+    
+    #Vehicles li button{
+        padding:15px 0;
+        background:#79C6AC;
+        color:white;
+        border-radius: 10px;
+        border:none;
+        align-items: center;
+        margin:20px 0;
+    }
+    
+    #Vehicles li .dealership{
+        color:#79C6AC;
+        margin:10px 0;
+    }
+    
+    #Vehicles li .views{
+        flex-direction: row;
+        justify-content: center;
+        margin:30px 0 0 0 !important;
+        font-size: smaller;
+        color:#00000079;
+    }
+    
+    #Vehicles li .views i{
+        margin:0 10px 0 0;
+    }
+
+}
 @media screen and (max-width: 600px) {
 
     #gridDisplayBtn{
