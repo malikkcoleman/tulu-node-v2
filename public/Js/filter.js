@@ -26,18 +26,6 @@ const slideFilterMenu = () => {
 
 };
 
-function selectedFilter(){
-    var filterval = Object.fromEntries(new URLSearchParams(location.search))
-    $('#MakeSearch').val(filterval.make)
-    $('#VehicleTypeSearch').val(filterval.vehicleType)
-    if(filterval.VehicleSort == undefined){
-        $('#VehicleSort').val("")
-    }else{
-        $('#VehicleSort').val(filterval.VehicleSort)
-    }
-  }
-
-
 
 const slideSortMenu = () => {
     

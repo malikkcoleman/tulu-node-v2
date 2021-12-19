@@ -143,41 +143,114 @@ function carView(index){
     location.replace("/carview"+ "?id=" + index);
 }
 
-function SearchVehicles(){
-    gVehicle = [];
-    for(var x=0;x!=arr.length;x++){
-        if($('#MakeSearch').val()!=""){
-            if(arr[x].make == $('#MakeSearch').val()){
-                if($('#VehicleTypeSearch').val()!= ""){
-                    if(arr[x].vehicleType == $('#VehicleTypeSearch').val()){
-                        gVehicle.push(arr[x]);
-                    }
-                }else{
-                    gVehicle.push(arr[x]);
-                }
-            }
-        }else{
-            
-            if($('#VehicleTypeSearch').val()!= ""){
-                if(arr[x].vehicleType == $('#VehicleTypeSearch').val()){
-                    gVehicle.push(arr[x]);
-                }
-            }else{
-                gVehicle.push(arr[x]);
-            }
-        }
-    }
+function selectedFilter(){
+  var filterval = Object.fromEntries(new URLSearchParams(location.search))
+  $('#MakeSearch').val(filterval.make)
+  $('#VehicleTypeSearch').val(filterval.vehicleType)
+  if(filterval.VehicleSort == undefined){
+      $('#VehicleSort').val("")
+  }else{
+      $('#VehicleSort').val(filterval.VehicleSort)
+  }
+  $('#sortedBy').text($("#VehicleSort option:selected").text())
+  
 
-    
-    $('.filterBreadCrumbs span').empty()
-    if($('#MakeSearch').val()!=""){
-        $('.filterBreadCrumbs span').append($('#MakeSearch').val().toUpperCase()+" ")
-    }
-
-    if($('#VehicleType').val()!=""){
-        $('.filterBreadCrumbs span').append($('#VehicleTypeSearch').val().toUpperCase()+" ")
-    }
-    
-    console.log(gVehicle)
-    populateVehicle(gVehicle);
+  $('#makeSelect').val(filterval.make)
+  $('#vehicleType').val(filterval.type)
+  ////////////////////////////////////
+  $('#MakeSearchMobile').val(filterval.make)
+  $('#VehicleTypeSearchMobile').val(filterval.vehicleType)
+  if(filterval.VehicleSort == undefined){
+      $('#VehicleSortMobile').val("")
+  }else{
+      $('#VehicleSortMobile').val(filterval.VehicleSort)
+  }
+  
+  $('#sortedBy').text($("#VehicleSortMobile option:selected").text())
+  
+  $('#makeSelectMobile').val(filterval.make)
+  $('#vehicleTypeMobile').val(filterval.type)
 }
+selectedFilter()
+
+function SearchVehicles(){
+  var filterval = Object.fromEntries(new URLSearchParams(location.search))
+  $('#modelSelect').empty();
+  $('#yearSelect').empty();
+  $.ajax({
+    url: "/inventory/getModels?make=" + $('#makeSelect').val() + "&type="+ $('#VehicleTypeSearch').val(),
+    method: "GET",
+    success: function(res){
+      console.log(res)
+      var html = "";
+      var yearHtml = "";
+      
+      if(res['models'] == undefined){
+        html += '<option value="">Any</option>'
+      }else{
+        res['models'].forEach(function(data){
+          html += '<option value="'+data+'">'+data+'</option>'
+        })
+      }
+
+      res['years'].forEach(function(data){
+        yearHtml += '<option value="'+data+'">'+data+'</option>'
+      })
+
+      $('#modelSelect').append('<option value="">Any</option>')
+      $('#modelSelect').append(html)
+      $('#modelSelect').val(filterval.model)
+      $('#yearSelect').append('<option value="">Any</option>')
+      $('#yearSelect').append(yearHtml)
+      $('#yearSelect').val(filterval.year)
+      if($('#modelSelect option').length == 1){
+        $('#modelSelect').prop( "disabled", true );
+      }else{
+        $('#modelSelect').prop( "disabled", false );
+      }
+      
+    }
+  });
+}
+
+function SearchVehiclesMobile(){
+  var filterval = Object.fromEntries(new URLSearchParams(location.search))
+  $('#modelSelectMobile').empty();
+  $('#yearSelectMobile').empty();
+  $.ajax({
+    url: "/inventory/getModels?make=" + $('#makeSelectMobile').val() + "&type="+ $('#VehicleTypeSearchMobile').val(),
+    method: "GET",
+    success: function(res){
+      var html = "";
+      var yearHtml = "";
+
+      if(res['models'] == undefined){
+        html += '<option value="">Any</option>'
+      }else{
+        res['models'].forEach(function(data){
+          html += '<option value="'+data+'">'+data+'</option>'
+        })
+      }
+
+      res['years'].forEach(function(data){
+        yearHtml += '<option value="'+data+'">'+data+'</option>'
+      })
+
+      $('#modelSelectMobile').append('<option value="">Any</option>')
+      $('#modelSelectMobile').append(html)
+      $('#modelSelectMobile').val(filterval.model)
+      $('#yearSelectMobile').append('<option value="">Any</option>')
+      $('#yearSelectMobile').append(yearHtml)
+      $('#yearSelectMobile').val(filterval.year)
+      if($('#modelSelectMobile option').length == 1){
+        $('#modelSelectMobile').prop( "disabled", true );
+      }else{
+        $('#modelSelectMobile').prop( "disabled", false );
+      }
+      
+    }
+  });
+}
+
+SearchVehicles();
+SearchVehiclesMobile();

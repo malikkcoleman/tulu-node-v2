@@ -38,9 +38,9 @@
           onclick="vehicleDisplay();"
         ></i>
         <div style="width: 100%;">
-          <form action="/inventory/search" method="GET" class="srchForm" onsubmit="location.reload(true)">
+          <!-- <form action="/inventory/search" method="GET" class="srchForm" onsubmit="location.reload(true)">
             <input type="text" name="squery" class="srchInput" placeholder="Search Cars" value="<%= searchQuery %>">
-          </form>
+          </form> -->
 
           <div class="desktopFilter">
             <form class="" action="/inventory/filter/" method="GET">
@@ -50,52 +50,44 @@
               </div>
               <div class="">
                 <label for="make" class="">Make :</label>
-                <select name="make" id="MakeSearch" onchange="SearchVehicles()">
-                  <option value="">Any</option>
-                  <option value="Acura">Acura</option>
-                  <option value="AlfaRomeo">AlfaRomeo</option>
-                  <option value="Audi">Audi</option>
-                  <option value="Bmw">Bmw</option>
-                  <option value="Buick">Buick</option>
-                  <option value="Cadillac">Cadillac</option>
-                  <option value="Chevrolet">Chevrolet</option>
-                  <option value="Chrysler">Chrysler</option>
-                  <option value="Dodge">Dodge</option>
-                  <option value="Fiat">Fiat</option>
-                  <option value="Ford">Ford</option>
-                  <option value="Genesis">Genesis</option>
-                  <option value="Gmc">Gmc</option>
-                  <option value="Honda">Honda</option>
-                  <option value="Hyundai">Hyundai</option>
-                  <option value="Infiniti">Infiniti</option>
-                  <option value="Jaguar">Jaguar</option>
-                  <option value="Jeep">Jeep</option>
-                  <option value="Kia">Kia</option>
-                  <option value="Land Rover">Land Rover</option>
-                  <option value="Lexus">Lexus</option>
-                  <option value="Lincoln">Lincoln</option>
-                  <option value="Maserati">Maserati</option>
-                  <option value="Mazda">Mazda</option>
-                  <option value="Mercedes-Benz">Mercedes-Benz</option>
-                  <option value="Mini">Mini</option>
-                  <option value="Mitsubishi">Mitsubishi</option>
-                  <option value="Nissan">Nissan</option>
-                  <option value="Porsche">Porsche</option>
-                  <option value="Ram">Ram</option>
-                  <option value="Subaru">Subaru</option>
-                  <option value="Tesla">Tesla</option>
-                  <option value="Toyota">Toyota</option>
-                  <option value="Volkswagen">Volkswagen</option>
-                  <option value="Volvo">Volvo</option>
-                </select>
-              </div>
-              <div class="" style="display: none">
-                <label for="YearMin" class="">Year Min :</label>
-                <input type="text" id="YearMinSearch" value="0" />
-              </div>
-              <div class="" style="display: none">
-                <label for="YearMax" class="">Year Max :</label>
-                <input type="text" id="YearMaxSearch" value="0" />
+                  <select name="make" id="makeSelect" onchange="SearchVehicles()">
+                    <option value="">Any</option>
+                    <option value="Acura">Acura</option>
+                    <option value="AlfaRomeo">AlfaRomeo</option>
+                    <option value="Audi">Audi</option>
+                    <option value="Bmw">Bmw</option>
+                    <option value="Buick">Buick</option>
+                    <option value="Cadillac">Cadillac</option>
+                    <option value="Chevrolet">Chevrolet</option>
+                    <option value="Chrysler">Chrysler</option>
+                    <option value="Dodge">Dodge</option>
+                    <option value="Fiat">Fiat</option>
+                    <option value="Ford">Ford</option>
+                    <option value="Genesis">Genesis</option>
+                    <option value="Gmc">Gmc</option>
+                    <option value="Honda">Honda</option>
+                    <option value="Hyundai">Hyundai</option>
+                    <option value="Infiniti">Infiniti</option>
+                    <option value="Jaguar">Jaguar</option>
+                    <option value="Jeep">Jeep</option>
+                    <option value="Kia">Kia</option>
+                    <option value="Land Rover">Land Rover</option>
+                    <option value="Lexus">Lexus</option>
+                    <option value="Lincoln">Lincoln</option>
+                    <option value="Maserati">Maserati</option>
+                    <option value="Mazda">Mazda</option>
+                    <option value="Mercedes-Benz">Mercedes-Benz</option>
+                    <option value="Mini">Mini</option>
+                    <option value="Mitsubishi">Mitsubishi</option>
+                    <option value="Nissan">Nissan</option>
+                    <option value="Porsche">Porsche</option>
+                    <option value="Ram">Ram</option>
+                    <option value="Subaru">Subaru</option>
+                    <option value="Tesla">Tesla</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Volkswagen">Volkswagen</option>
+                    <option value="Volvo">Volvo</option>
+                  </select>
               </div>
               <div class="">
                 <label for="vehicleType" class=""
@@ -113,6 +105,18 @@
                   <option value="convertible">Convertible</option>
                   <option value="wagon">Wagon</option>
                   <option value="crossover">Crossover</option>
+                </select>
+              </div>
+              <div class="">
+                <label for="model" class="">Model:</label>
+                <select name="model" id="modelSelect" disabled>
+                  
+                </select>
+              </div>
+              <div class="">
+                <label for="year" class="">Year:</label>
+                <select name="year" id="yearSelect">
+                  
                 </select>
               </div>
               <div class="" style="display: none">
@@ -182,7 +186,7 @@
           <div class="MakeSearchContainer">
             <label for="make" class="MakeSearchLabel">Make :</label>
 
-            <select name="make" id="MakeSearch">
+            <select name="make" id="makeSelectMobile" onchange="SearchVehiclesMobile()">
               <option value="">Any</option>
               <option value="Acura">Acura</option>
               <option value="AlfaRomeo">AlfaRomeo</option>
@@ -221,20 +225,12 @@
               <option value="Volvo">Volvo</option>
             </select>
           </div>
-          <div class="YearMinContainer" style="display: none">
-            <label for="YearMin" class="YearMinLabel">Year Min :</label>
-            <input type="text" id="YearMinSearch" value="0" />
-          </div>
-          <div class="YearMaxContainer" style="display: none">
-            <label for="YearMax" class="YearMaxLabel">Year Max :</label>
-            <input type="text" id="YearMaxSearch" value="0" />
-          </div>
           <div class="VehicleTypeContainer">
             <label for="vehicleType" class="VehicleTypeLabel"
               >Vehicle Type :</label
             >
 
-            <select name="vehicleType" id="VehicleTypeSearch">
+            <select name="vehicleType" id="VehicleTypeSearchMobile" onchange="SearchVehiclesMobile()">
               <option value="">Any</option>
               <option value="sedan">Sedan</option>
               <option value="coupe">Coupe</option>
@@ -245,6 +241,18 @@
               <option value="convertible">Convertible</option>
               <option value="wagon">Wagon</option>
               <option value="crossover">Crossover</option>
+            </select>
+          </div>
+          <div class="">
+            <label for="model" class="" style="color: white; margin: 20px 0 10px 0">Model:</label>
+            <select name="model" id="modelSelectMobile" disabled>
+              
+            </select>
+          </div>
+          <div class="">
+            <label for="year" style="color: white; margin: 20px 0 10px 0">Year:</label>
+            <select name="year" id="yearSelectMobile">
+              
             </select>
           </div>
           <div class="IsSoldContainer" style="display: none">
@@ -273,7 +281,7 @@
 
           <div class="sortSettingContainer">
             <label for="VehicleSort" class="VehicleTypeLabel">Sort Vehicle:</label>
-            <select name="VehicleSort" id="VehicleSort">
+            <select name="VehicleSort" id="VehicleSortMobile">
               <option value="">None</option>
               <option value="lowToHigh">Price : Low to High</option>
               <option value="highToLow">Price : High to Low</option>
@@ -308,9 +316,15 @@
           </p>
           <!-- <a href="/TuluList"><button>Hire a Tulu</button></a> -->
         </div>
-        <div class="breadCrumbs">
-          <p class="filterBreadCrumbs">Filtered by : <span>&nbsp;<%= filterby %></span></p>
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+          <div class="breadCrumbs">
+            <p class="filterBreadCrumbs">Filtered by : <span>&nbsp;<%= filterby %></span></p>
+          </div>
+          <div class="breadCrumbs" style="float: right;">
+            <p class="sortBreadCrumbs">Sorted by : <span id="sortedBy"></span></p>
+          </div>
         </div>
+        
         <ul id="Vehicles" class="vehicleList">
           <div class="loading" id="loading">
             <p>Fetching Data.</p>
