@@ -123,15 +123,20 @@ router.post('/EditDealer',(req,res)=>{
 });
 
 router.get('/delete/:uuid', function(req, res){
+
     Vehicle.find({dealerId: req.params.uuid}).then(function(data){
-        if(data.length == 0){
-            Dealer.deleteOne({uuid: req.params.uuid}).then(function(data){
+        data.forEach(async vehicle => {
+            await fetchImage.deleteImages(vehicle.vin).then(function(data){
                 console.log(data)
-                res.redirect('/DealershipList')
+                Vehicle.deleteOne({vin: vehicle.vin}).then(function(vec){
+                    console.log(vec)
+                })
             })
-        }else{
-            res.redirect('/DealershipList?error=DealerNotEmpty')
-        }
+        });
+    })
+    Dealer.deleteOne({uuid: req.params.uuid}).then(function(data){
+        console.log(data)
+        res.redirect('/DealershipList')
     })
     
 })
