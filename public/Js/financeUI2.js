@@ -523,11 +523,11 @@ function emailConsent(){
 // }
 
 function activateBtn(){
-    if(email == 1 && privacy ==1){
-        document.querySelector("#consentBtn").disabled = false;
-    }else{
-        document.querySelector("#consentBtn").disabled = true;
-    }
+    // if(email == 1 && privacy ==1){
+    //     document.querySelector("#consentBtn").disabled = false;
+    // }else{
+    //     document.querySelector("#consentBtn").disabled = true;
+    // }
 }
 
 // function activateBtn(){
