@@ -275,7 +275,7 @@ header{
     position: relative;
     /* height:120px 0; */
     overflow: hidden;
-    background:url(../images/svg/vector_car.svg);
+    background:url(../images/SVG/vector_car.svg);
     background-position: right bottom;
     background-size: cover;
     background-repeat: no-repeat;
@@ -746,7 +746,7 @@ header{
 
     .secondSection{
         flex-direction: column;
-        background:url(../images/svg/vector_car.svg);
+        background:url(../images/SVG/vector_car.svg);
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
