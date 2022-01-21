@@ -744,13 +744,22 @@ header{
         height:70px;
     }
 
-    .secondSection{
-        flex-direction: column;
-        background:linear-gradient(rgba(121, 198, 172, 0.795),rgba(255, 255, 255, 0.541)),url(../images/svg/Asset\ 5.svg);
-        background-position: center center;
+
+    .secondSection {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        /* background:#79C6AC; */
+        padding:150px 0;
+        position: relative;
+        /* height:120px 0; */
+        overflow: hidden;
+        background:url(../images/svg/Asset\ 5.svg);
+        background-position: right bottom;
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
+        /* background-blend-mode: multiply; */
     }
 
     .secondSection .col-left,.secondSection .col-right{
