@@ -73,6 +73,9 @@ header{
     width: 60%;
 }
 
+.bodyTypeSection h1{
+    text-align: center;
+}
 
 .bodyTypeSection p{
     margin:20px 0 30px 0;
