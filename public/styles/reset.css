@@ -28,7 +28,7 @@
     text-decoration: none;
     color: #1A2A33;
     font-family: 'Raleway', sans-serif;
-    cursor: default;
+    /* cursor: default; */
 }
 
 input, select {

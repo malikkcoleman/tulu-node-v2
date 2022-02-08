@@ -88,6 +88,9 @@ function renderPosts(resss){
 
 
       arr.forEach(function(data){
+        data.transmissionName ? data.transmissionName = data.transmissionName : data.transmissionName = "n/a";
+        data.mileage ? data.mileage = data.mileage : data.mileage = "n/a";
+        data.trim ? data.trim = data.trim : data.trim = "n/a";
         if(view == 'small'){
             html+='<li class="vehicleListItemsSmallView" id="vehicleHolder">';
             var text = '';
@@ -106,26 +109,22 @@ function renderPosts(resss){
             html+='</li>';
         }else{
             html += '<li class="vehicleListItems" id="vehicleHolder">';
-            var text = '';
-            html+='<div class="imgContainer">';
-            html+='    <img src="/image/'+ data.vin +'" class="carImage" alt="car-image"/>';
-            html+='</div>';
-            html += '   <div class="carDetails">';
-            html += '       <h2 class="carName">' + data.year + ' ' + data.make + ' ' + data.model + '</h2>';
-            html += '       <p class="carPrice">$'+data.maxPrice + '</p>';
-            if(data.mileage != null){
-                html += '       <p class="carMileage">'+data.mileage +'  Kms</p>';
-            }
-            html += '       <div class="additionalCarInfo" id="vehicle' + i + '">';
-            html += '           <p class="carTrim">' + data.trim + '</p>';
-            html += '           <p class="carTransmission">' + data.transmissionName + '</p>';
-            html += '       </div>';
-            html += '       <div class="moreInfoContainer">';
-            html += '              <a href="/carview/'+ data.vin +'"><button class="moreInfo">View Vehicle</button></a>';
-            html += '       </div>';
-            html += '       <p class="dealership">' + data.dealer.name + '</p>';
-            html += '       <p class="views"><i class="far fa-eye"></i> '+data.views+' views<p>';
-            html += '   </div>';
+            html += '   <a href="/carview/'+ data.vin +'">';
+            html += '      <div class="imgContainer">';
+            html += '           <div class="views"><i class="far fa-eye"></i> '+data.views+' views</div>';
+            html += '          <img src="/image/'+ data.vin +'" class="carImage" alt="car-image"/>';
+            html += '      </div>';
+            html += '      <div class="carDetails">';
+            html += '          <h2 class="carName">' + data.year + ' ' + data.make + ' ' + data.model + '</h2>';
+            html += '          <p class="carPrice">$'+data.maxPrice + '</p>';
+            html += '          <div class="additionalCarInfo" id="vehicle' + i + '">';
+            html += '              <div><p class="carMileage"><i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp;'+data.mileage +'  Kms</p></div>';
+            html += '              <div><p class="carTrim"><i class="fas fa-cut"></i>&nbsp;&nbsp;' + data.trim + '</p></div>';
+            html += '              <div><p class="carTransmission"><img class="infoIcon" src="/images/icons/gearbox.png" alt="">&nbsp;&nbsp;' + data.transmissionName + '</p></div>';
+            html += '          </div>';
+            html += '          <p class="dealership">' + data.dealer.name + '</p>';
+            html += '      </div>';
+            html += '   </a>';
             html += '</li>';
         }
         
@@ -147,6 +146,10 @@ function selectedFilter(){
   var filterval = Object.fromEntries(new URLSearchParams(location.search))
   $('#MakeSearch').val(filterval.make)
   $('#VehicleTypeSearch').val(filterval.vehicleType)
+  $('#dealerId').val(filterval.dealerId)
+  $('#minPrice').val(filterval.minPrice)
+  $('#maxPrice').val(filterval.maxPrice)
+  console.log(filterval)
   if(filterval.VehicleSort == undefined){
       $('#VehicleSort').val("")
   }else{

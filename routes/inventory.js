@@ -24,10 +24,11 @@ function sorter(sortQuery){
 
 router.get("/",async (req, res) => {
   queryfilterz = undefined
+  const dealershipList = await Dealer.find({})
   searchq = undefined
   res.render("Shop", {
     vehicles: [],
-    dealershipList: '',
+    dealershipList: dealershipList,
     user: req.user,
     searchQuery: searchq,
     shopagetype: "shop",
@@ -77,11 +78,22 @@ router.get("/shopfilter/:start/:limit", (req, res) => {
 });
 
 function clean(obj) { //for cleaning filter when other field is blank
+  var maxPrice = {}
   for (var propName in obj) {
-    if (obj[propName] === null || obj[propName] === undefined || obj[propName] === '') {
+    if(propName == "minPrice" && obj[propName] !== ''){
+      maxPrice.$gte = obj[propName]
+    }else if(propName == "maxPrice" && obj[propName] !== ''){
+      maxPrice.$lte = obj[propName]
+    }
+    if (obj[propName] === null || obj[propName] === undefined || obj[propName] === '' || propName === 'minPrice' || propName === 'maxPrice') {
       delete obj[propName];
     }
   }
+  if(Object.keys(maxPrice).length != 0){
+    obj.maxPrice = maxPrice
+  }
+  
+  console.log(obj)
   return obj
 }
 
@@ -89,24 +101,44 @@ function capitalize(s){
     return s && s[0].toUpperCase() + s.slice(1);
 }
 
-router.get("/filter", (req, res) => {
+router.get("/filter", async (req, res) => {
   searchq = undefined
   sortzz = sorter(req.query.VehicleSort);
   queryfilterz = req.query;
+  const dealershipList = await Dealer.find({})
   filterQ = clean(req.query)
+
+  console.log(filterQ)
   delete filterQ["VehicleSort"]
   let iterations = Object.keys(filterQ).length
   var filters = ''
   for (const [key, value] of Object.entries(filterQ)) {
-    if (!--iterations){
-      filters += `${capitalize(value)}`
+    var ass, seee
+    if(key == 'dealerId'){
+      seee = dealershipList.filter(dealer => dealer.uuid == value)[0].name
+    }else if(key == 'maxPrice'){
+      if((value.$gte != undefined) && (value.$lte != undefined)){
+        seee = `Price: $${value.$gte} - $${value.$lte}`
+      }else if(value.$gte != undefined){
+        seee = `Minimum Price: $${value.$gte}`
+      }else if(value.$lte != undefined){
+        seee = `Maximum Price: $${value.$lte}`
+      }else{
+        seee = ''
+      }
     }else{
-      filters += `${capitalize(value)}/`
+      seee = value
+    }
+    console.log(seee)
+    if (!--iterations){
+      filters += `${capitalize(seee)}`
+    }else{
+      filters += `${capitalize(seee)}/`
     } 
   }
   res.render("Shop", {
     vehicles: [],
-    dealershipList: '',
+    dealershipList: dealershipList,
     user: req.user,
     searchQuery: searchq,
     shopagetype: "shopfilter",

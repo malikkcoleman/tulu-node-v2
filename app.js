@@ -11,7 +11,7 @@ const passport = require("passport");
 const https = require("https");
 
 const hostname = "localhost";
-const port = 3000;
+const port = 3111;
 
 const cert = fs.readFileSync("./path/tulucanada_com.crt");
 const ca = fs.readFileSync("./path/tulucanada_com.ca-bundle");
@@ -121,16 +121,16 @@ app.use("/inventory", require("./routes/inventory"));
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(path.join(__dirname, "assets")));
 
-app.use(function (err, req, res, next) {
-  res.render("404", {
-    user: req.user,
-  });
-});
-app.use(function (req, res) {
-  res.status(404).render("404", {
-    user: req.user,
-  });
-});
+// app.use(function (err, req, res, next) {
+//   res.render("404", {
+//     user: req.user,
+//   });
+// });
+// app.use(function (req, res) {
+//   res.status(404).render("404", {
+//     user: req.user,
+//   });
+// });
 
 const PORT = process.env.PORT || 3000;
 

@@ -2,7 +2,7 @@
 /* Car Section */
 
 .vehicles{
-    padding:0 15px 15px 15px;
+    padding:0 0 15px 0;
 }
 
 .helperInfo{
@@ -59,6 +59,15 @@
     padding:20px;
     margin:30px;
     width:300px;
+    height: 450px;
+}
+
+#Vehicles li a{
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #Vehicles li .carImage{
@@ -69,6 +78,7 @@
     justify-content: center;
     /* align-items:center; */
     margin:10px 0;
+    width: 100%;
 }
 
 #Vehicles li .carDetails .carName{
@@ -91,6 +101,22 @@
     color:#79C6AC;
 }
 
+.additionalCarInfo{
+    display: grid;
+    grid-template-columns: [col1] 50% [col2] 50%;
+    width: 100%;
+    grid-gap: 10px;
+    margin: 10px 0;
+}
+
+#Vehicles li .carDetails .additionalCarInfo div p{
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+}
+#Vehicles li .carDetails .additionalCarInfo div p .infoIcon{
+    max-height: 16px;
+}
 #Vehicles li button{
     padding:15px 0;
     background:#79C6AC;
@@ -107,11 +133,35 @@
 }
 
 #Vehicles li .views{
+    position: absolute;
+    height: 20px;
+    width: max-content;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
     flex-direction: row;
     justify-content: center;
-    margin:30px 0 0 0 !important;
-    font-size: smaller;
-    color:#00000079;
+    align-items: center;
+    color:#ffffff;
+    background: rgba(184, 184, 184, 0.788);
+    font-size: 14px;
+    border-top-left-radius: 10px;
+}
+#Vehicles li .views i{
+    color:#ffffff;
+    margin:0 10px 0 0;
+}
+.imgContainer{
+    width: 100%;
+    height: 200px;
+    
+}
+
+.imgContainer img{
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
 }
 
 #Vehicles li .views i{
@@ -183,18 +233,26 @@
         justify-content: flex-end;
         align-items: center;
         padding:25px;
-        margin:20px;
+        margin:10px;
+        height: auto;
         width:230px;
+        filter: drop-shadow(0 5px 4px #00000028);
     }
     
     #Vehicles li .carImage{
-        width:230px !important;
+        width: 100% !important;
     }
     
     #Vehicles li .carDetails{
         justify-content: center;
         /* align-items:center; */
-        width: 80%;
+        width: 100%;
+    }
+
+    .additionalCarInfo{
+        font-size: 90%;
+        width: 100%;
+        grid-gap: 10px 0px;
     }
     
     #Vehicles li .carDetails .carName{
@@ -235,21 +293,60 @@
         color:#79C6AC;
         margin:10px 0;
     }
-    
-    #Vehicles li .views{
-        flex-direction: row;
-        justify-content: center;
-        margin:30px 0 0 0 !important;
-        font-size: smaller;
-        color:#00000079;
-    }
-    
-    #Vehicles li .views i{
-        margin:0 10px 0 0;
-    }
 
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 660px) {
+    #Vehicles li{
+        width:95%;
+        margin: 10px 0;
+        padding: 0;
+        filter: drop-shadow(0 5px 2px #00000028);
+        height: auto;
+    }
+
+    #Vehicles li a{
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .additionalCarInfo{
+        margin: 10px 0;
+        grid-gap: 5px;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    #Vehicles li .carDetails{
+        margin: 0 10px;
+        padding: 10px;
+        justify-content: space-evenly;
+        font-size: 90%;
+    }
+
+    #Vehicles li .carDetails .additionalCarInfo div p .infoIcon{
+        max-height: 14px;
+    }
+
+    #Vehicles li .carDetails h2,
+    #Vehicles li .carDetails p{
+        text-align: right;
+        margin: 0;
+        font-size: 14px;
+    }
+    #Vehicles li .carDetails h2{
+        font-size: 16px;
+    }
+
+    #Vehicles li .carDetails .carPrice{
+        margin: 0;
+    }
+
+    #Vehicles li .carDetails .carName{
+        margin: 0;
+    }
+
+    #Vehicles li .views{
+        font-size: smaller;
+    }
 
     #gridDisplayBtn{
         display:none;
@@ -265,8 +362,30 @@
         align-items: center;
         flex-direction: column;
     }
+    
+    #Vehicles li button{
+        padding:5px 0;
+        margin:10px 0;
+        border-radius: 5px;
+    }
 
-    #Vehicles li{
-        margin:30px 0;
+    #Vehicles li .carImage{
+        width: 200px !important;
+    }
+    .imgContainer{
+        height: auto;
+        width: 200px;
+    }
+    .imgContainer img{
+        height: 100%;
+        width: 200px;
+        object-fit: cover;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
     }
 }
+
+/* @media screen and (max-width: 600px) {
+
+    
+} */

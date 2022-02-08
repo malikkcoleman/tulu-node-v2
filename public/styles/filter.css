@@ -79,14 +79,24 @@ aside.filterSettings{
     position: absolute;
     right:0;
     background:#79C6AC ;
-    width:60vw;
+    width:50vw;
     height:100vh;
     padding:20px;
-    filter: drop-shadow(-10px 0 10px #0000004d);
+    filter: drop-shadow(-5px 0 5px #0000004d);
 }
 
 .filterSettingContainer div{
     margin:10px 0 0 0;
+}
+
+.filterSettingContainer div .minmax{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+.filterSettingContainer div .minmax input{
+    width: 45%;
 }
 
 .filterSettingContainer input, .filterSettingContainer select{
@@ -191,7 +201,7 @@ aside.sortSettings{
     color:white;
 }
 
-.VehicleTypeLabel,.MakeSearchLabel{
+.VehicleTypeLabel,.MakeSearchLabel, .dealershipList, .priceRange{
     margin:20px 0 10px 0;
     color:white;
 }
@@ -200,6 +210,80 @@ aside.sortSettings{
 .desktopFilter{
     display:none;
 }
+
+.gridContainer{
+    display: grid;
+	grid-template-columns: [col1] 20% [col2] 80%;
+	grid-gap: 10px;
+	text-align: center;
+	color: #FFF;
+    width: 1600px;
+}
+
+.filterGrid{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.formFilter{
+    margin-top: 50px;
+    position: fixed;
+}
+
+
+
+.vehicleGrid{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchDesktop{
+    margin-top: 10px;
+}
+.filterGrid form{
+    padding-top: 30px;
+    width: 350px;
+    position: -webkit-sticky; /* Safari & IE */
+    position: sticky;
+    top: 150px;
+}
+
+aside#FilterSettings,.sortFilter,.srchForm{
+    display: none;
+}
+.filterGrid > form > div{
+    align-items: flex-start;
+    margin-top: 20px;
+}
+.filterGrid form div select{
+    border-radius: 7px;
+    height: 30px;
+    font-size: 15px;
+    padding-top: 4px;
+    width: 100%;
+
+}
+.filterGrid form div input{
+    border-radius: 7px;
+    height: 30px;
+    font-size: 15px;
+    border: 1px solid black;
+    padding-top: 2px;
+    width: 40%;
+    vertical-align: middle;
+    padding-left: 5px;
+}
+
+.filterGrid form div .minmax{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 
 
 @media screen and (min-width: 1638px) {
@@ -211,10 +295,6 @@ aside.sortSettings{
         height:100vh;
         padding:20px;
         filter: drop-shadow(-10px 0 10px #0000004d);
-    }
-
-    aside#FilterSettings,.sortFilter,.srchForm{
-        display: none !important;
     }
 
     .filter{
@@ -255,14 +335,66 @@ aside.sortSettings{
     }
 
     #searchButton{
-        margin:0;
         padding:12px 15px;
         border-radius: 10px;
-        width:250px;
+        width:100%;
         border:none;
     }
 
     .vehicles{
         margin:150px 0 0 0;
+    }
+}
+
+@media screen and (max-width: 1800px) {
+    .gridContainer{
+        width: 1300px;
+    }
+}
+
+@media screen and (max-width: 1500px) {
+    
+    .gridContainer form{
+        width: 100%;
+    }
+    
+    .gridContainer{
+        grid-template-columns: [col1] 20% [col2] 80%;
+        width: 1200px;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+
+    
+
+    aside#FilterSettings,.sortFilter,.srchForm{
+        display: block;
+    }
+    
+    .gridContainer{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .filterGrid{
+        display: none;
+    }
+    .vehicleGrid{
+        width: 100%;
+    }
+
+    .carsGrid{
+        width: 100%;
+    }
+
+    .filterGrid form{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .filterSettingContainer div .minmax input{
+        width: 40%;
     }
 }
