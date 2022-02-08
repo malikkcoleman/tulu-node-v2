@@ -330,10 +330,15 @@
     #Vehicles li .carDetails p{
         text-align: right;
         margin: 0;
-        font-size: 14px;
     }
     #Vehicles li .carDetails h2{
-        font-size: 16px;
+        font-size: 14px;
+    }
+    #Vehicles li .carDetails p{
+        font-size: 12px;
+    }
+    #Vehicles li .carDetails .carPrice {
+        font-size: 13px;
     }
 
     #Vehicles li .carDetails .carPrice{
