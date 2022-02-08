@@ -385,7 +385,17 @@
     }
 }
 
-/* @media screen and (max-width: 600px) {
+@media screen and (max-width: 400px) {
 
+
+    #Vehicles li .carImage{
+        width: 150px !important;
+    }
+    .imgContainer{
+        width: 150px;
+    }
+    .imgContainer img{
+        width: 150px;
+    }
     
-} */
+}
