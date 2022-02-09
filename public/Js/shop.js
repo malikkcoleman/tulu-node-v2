@@ -79,64 +79,58 @@ function noResult(){
 // }
 
 var view
-function renderPosts(resss){
-  if (resss.vehicles.length > 0){
-      console.log(resss)
+function renderPosts(results){
+  console.log(results)
+  if (results.vehicles.length > 0){
     var html = "";
-
-
-    function shuffleArray(arr) {
-        for (let i = arr.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [arr[i], arr[j]] = [arr[j], arr[i]];
-        }
-      console.log(arr);
+    var vehicles = results.vehicles;
+    console.log(vehicles)
+    vehicles.forEach(function(data){
+      data.transmissionName ? data.transmissionName = data.transmissionName : data.transmissionName = "n/a";
+      data.mileage ? data.mileage = data.mileage : data.mileage = "n/a";
+      data.trim ? data.trim = data.trim : data.trim = "n/a";
+      var dealername
+      if(data.dealer != undefined){
+        dealername = data.dealer.name
+      }else{
+        dealername = "No Dealership"
       }
-  
-      let arr = Array.prototype.slice.call(resss.vehicles);
-
-
-      arr.forEach(function(data){
-        data.transmissionName ? data.transmissionName = data.transmissionName : data.transmissionName = "n/a";
-        data.mileage ? data.mileage = data.mileage : data.mileage = "n/a";
-        data.trim ? data.trim = data.trim : data.trim = "n/a";
-        if(view == 'small'){
-            html+='<li class="vehicleListItemsSmallView" id="vehicleHolder">';
-            var text = '';
-            html+='<div class="imgContainer">';
-            html+='    <img src="/image/'+ data.vin +'" class="carImage" alt="car-image"/>';
-            html+='</div>';
-            html+='    <div class="carDetails">';
-            html+='        <h2 class="carName">' + data.year + ' ' + data.make + ' ' + data.model + '</h2>';
-            html+='        <p class="carPrice">$' + data.maxPrice + '</p>';
-            if(data.mileage != null){
-                html += '       <p class="carMileage">'+data.mileage +'  Kms</p>';
-            }
-            html+='        <a href="/carview/'+ data.vin +'"><button class="moreInfo">View Vehicle</button></a>';
-            html += '       <p class="dealership">' + data.dealer.name + '</p>';
-            html+='    </div>';
-            html+='</li>';
-        }else{
-            html += '<li class="vehicleListItems" id="vehicleHolder">';
-            html += '   <a href="/carview/'+ data.vin +'">';
-            html += '      <div class="imgContainer">';
-            html += '           <div class="views"><i class="far fa-eye"></i> '+data.views+' views</div>';
-            html += '          <img src="/image/'+ data.vin +'" class="carImage" alt="car-image"/>';
-            html += '      </div>';
-            html += '      <div class="carDetails">';
-            html += '          <h2 class="carName">' + data.year + ' ' + data.make + ' ' + data.model + '</h2>';
-            html += '          <p class="carPrice">$'+data.maxPrice + '</p>';
-            html += '          <div class="additionalCarInfo" id="vehicle' + i + '">';
-            html += '              <div><p class="carMileage"><i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp;'+data.mileage +'  Kms</p></div>';
-            html += '              <div><p class="carTrim"><i class="fas fa-cut"></i>&nbsp;&nbsp;' + data.trim + '</p></div>';
-            html += '              <div><p class="carTransmission"><img class="infoIcon" src="/images/icons/gearbox.png" alt="">&nbsp;&nbsp;' + data.transmissionName + '</p></div>';
-            html += '          </div>';
-            html += '          <p class="dealership">' + data.dealer.name + '</p>';
-            html += '      </div>';
-            html += '   </a>';
-            html += '</li>';
-        }
-        
+      if(view == 'small'){
+          html+='<li class="vehicleListItemsSmallView" id="vehicleHolder">';
+          var text = '';
+          html+='<div class="imgContainer">';
+          html+='    <img src="/image/'+ data.vin +'" class="carImage" alt="car-image"/>';
+          html+='</div>';
+          html+='    <div class="carDetails">';
+          html+='        <h2 class="carName">' + data.year + ' ' + data.make + ' ' + data.model + '</h2>';
+          html+='        <p class="carPrice">$' + data.maxPrice + '</p>';
+          if(data.mileage != null){
+              html += '       <p class="carMileage">'+data.mileage +'  Kms</p>';
+          }
+          html+='        <a href="/carview/'+ data.vin +'"><button class="moreInfo">View Vehicle</button></a>';
+          html += '       <p class="dealership">' + data.dealer.name + '</p>';
+          html+='    </div>';
+          html+='</li>';
+      }else{
+          html += '<li class="vehicleListItems" id="vehicleHolder">';
+          html += '   <a href="/carview/'+ data.vin +'">';
+          html += '      <div class="imgContainer">';
+          html += '           <div class="views"><i class="far fa-eye"></i> '+data.views+' views</div>';
+          html += '          <img src="/image/'+ data.vin +'" class="carImage" alt="car-image"/>';
+          html += '      </div>';
+          html += '      <div class="carDetails">';
+          html += '          <h2 class="carName">' + data.year + ' ' + data.make + ' ' + data.model + '</h2>';
+          html += '          <p class="carPrice">$'+data.maxPrice + '</p>';
+          html += '          <div class="additionalCarInfo" id="vehicle' + i + '">';
+          html += '              <div><p class="carMileage"><i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp;'+data.mileage +'  Kms</p></div>';
+          html += '              <div><p class="carTrim"><i class="fas fa-cut"></i>&nbsp;&nbsp;' + data.trim + '</p></div>';
+          html += '              <div><p class="carTransmission"><img class="infoIcon" src="/images/icons/gearbox.png" alt="">&nbsp;&nbsp;' + data.transmissionName + '</p></div>';
+          html += '          </div>';
+          html += '          <p class="dealership">' + dealername + '</p>';
+          html += '      </div>';
+          html += '   </a>';
+          html += '</li>';
+      }
     })
     $("#loading").remove()
     $("#Vehicles").append(html)
