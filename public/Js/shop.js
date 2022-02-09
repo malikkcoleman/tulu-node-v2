@@ -21,7 +21,7 @@ function getNext(type){
     method: "GET",
     success: function(res){
       if(res.vehicles.length < 15){
-        removeNextButton();
+        removeNextButton(res.vehicles.length);
       }
       renderPosts(res);
     }
@@ -53,9 +53,18 @@ function filter(formData){
   return false;
 }
 
-function removeNextButton(){
+function removeNextButton(length){
   $("#nextButtonHolder").empty();
-  $("#nextButtonHolder").append("<p>END OF RESULTS</p>")
+  if(length > 1){
+    $("#nextButtonHolder").append("<p>END OF RESULTS</p>")
+  }else{
+    $("#loading").remove()
+    $("#nextButtonHolder").append("<p>NO RESULTS</p>")
+  }
+}
+
+function noResult(){
+  $("#nextButtonHolder").append("<p>NO RESULTS</p>")
 }
 
 // function getPrevious(){
@@ -131,6 +140,8 @@ function renderPosts(resss){
     })
     $("#loading").remove()
     $("#Vehicles").append(html)
+  }else{
+    $("#loading").remove()
   }
 }
 
