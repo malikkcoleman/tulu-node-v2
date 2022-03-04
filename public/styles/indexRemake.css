@@ -289,7 +289,7 @@ header{
     padding:150px 0;
     position: relative;
     /* height:120px 0; */
-    overflow: hidden;
+    /* overflow: hidden; */
     background:url(../images/SVG/vector_car.jpg);
     background-position: right bottom;
     background-size: cover;
