@@ -5,7 +5,7 @@
     <meta property="og:title"         content="<%= vehicles[0].year%> <%= vehicles[0].make%> <%= vehicles[0].model%>">
     <meta property="og:type"          content="website" />
     <meta property="og:description"   content="<%= vehicles[0].notes%>">
-    <meta property="og:image:url"         content="https://www.tulucanada.com/image/<%= vehicles[0].vin %>">
+    <meta property="og:image:url"     content="https://www.tulucanada.com/image/<%= vehicles[0].vin %>">
     <meta property='og:image:width'   content='1200' />
     <meta property='og:image:height'  content='627' />
     <!-- <meta property="og:image" content="https://www.tulucanada.com/image/1FMCU9GD0HUB70051/6115cbea28e528002314292a"> -->
@@ -33,6 +33,9 @@
 
   <!-- Load Facebook SDK for JavaScript -->
   <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" 
+  src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0" 
+  nonce="gV2q8xt1"></script>
   <!-- <script>
   </script> -->
   <!-- ------------- -->
@@ -222,10 +225,15 @@
       </section>
       <!-- SHARE BUTTON -->
         <!-- Your share button code -->
-  <div class="fb-share-button" 
+
+      <div class="fb-share-button" data-href="https://www.tulucanada.com/carview/GT7281" 
+      data-layout="button" data-size="large"><a target="_blank" 
+      href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.tulucanada.com%2Fcarview%2FGT7281&amp;src=sdkpreparse" 
+      class="fb-xfbml-parse-ignore">Share</a></div>
+  <!-- <div class="fb-share-button" 
   data-href="https://www.tulucanada.com/carview/<%= vehicles[0].vin %>"
   data-layout="button">
-  </div>
+  </div> -->
 
 
   <!-- ------------- -->
