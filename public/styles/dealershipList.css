@@ -4,6 +4,8 @@
     margin:80px 10px 0 10px;
     background:#79C6AC;
     padding:40px 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .heading h2,.heading p{
@@ -19,18 +21,25 @@
 }
 
 .dealershipList{
-    
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .dealershipListItem{
-    border-bottom:1px solid #8b91964b;
+    /* border-bottom:1px solid #8b91964b; */
     padding:15px;
-    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* flex-direction: row; */
 }
 
 .dealershipList li{
     border:1px solid #8b91964b;
-    padding:10px 15px;
+    padding:30px;
+    width:300px;
+    margin:20px;
 }
 
 /* .dealershipList li p:nth-child(1){
@@ -39,6 +48,8 @@
 
 .dealershipList li p{
     font-size: small;
+    text-align: center;
+    align-items: center;
 }
 
 .dealerImage{
@@ -50,6 +61,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    margin:0 0 20px 0;
 }
 
 .dealerImage img{
@@ -62,6 +74,8 @@
 .dealerInfo{
     margin:0 0 0 10px;
     justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .dealerName{
@@ -83,4 +97,10 @@
 
 .dealerInfo .phoneNumber,.dealerInfo .hours,.dealerInfo .listing{
     font-size: small;
+}
+@media screen and (max-width: 600px) {
+    .heading{
+        justify-content: unset;
+        align-items: unset;
+    }
 }
