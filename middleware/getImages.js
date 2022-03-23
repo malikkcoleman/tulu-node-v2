@@ -10,6 +10,7 @@ const app = express();
 const bodyparser = require('body-parser')
 const path = require("path");
 const fetchImage = require("../models/imageschema");
+const fetchImage2 = require("../models/supremeautovehicleimages");
 const fs = require("fs");
 require("dotenv").config();
 
@@ -55,7 +56,7 @@ function getImage(req, res){
 }
 
 function getCarImage(req, res){
-    fetchImage.find({target_id: req.params.targetid, is_deleted: false, file_id: req.params.fileId }).then(function(data){
+    fetchImage2.find({target_id: req.params.targetid, is_deleted: false, file_id: req.params.fileId }).then(function(data){
         gfs.files.findOne({_id: data[0].file_id}, (err, file) => {
             if(!file || file.length === 0){
                 return res.status(404).json({
@@ -75,7 +76,7 @@ function getCarImage(req, res){
 }
 
 async function getImagesArray(targetId){
-    let test = await fetchImage.find({target_id: targetId, is_deleted: false}).then(function(data){
+    let test = await fetchImage2.find({vin: targetId, is_deleted: false}).then(function(data){
         return data
     })
     return test
