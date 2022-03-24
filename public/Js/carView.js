@@ -10,6 +10,10 @@ function currentSlide(n) {
     showSlides(slideIndex = n);
 }
 
+for (i = 0; i < photos.length; i++){
+    console.log(photos[i])
+}
+
 function showSlides(n) {
     var i;
     var slides = document.getElementsByClassName("mySlides");

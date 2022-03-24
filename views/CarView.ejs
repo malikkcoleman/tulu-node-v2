@@ -94,7 +94,7 @@
               <div class="mySlides fade">
                 <img
                   class="imageContain"
-                  src="/image/<%= image.target_id %>/<%= image.file_id %>"
+                  src="/image/<%= image.image %>"
                   alt=""
                 />
               </div>
@@ -351,6 +351,8 @@
     var address = <%- JSON.stringify(address)%>
     console.log(address)
     var dealerId = dealers[0]._id;
+    var photos = <%- JSON.stringify(photos)%>
+    console.log(photos)
 
     
   </script>

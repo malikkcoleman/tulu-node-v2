@@ -10,7 +10,7 @@ const app = express();
 const bodyparser = require('body-parser')
 const path = require("path");
 const fetchImage = require("../models/imageschema");
-const fetchImage2 = require("../models/supremeautovehicleimages");
+const fetchImage2 = require("../models/supremeautovehicleimageschema");
 const fs = require("fs");
 require("dotenv").config();
 
@@ -27,11 +27,11 @@ let gfs;
 
 conn.once('open', () => {
   gfs = Grid(conn.db, mongoose.mongo);
-  gfs.collection('photos')
+  gfs.collection('supremeAutoVehicleImages')
 });
 
 function getImage(req, res){
-    fetchImage.find({target_id: req.params.targetid, is_deleted: false, is_display_photo: true}).then(function(data){
+    fetchImage2.find({target_id: req.params.targetid, is_deleted: false, is_display_photo: true}).then(function(data){
         
         gfs.files.findOne({_id: data[0].file_id}, (err, file) => {
             if(!file || file.length === 0){
@@ -75,12 +75,69 @@ function getCarImage(req, res){
     })
 }
 
-async function getImagesArray(targetId){
-    let test = await fetchImage2.find({vin: targetId, is_deleted: false}).then(function(data){
+async function getImagesArray(vin){
+    let test = await fetchImage2.find({vin: 'A034201'}).then(function(data){
+        console.log(vin)
+        console.log(data.image)
         return data
     })
+    console.log(test)
     return test
 }
+
+
+// function getImage(req, res){
+//     fetchImage.find({target_id: req.params.targetid, is_deleted: false, is_display_photo: true}).then(function(data){
+        
+//         gfs.files.findOne({_id: data[0].file_id}, (err, file) => {
+//             if(!file || file.length === 0){
+//                 return res.status(404).json({
+//                     err: 'No file Exists'
+//                 })
+//             }
+//             if(file.contentType === 'image/jpeg' || file.contentType === 'image/png'|| file.contentType === 'application/pdf'){
+//                 const readstream = gfs.createReadStream(file.filename);
+//                 readstream.pipe(res)
+//             } else {
+//                 res.status(404).json({
+//                     err: 'not an image'
+//                 })
+//             }
+//         })
+//     }).catch(rrr => {
+//         var img = fs.readFileSync('./public/images/noimageavailable.jpg');
+//             res.writeHead(200, {'Content-Type': 'image/png' });
+//             res.end(img, 'binary');
+//     })
+// }
+
+// function getCarImage(req, res){
+//     fetchImage2.find({target_id: req.params.targetid, is_deleted: false, file_id: req.params.fileId }).then(function(data){
+//         gfs.files.findOne({_id: data[0].file_id}, (err, file) => {
+//             if(!file || file.length === 0){
+//                 return res.status(404).json({
+//                     err: 'No file Exists'
+//                 })
+//             }
+//             if(file.contentType === 'image/jpeg' || file.contentType === 'image/png'){
+//                 const readstream = gfs.createReadStream(file.filename);
+//                 readstream.pipe(res)
+//             } else {
+//                 res.status(404).json({
+//                     err: 'not an image'
+//                 })
+//             }
+//         })
+//     })
+// }
+
+// async function getImagesArray(targetId){
+//     let test = await fetchImage2.find({vin: targetId, is_deleted: false}).then(function(data){
+//         console.log(targetId)
+//         return data
+//     })
+//     return test
+// }
 
   
 module.exports = {getImage, getImagesArray, getCarImage};

@@ -18,6 +18,7 @@ const Event = require("../models/eventschema");
 const Blog = require("../models/blogschema");
 const Message = require("../models/messageschema");
 const Thread = require("../models/messagethreadschema");
+const Images = require("../models/supremeautovehicleimageschema");
 
 
 
@@ -331,6 +332,7 @@ pgroutr.get("/carview/:vin", (req, res) => {
             async (dealerAdmin) => {
               Address.find({ targetId: vehicles[0].dealerId }).then(
                 async (address) => {
+                  Images.find({}).then(async (photos) => {
                   const images = await fetchImage.getImagesArray(
                     req.params.vin
                   );
@@ -344,6 +346,7 @@ pgroutr.get("/carview/:vin", (req, res) => {
 
                   Vehicle.updateOne(myquery, newvalues).then((updatedVehicle) => {
                     console.log(images);
+                   
                     res.render("CarView", {
                       vehicles: vehicles,
                       user: req.user,
@@ -351,8 +354,13 @@ pgroutr.get("/carview/:vin", (req, res) => {
                       dealerAdmin: dealerAdmin,
                       address: address,
                       images: images,
+                      photos: photos,
                     });
                   });
+
+                }
+                  );    
+
                 }
               );
             }
@@ -474,7 +482,7 @@ pgroutr.post("/upload/:type/:targetid", uploadController.uploadFile),
     console.log(req);
 };
 
-pgroutr.get("/image/:targetid", (req, res) => {
+pgroutr.get("/image/:targetid/:vin", (req, res) => {
   fetchImage.getImage(req, res);
 });
 
@@ -486,7 +494,7 @@ pgroutr.get("/download/:targetid", (req, res) => {
   downloadFile.downloadFile(req, res);
 });
 
-pgroutr.get("/image/:targetid/:fileId", (req, res) => {
+pgroutr.get("/image/:targetid/:fileId/:vin", (req, res) => {
   fetchImage.getCarImage(req, res);
 });
 
