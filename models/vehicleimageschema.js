@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const supremeautovehicleimageschema = new mongoose.Schema(
+const vehicleimageschema = new mongoose.Schema(
   {
     target_id: {
       type: String,
@@ -27,6 +27,6 @@ const supremeautovehicleimageschema = new mongoose.Schema(
 );
 
 
-const supremeautoimageschemas = mongoose.model('supremeAutoVehicleImages', supremeautovehicleimageschema);
+const vehicleimageschemas = mongoose.model('vehicleimage', vehicleimageschema);
 
-module.exports = supremeautoimageschemas;
+module.exports = vehicleimageschemas;

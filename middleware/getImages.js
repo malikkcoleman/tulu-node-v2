@@ -76,7 +76,7 @@ function getCarImage(req, res){
 }
 
 async function getImagesArray(vin){
-    let test = await fetchImage2.find({vin: 'A034201'}).then(function(data){
+    let test = await fetchImage2.find({vin: vin}).then(function(data){
         console.log(vin)
         console.log(data.image)
         return data

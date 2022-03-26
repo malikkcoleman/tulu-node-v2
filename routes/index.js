@@ -332,7 +332,8 @@ pgroutr.get("/carview/:vin", (req, res) => {
             async (dealerAdmin) => {
               Address.find({ targetId: vehicles[0].dealerId }).then(
                 async (address) => {
-                  Images.find({}).then(async (photos) => {
+                  Vehicle.find({ vin: req.params.vin }).then(
+                    async (photos) => {
                   const images = await fetchImage.getImagesArray(
                     req.params.vin
                   );
@@ -346,6 +347,8 @@ pgroutr.get("/carview/:vin", (req, res) => {
 
                   Vehicle.updateOne(myquery, newvalues).then((updatedVehicle) => {
                     console.log(images);
+                    console.log(photos);
+                    console.log('hihihi')
                    
                     res.render("CarView", {
                       vehicles: vehicles,
@@ -369,9 +372,13 @@ pgroutr.get("/carview/:vin", (req, res) => {
         .catch((err) => {
           res.status(500).send(error);
         })
+        
         .catch((err) => {
           res.status(500).send(error);
         });
+    })
+    .catch((err) => {
+      res.status(500).send(error);
     })
     .catch((err) => {
       res.status(500).send(error);
