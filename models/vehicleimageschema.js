@@ -27,6 +27,6 @@ const vehicleimageschema = new mongoose.Schema(
 );
 
 
-const vehicleimageschemas = mongoose.model('vehicleimage', vehicleimageschema);
+const vehicleimageschemas = mongoose.model('vehicleimages', vehicleimageschema);
 
 module.exports = vehicleimageschemas;

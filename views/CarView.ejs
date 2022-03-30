@@ -87,14 +87,14 @@
         <div class="carDetails">
           <div class="gallery">
             <i class="fas fa-times fa-2x" id="closeGallery" onclick="closeGallery()"></i>
-            <% if (photos.length > 0){%>
+            <% if (vehicleimages.length > 0){%>
             <div class="slideshow-container" onclick="gallery()">
             <!-- <div class="slideshow-container" > -->
-              <% photos.forEach(function(photo){ %>
+              <% vehicleimages.forEach(function(photo){ %>
               <div class="mySlides fade">
                 <img
                   class="imageContain"
-                  src="/photos/<%= photo.image %>"
+                  src="<%= photo.image %>"
                   alt=""
                 />
               </div>
@@ -351,8 +351,8 @@
     var address = <%- JSON.stringify(address)%>
     console.log(address)
     var dealerId = dealers[0]._id;
-    var photos = <%- JSON.stringify(photos)%>
-    console.log(photos)
+    var vehicleimages = <%- JSON.stringify(vehicleimages)%>
+    console.log(vehicleimages.image)
 
     
   </script>

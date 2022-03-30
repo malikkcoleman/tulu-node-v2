@@ -1,4 +1,3 @@
-
 var start = 0;
 var limit = 15;
 function initialLoad(type){
@@ -81,6 +80,7 @@ function noResult(){
 var view
 function renderPosts(results){
   console.log(results)
+
   if (results.vehicles.length > 0){
     var html = "";
     var vehicles = results.vehicles;

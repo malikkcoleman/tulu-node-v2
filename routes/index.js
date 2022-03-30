@@ -2,7 +2,7 @@ const express = require("express");
 const pgroutr = express.Router();
 const ROLE = require("../roles");
 const { ensureAuthenticated, authRole } = require("../config/auth");
-
+const mongoose = require("mongoose");
 const Vehicle = require("../models/vehicleschema");
 const Dealer = require("../models/dealershipschema");
 const uploadController = require("../controllers/upload");
@@ -18,7 +18,8 @@ const Event = require("../models/eventschema");
 const Blog = require("../models/blogschema");
 const Message = require("../models/messageschema");
 const Thread = require("../models/messagethreadschema");
-const Images = require("../models/supremeautovehicleimageschema");
+
+const VehicleImages = require("../models/vehicleimageschema")
 
 
 
@@ -323,7 +324,22 @@ pgroutr.get("/MessageTulu/:id", (req, res) => {
   })
 })
 
+
+// change .find to when the is_display_photo == true
+// pgroutr.get("/inventory", (req,res) => {
+//   VehicleImages.find({}).then((vehicleimages) => {
+//     res.render("Shop", {
+//       user:req.user,
+//       vehicleimages: vehicleimages,
+//     })
+
+//   })
+
+
+// });
+
 pgroutr.get("/carview/:vin", (req, res) => {
+  VehicleImages.find({vin: req.params.vin}).then((vehicleimages) => {
   Vehicle.find({ vin: req.params.vin })
     .then((vehicles) => {
       Dealer.find({ uuid: vehicles[0].dealerId })
@@ -332,8 +348,6 @@ pgroutr.get("/carview/:vin", (req, res) => {
             async (dealerAdmin) => {
               Address.find({ targetId: vehicles[0].dealerId }).then(
                 async (address) => {
-                  Vehicle.find({ vin: req.params.vin }).then(
-                    async (photos) => {
                   const images = await fetchImage.getImagesArray(
                     req.params.vin
                   );
@@ -346,9 +360,9 @@ pgroutr.get("/carview/:vin", (req, res) => {
                   }
 
                   Vehicle.updateOne(myquery, newvalues).then((updatedVehicle) => {
+                    // console.log(images);
+                    // console.log(vehicleimages);
                     console.log(images);
-                    console.log(photos);
-                    console.log('hihihi')
                    
                     res.render("CarView", {
                       vehicles: vehicles,
@@ -357,12 +371,12 @@ pgroutr.get("/carview/:vin", (req, res) => {
                       dealerAdmin: dealerAdmin,
                       address: address,
                       images: images,
-                      photos: photos,
+                      vehicleimages: vehicleimages,
                     });
                   });
 
-                }
-                  );    
+                
+                  
 
                 }
               );
@@ -377,6 +391,7 @@ pgroutr.get("/carview/:vin", (req, res) => {
           res.status(500).send(error);
         });
     })
+  })
     .catch((err) => {
       res.status(500).send(error);
     })

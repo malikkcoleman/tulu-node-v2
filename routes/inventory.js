@@ -4,6 +4,7 @@ const { ensureAuthenticated, authRole } = require("../config/auth");
 
 const Vehicle = require("../models/vehicleschema");
 const Dealer = require("../models/dealershipschema");
+const VehicleImages = require("../models/vehicleimageschema")
 
 
 var queryfilterz

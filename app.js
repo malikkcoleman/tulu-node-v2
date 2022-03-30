@@ -102,6 +102,7 @@ app.use((req, res, next) => {
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
 app.use("/vehicles", require("./routes/vehicles"));
+app.use("/vehicleimages", require("./routes/vehicleimages"));
 app.use("/dealerships", require("./routes/dealerships"));
 app.use("/sysadminvehicles", require("./routes/sysAdminVehicles"));
 app.use("/vin", require("./routes/vinDecoder"));

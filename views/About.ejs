@@ -61,6 +61,22 @@
             </p>
         </div>
     </div>
+
+    <div class="container">
+        <form action="/vehicleimages/addvehicleimage" method="POST">
+            <label for="traget_id">Dealership: </label>
+            <input type="text" name="target_id" id="target_id">
+            <label for="vin">VIN: </label>
+            <input type="text" name="vin" id="vin">
+            <label for="image">Image: </label>
+            <input type="text" name="image" id="image">
+            <input type="text" name="is_deleted" id="is_deleted" value='false'>
+            <input type="text" name="is_display_photo" id="is_display_photo" value='false'>
+            <button type="submit" >
+                Save Vehicle Image
+              </button>
+        </form>
+    </div>
     <%- include partials/footer %>
 </body>
 <script src="Js/sideMenu.js"></script>
