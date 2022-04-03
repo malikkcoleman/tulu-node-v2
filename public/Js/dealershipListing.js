@@ -26,13 +26,33 @@ function populateDealer(){
 	populateVehicle();
 }
 
+function getVehicleImages(vin){
+	display_image = ''
+	console.log(vin)
+	
+	for(var i=0; i < vehicleimages.length; i++){
+		if(vehicleimages[i].vin == vin && vehicleimages[i].is_display_photo == true){
+			display_image = vehicleimages[i].image;
+			console.log(display_image);
+		}
+	}
+	
+	if (display_image == ''){
+		display_image = '../images/noimageavailable.jpg'
+	}
+
+	console.log(display_image)
+	return display_image;
+}
 function populateVehicle(){
 	var html = "";
 	var text = '';
+	var image = '';
 	for(var x=0;x!= vehicleList.length;x++){
+			image = getVehicleImages(vehicleList[x].vin)
 			html+='<li class="vehicleListItemsSmallView">';
 			html+='	   <a class="imgContainer" href="/carview/'+ vehicleList[x].vin +'" style="">';
-			html+='	       <img src="/image/'+ vehicleList[x].vin +'" class="carImage" alt="car-image"/>';
+			html+='	       <img src="'+ image +'" class="carImage" alt="car-image"/>';
 			html+='	   </a>';
 			html+='    <div class="carDetails">';
 			html+='        <h2 class="carName">' + vehicleList[x].year + ' ' + vehicleList[x].make + ' ' + vehicleList[x].model + '</h2>';
@@ -85,5 +105,6 @@ function SearchVehicles(){
     }
     
     console.log(vehicleList)
+	
     populateVehicle(vehicleList);
 }

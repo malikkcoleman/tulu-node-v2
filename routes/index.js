@@ -18,7 +18,7 @@ const Event = require("../models/eventschema");
 const Blog = require("../models/blogschema");
 const Message = require("../models/messageschema");
 const Thread = require("../models/messagethreadschema");
-
+const VehicleImages = require("../models/vehicleimageschema")
 
 
 pgroutr.get("/EditDealer", ensureAuthenticated, (req, res) =>
@@ -323,54 +323,61 @@ pgroutr.get("/MessageTulu/:id", (req, res) => {
 })
 
 pgroutr.get("/carview/:vin", (req, res) => {
-  Vehicle.find({ vin: req.params.vin })
-    .then((vehicles) => {
-      Dealer.find({ uuid: vehicles[0].dealerId })
-        .then(async (dealers) => {
-          User.find({ dealerId: vehicles[0].dealerId }).then(
-            async (dealerAdmin) => {
-              Address.find({ targetId: vehicles[0].dealerId }).then(
-                async (address) => {
-                  const images = await fetchImage.getImagesArray(
-                    req.params.vin
-                  );
-                  var myquery = { vin: vehicles[0].vin };
+  VehicleImages.find({vin: req.params.vin}).then((vehicleimages) => {
+    Vehicle.find({ vin: req.params.vin })
+      .then((vehicles) => {
+        Dealer.find({ uuid: vehicles[0].dealerId })
+          .then(async (dealers) => {
+            User.find({ dealerId: vehicles[0].dealerId }).then(
+              async (dealerAdmin) => {
+                Address.find({ targetId: vehicles[0].dealerId }).then(
+                  async (address) => {
+                    const images = await fetchImage.getImagesArray(
+                      req.params.vin
+                    );
+                    var myquery = { vin: vehicles[0].vin };
 
-                  var newView = vehicles[0].views + 1;
+                    var newView = vehicles[0].views + 1;
 
-                  var newvalues = {
-                    views:newView
-                  }
+                    var newvalues = {
+                      views:newView
+                    }
 
-                  Vehicle.updateOne(myquery, newvalues).then((updatedVehicle) => {
-                    console.log(images);
-                    res.render("CarView", {
-                      vehicles: vehicles,
-                      user: req.user,
-                      dealers: dealers,
-                      dealerAdmin: dealerAdmin,
-                      address: address,
-                      images: images,
+                    Vehicle.updateOne(myquery, newvalues).then((updatedVehicle) => {
+                      console.log(images);
+                      console.log(vehicleimages);
+                      res.render("CarView", {
+                        vehicles: vehicles,
+                        user: req.user,
+                        dealers: dealers,
+                        dealerAdmin: dealerAdmin,
+                        address: address,
+                        images: images,
+                        vehicleimages: vehicleimages,
+                      });
                     });
-                  });
-                }
-              );
-            }
-          );
-        })
-        .catch((err) => {
-          res.status(500).send(error);
-        })
-        .catch((err) => {
-          res.status(500).send(error);
-        });
-    })
-    .catch((err) => {
-      res.status(500).send(error);
-    })
-    .catch((err) => {
-      res.status(500).send(error);
-    });
+                  }
+                );
+              }
+            );
+          })
+          .catch((err) => {
+            res.status(500).send(error);
+          })
+          .catch((err) => {
+            res.status(500).send(error);
+          });
+      })
+      .catch((err) => {
+        res.status(500).send(error);
+      })
+      .catch((err) => {
+        res.status(500).send(error);
+      });
+      })
+      .catch((err) => {
+        res.status(500).send(error);
+      });
 });
 
 pgroutr.get("/tululist", (req, res) => {
@@ -451,22 +458,26 @@ pgroutr.get("/DashboardSysAdminUser", (req, res) => {
 });
 
 pgroutr.get("/DealerListing/:dealerId", (req, res) => {
-  Dealer.find({ uuid: req.params.dealerId })
-    .then((dealer) => {
-      Address.find({ targetId: req.params.dealerId }).then((address) => {
-        Vehicle.find({ dealerId: req.params.dealerId }).then((vehicle) => {
-          res.render("DealerListing", {
-            dealer: dealer,
-            vehicle: vehicle,
-            address: address,
-            user: req.user,
+  VehicleImages.find({targetId: req.params.dealerId}).then((vehicleimages) => {
+    Dealer.find({ uuid: req.params.dealerId })
+      .then((dealer) => {
+        Address.find({ targetId: req.params.dealerId }).then((address) => {
+          Vehicle.find({ dealerId: req.params.dealerId }).then((vehicle) => {
+           
+            res.render("DealerListing", {
+              dealer: dealer,
+              vehicle: vehicle,
+              address: address,
+              user: req.user,
+              vehicleimages: vehicleimages,
+            });
           });
         });
-      });
+      })
     })
-    .catch((err) => {
-      res.status(500).send(error);
-    });
+      .catch((err) => {
+        res.status(500).send(error);
+      });
 });
 
 pgroutr.post("/upload/:type/:targetid", uploadController.uploadFile),
