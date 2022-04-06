@@ -17,6 +17,12 @@
 <%if(!user){%>
   <script src="../Js/shop.js"></script>
 <%}%>
+
+<script type="text/javascript">
+
+  var vehicleimages = <%- JSON.stringify(vehicleimages)%>
+  console.log(vehicleimages.image)
+</script>
 <script>
   // var dealershipList = <%-JSON.stringify(dealershipList)%>;
   // console.log(dealershipList);

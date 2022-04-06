@@ -4,6 +4,7 @@ const { ensureAuthenticated, authRole } = require("../config/auth");
 
 const Vehicle = require("../models/vehicleschema");
 const Dealer = require("../models/dealershipschema");
+const VehicleImages = require("../models/vehicleimageschema")
 
 
 var queryfilterz
@@ -23,17 +24,21 @@ function sorter(sortQuery){
 }
 
 router.get("/",async (req, res) => {
-  queryfilterz = undefined
-  const dealershipList = await Dealer.find({})
-  searchq = undefined
-  res.render("Shop", {
-    vehicles: [],
-    dealershipList: dealershipList,
-    user: req.user,
-    searchQuery: searchq,
-    shopagetype: "shop",
-    filterby: 'None'
-  })
+    queryfilterz = undefined
+    const vehicleimages = await VehicleImages.find({})
+    const dealershipList = await Dealer.find({})
+    searchq = undefined
+
+    console.log(vehicleimages)
+    res.render("Shop", {
+      vehicles: [],
+      dealershipList: dealershipList,
+      user: req.user,
+      searchQuery: searchq,
+      shopagetype: "shop",
+      filterby: 'None',
+      vehicleimages: vehicleimages
+    })
 })
 
 router.get("/shop/:start/:limit", (req, res) => {
@@ -42,6 +47,7 @@ router.get("/shop/:start/:limit", (req, res) => {
     .skip(parseInt(req.params.start))
     .limit(parseInt(req.params.limit)).then(async function(data){
     const dealershipList = await Dealer.find({})
+    const vehicleimages = await VehicleImages.find({})
     await data.forEach(function(vec){
       vec = JSON.parse(JSON.stringify(vec));
       vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
@@ -51,7 +57,8 @@ router.get("/shop/:start/:limit", (req, res) => {
       vehicles: vehiclelistFilter,
       dealershipList: dealershipList,
       user: req.user,
-      searchQuery: searchq
+      searchQuery: searchq,
+      vehicleimages: vehicleimages
     })
   })
 });
@@ -63,6 +70,7 @@ router.get("/shopfilter/:start/:limit", (req, res) => {
     .skip(parseInt(req.params.start))
     .limit(parseInt(req.params.limit)).then(async function(data){
     const dealershipList = await Dealer.find({})
+    const vehicleimages = await VehicleImages.find({})
     await data.forEach(function(vec){
       vec = JSON.parse(JSON.stringify(vec));
       vec.dealer = dealershipList.find(x => x.uuid == vec.dealerId)
@@ -72,7 +80,8 @@ router.get("/shopfilter/:start/:limit", (req, res) => {
       vehicles: vehiclelistFilter,
       dealershipList: dealershipList,
       user: req.user,
-      searchQuery: searchq
+      searchQuery: searchq,
+      vehicleimages: vehicleimages
     })
   })
 });
@@ -105,6 +114,7 @@ router.get("/filter", async (req, res) => {
   searchq = undefined
   sortzz = sorter(req.query.VehicleSort);
   queryfilterz = req.query;
+  const vehicleimages = await VehicleImages.find({})
   const dealershipList = await Dealer.find({})
   filterQ = clean(req.query)
 
@@ -142,7 +152,8 @@ router.get("/filter", async (req, res) => {
     user: req.user,
     searchQuery: searchq,
     shopagetype: "shopfilter",
-    filterby: filters
+    filterby: filters,
+    vehicleimages: vehicleimages
   })
 });
 

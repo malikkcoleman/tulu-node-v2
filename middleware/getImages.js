@@ -10,6 +10,7 @@ const app = express();
 const bodyparser = require('body-parser')
 const path = require("path");
 const fetchImage = require("../models/imageschema");
+const grabImage = require("../models/vehicleimageschema")
 const fs = require("fs");
 require("dotenv").config();
 
@@ -24,10 +25,17 @@ const conn = mongoose.createConnection(process.env.DB_CONNECTION, {
 
 let gfs;
 
+let img;
+
 conn.once('open', () => {
   gfs = Grid(conn.db, mongoose.mongo);
   gfs.collection('photos')
 });
+
+// conn.once('open', () => {
+//     img = Grid(conn.db, mongoose.mongo);
+//     img.collection('vehicleimages')
+//   });
 
 function getImage(req, res){
     fetchImage.find({target_id: req.params.targetid, is_deleted: false, is_display_photo: true}).then(function(data){

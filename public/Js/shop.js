@@ -78,14 +78,35 @@ function noResult(){
 //   });
 // }
 
+function getVehicleImages(vin){
+	display_image = ''
+	console.log(vin)
+	
+	for(var i=0; i < vehicleimages.length; i++){
+		if(vehicleimages[i].vin == vin && vehicleimages[i].is_display_photo == true){
+			display_image = vehicleimages[i].image;
+		}
+	}
+	
+	if (display_image == ''){
+		display_image = '../images/noimageavailable.jpg'
+	}
+
+	console.log(display_image)
+	return display_image;
+}
+console.log(vehicleimages)
 var view
 function renderPosts(results){
   console.log(results)
   if (results.vehicles.length > 0){
+    
     var html = "";
     var vehicles = results.vehicles;
     console.log(vehicles)
     vehicles.forEach(function(data){
+     
+      var image = getVehicleImages(data.vin)
       data.transmissionName ? data.transmissionName = data.transmissionName : data.transmissionName = "n/a";
       data.mileage ? data.mileage = data.mileage : data.mileage = "n/a";
       data.trim ? data.trim = data.trim : data.trim = "n/a";
@@ -99,7 +120,7 @@ function renderPosts(results){
           html+='<li class="vehicleListItemsSmallView" id="vehicleHolder">';
           var text = '';
           html+='<div class="imgContainer">';
-          html+='    <img src="/image/'+ data.vin +'" class="carImage" alt="car-image"/>';
+          html+='    <img src="'+ image +' class="carImage" alt="car-image"/>';
           html+='</div>';
           html+='    <div class="carDetails">';
           html+='        <h2 class="carName">' + data.year + ' ' + data.make + ' ' + data.model + '</h2>';
@@ -116,7 +137,7 @@ function renderPosts(results){
           html += '   <a href="/carview/'+ data.vin +'">';
           html += '      <div class="imgContainer">';
           html += '           <div class="views"><i class="far fa-eye"></i> '+data.views+' views</div>';
-          html += '          <img src="/image/'+ data.vin +'" class="carImage" alt="car-image"/>';
+          html += '          <img src="'+ image +'" class="carImage" alt="car-image"/>';
           html += '      </div>';
           html += '      <div class="carDetails">';
           html += '          <h2 class="carName">' + data.year + ' ' + data.make + ' ' + data.model + '</h2>';
