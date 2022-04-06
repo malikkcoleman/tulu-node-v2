@@ -663,6 +663,8 @@
   console.log(dealershipList);
   var vehicles = <%-JSON.stringify(vehicles)%>;
   console.log(vehicles);
+  var vehicleimages = <%-JSON.stringify(vehicleimages)%>;
+  console.log(vehicleimages)
 
 
     function shuffleArray(array) {
@@ -686,13 +688,33 @@
 
   populateVehicles();
 
+  function getVehicleImages(vin){
+	display_image = ''
+	console.log(vin)
+	
+	for(var i=0; i < vehicleimages.length; i++){
+		if(vehicleimages[i].vin == vin && vehicleimages[i].is_display_photo == true){
+			display_image = vehicleimages[i].image;
+			console.log(display_image);
+		}
+	}
+	
+	if (display_image == ''){
+		display_image = '../images/noimageavailable.jpg'
+	}
+
+	console.log(display_image)
+	return display_image;
+}
+
   function populateVehicles(){
     var price,mileage;
     var html="";
     for(x=0;x!=9;x++){
+      image = getVehicleImages(vehicles[x].vin);
       html+='';
       html+='<a href="carview/'+vehicles[x].vin+'">';
-      html+='<li  class="vehicleDisplayListItem" style="background:linear-gradient(#ffffff00,#000000bb 70%),url(/image/'+vehicles[x].vin+');background-position:center;background-size:cover;background-repeat:no-repeat;">';
+      html+='<li  class="vehicleDisplayListItem" style="background:linear-gradient(#ffffff00,#000000bb 70%),url('+image+');background-position:center;background-size:cover;background-repeat:no-repeat;">';
       html+='    <h3 class="carTitle">'+vehicles[x].year+' '+vehicles[x].make+' '+vehicles[x].model+'</h3>';
       if(vehicles[x].mileage == undefined){
         mileage = "N/A"
