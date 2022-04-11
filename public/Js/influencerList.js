@@ -6,8 +6,8 @@ function LoadTulus(tulu) {
 	for (i = 0; i != tulu.length; i++) {
 		if(tulu[i].status=="active"){
 			html = html + '<li class="influencerListItem" onclick="ViewTulu('+i+')">';
-			html = html + '	<div class="influencerImage">';
-			html = html + '		<img src="/image/'+ tulu[i]._id +'" >';
+			html = html + '	<div class="influencerImage" style="background:url(/image/'+ tulu[i]._id +');background-size: cover;background-position: center;">';
+			// html = html + '		<img src="/image/'+ tulu[i]._id +'" >';
 			html = html + '	</div>';
 			html = html + '	<div class="influencerInfo">';
 			html = html + '		<h4 class="influencerName">' + tulu[i].fName +" "+ tulu[i].lName + '</h4>';
