@@ -741,9 +741,70 @@
   
 
   loadTulus()
+// tuluArray = [tuluList[11], tuluList[10], tuluList[8], tuluList[1]]
+//   function loadTulus(){
+//     var html = '';
+//     for (i = 0; i != 4; i++) {
+//           if(tuluArray[i].status="active"){
+//             html+='<li class="influencerListItems">';
+//             html+='  <a href="/tulu/viewTulu?tuluId='+tuluArray[i]._id+'">';
+//             html+='   <div class="influencerImage"style="background:url(/image/'+tuluArray[i]._id+'); background-size:cover;background-position:center;">';
+//             html+='   </div>';
+//             html+='  <h3 class="influencerName">'+tuluArray[i].fName +" "+tuluArray[i].lName+'</h3>';
+//             html+='  <div class="userRating">';
+
+//             if(tuluArray[i].ratings == 5){
+//               for(x=0;x!=5;x++){
+//                 html = html + '		    <i class="fas fa-star"></i>';
+//               }
+//             }else if(tuluArray[i].ratings == 4){
+//               for(x=0;x!=4;x++){
+//                 html = html + '		    <i class="fas fa-star"></i>';
+//               }
+//               html = html + '		    <i class="far fa-star"></i>';
+//             }else if(tuluArray[i].ratings == 3){
+//               for(x=0;x!=3;x++){
+//                 html = html + '		    <i class="fas fa-star"></i>';
+//               }
+//               html = html + '		    <i class="far fa-star"></i>';
+//               html = html + '		    <i class="far fa-star"></i>';
+//             }else if(tuluArray[i].ratings == 2){
+//               for(x=0;x!=2;x++){
+//                 html = html + '		    <i class="fas fa-star"></i>';
+//               }
+//               html = html + '		    <i class="far fa-star"></i>';
+//               html = html + '		    <i class="far fa-star"></i>';
+//               html = html + '		    <i class="far fa-star"></i>';
+//             }else if(tuluArray[i].ratings == 1){
+//               html = html + '		    <i class="fas fa-star"></i>';
+//               html = html + '		    <i class="far fa-star"></i>';
+//               html = html + '		    <i class="far fa-star"></i>';
+//               html = html + '		    <i class="far fa-star"></i>';
+//               html = html + '		    <i class="far fa-star"></i>';
+//             }else{
+//               html = html + '		    <i class="far fa-star"></i>';
+//               html = html + '		    <i class="far fa-star"></i>';
+//               html = html + '		    <i class="far fa-star"></i>';
+//               html = html + '		    <i class="far fa-star"></i>';
+//               html = html + '		    <i class="far fa-star"></i>';
+//             }
+
+//             html+='  </div>';
+//             // html+='<p class="bio">';
+//             // html+=tuluList[i].bio;
+//             // html+='</p>';
+            
+//             html+='  </a>';
+//             html+='</li>';
+//           }
+//       }
+//       $(".tuluList").empty();
+//       $(".tuluList").append(html);
+//     }
+
   function loadTulus(){
     var html = '';
-      for (i = 0; i != 4; i++) {
+      for (i = 7; i != 11; i++) {
           if(tuluList[i].status="active"){
             html+='<li class="influencerListItems">';
             html+='  <a href="/tulu/viewTulu?tuluId='+tuluList[i]._id+'">';
